@@ -260,6 +260,8 @@ defaults:
 collections:
   teaching:
     output: true
+  helphours:
+    output: false
 
 footer:
   links:
