@@ -28,7 +28,7 @@ teaser                   : # path of fallback teaser image, e.g. "/assets/images
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : "Nathan Pflueger"
 # breadcrumbs            : false # true, false (default)
-words_per_minute         : 200
+# words_per_minute         : 200
 # comments:
 #   provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
 #   disqus:
@@ -96,9 +96,9 @@ analytics:
 author:
   name             : "Nathan Pflueger"
   avatar           : /files/headshot.jpg
-  bio              : "I am a mathematician at Amherst College."
+  bio              : "Assistant Professor of Mathematics"
   location         : "Amherst, MA"
-  email            :
+  email            : "npflueger@amherst.edu"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
@@ -145,6 +145,7 @@ author:
 include:
   - .htaccess
   - _pages
+  - _includes
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -279,3 +280,15 @@ defaults:
       comments: # true
       share: true
       related: true
+  # _teaching
+  - scope:
+      path: ""
+      type: teaching
+    values:
+      layout: single
+      author_profile: true
+
+# Collections
+collections:
+  teaching:
+    output: true
