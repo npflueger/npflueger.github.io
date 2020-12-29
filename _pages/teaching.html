@@ -1,0 +1,15 @@
+---
+layout: archive
+title: "Teaching"
+permalink: /teaching/
+author_profile: true
+---
+
+{% assign curSem = nil %}
+{% for post in site.teaching reversed %}
+  {% if curSem != post.semester %}
+  <h2>{{post.semester}}</h2>
+  {% assign curSem = post.semester %}
+  {% endif %}
+  {% include archive-single.html %}
+{% endfor %}

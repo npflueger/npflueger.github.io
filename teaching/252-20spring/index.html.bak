@@ -1,0 +1,116 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Math 252, Spring 2020</title>
+
+<style>
+body
+{
+background-color:#C0C0C0;
+}
+h2 {font-family:sans-serif}
+h3 {font-family:sans-serif}
+a
+{
+text-decoration:none;
+}
+a:link {color:#000099;}      /* unvisited link */
+a:visited {color:#000099;}  /* visited link */
+a:hover {color:#4444cc;}  /* mouse over link */
+a:active {color:#3333FF;} 
+</style>
+
+</head><body>
+
+<h2>Math 252: Mathematics of Public-Key Cryptography</h2>
+Instructor: <a href="https://npflueger.people.amherst.edu/">Nathan Pflueger</a>
+<p>
+This course concerns the mathematical problems underlying public-key ciphers and digital signatures, as well as algorithms to solve them. Topics include discrete logarithms, integer factorization, elliptic curves, and lattices. These topics provide an appealing introduction to several topics in number theory, abstract algebra, and algorithms.</p>
+
+<h3>Remote learning</h3>
+Following the transition to remote learning after Spring break, the structure of the course will be changed as follows.
+<ul>
+    <li>We will have synchronous class meetings via Zoom at 9am on Mondays and Fridays. See the Zoom link on the course moodle page for access.</li>
+    <li>Several pre-recorded videos will be posted on Tuesdays and Wednesdays. You may access these from the Dropbox link sent out by email (also linked from the Moodle page).</li>
+    <li>Office hours: during my scheduled office hours (below), I will be actively monitoring the class's Slack channel, answering questions, and opening Zoom discussions as needed. Please set a message to the channel or to me privately if you would like to start a Zoom meeting.</li>
+    <li>The remaining exams will be open-book take-home exams (see below for details).</li>
+    <li>We will almost certainly cover less material this semester than was originally planned on the syllabus, due to the extraordinary circumstances. My primary concern as the instructor right now is to prioritize the main learning goals of Math 252: developing your reasoning about code, developing your general mathematical problems solving skills, and introducing you to some representative cryptographic algorithms. So I will be trying to think of the best way to give you that preparation within the constraints we are now under.</li>
+</ul>
+
+<h3>Help hours</h3>
+<ul>
+    <!--OH2020s--><li>My office hours <s>in SMUD 401</s> on Slack and Zoom: <ul><li>Visit <a href="https://amherstcollege.slack.com">Slack</a> to ask questions, either as private messages to me or on the group channel.</li><li>Just ask if you want to start a Zoom meeting to discuss anything.</li><li>I will check Slack periodically throughout the day, but am guaranteed to be actively monitoring, and available to meet on Zoom, at the times below.</li><li>Monday 1:00-2:00</li><li>Tuesday 1:45-3:15</li><li>Wednesday 1:45-3:15</li><li>Friday 1:00-2:00</li></ul></li></ul>
+
+<h3>Handouts</h3>
+<ul>
+    <li>1/28: <a href="syllabus.pdf">Syllabus</a></li>
+    <!--handouts-->
+</ul>
+
+
+<h3>Textbook and other links</h3>
+<ul>
+    <li>The course text is <a href=https://link.springer.com/book/10.1007/978-1-4939-1711-2>An Introduction to Mathematical Cryptography</a>, 2nd edition. Use this link to download the book in pdf for free or order a $25 paperback copy.</li>
+    <li><a href="https://www.dropbox.com/sh/ux723bfqnoezi1g/AAD2_yWdzwXncul60nnJVNJ6a?dl=0">Starter code and testing notebooks</a> for programming assignments.</li>
+    <li><a href="https://cscircles.cemc.uwaterloo.ca/">CS Circles python tutorial</a> (most relevant sections for our purposes: 0 through 10 and 13, except 2X, 7A, and 8)</li>
+</ul>
+
+<h3>Homework</h3>
+<p>
+Problem sets will be posted here. All problem sets are due at 10pm, via Gradescope.</p>
+<ul>
+    <li><a href="psets/pset0.pdf">Course survey and Gradescope instructions</a> (due 1/31)</li>
+    <li><a href="psets/pset1.pdf">Problem Set 1</a> (written due 2/5; code due 2/7)</li>
+    <li><a href="psets/pset2.pdf">Problem Set 2</a> (due 2/12)</li>
+    <li><a href="psets/pset3.pdf">Problem Set 3</a> (due 2/19)</li>
+    <li><a href="psets/pset4.pdf">Problem Set 4</a> (due 2/26)</li>
+    <li><a href="psets/pset5.pdf">Problem Set 5</a> (due 3/4)</li>
+    <li><a href="psets/pset6.pdf">Problem Set 6</a> (due <strike>3/25</strike> 3/30)</li>
+    <li><a href="psets/pset7.pdf">Problem Set 7</a> (due 4/3)</li>
+    <li><a href="psets/pset8.pdf">Problem Set 8</a> (due 4/8)</li>
+    <li><a href="psets/pset9.pdf">Problem Set 9</a> (due 4/15)</li>
+    <li><a href="psets/pset10.pdf">Problem Set 10</a> (due 4/22)</li>
+    <!--psets-->
+</ul>
+
+
+<h3>Exams</h3>
+<ul>
+    <li>Midterm 1: Monday 3/9, in class.
+        <ul>
+            <li>Remember to make a one-page note-sheet (front and back)!</li>
+            <li>Coverage: up to the section 2.8 (Chinese Remainder Theorem), i.e. anything covered on Problem Sets 1 through 5.</li>
+            <li>Some old exams. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be.
+                <ul>
+                <li><a href="exams/midterm1sample1.pdf">2015 Midterm 1</a> / <a href="exams/midterm1sample1soln.pdf">Solutions</a></li>
+                <li><a href="exams/midterm1sample2.pdf">2016 Midterm 1</a> / <a href="exams/midterm1sample2soln.pdf">Solutions</a></li>
+                <li><a href="exams/midterm1sample3.pdf">2019 Midterm 1</a> / <a href="exams/midterm1sample3soln.pdf">Solutions</a> (Note: four-function calculators were permitted on this exam.)</li>
+                <li>Solutions will be posted later this week.</li>
+                </ul>
+            </li>
+            <li><a href="exams/midterm1compact.pdf">Exam</a> / <a href="exams/midterm1soln.pdf">Solutions</a></li>
+        </ul>
+    </li>
+    <li>Midterm 2: <s>Monday 4/27, in class</s> distributed Monday 4/27 10pm, due Wednesday 4/29 10pm (Eastern time).
+        <ul>
+            <li>The exam will be untimed, open-book and open-notes. You may also use a computer, e.g. to write Python code for computations. You will be expected not to discuss problems with any other students, or to look for solutions online.</li>
+            <li>You will have 48 hours to complete the exam.</li>
+            <li>The exam will be similar in length to a 50-minute in-class exam.</li>
+            <li>Some old exams. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be.
+                <ul>
+                <li><a href="exams/midterm2-2015.pdf">2015 Midterm 2</a> (skip problem 5, which uses terminology we haven't discussed) / <a href="exams/midterm2soln-2015.pdf">Solutions</a> </li>
+                <li><a href="exams/midterm2-2016.pdf">2016 Midterm 2</a> / <a href="exams/midterm2soln-2016.pdf">Solutions</a> </li>
+                <li><a href="exams/midterm2-2019.pdf">2019 Midterm 2</a> / <a href="exams/midterm2soln-2019.pdf">Solutions</a> (Note: you may want to skip problem 4, which concerns ECDSA; this will not be covered on midterm 2 this year.)
+                <!--<li>Solutions will be posted later this week.</li>-->
+                </ul>
+        </ul>
+    </li>   
+
+    <li>Final Exam: distributed Monday 5/12 at 9am (when our originally scheduled exam would have begun), due Thursday 5/14 at 9am (Eastern time).
+        <ul>
+            <li>The exam will be untimed, open-book and open-notes. You may also use a computer, e.g. to write Python code for computations. You will be expected not to discuss problems with any other students, or to look for solutions online.</li>
+            <li>You will have 72 hours to complete the exam.</li>
+            <li>The exam will be similar in length to a regular three-hour final exam.</li>
+        </ul>
+    </li>
+
+</body></html>
