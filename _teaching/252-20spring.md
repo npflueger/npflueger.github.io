@@ -2,7 +2,7 @@
 title: "Math 252, spring 2020"
 coursenum: "Math 252"
 coursename: "Mathematics of Public-Key Cryptography"
-permalink: teaching/252-20spring
+permalink: teaching/252-20spring/
 startdate: 2020-01
 semester: "Spring 2020"
 toc: true
