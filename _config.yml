@@ -270,3 +270,5 @@ footer:
       url: https://www.amherst.edu
     - label: "Department of Mathematics and Statistics"
       url: http://www.amherst.edu/academiclife/departments/mathematics-statistics
+
+theme: jekyll-theme-cayman
