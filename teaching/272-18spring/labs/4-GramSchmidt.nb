@@ -1,0 +1,907 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     31205,        899]
+NotebookOptionsPosition[     29582,        845]
+NotebookOutlinePosition[     30017,        862]
+CellTagsIndexPosition[     29974,        859]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["The Gram-Schmidt Procedure", "Subtitle",
+ CellChangeTimes->{{3.441639953904785*^9, 3.4416399612778683`*^9}, {
+   3.441640202522995*^9, 3.441640202790163*^9}, 3.573229825788528*^9, {
+   3.721936202797844*^9, 3.721936203097505*^9}, {3.72194025681094*^9, 
+   3.721940257088546*^9}},ExpressionUUID->"fc402612-6be2-44fc-bdee-\
+8204b87723d3"],
+
+Cell["\<\
+Email completed labs to npflueger@amherst.edu by Wednesday night.\
+\>", "Subtitle",
+ CellChangeTimes->{{3.413218950067926*^9, 3.4132189504955883`*^9}, {
+  3.605446500692041*^9, 3.605446501042673*^9}, {3.7219362068421373`*^9, 
+  3.721936218418474*^9}},ExpressionUUID->"f29e199a-ebfa-425e-b739-\
+cdd8cc4a837e"],
+
+Cell[TextData[{
+ StyleBox["We discussed on Friday the notion of an orthonormal basis, and \
+some of the reasons why these are especially convenient bases in many \
+situations. This lab will explore a procedure that can be used to produce an \
+orthonormal basis from a non - orthonormal basis, called the Gram - Schmidt \
+procedure (this procedure is developed in more detail in section 6.3 of the \
+text).  Mathematica can streamline the process by doing the messy arithmetic \
+for us.\n   \nA basis for an inner product space is called ",
+  FontSize->18],
+ StyleBox["orthonormal ",
+  FontSize->18,
+  FontWeight->"Bold"],
+ StyleBox["if any two different basis elements are orthogonal, and each basis \
+element has norm (length) 1.",
+  FontSize->18]
+}], "Text",
+ CellChangeTimes->{{3.7219377432532167`*^9, 3.7219377493867292`*^9}, {
+   3.721940189889537*^9, 3.721940228912608*^9}, {3.731140941224503*^9, 
+   3.731140950745476*^9}, 3.7311409915694637`*^9, {3.731141021713284*^9, 
+   3.731141022073286*^9}},
+ ExpressionUUID -> "fab0ed52-9568-4862-a31e-fc49a33bde2e"],
+
+Cell[CellGroupData[{
+
+Cell["Gram-Schmidt using the dot product", "Subsection",
+ CellChangeTimes->{{3.721937761282145*^9, 3.721937770274371*^9}},
+ ExpressionUUID -> "c4c466de-11be-48d1-a688-222c8a1882d9"],
+
+Cell[TextData[{
+ "The illustrate Gram-Schmidt, we first consider the case of ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["R", "n"], TraditionalForm]],ExpressionUUID->
+  "084ac0fe-da60-4832-9388-6d1f5be533cc"],
+ ", equipped with the dot product.\n\nThe basic idea is to take each vector \
+in the given basis and subtract from it the parts that duplicate the previous \
+vectors.  Please work through the following example that shows how to do the \
+Gram-Schmidt procedure before doing the exercises.\n\nConsider the basis { ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {GridBox[{
+         {"1"},
+         {"0"}
+        }]},
+      {"1"}
+     }], "\[NoBreak]", ")"}], TraditionalForm]],ExpressionUUID->
+  "7d76ff2b-3379-4b35-b7ec-10e1c459e224"],
+ " , ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {GridBox[{
+         {"1"},
+         {"1"}
+        }]},
+      {"0"}
+     }], "\[NoBreak]", ")"}], TraditionalForm]],ExpressionUUID->
+  "877b8e09-04a7-49f6-9712-b85a0e30f957"],
+ " , ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {GridBox[{
+         {"2"},
+         {"1"}
+        }]},
+      {"2"}
+     }], "\[NoBreak]", ")"}], TraditionalForm]],ExpressionUUID->
+  "64d46325-b16b-45f1-a815-58ff755b8669"],
+ " } for ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["R", "3"], TraditionalForm]],ExpressionUUID->
+  "f0e54d9e-c4c5-4071-9d42-0b640f25224b"],
+ ".  We can first verify that this is indeed a basis by checking that the \
+matrix with these vectors as columns reduces to the identity matrix:"
+}], "Text",
+ CellChangeTimes->{{3.441640218048897*^9, 3.441640391046083*^9}, {
+   3.44164044126291*^9, 3.441640595766753*^9}, {3.4416424163511887`*^9, 
+   3.441642430814499*^9}, 3.441642488188678*^9, {3.6054465168667297`*^9, 
+   3.6054465265127993`*^9}, {3.6054487588615227`*^9, 3.605448813802988*^9}, {
+   3.721936223867889*^9, 3.721936409908607*^9}, {3.721936457182193*^9, 
+   3.7219364847841578`*^9}, 3.721937741899777*^9, {3.721937776115052*^9, 
+   3.72193781585954*^9}},
+ FontSize->18,ExpressionUUID->"8379937b-f894-4e02-a1d5-b232a4914324"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"RowReduce", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "1", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0", ",", "2"}], "}"}]}], "}"}], "]"}], "//", 
+  "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.441640598839436*^9, 
+  3.441640625071649*^9}},ExpressionUUID->"dac9ea55-3893-45a3-892f-\
+56a62ba53049"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {"1", "0", "0"},
+     {"0", "1", "0"},
+     {"0", "0", "1"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{
+  3.60544887911509*^9},ExpressionUUID->"3198e75a-f038-4849-8913-394628ab59eb"]
+}, Open  ]],
+
+Cell["\<\
+Alternatively, you could check that the determinant is nonzero :\
+\>", "Text",
+ CellChangeTimes->{{3.605448826254661*^9, 3.605448853550437*^9}},
+ FontSize->18,ExpressionUUID->"c0a55a42-af14-4f67-a506-71df48a4d816"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Det", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"1", ",", "1", ",", "2"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "1", ",", "1"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "0", ",", "2"}], "}"}]}], "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.605448858450638*^9, 
+  3.605448868603613*^9}},ExpressionUUID->"509f98b7-ea9e-4a1d-9c18-\
+67ffa67931d4"],
+
+Cell[BoxData["1"], "Output",
+ CellChangeTimes->{
+  3.605448881705048*^9},ExpressionUUID->"c4fe8f1b-4e6a-48b3-b26c-\
+54c45b405a37"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Enter the 3 vectors into ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ ":"
+}], "Text",
+ CellChangeTimes->{{3.441640218048897*^9, 3.441640391046083*^9}, {
+   3.44164044126291*^9, 3.441640595766753*^9}, {3.441640643385488*^9, 
+   3.4416406737502317`*^9}, {3.44164070899194*^9, 3.441640713406948*^9}, {
+   3.573888046542288*^9, 3.573888051888002*^9}, 3.573888102830901*^9},
+ FontSize->18,ExpressionUUID->"457dee7e-e33e-4b37-9aa8-ebbf824e7d29"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"v1", "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0", ",", "1"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"v2", "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1", ",", "0"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"v3", "=", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "1", ",", "2"}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.4416406760483437`*^9, 3.441640701109576*^9}, {
+  3.573888057126759*^9, 3.573888068282647*^9}, {3.573888107502235*^9, 
+  3.573888108430179*^9}, {3.5738884886663647`*^9, 
+  3.573888488768313*^9}},ExpressionUUID->"e376d92f-6519-4cbe-a808-\
+458f4f90c710"],
+
+Cell[TextData[{
+ "Now we\[CloseCurlyQuote]ll create a new orthogonal basis {w1,w2,w3}. \n\n\
+Recall the terminology: the ",
+ StyleBox["projection",
+  FontWeight->"Bold"],
+ " of one vector onto another is defined by the following formula.\n\t",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["proj", 
+    OverscriptBox["u", "\[RightVector]"]], TraditionalForm]],
+  ExpressionUUID -> "9c6ebbb5-6cec-42a8-9fa2-b8b1d6ac0954"],
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["v", "\[RightVector]"], TraditionalForm]],
+  ExpressionUUID -> "6d5781e3-da0b-4b47-a0a4-088060317675"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{
+     OverscriptBox["u", "\[RightVector]"], " ", "\[CenterDot]", 
+     OverscriptBox["v", "\[RightVector]"]}], 
+    RowBox[{
+     OverscriptBox["u", "\[RightVector]"], " ", "\[CenterDot]", " ", 
+     OverscriptBox["u", "\[RightVector]"]}]], TraditionalForm]],
+  ExpressionUUID -> "f6dc1fe6-9012-4f76-92da-a6e61c7a5435"],
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["u", "\[RightVector]"], TraditionalForm]],
+  ExpressionUUID -> "f2643d63-3919-4235-9959-bb8d2e7d9e8f"],
+ "\nThe meaning of the projection is: it is the multiple of ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["u", "\[RightVector]"], TraditionalForm]],
+  ExpressionUUID -> "30708113-01b0-4f41-b891-e1ac6dfe7bbe"],
+ " that is closest to ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["v", "\[RightVector]"], TraditionalForm]],
+  ExpressionUUID -> "ceba7c13-bd0c-42af-afc5-35b04e898315"],
+ ".\n\nAt each step, take the next vector in the given basis and subtract off \
+the projections of that vector onto all previous vectors.\n\n1) Start with v1 \
+as the first vector w1.\n2) Next take v2 and subtract off the projection of \
+v2 onto w1 to obtain w2.\n3) Then take v3 and subtract off the projections of \
+v3 onto w1 and onto w2 to obtain w3.\n\nThe resulting set {w1,w2,w3} will be \
+an ",
+ StyleBox["orthogonal ",
+  FontWeight->"Bold"],
+ "basis (but may not yet be orthonormal). Note that the dot product of two \
+vectors may be computed using a period in Mathematica."
+}], "Text",
+ CellChangeTimes->{{3.441640218048897*^9, 3.441640391046083*^9}, {
+   3.44164044126291*^9, 3.441640595766753*^9}, {3.441640643385488*^9, 
+   3.4416406737502317`*^9}, {3.44164070899194*^9, 3.441640713406948*^9}, {
+   3.44164075859962*^9, 3.441640820910304*^9}, {3.441640858527759*^9, 
+   3.4416408765662947`*^9}, {3.441642515838626*^9, 3.441642529822897*^9}, {
+   3.573888078978531*^9, 3.573888169550357*^9}, {3.5738882707713633`*^9, 
+   3.573888290435726*^9}, {3.5738883216422586`*^9, 3.573888342289193*^9}, {
+   3.605448989528017*^9, 3.605449148601568*^9}, {3.721936585903152*^9, 
+   3.72193660979869*^9}, 3.721936918255945*^9, {3.721937059858911*^9, 
+   3.721937060540102*^9}, {3.721937182426124*^9, 3.72193718844915*^9}, {
+   3.721937353797242*^9, 3.721937581627129*^9}, {3.7219376211990128`*^9, 
+   3.721937635919443*^9}, {3.731141050489686*^9, 3.731141052401278*^9}},
+ FontSize->18,
+ ExpressionUUID -> "3990d143-de64-4f38-81bd-e1817c295ca1"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"w1", "=", "v1"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"proj1", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"v2", ".", "w1"}], ")"}], "/", 
+     RowBox[{"(", 
+      RowBox[{"w1", ".", "w1"}], ")"}]}], " ", "*", "  ", "w1"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"w2", "=", 
+   RowBox[{"v2", "-", "proj1"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"proj1", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"v3", ".", "w1"}], ")"}], "/", 
+     RowBox[{"(", 
+      RowBox[{"w1", ".", "w1"}], ")"}]}], " ", "*", " ", "w1"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"proj2", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"v3", ".", "w2"}], ")"}], "/", 
+     RowBox[{"(", 
+      RowBox[{"w2", ".", "w2"}], ")"}]}], " ", "*", " ", "w2"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"w3", "=", 
+  RowBox[{"v3", "-", "proj1", "-", "proj2"}]}]}], "Input",
+ CellChangeTimes->{{3.4416408276215982`*^9, 3.441640905370023*^9}, 
+   3.441642408695243*^9, {3.573230028399584*^9, 3.573230055197714*^9}, 
+   3.573230091270791*^9, {3.5738881733204393`*^9, 3.57388826651816*^9}, {
+   3.573888330290475*^9, 3.573888403269039*^9}, {3.573888619154949*^9, 
+   3.573888622623148*^9}, {3.721937211666699*^9, 3.7219372171307707`*^9}, {
+   3.7219372836482153`*^9, 
+   3.721937315470978*^9}},ExpressionUUID->"46b8fc2e-9233-454b-b779-\
+f03a29a4e644"],
+
+Cell["\<\
+Divide each vector by its length, so we get unit vectors, resulting in an \
+orthonormal basis. Recall that length is equal to the square root of the dot \
+product of a vector with itself.\
+\>", "Text",
+ CellChangeTimes->{{3.441640218048897*^9, 3.441640391046083*^9}, {
+  3.44164044126291*^9, 3.441640595766753*^9}, {3.441640643385488*^9, 
+  3.4416406737502317`*^9}, {3.44164070899194*^9, 3.441640713406948*^9}, {
+  3.441640937576336*^9, 3.441640985150572*^9}, {3.573888413590526*^9, 
+  3.573888441539041*^9}, {3.721937588186165*^9, 3.721937603226775*^9}},
+ FontSize->18,ExpressionUUID->"4a2bd72e-a6d0-4b95-b598-a9d19846df15"],
+
+Cell[BoxData[{
+ RowBox[{"u1", "=", 
+  RowBox[{"w1", "/", 
+   RowBox[{"Sqrt", "[", " ", 
+    RowBox[{"w1", " ", ".", " ", "w1"}], "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"u2", "=", 
+  RowBox[{"w2", "/", 
+   RowBox[{"Sqrt", "[", 
+    RowBox[{"w2", " ", ".", " ", "w2"}], "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"u3", "=", 
+   RowBox[{"w3", "/", 
+    RowBox[{"Sqrt", "[", 
+     RowBox[{"w3", " ", ".", " ", "w3"}], "]"}]}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"u1", ".", "u2"}], "       ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "to", " ", "check", " ", "that", " ", "u1", " ", "and", " ", "u2", " ", 
+    "are", " ", "orthogonal"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"u1", ".", "u3"}], "       ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "to", " ", "check", " ", "that", " ", "u1", " ", "and", " ", "u3", " ", 
+    "are", " ", "orthogonal"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"u2", ".", "u3", "       ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "to", " ", "check", " ", "that", " ", "u2", " ", "and", " ", "u3", " ", 
+    "are", " ", "orthogonal"}], " ", "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.4416409656804943`*^9, 3.4416409783047523`*^9}, {
+   3.441642558553678*^9, 3.4416425940156183`*^9}, 3.573230113983376*^9, {
+   3.573888447534624*^9, 3.573888468492367*^9}, {3.573888500166197*^9, 
+   3.5738885199946404`*^9}, {3.573888605882523*^9, 3.573888611159984*^9}, {
+   3.721937222009596*^9, 
+   3.721937241610869*^9}},ExpressionUUID->"7c63b007-d054-4fa6-a270-\
+9fc728234951"],
+
+Cell[TextData[{
+ "The resulting orthonormal basis for ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["R", "3"], TraditionalForm]],ExpressionUUID->
+  "9b2fee4f-c8ef-4a97-86c3-007be3616297"],
+ " is {",
+ Cell[BoxData[
+  RowBox[{"(", "\[NoBreak]", 
+   TagBox[GridBox[{
+      {
+       FractionBox["1", 
+        SqrtBox["2"]]},
+      {"0"},
+      {
+       FractionBox["1", 
+        SqrtBox["2"]]}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    Column], "\[NoBreak]", ")"}]],
+  CellChangeTimes->{{3.441641316893249*^9, 3.441641332558852*^9}},
+  ExpressionUUID->"acf83c29-250a-4b07-b40b-9530cbab640e"],
+ ",",
+ Cell[BoxData[
+  RowBox[{"(", "\[NoBreak]", 
+   TagBox[GridBox[{
+      {
+       FractionBox["1", 
+        SqrtBox["6"]]},
+      {
+       SqrtBox[
+        FractionBox["2", "3"]]},
+      {
+       RowBox[{"-", 
+        FractionBox["1", 
+         SqrtBox["6"]]}]}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    Column], "\[NoBreak]", ")"}]],
+  CellChangeTimes->{{3.441641316893249*^9, 3.441641332558852*^9}},
+  ExpressionUUID->"0250d3cc-a69e-4807-ab4a-e12b12fc4384"],
+ ",",
+ Cell[BoxData[
+  RowBox[{"(", "\[NoBreak]", 
+   TagBox[GridBox[{
+      {
+       RowBox[{"-", 
+        FractionBox["1", 
+         SqrtBox["3"]]}]},
+      {
+       FractionBox["1", 
+        SqrtBox["3"]]},
+      {
+       FractionBox["1", 
+        SqrtBox["3"]]}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    Column], "\[NoBreak]", ")"}]],
+  CellChangeTimes->{{3.441641316893249*^9, 3.441641332558852*^9}},
+  ExpressionUUID->"eb4d8c60-9e25-4ca1-9c7a-c4f762687094"],
+ "}."
+}], "Text",
+ CellChangeTimes->{{3.441640218048897*^9, 3.441640391046083*^9}, {
+  3.44164044126291*^9, 3.441640595766753*^9}, {3.441640643385488*^9, 
+  3.4416406737502317`*^9}, {3.44164070899194*^9, 3.441640713406948*^9}, {
+  3.441640937576336*^9, 3.441640985150572*^9}, {3.441641286639885*^9, 
+  3.441641305326438*^9}, {3.441641350739353*^9, 3.44164138650187*^9}, {
+  3.441642449924942*^9, 3.44164245113627*^9}},
+ FontSize->18,ExpressionUUID->"6133aa4f-d1ed-4fbc-934a-c0f8d5b23f73"],
+
+Cell[TextData[{
+ StyleBox["Exercise 1.",
+  FontWeight->"Bold"],
+ "  Apply the Gram-Schmidt procedure to the basis { ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"1"},
+      {"1"}
+     }], "\[NoBreak]", ")"}], TraditionalForm]],ExpressionUUID->
+  "d4c8074a-5224-4c42-8126-6ea44c2f14e4"],
+ " , ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"3"},
+      {"2"}
+     }], "\[NoBreak]", ")"}], TraditionalForm]],ExpressionUUID->
+  "a6d3196b-468c-4e26-95f6-71303d246584"],
+ "} to obtain an orthonormal basis for ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["R", "2"], TraditionalForm]],ExpressionUUID->
+  "6fcb7d99-cd6d-4830-a2e5-00b8ebdbda17"],
+ ".  (If necessary, use the Simplify command to clean up messy results.)"
+}], "Text",
+ CellChangeTimes->{{3.441640218048897*^9, 3.441640391046083*^9}, {
+  3.44164044126291*^9, 3.441640595766753*^9}, {3.441641552315493*^9, 
+  3.441641592708346*^9}, {3.441641673557809*^9, 3.4416418401995583`*^9}, {
+  3.4416419594079247`*^9, 3.441641971606447*^9}, {3.573888687653679*^9, 
+  3.5738886941727247`*^9}},
+ FontSize->18,ExpressionUUID->"2cd024a4-c1d0-4211-9fed-699fde4e3622"],
+
+Cell[TextData[{
+ StyleBox["Exercise 2.",
+  FontWeight->"Bold"],
+ "  Apply the Gram-Schmidt procedure to the basis { ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {GridBox[{
+         {"0"},
+         {"3"}
+        }]},
+      {"4"}
+     }], "\[NoBreak]", ")"}], TraditionalForm]],ExpressionUUID->
+  "353d019a-464f-4575-9325-fa02857c3dce"],
+ " , ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {GridBox[{
+         {
+          RowBox[{"-", "20"}]},
+         {"27"}
+        }]},
+      {"11"}
+     }], "\[NoBreak]", ")"}], TraditionalForm]],ExpressionUUID->
+  "0f8f21aa-b8d7-4922-9a4b-3d42ec7d00fc"],
+ " , ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {GridBox[{
+         {
+          RowBox[{"-", "14"}]},
+         {
+          RowBox[{"-", "4"}]}
+        }]},
+      {
+       RowBox[{"-", "2"}]}
+     }], "\[NoBreak]", ")"}], TraditionalForm]],ExpressionUUID->
+  "7d3a306d-8662-4dfa-a995-445b45232d5c"],
+ " } to obtain an orthonormal basis for ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["R", "3"], TraditionalForm]],ExpressionUUID->
+  "0ccc7d73-e852-42ec-ad07-d60bcaa16b65"],
+ ".  Check that the vectors are indeed orthogonal by evaluating the dot \
+products of each pair of vectors (so you\[CloseCurlyQuote]ll check 3 dot \
+products)."
+}], "Text",
+ CellChangeTimes->{{3.441640218048897*^9, 3.441640391046083*^9}, {
+  3.44164044126291*^9, 3.441640595766753*^9}, {3.441641552315493*^9, 
+  3.441641592708346*^9}, {3.441641673557809*^9, 3.44164181744823*^9}, {
+  3.441642146244091*^9, 3.4416421786920013`*^9}, {3.441642318192006*^9, 
+  3.4416423402705717`*^9}, {3.5732299328191557`*^9, 3.573229952253723*^9}},
+ FontSize->18,ExpressionUUID->"a4dabd6d-81af-4faf-b88f-7d65414f6ce9"],
+
+Cell[TextData[{
+ StyleBox["Exercise 3.",
+  FontWeight->"Bold"],
+ "  Apply the Gram-Schmidt procedure to the basis { ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {GridBox[{
+         {"1"},
+         {"0"}
+        }]},
+      {GridBox[{
+         {"0"},
+         {
+          RowBox[{"-", "1"}]}
+        }]}
+     }], "\[NoBreak]", ")"}], TraditionalForm]],ExpressionUUID->
+  "4d74a280-fd34-4ae6-ab54-ab415663d6d3"],
+ " , ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {GridBox[{
+         {"1"},
+         {"2"}
+        }]},
+      {GridBox[{
+         {"0"},
+         {
+          RowBox[{"-", "1"}]}
+        }]}
+     }], "\[NoBreak]", ")"}], TraditionalForm]],ExpressionUUID->
+  "1e4977ab-a514-450a-9679-244777e02e52"],
+ " , ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {GridBox[{
+         {"3"},
+         {"1"}
+        }]},
+      {GridBox[{
+         {"1"},
+         {
+          RowBox[{"-", "1"}]}
+        }]}
+     }], "\[NoBreak]", ")"}], TraditionalForm]],ExpressionUUID->
+  "0bfc548b-ee64-4cf1-9113-0978e8bc41cb"],
+ " , ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {GridBox[{
+         {"0"},
+         {"1"}
+        }]},
+      {GridBox[{
+         {"1"},
+         {
+          RowBox[{"-", "1"}]}
+        }]}
+     }], "\[NoBreak]", ")"}], TraditionalForm]],ExpressionUUID->
+  "8a785c27-d608-43d1-ba85-f6bc10313197"],
+ " } to obtain an orthonormal basis for ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["R", "4"], TraditionalForm]],ExpressionUUID->
+  "c8e45d4b-5178-4764-b42c-e808d124d9fa"],
+ ".  Check that the vectors are indeed orthogonal by evaluating the dot \
+products of each pair of vectors (so you\[CloseCurlyQuote]ll check 6 dot \
+products)."
+}], "Text",
+ CellChangeTimes->{{3.441640218048897*^9, 3.441640391046083*^9}, {
+  3.44164044126291*^9, 3.441640595766753*^9}, {3.441641552315493*^9, 
+  3.441641592708346*^9}, {3.441641673557809*^9, 3.441641811642707*^9}, {
+  3.4416423490996933`*^9, 3.4416423509683437`*^9}, {3.5732299582797728`*^9, 
+  3.573229989527438*^9}},
+ FontSize->18,ExpressionUUID->"dad66782-8e64-4530-9479-7be0d803082f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Gram-Schmidt in other inner-product spaces", "Subsection",
+ CellChangeTimes->{{3.7219377087052298`*^9, 3.721937710793165*^9}, {
+  3.721937824195154*^9, 
+  3.721937834809202*^9}},ExpressionUUID->"ed62340f-0871-4587-9de2-\
+29d90e520b5f"],
+
+Cell[TextData[{
+ StyleBox["We now consider Gram-Schmidt in more general inner product spaces. \
+The procedure is the same, except that the formula for projection should use \
+whatever inner product we are interested in, rather than the dot product.\n\t",
+  FontSize->18],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["proj", 
+    OverscriptBox["u", "\[RightVector]"]], TraditionalForm]],ExpressionUUID->
+  "8f935bb3-41b0-4ffa-842d-d5be5aa06f82"],
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["v", "\[RightVector]"], TraditionalForm]],ExpressionUUID->
+  "f5803028-d0d6-4aae-b5c5-e070d19cfe70"],
+ StyleBox[" = ",
+  FontSize->18],
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{"\[LeftAngleBracket]", 
+     RowBox[{
+      OverscriptBox["u", "\[RightVector]"], " ", ",", 
+      OverscriptBox["v", "\[RightVector]"]}], "\[RightAngleBracket]"}], 
+    RowBox[{"\[LeftAngleBracket]", 
+     RowBox[{
+      OverscriptBox["u", "\[RightVector]"], " ", ",", " ", 
+      OverscriptBox["u", "\[RightVector]"]}], "\[RightAngleBracket]"}]], 
+   TraditionalForm]],ExpressionUUID->"1c19fa33-b7fb-45ae-a1d4-030262f4b552"],
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["u", "\[RightVector]"], TraditionalForm]],ExpressionUUID->
+  "d514f41b-c5d4-451e-8388-13430d4b0d9a"],
+ "\nF",
+ StyleBox["or the next example, we will consider the space ",
+  FontSize->18],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["P", "3"], TraditionalForm]],
+  FontSize->18,ExpressionUUID->"2a851139-e211-4db3-9810-c7c2db1aa176"],
+ StyleBox[" of polynomials of degree at most 3, with the following inner \
+product.\n\t\[LeftAngleBracket]p,q\[RightAngleBracket] = ",
+  FontSize->18],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubsuperscriptBox["\[Integral]", "0", "1"], 
+    RowBox[{
+     RowBox[{"p", "(", "x", ")"}], 
+     RowBox[{"q", "(", "x", ")"}], 
+     RowBox[{"\[DifferentialD]", "x"}]}]}], TraditionalForm]],
+  FontSize->18,ExpressionUUID->"06e6a004-edfc-49cd-97e1-05e9e2176d1e"],
+ StyleBox["\nThis inner product can be computed in Mathematica using the \
+Integrate command, as in the following example.",
+  FontSize->18]
+}], "Text",
+ CellChangeTimes->{{3.7219378381453114`*^9, 3.721938141754188*^9}, {
+  3.721938222343975*^9, 3.72193824689542*^9}, {3.721938280089468*^9, 
+  3.721938302238764*^9}, {3.721938455403351*^9, 3.721938484700206*^9}, {
+  3.721939095201013*^9, 
+  3.721939097288673*^9}},ExpressionUUID->"22305116-9261-44e4-b3c2-\
+2c97b1ab04a4"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"p", "=", " ", 
+   RowBox[{"x", "^", "3"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"q", " ", "=", " ", 
+   RowBox[{"x", "^", "2"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Integrate", "[", " ", 
+  RowBox[{
+   RowBox[{"p", " ", "*", " ", "q"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.721938150013487*^9, 3.721938211543747*^9}, {
+  3.721938304034403*^9, 
+  3.721938310090088*^9}},ExpressionUUID->"73bc4c68-43d4-42b6-8a60-\
+6b383450a2c3"],
+
+Cell[TextData[StyleBox["Therefore you can compute the projection of one \
+polynomial onto another (with respect to this inner product) with syntax like \
+the following.",
+ FontSize->18]], "Text",
+ CellChangeTimes->{{3.721939426444372*^9, 3.721939471128542*^9}, {
+  3.7219395059591227`*^9, 
+  3.7219395102875643`*^9}},ExpressionUUID->"192ccd67-efce-434c-a5f1-\
+109c724547cb"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"projPQ", " ", "=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{"p", "*", "q"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "0", ",", "1"}], "}"}]}], "]"}], " ", "/", " ", 
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{"p", "*", "p"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "0", ",", "1"}], "}"}]}], "]"}]}], " ", "*", " ", 
+    "p"}], " ", "//", " ", "Simplify"}]}]], "Input",
+ CellChangeTimes->{{3.721939514663631*^9, 3.721939538648587*^9}, {
+  3.72193960145322*^9, 
+  3.721939603833324*^9}},ExpressionUUID->"f6a0f8b5-7071-4047-9306-\
+2b4c40d9e8d3"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"7", " ", 
+   SuperscriptBox["x", "3"]}], "6"]], "Output",
+ CellChangeTimes->{
+  3.721939604122262*^9},ExpressionUUID->"92e39306-d463-440b-b12c-\
+67c7e23d77d7"]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["Note 1: ",
+  FontSize->18,
+  FontWeight->"Bold"],
+ StyleBox["Although it\[CloseCurlyQuote]s not strictly necessary, I suggest \
+that you add the \[OpenCurlyDoubleQuote]// Simplify\[CloseCurlyDoubleQuote] \
+command to the end of each line in which you compute a polynomial (as above). \
+This will help make the output more readable.\n\n",
+  FontSize->18],
+ StyleBox["Note 2:",
+  FontSize->18,
+  FontWeight->"Bold"],
+ StyleBox[" You can save yourself some typing in the exercise below if you \
+first define a \[OpenCurlyDoubleQuote]Projection\[CloseCurlyDoubleQuote] \
+function that takes p and q as arguments and plugs them into the expression \
+above. You may either look up how to define functions in Mathematica or call \
+me over to ask about it.",
+  FontSize->18]
+}], "Text",
+ CellChangeTimes->{{3.721939612100573*^9, 
+  3.7219397760297537`*^9}},ExpressionUUID->"1cc93b33-09ec-4fcb-9d40-\
+5ebbdca54233"],
+
+Cell[TextData[{
+ "\n",
+ StyleBox["Exercise 4.  ",
+  FontSize->18,
+  FontWeight->"Bold"],
+ StyleBox["Apply the Gram-Schmidt prodecure to the standard basis {1, ",
+  FontSize->18],
+ Cell[BoxData[
+  FormBox["x", TraditionalForm]],ExpressionUUID->
+  "37c82852-2efd-45ff-9a1a-29a630929e28"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["x", "2"], ",", " ", 
+     SuperscriptBox["x", "3"]}], "}"}], TraditionalForm]],ExpressionUUID->
+  "290fe9eb-7fda-480c-a9c5-797ef8ce688d"],
+ ",",
+ StyleBox[" to obtain an orthonormal basis for  ",
+  FontSize->18],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["P", "3"], TraditionalForm]],
+  FontSize->18,ExpressionUUID->"b166ba10-5c7a-4a0a-af21-7cc43e5ad776"],
+ ",",
+ StyleBox[" with respect to the inner product given above. ",
+  FontSize->18]
+}], "Text",
+ CellChangeTimes->{{3.721937647487418*^9, 3.721937694402957*^9}, {
+  3.721938255184341*^9, 3.7219382627191753`*^9}, {3.721938314907477*^9, 
+  3.7219384530106287`*^9}, {3.721938502475772*^9, 3.7219385219871492`*^9}, {
+  3.721939045560589*^9, 3.721939048311254*^9}, {3.721939104861614*^9, 
+  3.721939129515402*^9}, {3.72193917270118*^9, 
+  3.7219391959304657`*^9}},ExpressionUUID->"91d452a9-560c-4bc3-a7e9-\
+1af2d39c0661"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1236, 803},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (December 10, \
+2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 342, 5, 51, "Subtitle"],
+Cell[912, 29, 318, 6, 51, "Subtitle"],
+Cell[1233, 37, 1063, 20, 179, "Text"],
+Cell[CellGroupData[{
+Cell[2321, 61, 181, 2, 44, "Subsection"],
+Cell[2505, 65, 2121, 57, 227, "Text"],
+Cell[CellGroupData[{
+Cell[4651, 126, 472, 14, 28, "Input"],
+Cell[5126, 142, 716, 20, 63, "Output"]
+}, Open  ]],
+Cell[5857, 165, 224, 4, 35, "Text"],
+Cell[CellGroupData[{
+Cell[6106, 173, 422, 12, 28, "Input"],
+Cell[6531, 187, 130, 3, 28, "Output"]
+}, Open  ]],
+Cell[6676, 193, 465, 10, 35, "Text"],
+Cell[7144, 205, 665, 19, 63, "Input"],
+Cell[7812, 226, 3019, 64, 360, "Text"],
+Cell[10834, 292, 1511, 43, 148, "Input"],
+Cell[12348, 337, 635, 10, 59, "Text"],
+Cell[12986, 349, 1566, 38, 131, "Input"],
+Cell[14555, 389, 3184, 95, 118, "Text"],
+Cell[17742, 486, 1168, 31, 82, "Text"],
+Cell[18913, 519, 1757, 54, 106, "Text"],
+Cell[20673, 575, 2158, 77, 132, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22868, 657, 241, 4, 44, "Subsection"],
+Cell[23112, 663, 2412, 60, 188, "Text"],
+Cell[25527, 725, 559, 15, 63, "Input"],
+Cell[26089, 742, 374, 7, 35, "Text"],
+Cell[CellGroupData[{
+Cell[26488, 753, 675, 19, 28, "Input"],
+Cell[27166, 774, 198, 6, 50, "Output"]
+}, Open  ]],
+Cell[27379, 783, 933, 21, 131, "Text"],
+Cell[28315, 806, 1239, 35, 81, "Text"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

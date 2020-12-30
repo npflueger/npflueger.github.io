@@ -1,0 +1,930 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     33605,        921]
+NotebookOptionsPosition[     31968,        872]
+NotebookOutlinePosition[     32407,        889]
+CellTagsIndexPosition[     32364,        886]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[{
+ StyleBox["Math 272: Linear Transformations\n",
+  FontSize->24,
+  FontColor->RGBColor[1, 0.5, 0]],
+ "Names: \n\nWhen you have finished, email your file to npflueger@amherst.edu."
+}], "Subtitle",
+ CellChangeTimes->{
+  3.5351316359480762`*^9, {3.567871762681409*^9, 3.567871817785407*^9}, {
+   3.599389490032194*^9, 3.599389492658452*^9}, {3.5993898332948647`*^9, 
+   3.5993898452409554`*^9}, {3.662748805311419*^9, 3.6627488383495283`*^9}, {
+   3.662765868093595*^9, 3.6627658684776917`*^9}, {3.662766516715357*^9, 
+   3.6627665928657417`*^9}, {3.66276668479981*^9, 3.662766691613892*^9}, {
+   3.662767062406953*^9, 3.662767062409205*^9}, {3.665177613498807*^9, 
+   3.6651776557689333`*^9}, {3.6652297198905067`*^9, 
+   3.6652297373792953`*^9}, {3.6998611993720016`*^9, 3.699861227989606*^9}, {
+   3.7183628619326*^9, 3.718362870978775*^9}},
+ FontSize->18],
+
+Cell[TextData[{
+ "A ",
+ StyleBox["transformation T",
+  FontSlant->"Italic"],
+ " is function from a",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    RowBox[{"vector", " ", "space", " ", "V", " ", "to", " ", 
+     StyleBox["a",
+      FontSlant->"Plain"], " ", "vector", " ", "space", " ", 
+     RowBox[{"W", "."}]}]}], TraditionalForm]]],
+ " A ",
+ StyleBox["matrix transformation",
+  FontSlant->"Italic"],
+ " ",
+ StyleBox["T ",
+  FontSlant->"Italic"],
+ "from ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox[
+     StyleBox["R",
+      FontWeight->"Bold"], "n"], " ", "to", " ", 
+    SuperscriptBox[
+     StyleBox["R",
+      FontWeight->"Bold"], "m"], " "}], TraditionalForm]]],
+ "is a function such that for every vector ",
+ StyleBox["v ",
+  FontSlant->"Italic"],
+ "in ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox[
+     StyleBox["R",
+      FontWeight->"Bold"], "n"], ","}], TraditionalForm]]],
+ " ",
+ StyleBox["T(v)=Av",
+  FontSlant->"Italic"],
+ ", where ",
+ StyleBox["A ",
+  FontSlant->"Italic"],
+ "is an m x n matrix."
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.665177765261581*^9, 3.665177773049974*^9}, {
+  3.665180619147706*^9, 3.665180774618257*^9}, {3.665180819052404*^9, 
+  3.665180831198091*^9}, {3.665184666760474*^9, 3.665184678641252*^9}, {
+  3.699781398697503*^9, 3.699781503099457*^9}},
+ FontSize->18],
+
+Cell[TextData[{
+ "The matrix transfomation corresponding to a 90 degree counter-clockwise \
+rotation is given by: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"0", 
+       RowBox[{"-", "1"}]},
+      {"1", 
+       RowBox[{"  ", "0"}]}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+        "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.7]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}], 
+   TraditionalForm]],
+  CellChangeTimes->{3.449919458519217*^9}],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.665179700403626*^9, 3.665179795735436*^9}, {
+   3.665180613512212*^9, 3.6651806141288853`*^9}, 3.6651807601497173`*^9, {
+   3.665180836900004*^9, 3.6651809198777227`*^9}, {3.6651809913958178`*^9, 
+   3.6651810355571136`*^9}, {3.665181069665435*^9, 3.6651811440207977`*^9}, 
+   3.6651841799374933`*^9, {3.6651844730225973`*^9, 3.665184473820589*^9}, {
+   3.6997817209384613`*^9, 3.699781728889059*^9}},
+ FontSize->18],
+
+Cell[BoxData[{
+ RowBox[{"A", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", 
+      RowBox[{"-", "1"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "0"}], "}"}]}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"A", "//", "MatrixForm"}]}], "Input",
+ CellChangeTimes->{
+  3.665178331069585*^9, {3.665179875704624*^9, 3.6651799264024897`*^9}, {
+   3.665180033605198*^9, 3.6651800360363283`*^9}, 3.665180166507992*^9, {
+   3.665180216651698*^9, 3.665180239894333*^9}, {3.665180327935164*^9, 
+   3.665180330529367*^9}, {3.665180946529386*^9, 3.6651809622305717`*^9}, {
+   3.665182329305067*^9, 3.6651823464084387`*^9}},
+ FontSize->18],
+
+Cell["\<\
+To find the image of a point, such as (1,2) under this transformation, we \
+multiply A and the position vector {1,2}.\
+\>", "Text",
+ CellChangeTimes->{{3.665179700403626*^9, 3.665179795735436*^9}, {
+   3.665180613512212*^9, 3.6651806141288853`*^9}, 3.6651807601497173`*^9, {
+   3.665180836900004*^9, 3.6651809198777227`*^9}, {3.665180984530669*^9, 
+   3.6651809889457397`*^9}, {3.665181151353203*^9, 3.665181188099593*^9}, {
+   3.665181271700283*^9, 3.665181273124153*^9}},
+ FontSize->18],
+
+Cell[BoxData[
+ RowBox[{"v", "=", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2"}], "}"}]}]], "Input",
+ CellChangeTimes->{
+  3.665178331069585*^9, {3.665179875704624*^9, 3.6651799264024897`*^9}, {
+   3.665180033605198*^9, 3.6651800360363283`*^9}, 3.665180166507992*^9, {
+   3.665180216651698*^9, 3.665180239894333*^9}, {3.665180327935164*^9, 
+   3.665180330529367*^9}, {3.665180946529386*^9, 3.6651809622305717`*^9}, {
+   3.665181205163409*^9, 3.6651812222951803`*^9}},
+ FontSize->18],
+
+Cell[BoxData[
+ RowBox[{"A", ".", "v"}]], "Input",
+ CellChangeTimes->{
+  3.665178331069585*^9, {3.665179875704624*^9, 3.6651799264024897`*^9}, {
+   3.665180033605198*^9, 3.6651800360363283`*^9}, 3.665180166507992*^9, {
+   3.665180216651698*^9, 3.665180239894333*^9}, {3.665180327935164*^9, 
+   3.665180330529367*^9}, {3.665180946529386*^9, 3.6651809622305717`*^9}, {
+   3.665181205163409*^9, 3.665181247042569*^9}, {3.665181321447793*^9, 
+   3.665181332594809*^9}},
+ FontSize->18],
+
+Cell["\<\
+We can also plot the point v and its image under A to visualize this \
+transformation.\
+\>", "Text",
+ CellChangeTimes->{{3.665179700403626*^9, 3.665179795735436*^9}, {
+   3.665180613512212*^9, 3.6651806141288853`*^9}, 3.6651807601497173`*^9, {
+   3.665180836900004*^9, 3.6651809198777227`*^9}, {3.665180984530669*^9, 
+   3.6651809889457397`*^9}, {3.665181151353203*^9, 3.665181188099593*^9}, {
+   3.665181261943137*^9, 3.6651813078693333`*^9}, {3.665181339035056*^9, 
+   3.6651813472737427`*^9}},
+ FontSize->18],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"v", ",", 
+     RowBox[{"A", ".", "v"}]}], "}"}], ",", 
+   RowBox[{"PlotRange", "->", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "3"}], ",", "3"}], "}"}]}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.665178331069585*^9, {3.665179875704624*^9, 3.6651799264024897`*^9}, {
+   3.665180033605198*^9, 3.6651800360363283`*^9}, 3.665180166507992*^9, {
+   3.665180216651698*^9, 3.665180239894333*^9}, {3.665180327935164*^9, 
+   3.665180330529367*^9}, {3.665180946529386*^9, 3.6651809622305717`*^9}, {
+   3.665181205163409*^9, 3.665181247042569*^9}, {3.665181321447793*^9, 
+   3.665181335879368*^9}, {3.66518236949627*^9, 3.6651823747007523`*^9}},
+ FontSize->18],
+
+Cell["\<\
+
+However, transformations can be hard to understand if you\[CloseCurlyQuote]re \
+only looking at one point. Let\[CloseCurlyQuote]s apply this to something \
+more complex.
+
+Suppose we wish to apply our rotation matrix A to the parallelogram with \
+corners at the points (0,0), (2,0), (3,1) and (1,1). Rather than going \
+through the above process for each point at a time, we first set up a matrix \
+with these points as its columns, repeating the last point for reasons we \
+will see in the next step.\
+\>", "Text",
+ CellChangeTimes->{{3.665181351501871*^9, 3.6651813748182096`*^9}, {
+   3.6651814470120163`*^9, 3.665181637941862*^9}, {3.665181706694808*^9, 
+   3.665181812873748*^9}, {3.6651818738889103`*^9, 3.66518189276967*^9}, {
+   3.665184163755129*^9, 3.665184173576621*^9}, 3.665184437819017*^9, {
+   3.6651858356125393`*^9, 3.665185844480166*^9}, 3.699781792015369*^9},
+ FontSize->18],
+
+Cell[BoxData[{
+ RowBox[{"v", "=", 
+  RowBox[{"Transpose", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], "}"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"v", "//", "MatrixForm"}]}], "Input",
+ CellChangeTimes->{{3.4102697380935993`*^9, 3.410269749388054*^9}, {
+  3.665178350881831*^9, 3.665178362346643*^9}, {3.6651802468323402`*^9, 
+  3.665180247551311*^9}, {3.6651803165635147`*^9, 3.665180353968998*^9}, {
+  3.66518164429524*^9, 3.6651816677443047`*^9}, {3.6651818957629967`*^9, 
+  3.6651818983046103`*^9}, {3.665182312969922*^9, 3.665182319565218*^9}},
+ FontSize->18],
+
+Cell["\<\
+Then we can plot these points, with lines connecting them, using the \
+following command. (If we don\[CloseCurlyQuote]t repeat the last point, the \
+plot does not draw the last line connecting back to the origin!) \
+\>", "Text",
+ CellChangeTimes->{{3.410269644621778*^9, 3.4102696784193583`*^9}, {
+   3.5351316691557083`*^9, 3.535131669649767*^9}, 3.599389525817421*^9, {
+   3.665181733904333*^9, 3.665181739215933*^9}, {3.665181817173716*^9, 
+   3.665181833286274*^9}, {3.665181902733653*^9, 3.665181905795493*^9}, {
+   3.665182010290729*^9, 3.665182010593246*^9}},
+ FontSize->18],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{
+   RowBox[{"Transpose", "[", "v", "]"}], ",", 
+   RowBox[{"PlotJoined", "->", "True"}], ",", 
+   RowBox[{"PlotRange", "->", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "5"}], "}"}]}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.410269563486149*^9, 3.410269565659917*^9}, {
+   3.4102696052929173`*^9, 3.4102696236856937`*^9}, 3.665181847496903*^9, {
+   3.665181914739812*^9, 3.66518192877308*^9}},
+ FontSize->18],
+
+Cell["\<\
+OK, now we are ready to see how the matrix affects this entire picture! To \
+see how the points are transformed, we compute the product Av. The columns of \
+this new matrix give the images of each point under the transformation.\
+\>", "Text",
+ CellChangeTimes->{{3.410269644621778*^9, 3.4102696784193583`*^9}, {
+   3.5351316691557083`*^9, 3.535131669649767*^9}, 3.599389525817421*^9, {
+   3.662764091434229*^9, 3.6627641153070097`*^9}, {3.665181954305656*^9, 
+   3.665182159570057*^9}, {3.699781761562613*^9, 3.6997817696938257`*^9}},
+ FontSize->18],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A", ".", "v"}], " ", "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.662748934399263*^9, 3.66274895023354*^9}, {
+  3.6627641261586514`*^9, 3.6627642001319857`*^9}, {3.6627644225873423`*^9, 
+  3.662764448029909*^9}, {3.665182165212183*^9, 3.665182177180695*^9}},
+ FontSize->18],
+
+Cell["\<\
+Now lets plot these new points, by replacing v with Av in our plot command.\
+\>", "Text",
+ CellChangeTimes->{{3.410269644621778*^9, 3.4102696784193583`*^9}, {
+   3.5351316691557083`*^9, 3.535131669649767*^9}, 3.599389525817421*^9, {
+   3.665181733904333*^9, 3.665181739215933*^9}, {3.665181817173716*^9, 
+   3.665181833286274*^9}, {3.665181902733653*^9, 3.665181905795493*^9}, {
+   3.665182010290729*^9, 3.665182010593246*^9}, {3.665182208601817*^9, 
+   3.6651822371786833`*^9}},
+ FontSize->18],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{
+   RowBox[{"Transpose", "[", 
+    RowBox[{"A", ".", "v"}], "]"}], ",", 
+   RowBox[{"PlotJoined", "->", "True"}], ",", 
+   RowBox[{"PlotRange", "->", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "5"}], "}"}]}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.410269563486149*^9, 3.410269565659917*^9}, {
+   3.4102696052929173`*^9, 3.4102696236856937`*^9}, 3.665181847496903*^9, {
+   3.665181914739812*^9, 3.66518192877308*^9}, {3.665182239508333*^9, 
+   3.665182242283004*^9}},
+ FontSize->18],
+
+Cell[TextData[{
+ "Unfortunately, ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ "\[CloseCurlyQuote]s axes scaling distorts the picture. This is fixed by \
+adding in the AspectRatio option. Below, we plot both pictures at once with \
+both axes scaled the same way. "
+}], "Text",
+ CellChangeTimes->{{3.410269644621778*^9, 3.4102696784193583`*^9}, {
+   3.5351316691557083`*^9, 3.535131669649767*^9}, 3.599389525817421*^9, {
+   3.665181733904333*^9, 3.665181739215933*^9}, {3.665181817173716*^9, 
+   3.665181833286274*^9}, {3.665181902733653*^9, 3.665181905795493*^9}, {
+   3.665182010290729*^9, 3.665182010593246*^9}, {3.665182208601817*^9, 
+   3.6651822371786833`*^9}, {3.6651824541235447`*^9, 
+   3.6651824769657297`*^9}, {3.665182575199271*^9, 3.665182642404725*^9}},
+ FontSize->18],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Transpose", "[", "v", "]"}], ",", 
+     RowBox[{"Transpose", "[", 
+      RowBox[{"A", ".", "v"}], "]"}]}], "}"}], ",", 
+   RowBox[{"PlotJoined", "->", "True"}], ",", 
+   RowBox[{"PlotRange", "->", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "5"}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"AspectRatio", "\[Rule]", "1"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.410269563486149*^9, 3.410269565659917*^9}, {
+   3.4102696052929173`*^9, 3.4102696236856937`*^9}, 3.665181847496903*^9, {
+   3.665181914739812*^9, 3.66518192877308*^9}, {3.665182239508333*^9, 
+   3.665182242283004*^9}, {3.665182480004611*^9, 3.665182493697484*^9}, {
+   3.665182563476878*^9, 3.66518256851121*^9}},
+ FontSize->18],
+
+Cell[TextData[{
+ "We will now explore some more matrix transformations. For each of the three \
+matrices below, apply the transformation to the parallelogram ",
+ StyleBox["P ",
+  FontSlant->"Italic"],
+ "with corners (0,0), (2,0), (3,1) and (1,1). Then describe the effect of the \
+transformation in words. (If you\[CloseCurlyQuote]re unable to figure out \
+what the transformation is doing by looking at the picture, try seeing what \
+it does to some other parallelograms with different corners as well. For \
+example, you could also check what it does to the unit square.)\n",
+ StyleBox["\n\nExercise 1. ",
+  FontWeight->"Bold"],
+ " ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"2", "0"},
+      {"0", "2"}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+        "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.7]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}], 
+   TraditionalForm]],
+  CellChangeTimes->{3.449919458519217*^9}]
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.567871942932633*^9, 3.567871991366486*^9}, 
+   3.599389555810197*^9, {3.6627490313433943`*^9, 3.6627490332858963`*^9}, {
+   3.6651839775955667`*^9, 3.665184006025158*^9}, {3.665184054235776*^9, 
+   3.665184092488881*^9}, {3.665184241767343*^9, 3.665184352258751*^9}, {
+   3.665184406377838*^9, 3.6651844329794083`*^9}, {3.665185870428545*^9, 
+   3.66518587094495*^9}, {3.665186701303945*^9, 3.665186703225017*^9}, {
+   3.699781809083562*^9, 3.699781889947742*^9}},
+ FontSize->18],
+
+Cell[TextData[{
+ "Description: ",
+ StyleBox["\n\nExercise 2.",
+  FontWeight->"Bold"],
+ "   ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {
+       RowBox[{"-", "1"}], "0"},
+      {
+       RowBox[{"  ", "0"}], "1"}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+        "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.7]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}], 
+   TraditionalForm]],
+  CellChangeTimes->{3.449919458519217*^9}]
+}], "Text",
+ CellChangeTimes->{{3.6651844023641443`*^9, 3.665184422568879*^9}, {
+  3.66518445458603*^9, 3.665184467039747*^9}},
+ FontSize->18],
+
+Cell[TextData[{
+ "Description: ",
+ StyleBox["\n\nExercise 3.",
+  FontWeight->"Bold"],
+ "  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {
+       FractionBox["1", 
+        SqrtBox["2"]], 
+       FractionBox["1", 
+        SqrtBox["2"]]},
+      {
+       RowBox[{"  ", 
+        FractionBox[
+         RowBox[{"-", "1"}], 
+         SqrtBox["2"]]}], 
+       FractionBox["1", 
+        SqrtBox["2"]]}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+        "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.7]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}], 
+   TraditionalForm]],
+  CellChangeTimes->{3.449919458519217*^9}]
+}], "Text",
+ CellChangeTimes->{{3.665184392380542*^9, 3.66518439557843*^9}, {
+  3.665184489359468*^9, 3.6651845437888193`*^9}, {3.665184608534771*^9, 
+  3.6651846085348063`*^9}},
+ FontSize->18],
+
+Cell["Description: ", "Text",
+ CellChangeTimes->{{3.6651843707551403`*^9, 3.6651843851029587`*^9}},
+ FontSize->18],
+
+Cell[TextData[{
+ "An ",
+ StyleBox["orthogonal matrix ",
+  FontSlant->"Italic"],
+ "is an invertible matrix that has the property ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["A", 
+     RowBox[{"-", "1"}]], "=", 
+    RowBox[{
+     SuperscriptBox["A", "t"], "."}]}], TraditionalForm]]],
+ " An ",
+ StyleBox["orthogonal transformation",
+  FontSlant->"Italic"],
+ " is one produced by an orthogonal matrix. (Such transformations preserve \
+lengths, distances and angles.) \n\n",
+ StyleBox["Exercise 4. ",
+  FontWeight->"Bold"],
+ " Determine whether each of the matrices in exercises 1-3 are orthogonal or \
+not. (Note that the command to find the inverse of a matrix A is \
+Inverse[A].)"
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.5678720128525953`*^9, 3.5678720414266148`*^9}, {
+  3.567872076212977*^9, 3.567872082024783*^9}, {3.662749067399987*^9, 
+  3.662749069860304*^9}, {3.6651846945320883`*^9, 3.665184704954679*^9}, {
+  3.665184756914093*^9, 3.6651850194301443`*^9}, {3.699781534904591*^9, 
+  3.6997815679435873`*^9}},
+ FontSize->18],
+
+Cell["\<\
+
+\
+\>", "Text",
+ CellFrame->{{0, 0}, {0.5, 0}},
+ CellChangeTimes->{{3.662749091332922*^9, 3.662749092683313*^9}, 
+   3.6651850274513807`*^9, 3.665185067510809*^9, {3.6651851130830297`*^9, 
+   3.665185115312866*^9}},
+ FontSize->18],
+
+Cell[TextData[{
+ "A ",
+ StyleBox["linear transformation",
+  FontSlant->"Italic"],
+ " is any transformation ",
+ StyleBox["T",
+  FontSlant->"Italic"],
+ " with the property that if ",
+ StyleBox["u,v",
+  FontSlant->"Italic"],
+ " are vectors and ",
+ StyleBox["c ",
+  FontSlant->"Italic"],
+ "is a scalar, then: \n",
+ StyleBox["T(u+v)=T(u)+T(v)    ",
+  FontSlant->"Italic"],
+ "(preserves addition)",
+ StyleBox["\nT(cu)=cT(u)   ",
+  FontSlant->"Italic"],
+ "(preserves scalar multiplication)\n\n",
+ StyleBox["Theorem. ",
+  FontWeight->"Bold"],
+ "Let ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["e", "1"], ",", 
+    SubscriptBox["e", "2"], ",", "...", ",", 
+    RowBox[{
+     SubscriptBox["e", "n"], " ", "be", " ", "the", " ", "standard", " ", 
+     "basis", " ", "vectors", " ", "of", " "}]}], TraditionalForm]]],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox[
+     StyleBox["R",
+      FontWeight->"Bold"], "n"], "."}], TraditionalForm]]],
+ " Then any linear transformation ",
+ StyleBox["T",
+  FontSlant->"Italic"],
+ " on ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox[
+     StyleBox["R",
+      FontWeight->"Bold"], "n"], " "}], TraditionalForm]]],
+ "can be expressed as a matrix transfromation with standard matrix ",
+ StyleBox["A",
+  FontSlant->"Italic"],
+ ", whose columns are given by ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"T", "(", 
+     SubscriptBox["e", "1"], ")"}], ",", 
+    RowBox[{"T", "(", 
+     SubscriptBox["e", "2"], ")"}], ",", "...", ",", 
+    RowBox[{
+     RowBox[{"T", "(", 
+      SubscriptBox["e", "n"], ")"}], "."}]}], TraditionalForm]]],
+ " ",
+ StyleBox["\n\n",
+  FontWeight->"Bold"],
+ "To see an example of this, let\[CloseCurlyQuote]s take another look at the \
+matrix transfomation corresponding to a 90 degree counter-clockwise rotation: \
+",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"0", 
+       RowBox[{"-", "1"}]},
+      {"1", 
+       RowBox[{"  ", "0"}]}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+        "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.7]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}], 
+   TraditionalForm]],
+  CellChangeTimes->{3.449919458519217*^9}],
+ ". \nThe first column is the image of the point (1,0) under this \
+transformation, and the second column is the image of the point (0,1). (The \
+set {(1,0), (0,1)} is the standard basis of ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox[
+     StyleBox["R",
+      FontWeight->"Bold"], "2"], "."}], TraditionalForm]]],
+ ")\n\nFind the standard matrix of each of the following linear \
+transformations, and then verify that your matrix is correct by applying it \
+to the parallelogram ",
+ StyleBox["P ",
+  FontSlant->"Italic"],
+ "with corners (0,0), (2,0), (3,1) and (1,1).",
+ StyleBox["\n\nExercise 5. ",
+  FontWeight->"Bold"],
+ "reflection in the y-axis"
+}], "Text",
+ CellChangeTimes->{{3.567871942932633*^9, 3.567871991366486*^9}, 
+   3.599389555810197*^9, {3.6627490313433943`*^9, 3.6627490332858963`*^9}, {
+   3.6651839775955667`*^9, 3.665184006025158*^9}, {3.665184054235776*^9, 
+   3.665184092488881*^9}, {3.665184241767343*^9, 3.665184352258751*^9}, {
+   3.665184406377838*^9, 3.6651844329794083`*^9}, {3.665185158534697*^9, 
+   3.6651852707679033`*^9}, {3.665185331012642*^9, 3.665185340530388*^9}, {
+   3.6651853720822887`*^9, 3.665185552363472*^9}, {3.6651855847340393`*^9, 
+   3.665185595885479*^9}, {3.665185631980074*^9, 3.665185645811318*^9}, {
+   3.665185875183548*^9, 3.665185876551818*^9}, {3.665185978094616*^9, 
+   3.6651860031421223`*^9}, {3.6651860409397993`*^9, 3.665186173435952*^9}, {
+   3.665186205931663*^9, 3.665186451464657*^9}, {3.6651865125213623`*^9, 
+   3.665186949045375*^9}, {3.665224686718925*^9, 3.6652246869214697`*^9}},
+ FontSize->18],
+
+Cell[TextData[{
+ StyleBox["\nExercise 6.  ",
+  FontWeight->"Bold"],
+ "rotation of 90 degrees clockwise"
+}], "Text",
+ CellChangeTimes->{{3.665185666279605*^9, 3.6651856980261717`*^9}, {
+  3.665185734659655*^9, 3.665185812423173*^9}, {3.665186931490148*^9, 
+  3.66518693660459*^9}, {3.665187032308195*^9, 3.665187041094617*^9}, {
+  3.665224689688024*^9, 3.665224689868415*^9}},
+ FontSize->18],
+
+Cell[TextData[{
+ StyleBox["\nExercise 7.  ",
+  FontWeight->"Bold"],
+ "contraction to 1/4 of the original size of the vector"
+}], "Text",
+ CellChangeTimes->{{3.665185666279605*^9, 3.6651856980261717`*^9}, {
+  3.665185734659655*^9, 3.665185812423173*^9}, {3.665186931490148*^9, 
+  3.665186964545064*^9}, {3.665224691285714*^9, 3.665224691466261*^9}},
+ FontSize->18],
+
+Cell[TextData[{
+ StyleBox["\nExercise 8.  ",
+  FontWeight->"Bold"],
+ "projection onto the x-axis"
+}], "Text",
+ CellChangeTimes->{{3.665185666279605*^9, 3.6651856980261717`*^9}, {
+  3.665185734659655*^9, 3.665185812423173*^9}, {3.665186931490148*^9, 
+  3.665186964545064*^9}, {3.66522467669488*^9, 3.6652246995210953`*^9}},
+ FontSize->18],
+
+Cell[TextData[{
+ "A ",
+ StyleBox["translation",
+  FontSlant->"Italic"],
+ " is a transformation defined by ",
+ StyleBox["T(v)=v+w",
+  FontSlant->"Italic"],
+ ", for some fixed vector ",
+ StyleBox["w.",
+  FontSlant->"Italic"],
+ " Note that in this case, ",
+ StyleBox["T(v)",
+  FontSlant->"Italic"],
+ " cannot be performed via matrix multiplication.",
+ StyleBox["\n\nExercise 9. ",
+  FontWeight->"Bold"],
+ "Translate the parallelogram ",
+ StyleBox["P",
+  FontSlant->"Italic"],
+ " with corners (0,0), (2,0), (3,1) and (1,1) by the vectors (2,3), and then \
+plot it. (Note that each vector has to be translated individually here, \
+instead of at once through matrix multiplication.)"
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.567871942932633*^9, 3.567871991366486*^9}, 
+   3.599389555810197*^9, {3.6627490313433943`*^9, 3.6627490332858963`*^9}, {
+   3.6651839775955667`*^9, 3.665184006025158*^9}, {3.665184054235776*^9, 
+   3.665184092488881*^9}, {3.665184241767343*^9, 3.665184352258751*^9}, {
+   3.665184406377838*^9, 3.6651844329794083`*^9}, {3.665185158534697*^9, 
+   3.6651852707679033`*^9}, {3.665185331012642*^9, 3.665185340530388*^9}, {
+   3.6651853720822887`*^9, 3.665185552363472*^9}, {3.6651855847340393`*^9, 
+   3.665185595885479*^9}, {3.665185631980074*^9, 3.665185645811318*^9}, {
+   3.665185875183548*^9, 3.665185876551818*^9}, 3.665187050438033*^9, 
+   3.6652299552612877`*^9},
+ FontSize->18],
+
+Cell[TextData[{
+ StyleBox["Computer Graphics and Homogenous Coordinates",
+  FontSize->24,
+  FontColor->RGBColor[1, 0.5, 0]],
+ "\n\nAn",
+ StyleBox[" affine linear",
+  FontSlant->"Italic"],
+ " transformation ",
+ StyleBox["T",
+  FontSlant->"Italic"],
+ " is one that has the form ",
+ StyleBox["T(v)=Av+w",
+  FontSlant->"Italic"],
+ ", for some matrix ",
+ StyleBox["A",
+  FontSlant->"Italic"],
+ " and some fixed vector ",
+ StyleBox["w. \n\n",
+  FontSlant->"Italic"],
+ "Such transformations are used frequently when working with computer \
+graphics. However, since translating each vector would be very tedious, it is \
+common to use ",
+ StyleBox["homogeneous coordinates ",
+  FontSlant->"Italic"],
+ "for these. The homogeneous coordinates of a point (x,y) are (x,y,1). This \
+allows us to perform translations using matrix multiplication as well! The \
+matrix for a translation by w=(a,b) is given by: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"1", "0", "a"},
+      {"0", "1", "b"},
+      {"0", "0", "1"}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+        "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.7]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}], 
+   TraditionalForm]],
+  CellChangeTimes->{3.449919458519217*^9}],
+ ".\n\nAll matrix transformations also need to be extended to 3x3 matrices to \
+apply them to homogeneous coordinates, which we do by adding all 0s into the \
+third row and column, except for in the (3,3) position, where we add a 1. \
+Thus, the matrix for a 90 degree counter clockwise rotation now becomes: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"0", 
+       RowBox[{"-", "1"}], "0"},
+      {"1", "0", "0"},
+      {"0", "0", "1"}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+        "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.7]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}], 
+   TraditionalForm]],
+  CellChangeTimes->{3.449919458519217*^9}],
+ ".",
+ StyleBox["\n\nExercise 10.",
+  FontWeight->"Bold"],
+ " Rewrite the matrix ",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ " for the parallelogram ",
+ StyleBox["P",
+  FontSlant->"Italic"],
+ " so that it is in homogeneous coordinates. To plot this parallelogram, we \
+now need to use the following modified command. (This allows us to ignore the \
+third coordinate while plotting, since it is just there for the convenience \
+of transforming.)"
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.567872138174605*^9, 3.567872144434373*^9}, {
+  3.662764255914012*^9, 3.662764289746965*^9}, {3.662764335235292*^9, 
+  3.662764384077305*^9}, {3.66276455596657*^9, 3.662764600875852*^9}, {
+  3.6627646633290787`*^9, 3.6627646652583733`*^9}, {3.662764844864485*^9, 
+  3.662764865302516*^9}, {3.6627649733007507`*^9, 3.6627649805044613`*^9}, {
+  3.662765388879745*^9, 3.662765404135653*^9}, {3.665187353917118*^9, 
+  3.665187970134624*^9}, {3.665188085124024*^9, 3.6651881048539953`*^9}, {
+  3.665188182595907*^9, 3.6651881891700573`*^9}, {3.6652282958015614`*^9, 
+  3.665228341981655*^9}, {3.665229958882154*^9, 3.665229959174419*^9}, {
+  3.699781600682831*^9, 3.6997816157690067`*^9}, {3.699781672686586*^9, 
+  3.6997816769251957`*^9}},
+ FontSize->18],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{
+   RowBox[{"Transpose", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"v", "[", 
+       RowBox[{"[", "1", "]"}], "]"}], ",", 
+      RowBox[{"v", "[", 
+       RowBox[{"[", "2", "]"}], "]"}]}], "}"}], "]"}], ",", 
+   RowBox[{"PlotJoined", "->", "True"}], ",", 
+   RowBox[{"PlotRange", "->", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "5"}], ",", "5"}], "}"}]}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.410269563486149*^9, 3.410269565659917*^9}, {
+   3.4102696052929173`*^9, 3.4102696236856937`*^9}, 3.665181847496903*^9, {
+   3.665181914739812*^9, 3.66518192877308*^9}, {3.665187987987056*^9, 
+   3.665188001005643*^9}, {3.665188058237761*^9, 3.665188067536075*^9}},
+ FontSize->18],
+
+Cell[TextData[{
+ "Use this new method of homogeneous coordinates to plot",
+ StyleBox[" ",
+  FontWeight->"Bold"],
+ "the image of the parallelogram ",
+ StyleBox["P",
+  FontSlant->"Italic"],
+ " obtained after doubling its size, reflecting in the y-axis, and then \
+translating by the vector (4,1)."
+}], "Text",
+ CellChangeTimes->{{3.567871942932633*^9, 3.567871991366486*^9}, 
+   3.599389555810197*^9, {3.6627490313433943`*^9, 3.6627490332858963`*^9}, {
+   3.6651839775955667`*^9, 3.665184006025158*^9}, {3.665184054235776*^9, 
+   3.665184092488881*^9}, {3.665184241767343*^9, 3.665184352258751*^9}, {
+   3.665184406377838*^9, 3.6651844329794083`*^9}, {3.665185158534697*^9, 
+   3.6651852707679033`*^9}, {3.665185331012642*^9, 3.665185340530388*^9}, {
+   3.6651853720822887`*^9, 3.665185552363472*^9}, {3.6651855847340393`*^9, 
+   3.665185595885479*^9}, {3.665185631980074*^9, 3.665185645811318*^9}, {
+   3.665185875183548*^9, 3.665185876551818*^9}, 3.665187050438033*^9, {
+   3.665188134176654*^9, 3.665188341800579*^9}, {3.6652247175918493`*^9, 
+   3.6652247670113688`*^9}, 3.6652282996011*^9},
+ FontSize->18]
+}, Open  ]]
+},
+WindowSize->{1071, 751},
+WindowMargins->{{721, Automatic}, {Automatic, 277}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (December 10, \
+2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 871, 16, 120, "Subtitle"],
+Cell[1441, 40, 1361, 51, 70, "Text"],
+Cell[2805, 93, 1225, 31, 58, "Text"],
+Cell[4033, 126, 664, 16, 57, "Input"],
+Cell[4700, 144, 498, 9, 35, "Text"],
+Cell[5201, 155, 478, 10, 33, "Input"],
+Cell[5682, 167, 479, 9, 33, "Input"],
+Cell[6164, 178, 521, 10, 35, "Text"],
+Cell[6688, 190, 878, 22, 33, "Input"],
+Cell[7569, 214, 903, 17, 179, "Text"],
+Cell[8475, 233, 871, 21, 57, "Input"],
+Cell[9349, 256, 591, 10, 59, "Text"],
+Cell[9943, 268, 616, 17, 33, "Input"],
+Cell[10562, 287, 559, 9, 59, "Text"],
+Cell[11124, 298, 317, 6, 33, "Input"],
+Cell[11444, 306, 504, 9, 35, "Text"],
+Cell[11951, 317, 691, 19, 33, "Input"],
+Cell[12645, 338, 788, 15, 59, "Text"],
+Cell[13436, 355, 928, 24, 57, "Input"],
+Cell[14367, 381, 1787, 40, 210, "Text"],
+Cell[16157, 423, 888, 28, 106, "Text"],
+Cell[17048, 453, 1118, 37, 136, "Text"],
+Cell[18169, 492, 114, 2, 35, "Text"],
+Cell[18286, 496, 1072, 29, 141, "Text"],
+Cell[19361, 527, 240, 8, 67, "Text"],
+Cell[19604, 537, 4050, 118, 424, "Text"],
+Cell[23657, 657, 390, 9, 59, "Text"],
+Cell[24050, 668, 363, 8, 59, "Text"],
+Cell[24416, 678, 337, 8, 59, "Text"],
+Cell[24756, 688, 1426, 34, 139, "Text"],
+Cell[26185, 724, 3770, 96, 504, "Text"],
+Cell[29958, 822, 883, 24, 33, "Input"],
+Cell[30844, 848, 1108, 21, 59, "Text"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

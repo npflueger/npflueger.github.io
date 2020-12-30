@@ -1,11 +1,11 @@
 ---
-title: "Math 220 section 2, spring 2020"
-coursenum: 220
-coursename: "Math 220: Mathematical Reasoning and Proof"
+title: "Math 220, Spring 2020"
+coursenum: "Math 220"
+section: 2
+coursename: "Mathematical Reasoning and Proof"
 permalink: teaching/220-20spring
-date: 2020-01-01
+startdate: 2020-01
 semester: "Spring 2020"
-toc: true
 ---
 
 This course serves as an introduction to mathematical reasoning and pays particular attention to helping students learn how to write proofs. The topics covered may include logic, elementary set theory, functions, relations and equivalence relations, mathematical induction, sequences, and quantifiers. 

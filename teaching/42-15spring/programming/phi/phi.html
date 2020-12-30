@@ -1,0 +1,133 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Math 42, spring 2015</title>
+
+<style>
+body
+{
+background-color:#C0C0C0;
+}
+p
+{
+	width: 800px;
+}
+h2 {font-family:sans-serif}
+h3 {font-family:sans-serif}
+a
+{
+text-decoration:none;
+}
+a:link {color:#000099;}      /* unvisited link */
+a:visited {color:#000099;}  /* visited link */
+a:hover {color:#4444cc;}  /* mouse over link */
+a:active {color:#3333FF;} 
+table
+{
+	border-spacing: 5px;
+	border: 1px solid black;
+}
+th,td { 
+	padding: 5px;
+	vertical-align: top;
+}
+</style>
+
+</head><body>
+
+<h2>The Phi function (sample, not for credit)</h2>
+
+<p>
+The quantity φ(n) is defined to be the number of integers between 1 and n (inclusive) that are relatively prime to n. Your task is to compute this quantity for various values of n.
+</p>
+
+<h3>Input</h3>
+
+<p>
+The first line gives the number of test cases, <b>T</b>. <b>T</b> test cases follow. Each test case is a single line containing one positive integer, <b>n</b>.
+</p>
+
+<h3>Output</h3>
+
+<p>
+For each test case, output one line containg "Case #x: y", where x is the case number (starting from 1) and y is the value φ(<b>n</b>).
+</p>
+
+<h3>Limits</h3>
+
+1 ≤ <b>T</b> ≤ 100.<br />
+
+Small dataset:
+1 ≤ <b>n</b> ≤ 1 000 000.<br />
+
+Large dataset:
+1 ≤ <b>n</b> ≤ 10<sup>18</sup>.<br />
+
+<h3>Sample</h3>
+<table>
+<tr>
+	<td>Input</td>
+	<td>Output</td>
+</tr>
+<tr>
+	<td><tt>
+	5<br />
+	7<br />
+	33<br />
+	91<br />
+	97<br />
+	10000<br .>
+	</tt></td>
+
+	<td><tt>
+Case #1: 6<br />
+Case #2: 20<br />
+Case #3: 72<br />
+Case #4: 96<br />
+Case #5: 4000<br />
+	</tt></td>
+</tr>
+</table>
+
+<h3>Input and output files</h3>
+
+Small: <a href="small.in">Input</a> / <a href="small.out">Output</a>
+<br />
+Large: <a href="large.in">Input</a> / <a href="large.out">Output</a>
+
+<h3>Sample solutions</h3>
+
+<p>
+Below are links to four different solutions to this problem. These show two different algorithms: a naive implementation which explicitly checks every number from 1 to n to see if it is coprime (using the Euclidean algorithm), and an implementation which removes prime factors one by one and uses the multiplicative property of the phi function. Each algorithm is implemented in C++ and in Python.
+</p>
+
+<p>
+The naive algorithm is fast enough to complete the small input in a couple minutes, but would be hopeless for the large input. The faster algorithm can complete the large input in about ten minutes. There are various optimizations that could make it faster still, which I encourage you to search for.
+</p>
+
+<table>
+<tr>
+	<th /><th>Naive algorithm</th><th>Fast algorithm</th>
+</tr>
+<tr>
+	<td />
+	<td>(can do small input)</td>
+	<td>(can do large input)</td>
+</tr>
+<tr>
+	<th>Python</th>
+	<td><a href="phi_naive.py">phi_naive.py</a></td>
+	<td><a href="phi.py">phi.py</a></td>
+</tr>
+<tr>
+	<th>C++</th>
+	<td><a href="phi_naive.cpp">phi_naive.cpp</a></td>
+	<td><a href="phi.cpp">phi.cpp</a></td>
+</tr>
+</tr>
+</table>
+</p>
+
+
+
+</body>
+</html>

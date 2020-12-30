@@ -1,0 +1,165 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Math 42, spring 2015</title>
+
+<style>
+body
+{
+background-color:#C0C0C0;
+}
+p
+{
+	width: 800px;
+}
+h2 {font-family:sans-serif}
+h3 {font-family:sans-serif}
+a
+{
+text-decoration:none;
+}
+a:link {color:#000099;}      /* unvisited link */
+a:visited {color:#000099;}  /* visited link */
+a:hover {color:#4444cc;}  /* mouse over link */
+a:active {color:#3333FF;} 
+table
+{
+	border-spacing: 5px;
+	border: 1px solid black;
+}
+th,td { 
+	padding: 5px;
+	vertical-align: top;
+}
+</style>
+
+</head><body>
+
+<h2>Cracking ElGamal</h2>
+
+<i>All submissions due by 2pm on Friday, May 1.</i>
+
+<p>
+We have discussed two related cryptographic protocols in class: ElGamal encryption and ElGamal digital signatures. Both systems use the same type of public key, consisting of three numbers (<b>g</b>,<b>y</b>,<b>p</b>), where <b>p</b> is a prime number, <b>g</b> is a primitive root modulo <b>p</b>, and <b>y</b> is some number between 1 and <b>p</b>-1, inclusive. Call the owner of this public key Alice. Alice also knows a secret number <b>a</b> such that <b>g<sup>a</sup></b>≡<b>y</b> mod <b>p</b>. The security of both systems (encryption and signing) depend on the fact that it is computationally difficult to solve the discrete logarithm problem, and therefore to reconstruct the value of <b>a</b> from the values of <b>g</b> and <b>y</b> (as long as <b>p</b> is sufficiently large). This problem demonstrates a potential security flaw in ElGamal signatures (if implemented poorly) that can all an eavesdropper to determine <b>a</b>, and hence crack any documents encrypted with Alice's public key.
+</p>
+
+<p>
+In each test case, you will receive Alice's public key, as well as two signed messages from Alice. Each signed message consists of three integers (<b>m,r,s</b>). These three values obey the congruence <b>g<sup>m</sup> ≡ y<sup>r</sup> r<sup>s</sup></b> mod <b>p</b> (the integrity of ElGamal signatures rests on the fact that it appears to be difficult to construct such numbers <b>r,s</b> for a fixed number <b>m</b> without knowledge of the secret number <b>a</b>). However, Alice has made a critical mistake while signing these two messages: she has used the same value of <b>r</b> in both signatures, rather than randomly generating a new one. There are some other restrictions on these values (described under "limits") that rule out certain special cases.
+</p>
+
+<p>
+The last part of each test case will be an encrypted message (<b>c_1,c_2</b>) intended for Alice and encrypted by ElGamal encryption using her public key. This means that the sender, Bob, has taken his message <b>D</b> (intended for Alice), then chosen an "ephermal key" <b>b</b> at random and computed numbers <b>c_1,c_2</b> such that <b>c_1 ≡ g<sup>b</sup></b> mod <b>p</b> and <b>c_2 ≡ y<sup>b</sup> D</b> mod <b>p</b>.
+</p>
+
+<p>
+Your task is to decrypt Bob's encrypted message and determine the original message <b>D</b>.
+</p>
+
+
+<h3>Input</h3>
+
+<p>
+The first line gives the number of test cases, <b>T</b>. <b>T</b> test cases follow. Each case consists of four lines, of the following form.
+</p>
+<p>
+<b><tt>
+g y p<br />
+m_1 r s_1<br />
+m_2 r s_2<br />
+c_1 c_2<br />
+</tt></b>
+</p>
+
+<p>
+The first line is Alice's public key. The next two lines are two signed messages from Alice (note that they use the same value of <b>r</b>). The last line is an encrypted message intended for Alice.
+</p>
+
+<h3>Output</h3>
+
+<p>
+For each test case, print a single line of the form <tt>Case #<b>X</b>: <b>D</b></tt>, where <b>X</b> is the number of the test case and <b>D</b> is the original document that was encrypted by Alice's public key to obtain <b>c_1,c_2</b>.
+</p>
+
+<h3>Limits</h3>
+
+<b>T</b> = 100<br />
+<b>p</b> is a prime number.<br />
+0 ≤ <b>g,y,m_1,m_2,r,s_1,s_2,c_1,c_2</b> ≤ <b>p</b>-1<br />
+<b>g</b> is guaranteed to be a primitive root modulo <b>p</b>.<br />
+The number <b>r</b> and the number <b>s_2-s_1</b> are both guaranteed to be relatively prime to <b>p</b>-1.<br />
+
+
+
+<p>
+Small dataset: <br />
+<b>p</b> ≤ 10<sup>6</sup>
+</p>
+
+<p>
+Large dataset: <br />
+<b>p</b> ≤ 10<sup>18</sup>
+</p>
+
+<h3>Sample</h3>
+<table>
+<tr>
+	<td>Input</td>
+	<td>Output</td>
+</tr>
+<tr>
+	<td><tt>
+	4<br />
+	2 3 11<br />
+	9 7 9<br />
+	0 7 2<br />
+	3 4<br />
+	2 14 19<br />
+	17 5 0<br />
+	9 5 13<br />
+	2 11<br />
+	3 6 7<br />
+	2 5 1<br />
+	1 5 2<br />
+	5 2<br />
+	126790149156457136 378226232119944922 670047060771582503<br />
+	161454713220583839 163319352577255097 214573064171043578<br />
+	324219902194752697 163319352577255097 163882212182317851<br />
+	551173770507958840 593354389584354105<br />
+	</tt></td>
+
+	<td><tt>
+	Case #1: 3<br />
+	Case #2: 13<br />
+	Case #3: 5<br />
+	Case #4: 155949289230828270<br />
+	</tt></td>
+</tr>
+</table>
+
+
+<h3>Hints and suggestions</h3>
+
+<p>
+It is possible to solve the small input without using the signed messages at all -- simply determine the exponent <b>a</b> by trial and error, and then follow the procedure from the homework to decrypt the message <b>D</b> from it.
+</p>
+
+<p>
+To solve the large input, you will need to use the signed messages from Alice. One good method is to let <b>e</b> be a number such that <b>g<sup>e</sup></b> ≡ <b>r</b> mod <b>p</b>. Using the fact that <b>g</b> is a primitive root, you can write down two congruences modulo <b>p</b>-1, involving both of the exponents <b>a</b> and <b>e</b>. You can manipulate these congruences in order to determine both of the values <b>a</b> and <b>e</b> (follow a similar method to when you solve a pair of linear equations). Then you can descrypt the message using the number <b>a</b>.
+</p>
+
+<h3>Input and output files</h3>
+
+Small inputs: 
+	<a href="small0.in">0</a> 
+	<a href="small1.in">1</a>
+	<a href="small2.in">2</a>
+	<a href="small3.in">3</a>
+	<a href="small4.in">4</a>
+ 	<a href="small5.in">5</a>
+ 	<a href="small6.in">6</a>
+ 	<a href="small7.in">7</a>
+	<a href="small8.in">8</a>
+	<a href="small9.in">9</a>
+<br />
+Large input: <a href="large.in">large.in</a>
+
+</html>

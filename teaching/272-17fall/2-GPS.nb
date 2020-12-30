@@ -1,0 +1,470 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     14204,        461]
+NotebookOptionsPosition[     13527,        437]
+NotebookOutlinePosition[     13983,        455]
+CellTagsIndexPosition[     13940,        452]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["Linear algebra for GPS\n",
+  FontSize->24],
+ StyleBox["Adapted from Dan Kalman\[CloseCurlyQuote]s article ",
+  FontSize->16],
+ StyleBox["An Underdetermined Linear System for GPS",
+  FontSize->16,
+  FontSlant->"Italic"],
+ StyleBox[" in the November 2002 issue of the College Mathematics Journal.",
+  FontSize->16],
+ "\n\nPlease email completed file to npflueger@amherst.edu by Wednesday \
+night.\n\n",
+ StyleBox["GPS calculations involve triangulation using at least 4 satellites \
+to determine a point on the surface (location of the GPS receiver) and the \
+time at which the GPS receiver receives the signals from the satellites. We \
+will do a very simplified calculation in this lab, neglecting the issue of \
+measurement error and physical complications (e.g., that the atmosphere \
+impedes radio signals differently at different altitudes) and using only 4 \
+satellites (while real systems use more than 4 to reduce the effects of noise \
+and errors). Please note that real GPS calculations are much more complicated \
+that the supersimplified problem we will examine. But this lab will show us \
+the gist of how to carry out triangulation-type calculations.\n\nSuppose our \
+GPS receiver is onboard a ship at sea in an unknown location. The GPS \
+receiver obtains simultaneous signals from four satellites in space. Each \
+signal specifies its time of transmission and the position of the satellite \
+at that time. From this information, the GPS receiver computes its position \
+and the time. We want to work through this computation.\n\nImagine an ",
+  FontSize->14],
+ StyleBox["xyz",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox["-coordinate system with the Earth centered at the origin, the \
+positive ",
+  FontSize->14],
+ StyleBox["z",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox["-axis running through the north pole and fixed along the Earth\
+\[CloseCurlyQuote]s axis of rotation (so the ",
+  FontSize->14],
+ StyleBox["xy",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox["-plane intersects the equator; the positive ",
+  FontSize->14],
+ StyleBox["x",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox["-axis can be fixed to correspond to 0 degrees longitude if \
+desired). The unknown position of the ship can be expressed as a point (",
+  FontSize->14],
+ StyleBox["x",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox[", ",
+  FontSize->14],
+ StyleBox["y",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox[", ",
+  FontSize->14],
+ StyleBox["z",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox["). To simplify things, work in units equal to the radius of the \
+Earth and we\[CloseCurlyQuote]ll pretend that the Earth is a perfect sphere \
+described by",
+  FontSize->14],
+ StyleBox[" ",
+  FontSize->12],
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    SuperscriptBox["x", "2"],
+    FontSize->14], TraditionalForm]],
+  FontSize->12],
+ StyleBox[" + ",
+  FontSize->14],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["y", "2"], TraditionalForm]],
+  FontSize->14],
+ StyleBox[" + ",
+  FontSize->14],
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    SuperscriptBox["z", "2"],
+    FontSize->14], TraditionalForm]]],
+ StyleBox[" = 1 in this system. Because radio signal travel at about the \
+speed of light (0.047 Earth radii per millisecond), we will measure time in \
+units of milliseconds. The GPS system determines distances by seeing how long \
+it takes a radio signal to get from one point to another. \n\nOur ship is at \
+an unknown position and has no clock. It receives simultaneous signals from \
+four satellites, giving their positions and times as shown in the table \
+below. (These numbers were made up for this example; in a real case the \
+satellite coordinates would not involve simple integers and the time would \
+not be such small numbers.)\n\n",
+  FontSize->14],
+ Cell[BoxData[GridBox[{
+    {"Satellite", "Position", "Time"},
+    {"1", 
+     RowBox[{"(", 
+      RowBox[{"1", ",", "2", ",", "0"}], ")"}], "19.9"},
+    {"2", 
+     RowBox[{"(", 
+      RowBox[{"2", ",", "0", ",", "2"}], ")"}], "2.4"},
+    {"3", 
+     RowBox[{"(", 
+      RowBox[{"1", ",", "1", ",", "1"}], ")"}], "32.6"},
+    {"4", 
+     RowBox[{"(", 
+      RowBox[{"2", ",", "1", ",", "0"}], ")"}], "19.9"}
+   }]],
+  FontSize->16],
+ "\n\n",
+ StyleBox["We want to deduce the position (",
+  FontSize->14],
+ StyleBox["x",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox[",",
+  FontSize->14],
+ StyleBox["y",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox[",",
+  FontSize->14],
+ StyleBox["z",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox[") of the ship and the time ",
+  FontSize->14],
+ StyleBox["t",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox[" at which the ship received the signals from the four satellites.",
+  
+  FontSize->14],
+ "\n\n",
+ StyleBox["The distance traveled by the radio signal from Satellite 1 to the \
+ship equals speed multiplied by the amount of time since the signal was sent: \
+\n\nd = 0.047(t-19.9)\n\nThis distance also equals the distance between the \
+points (x,y,z) and (1,2,0):\n\nd = ",
+  FontSize->14],
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    SqrtBox[
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"x", "-", "1"}], ")"}], "2"], 
+      StyleBox[" ",
+       FontSize->14], 
+      StyleBox["+",
+       FontSize->14], 
+      SuperscriptBox[
+       RowBox[{
+        StyleBox["(",
+         FontSize->14], 
+        StyleBox[" ",
+         FontSize->14], 
+        RowBox[{"y", "-", "2"}], ")"}], "2"], 
+      StyleBox[" ",
+       FontSize->14], 
+      StyleBox["+",
+       FontSize->14], 
+      StyleBox[" ",
+       FontSize->14], 
+      SuperscriptBox[
+       RowBox[{
+        StyleBox["(",
+         FontSize->14], 
+        RowBox[{"z", "-", "0"}], ")"}], "2"]}]],
+    FontSize->14], TraditionalForm]]],
+ "\n\n",
+ StyleBox["Square each of these expressions. The difference should equal \
+zero:\n",
+  FontSize->14],
+ "\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"x", "-", "1"}], ")"}], "2"], 
+    StyleBox[" ",
+     FontSize->14], 
+    StyleBox["+",
+     FontSize->14], 
+    SuperscriptBox[
+     RowBox[{
+      StyleBox["(",
+       FontSize->14], 
+      StyleBox[" ",
+       FontSize->14], 
+      RowBox[{"y", "-", "2"}], ")"}], "2"], 
+    StyleBox[" ",
+     FontSize->14], 
+    StyleBox["+",
+     FontSize->14], 
+    StyleBox[" ",
+     FontSize->14], 
+    SuperscriptBox[
+     RowBox[{
+      StyleBox["(",
+       FontSize->14], 
+      RowBox[{"z", "-", "0"}], ")"}], "2"]}], TraditionalForm]],
+  FontSize->14],
+ " - ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    SuperscriptBox["0.047", "2"],
+    FontSize->14], TraditionalForm]]],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"t", "-", "19.9"}], ")"}], "2"], TraditionalForm]],
+  FontSize->14],
+ " ",
+ StyleBox["== 0\n\nSave the left hand side in ",
+  FontSize->14],
+ StyleBox["Mathematica",
+  FontSize->14,
+  FontSlant->"Italic"],
+ StyleBox[":",
+  FontSize->14]
+}], "Text",
+ CellChangeTimes->{{3.4171725558501472`*^9, 3.41717259429198*^9}, {
+  3.572006269316896*^9, 3.572006282265354*^9}, {3.572009386983458*^9, 
+  3.5720094358412724`*^9}, {3.572009593644506*^9, 3.572010296723733*^9}, {
+  3.5720103362477903`*^9, 3.572010458313936*^9}, {3.572010489243712*^9, 
+  3.57201078290736*^9}, {3.572011367860643*^9, 3.572011465779048*^9}, {
+  3.572011631097396*^9, 3.5720116632921877`*^9}, {3.572011698814508*^9, 
+  3.57201170642776*^9}, {3.5720123293635197`*^9, 3.5720123350737343`*^9}, {
+  3.572012380973537*^9, 3.5720123833206778`*^9}, {3.572012615584765*^9, 
+  3.572012714312594*^9}, {3.573229630804453*^9, 3.573229662346583*^9}, {
+  3.603641172870882*^9, 3.603641173735433*^9}, {3.715338483643654*^9, 
+  3.71533849146841*^9}},
+ FontSize->18],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"c", "=", "0.047"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Satellite1LHS", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"x", "-", "1"}], ")"}], "^", "2"}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"y", "-", "2"}], ")"}], "^", "2"}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"z", "-", "0"}], ")"}], "^", "2"}], "-", 
+   RowBox[{
+    RowBox[{"c", "^", "2"}], 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"t", "-", "19.9"}], ")"}], "^", "2"}]}]}]}]}], "Input",
+ CellChangeTimes->{{3.442074243237915*^9, 3.442074287007393*^9}, {
+  3.474023119495594*^9, 3.474023120440778*^9}, {3.572011666878786*^9, 
+  3.572011669128622*^9}, {3.572011719114705*^9, 3.572011720026054*^9}, {
+  3.572011805445722*^9, 3.572011807657104*^9}}],
+
+Cell[TextData[{
+ StyleBox["Exercise 1.",
+  FontWeight->"Bold"],
+ " Find the corresponding expressions for Satellites 2, 3, and 4. Enter them \
+into ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " as Satellite2LHS, Satellite3LHS, and Satellite4LHS."
+}], "Text",
+ CellChangeTimes->{{3.572011723714594*^9, 3.572011785170246*^9}}],
+
+Cell[TextData[{
+ StyleBox["Exercise 2.",
+  FontWeight->"Bold"],
+ " We need to get rid of the nonlinear terms, so subtract Satellite1LHS from \
+each of the other expressions. Each expression equals zero, so the \
+differences all equal zero, too. Press shift-enter on the code below to enter \
+these 3 resulting equations into ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.572011723714594*^9, 3.572011785170246*^9}, {
+  3.5720118262816467`*^9, 3.572011920499057*^9}, {3.5720124053840218`*^9, 
+  3.5720124190933523`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"eq1", "=", 
+  RowBox[{"Expand", "[", 
+   RowBox[{
+    RowBox[{"Satellite2LHS", "-", "Satellite1LHS"}], "\[Equal]", "0"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"eq2", "=", 
+  RowBox[{"Expand", "[", 
+   RowBox[{
+    RowBox[{"Satellite3LHS", "-", "Satellite1LHS"}], "\[Equal]", "0"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"eq3", "=", 
+  RowBox[{"Expand", "[", 
+   RowBox[{
+    RowBox[{"Satellite4LHS", "-", "Satellite1LHS"}], "\[Equal]", "0"}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.474023053621567*^9, 3.474023059165886*^9}, {
+  3.474023097451778*^9, 3.474023099345437*^9}, {3.474023156543223*^9, 
+  3.4740231821845503`*^9}, {3.474023220538981*^9, 3.474023228694489*^9}, {
+  3.5720118141335297`*^9, 3.572011818308366*^9}}],
+
+Cell[TextData[{
+ StyleBox["Exercise 3.",
+  FontWeight->"Bold"],
+ " Now we want to solve this linear system. Observe that we have 3 equations \
+in 4 unknowns (",
+ StyleBox["x",
+  FontSlant->"Italic"],
+ ",",
+ StyleBox["y",
+  FontSlant->"Italic"],
+ ",",
+ StyleBox["z",
+  FontSlant->"Italic"],
+ ",",
+ StyleBox["t",
+  FontSlant->"Italic"],
+ "), so we expect at least one free variable. In fact, we will get exactly \
+one free variable. Find the general solution for (",
+ StyleBox["x",
+  FontSlant->"Italic"],
+ ",",
+ StyleBox["y",
+  FontSlant->"Italic"],
+ ",",
+ StyleBox["z",
+  FontSlant->"Italic"],
+ ") in terms for the free variable ",
+ StyleBox["t",
+  FontSlant->"Italic"],
+ ". (Move the constants to the right hand side.)"
+}], "Text",
+ CellChangeTimes->{{3.572011723714594*^9, 3.572011785170246*^9}, {
+  3.5720118262816467`*^9, 3.57201206410305*^9}, {3.5734729457901707`*^9, 
+  3.573472964708268*^9}}],
+
+Cell[TextData[{
+ StyleBox["Exercise 4.",
+  FontWeight->"Bold"],
+ " To determine the correct value of ",
+ StyleBox["t",
+  FontSlant->"Italic"],
+ " for the GPS problem, plug your solution for (",
+ StyleBox["x",
+  FontSlant->"Italic"],
+ ",",
+ StyleBox["y",
+  FontSlant->"Italic"],
+ ",",
+ StyleBox["z",
+  FontSlant->"Italic"],
+ ") from Exercise 3 into the original equation for Satellite 1 and solve for ",
+ StyleBox["t",
+  FontSlant->"Italic"],
+ ". (It\[CloseCurlyQuote]s a quadratic equation, so we expect 2 solutions for \
+",
+ StyleBox["t",
+  FontSlant->"Italic"],
+ " here.)"
+}], "Text",
+ CellChangeTimes->{{3.572011723714594*^9, 3.572011785170246*^9}, {
+  3.5720118262816467`*^9, 3.5720121672719603`*^9}}],
+
+Cell[TextData[{
+ StyleBox["Exercise 5.",
+  FontWeight->"Bold"],
+ " Plug each value of t from Exercise 4 into the solution for (",
+ StyleBox["x",
+  FontSlant->"Italic"],
+ ",",
+ StyleBox["y",
+  FontSlant->"Italic"],
+ ",",
+ StyleBox["z",
+  FontSlant->"Italic"],
+ ") from Exercise 3 to determine the coordinates of the two solution points."
+}], "Text",
+ CellChangeTimes->{{3.572011723714594*^9, 3.572011785170246*^9}, {
+  3.5720118262816467`*^9, 3.572012252853819*^9}, {3.573472972166573*^9, 
+  3.573473052190567*^9}}],
+
+Cell[TextData[{
+ StyleBox["Exercise 6.",
+  FontWeight->"Bold"],
+ " Which set of coordinates is on the Earth\[CloseCurlyQuote]s surface? State \
+your final solution for the ship\[CloseCurlyQuote]s coordinates (",
+ StyleBox["x",
+  FontSlant->"Italic"],
+ ",",
+ StyleBox["y",
+  FontSlant->"Italic"],
+ ",",
+ StyleBox["z",
+  FontSlant->"Italic"],
+ ") and the time ",
+ StyleBox["t",
+  FontSlant->"Italic"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.572011723714594*^9, 3.572011785170246*^9}, {
+  3.5720118262816467`*^9, 3.572012252853819*^9}, {3.572012291140051*^9, 
+  3.572012310400009*^9}, {3.573472976072658*^9, 3.573472976946122*^9}}]
+},
+WindowSize->{1258, 878},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+Magnification->1.25,
+FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (December 10, \
+2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 7754, 242, 1246, "Text"],
+Cell[8302, 264, 787, 22, 57, "Input"],
+Cell[9092, 288, 333, 9, 61, "Text"],
+Cell[9428, 299, 563, 13, 61, "Text"],
+Cell[9994, 314, 771, 19, 78, "Input"],
+Cell[10768, 335, 899, 33, 85, "Text"],
+Cell[11670, 370, 705, 25, 61, "Text"],
+Cell[12378, 397, 514, 16, 61, "Text"],
+Cell[12895, 415, 628, 20, 37, "Text"]
+}
+]
+*)
+
+(* End of internal cache information *)

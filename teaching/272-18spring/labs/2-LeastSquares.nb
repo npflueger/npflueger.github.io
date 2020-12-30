@@ -1,0 +1,1544 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     47272,       1536]
+NotebookOptionsPosition[     45359,       1477]
+NotebookOutlinePosition[     45909,       1497]
+CellTagsIndexPosition[     45866,       1494]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[StyleBox["Least Squares",
+ FontSize->24]], "Subtitle",
+ CellChangeTimes->{
+  3.5351337918943577`*^9, {3.721328091227652*^9, 3.721328091639721*^9}},
+ FontSize->18,ExpressionUUID->"39f36374-8d06-4af3-af3f-9c37fbda59c7"],
+
+Cell["\<\
+Email completed labs to npflueger@amherst.edu by Wednesday night. Remember to \
+CC all group members on the email. Also, include the last names of all group \
+members in the name of the file, e.g. CrickWatson-lab2.nb.\
+\>", "Subtitle",
+ CellChangeTimes->{{3.418054218841304*^9, 3.4180542191199636`*^9}, {
+  3.6066632069659433`*^9, 3.606663207827198*^9}, {3.721328094119866*^9, 
+  3.7213280989337883`*^9}, {3.7274569376853848`*^9, 3.727457001148987*^9}},
+ FontSize->18,
+ ExpressionUUID -> "75253b3b-64a1-444c-9a9e-ff399053ff79"],
+
+Cell[CellGroupData[{
+
+Cell["Syntax interlude: the LinearSolve command ", "Subsection",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.7274568399182987`*^9, 3.727456873789735*^9}}],
+
+Cell[TextData[{
+ StyleBox["We\[CloseCurlyQuote]ve previously seen how to use the Solve and \
+RowReduce commands to solve linear systems of equations. There is another \
+command that can be used for this task, which is often convenenient when you \
+are given the linear system as a matrix equation.\n\nSuppose that you know \
+the matrix A and vector b. Hit shift-enter on the line below to set these \
+variables. ",
+  FontSize->18],
+ StyleBox["Note: ",
+  FontSize->18,
+  FontWeight->"Bold"],
+ StyleBox["the semicolon at the end of each of these lines instructs ",
+  FontSize->18],
+ StyleBox["Mathematica",
+  FontSize->18,
+  FontSlant->"Italic"],
+ StyleBox[" to execute the command without printing any output to the screen.",
+  FontSize->18]
+}], "Text",
+ CellChangeTimes->{{3.7274568791734543`*^9, 3.72745693181323*^9}, {
+  3.7274570119970293`*^9, 3.72745706455683*^9}, {3.727457136764476*^9, 
+  3.727457184260303*^9}}],
+
+Cell[BoxData[{
+ StyleBox[
+  RowBox[{
+   RowBox[{"A", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"1", ",", "1", ",", "1"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "2", ",", "4"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "3", ",", "9"}], "}"}]}], "}"}]}], ";"}],
+  FontSize->16], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{
+   RowBox[{"b", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{"2", ",", "5", ",", "10"}], "}"}]}], ";"}],
+  FontSize->16]}], "Input",
+ CellChangeTimes->{{3.727457067631597*^9, 3.727457124956811*^9}}],
+
+Cell[TextData[{
+ StyleBox["To solve the system Ax = b, the ",
+  FontSize->18],
+ StyleBox["LinearSolve ",
+  FontSize->18,
+  FontWeight->"Bold"],
+ StyleBox["command can be used as follows. Hit shift-enter to see the result.",
+  FontSize->18]
+}], "Text",
+ CellChangeTimes->{{3.727457131596582*^9, 3.727457133820385*^9}, {
+  3.727457190996217*^9, 3.7274572212843723`*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"LinearSolve", "[", 
+  RowBox[{"A", ",", "b"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7274572249008913`*^9, 3.7274572291403008`*^9}},
+ FontSize->16]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["The normal equation and least-squares solutions", "Subsection",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.727457312764371*^9, 3.7274573202916927`*^9}}],
+
+Cell[TextData[{
+ "Today we will use a method called ",
+ StyleBox["least squares",
+  FontWeight->"Bold"],
+ " to \"solve\" inconsistent systems by finding the vector x that comes \
+closest to solving Ax=b. This is useful in situations where you know that a \
+system will not have a solution, but you want the next-best thing.\n\n\
+Terminology: the ",
+ StyleBox["normal equation",
+  FontWeight->"Bold"],
+ " for a (possibly inconsistent) linear system Ax=b is",
+ StyleBox[" ",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["A", "T"], 
+      StyleBox["Ax",
+       FontSlant->"Italic"]}], "=", 
+     RowBox[{
+      SuperscriptBox["A", "T"], "b"}]}],
+    FontSize->18,
+    FontWeight->"Bold"], TraditionalForm]],
+  ExpressionUUID -> "1291cbea-ac0c-401c-9d42-58986ac7a4b1"],
+ ".  The purpose of the normal equation is to provide a ",
+ StyleBox["consistent",
+  FontSlant->"Italic"],
+ " linear system, whose solution are \[OpenCurlyDoubleQuote]as close as \
+possible\[CloseCurlyDoubleQuote] to solutions of Ax = b (in a sense that we \
+will make precise in class in a couple weeks). In other words, you may assume \
+the following.\n\n",
+ StyleBox["Fact: ",
+  FontWeight->"Bold"],
+ "For any choice of A and b, the normal equation is consistent. Its solutions \
+are \[OpenCurlyDoubleQuote]as close as possible\[CloseCurlyDoubleQuote] to \
+solutions of the system A x = b, in a specific precise sense. (Take this fact \
+for granted for now).\n\nA common situation in which we might want an \
+approximate solution to an inconsistent system is when we wish to fit a line \
+to some data in the plane. When least-squares is applied to this problem, it \
+is often called ",
+ StyleBox["linear regression",
+  FontWeight->"Bold"],
+ ".\n\nFor example, suppose that we wish to fit a line to the following three \
+points: (0,1), (1,5), and (2,11). To fit a line means that we want an \
+equation y = u x + v whose graph passes through all three points. Viewing u \
+and v as variables, we are, in effect, trying to solve this linear system of \
+equations, for the variables u and v:\n\t0 u + v = 1\n\t1 u + v = 5\n\t2 u + \
+v = 11\nAs a matrix equation, we are trying to solve A x = b, where A and b \
+are as follows. Hit shift-enter below to see that this system is not \
+consistent."
+}], "Text",
+ CellChangeTimes->{{3.419067671972829*^9, 3.419067721674677*^9}, 
+   3.7213281105832367`*^9, {3.721328293760065*^9, 3.721328296031321*^9}, {
+   3.72132844657836*^9, 3.72132846186579*^9}, {3.721328494671309*^9, 
+   3.721328524523192*^9}, {3.721328676747507*^9, 3.72132868287722*^9}, {
+   3.721328728427249*^9, 3.7213287477680073`*^9}, {3.721328876008168*^9, 
+   3.721329018944899*^9}, {3.721329293458763*^9, 3.7213293124276247`*^9}, {
+   3.72745245052488*^9, 3.727452457214757*^9}, {3.7274563474491873`*^9, 
+   3.727456381191681*^9}, {3.727457458244182*^9, 3.727457589563252*^9}, {
+   3.727457642154821*^9, 3.727457883961982*^9}, {3.727457953089756*^9, 
+   3.727458035761314*^9}, {3.727458179169701*^9, 3.727458209448803*^9}, {
+   3.727458271257443*^9, 3.727458295576275*^9}, {3.727458398592313*^9, 
+   3.727458415567751*^9}, {3.727459414251905*^9, 3.72745943738002*^9}, {
+   3.7274601646823997`*^9, 3.727460166689025*^9}, {3.727517195576783*^9, 
+   3.727517198390285*^9}},
+ FontSize->18,
+ ExpressionUUID -> "4d68b5c9-15ec-4d67-b0a0-32adb1feb9ac"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"b", "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "5", ",", "11"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"LinearSolve", "[", 
+  RowBox[{"A", ",", "b"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.419067734855122*^9, 3.419067783308428*^9}, {
+  3.5759878434635687`*^9, 3.575987844275064*^9}, {3.721329201605505*^9, 
+  3.721329229855276*^9}, {3.721329355404023*^9, 3.721329362547584*^9}, {
+  3.727452706950281*^9, 3.727452802853251*^9}, {3.727452856581236*^9, 
+  3.727452859357005*^9}, {3.727457858402172*^9, 3.727457892006446*^9}, {
+  3.7274582138246307`*^9, 3.727458237840445*^9}, {3.727458418560071*^9, 
+  3.727458420471695*^9}},
+ FontSize->16,
+ ExpressionUUID -> "1f31a114-120c-4c7e-a721-8bea9485d9a3"],
+
+Cell[TextData[StyleBox["We can instead solve the normal equation, to get the \
+least-squares solution, using the syntax below.",
+ FontSize->18]], "Text",
+ CellChangeTimes->{{3.7274584264074593`*^9, 3.727458473183362*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"LinearSolve", "[", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Transpose", "[", "A", "]"}], " ", ".", " ", "A"}], ",", " ", 
+    RowBox[{
+     RowBox[{"Transpose", "[", "A", "]"}], " ", ".", " ", "b"}]}], "]"}],
+  FontSize->16]], "Input"],
+
+Cell[TextData[{
+ StyleBox["Syntax comment: ",
+  FontSize->18,
+  FontWeight->"Bold"],
+ StyleBox["To find the transpose of a matrix A, write Transpose[A]. To \
+multiply two matrices, use a period, as shown above.",
+  FontSize->18]
+}], "Text",
+ CellChangeTimes->{{3.727458338919681*^9, 3.72745838311963*^9}}],
+
+Cell[TextData[{
+ StyleBox["Let\[CloseCurlyQuote]s consider an example with more data points. \
+The table below shows the relationship between gestation period and \
+longevity, for various mammal species. (Apologies if the indentation appears \
+off on your screen; this issue seems to arise when a file is opened in a \
+different version of ",
+  FontSize->18],
+ StyleBox["Mathematica",
+  FontSize->18,
+  FontSlant->"Italic"],
+ StyleBox[" than it was created in.)\n\n",
+  FontSize->18],
+ StyleBox["Gestation period in days  ",
+  FontWeight->"Bold"],
+ "\t",
+ StyleBox["Longevity in years ",
+  FontWeight->"Bold"],
+ StyleBox["\t",
+  FontVariations->{"Underline"->True}],
+ "(data from 1993 World Almanac and Book of Facts)\nBlack bear\t219\t\t\t18\n\
+Grizzly bear\t225\t\t\t25\nPolar bear\t240\t\t\t20\nLeopard\t\t98\t\t\t12\n\
+Lion\t\t\t100\t\t\t15\nPuma\t\t90\t\t\t12\nTiger\t\t105\t\t\t16\n\n",
+ StyleBox["These data can be summarized in the following matrix.",
+  FontSize->18]
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.7274585355038424`*^9, 3.727458618694827*^9}, {
+  3.7275172739269123`*^9, 3.7275173105977793`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"219", ",", "18"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"225", ",", "25"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"240", ",", "20"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"98", ",", "12"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"100", ",", "15"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"90", ",", "12"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"105", ",", "16"}], "}"}]}], "}"}]}], ";"}]], "Input",
+ FontSize->18,
+ ExpressionUUID -> "1b348ac3-00e0-4e26-899c-be97dca06339"],
+
+Cell[TextData[StyleBox["To plot these data, use the following syntax. (Hit \
+shift-enter in the line above to load \[OpenCurlyDoubleQuote]data\
+\[CloseCurlyDoubleQuote] as a variable, then in the line below to make the \
+plot using \[OpenCurlyDoubleQuote]data.\[CloseCurlyDoubleQuote])",
+ FontSize->18]], "Text",
+ CellChangeTimes->{{3.7274586369912167`*^9, 3.727458700182633*^9}, 
+   3.727459449747642*^9},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{"ListPlot", "[", 
+   RowBox[{"data", ",", 
+    RowBox[{"PlotStyle", "\[Rule]", 
+     RowBox[{"PointSize", "[", "0.02", "]"}]}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{3.72745877176971*^9},
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["Exercise 1. ",
+  FontSize->18,
+  FontWeight->"Bold"],
+ StyleBox["Determine a matrix A and a vector b so that a solution to A x = b \
+would amount to finding the coefficients of a line y = u x + v passing \
+through these data points (follow the same logic as in the previous section). \
+Note that, as in the example above, the second column of A should be all 1\
+\[CloseCurlyQuote]s. Verify, using a method of your choice, that the equation \
+A x = b has no solutions. See the syntax interlude after exercise 2 if you \
+want to see a way to generate A and b a little faster than by simply typing \
+them in.",
+  FontSize->18]
+}], "Text",
+ CellChangeTimes->{{3.721329546493875*^9, 3.721329576710071*^9}, {
+  3.727457915650125*^9, 3.7274579324256487`*^9}, {3.7274587914630947`*^9, 
+  3.72745888011765*^9}, {3.72745945605204*^9, 3.727459502979507*^9}, {
+  3.727460402001836*^9, 3.7274604058557997`*^9}},
+ FontWeight->"Plain",
+ ExpressionUUID -> "b492c53c-70a6-4f19-96fa-0646e876e359"],
+
+Cell[TextData[{
+ StyleBox["Exercise 2",
+  FontWeight->"Bold"],
+ ".  Use the ",
+ StyleBox["normal equation",
+  FontSlant->"Italic"],
+ " to find an approximate solution to A x = b. Plot the data and the best-fit \
+line using the command below (",
+ StyleBox["you need to enter the correct coefficients for the line marked in \
+red",
+  FontVariations->{"Underline"->True}],
+ ")."
+}], "Text",
+ CellChangeTimes->{{3.441551658545471*^9, 3.441551658795212*^9}, {
+   3.441551698229786*^9, 3.4415517007230043`*^9}, {3.721329599095648*^9, 
+   3.721329599191113*^9}, {3.721329701835435*^9, 3.721329777553516*^9}, {
+   3.727458052402218*^9, 3.727458060961135*^9}, 3.727458529431747*^9, {
+   3.7274588879739647`*^9, 3.7274588992538958`*^9}},
+ FontSize->18,
+ ExpressionUUID -> "aeabbc01-7d9f-4612-8e02-dd4817d8b994"],
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     StyleBox[
+      RowBox[{
+       RowBox[{
+        StyleBox["0.5",
+         FontColor->RGBColor[1, 0, 0]], 
+        StyleBox["x",
+         FontColor->RGBColor[0, 0, 1]]}], "+", "1"}],
+      FontColor->RGBColor[1, 0, 0]], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "250"}], "}"}]}], "]"}], ",", 
+   RowBox[{"ListPlot", "[", 
+    RowBox[{"data", ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"PointSize", "[", "0.02", "]"}]}]}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.418054322356558*^9, {3.418054388739954*^9, 3.418054434340138*^9}, 
+   3.418054469150326*^9},
+ FontSize->18,
+ ExpressionUUID -> "379a3c68-e20d-496c-8c35-28e6db45f501"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Syntax interlude: the Table command", "Subsection",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.727459351076473*^9, 3.727459355443901*^9}}],
+
+Cell[TextData[{
+ "In exercise 1 and 2, it isn\[CloseCurlyQuote]t too hard to type in the \
+matrix A and the vector b by hand. In general, however, it could become \
+tedious. Fortunately, there\[CloseCurlyQuote]s some handy ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " syntax that avoids this work: the ",
+ StyleBox["Table",
+  FontWeight->"Bold"],
+ " command.\n\nWe can use the Table command to generate a new list of points, \
+a matrix, or a vector.  For example, the commands below generate the matrix A \
+whose first column are the x's of the datapoints and whose second column \
+consists of 1's, and the vector b consisting of the y's of the datapoints.  \
+Note that data[[k,1]] gives the x-component of the kth datapoint and \
+data[[k,2]] gives the y-component of the kth datapoint. The way this syntax \
+works is: the first argument to Table tells ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " what the kth row should look like. The second argument tells ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " which values of k to use to generate these rows (in this case, the numbers \
+from 1 to NumPoints)."
+}], "Text",
+ CellChangeTimes->{{3.727459508491404*^9, 3.72745964533936*^9}},
+ FontSize->18,
+ ExpressionUUID -> "d2cf2e3e-1b0f-4e08-b8f9-4ef448c65b8f"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"NumPoints", "=", "7"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"data", "[", 
+        RowBox[{"[", 
+         RowBox[{"k", ",", "1"}], "]"}], "]"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"k", ",", "1", ",", "NumPoints"}], "}"}]}], "]"}]}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{"b", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"data", "[", 
+     RowBox[{"[", 
+      RowBox[{"k", ",", "2"}], "]"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"k", ",", "1", ",", "NumPoints"}], "}"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{
+  3.418054322356558*^9, {3.418054388739954*^9, 3.418054434340138*^9}, {
+   3.418054469150326*^9, 3.41805447048253*^9}, {3.575987895013921*^9, 
+   3.5759879138592663`*^9}},
+ FontSize->18,ExpressionUUID->"0f2cf66b-9a8c-41f5-8f86-4dbc23169e47"],
+
+Cell[TextData[{
+ StyleBox["Exercise 3",
+  FontWeight->"Bold"],
+ ".  Plot the following set of planetary data. Use the ListPlot syntax from \
+above.  For your convenience, you can write these numbers to the matrix \
+\[OpenCurlyDoubleQuote]data\[CloseCurlyDoubleQuote] by hitting shift-enter in \
+the line below the table. The relationship between distance and period of \
+revolution is not linear, but it is a power.   Once you have the data entered \
+as a list of points, use the Table trick to generate the new lists of data \
+with powers of the distance: \
+powerdata=Table[{data[[k,1]]^p,data[[k,2]]},{k,1,9}].  Then experiment with \
+taking powers of the distance, for example, p=0.5, 1, 1.5, 2,..., until you \
+find one that makes the ListPlot appear linear.\n\n",
+ StyleBox["Average distance from Sun  \tPeriod of revolution around Sun \n(in \
+millions of miles)\t\t(in Earth days)",
+  FontWeight->"Bold"],
+ "\nMercury\t\t36\t\t\t88\nVenus\t\t67\t\t\t225\nEarth\t\t 93\t\t\t365\nMars\t\
+\t\t142\t\t\t687\nJupiter\t\t 484\t\t\t4332\nSaturn\t\t887\t\t\t10760\nUranus\
+\t\t1765\t\t\t30684\nNeptune\t\t2791\t\t\t60188\nPluto\t\t3654\t\t\t90467"
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.575987984215117*^9, 3.575987992425642*^9}, {
+  3.575988026160685*^9, 3.575988048208798*^9}, {3.721329117683262*^9, 
+  3.721329155452672*^9}, {3.721329602038965*^9, 3.7213296021274567`*^9}, {
+  3.727459674890818*^9, 3.727459690882802*^9}, {3.727460481505455*^9, 
+  3.727460482600441*^9}},
+ FontSize->18,
+ ExpressionUUID -> "446cd853-689f-4a07-ab53-a2883cbeb570"],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{
+   RowBox[{"data", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"36", ",", "88"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"67", ",", "225"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"93", ",", "365"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"142", ",", "687"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"484", ",", "4332"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"887", ",", "10760"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1765", ",", "30684"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"2791", ",", "60188"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"3654", ",", "90467"}], "}"}]}], "}"}]}], ";"}],
+  FontSize->16]], "Input"],
+
+Cell[TextData[{
+ StyleBox["Exercise 4",
+  FontWeight->"Bold"],
+ ".  Use the normal equation for an appropriate system Ax=b to find the \
+best-fit relation period=u(distance^p)+v, using the power p found in Exercise \
+2.   Plot this relation on the same graph as the datapoints. You may see a \
+warning about a badly conditioned matrix; you can ignore this warning."
+}], "Text",
+ CellChangeTimes->{{3.72132960427892*^9, 3.721329604398685*^9}, {
+  3.727459710810376*^9, 3.727459714802528*^9}, {3.727460945671096*^9, 
+  3.727460989941455*^9}},
+ FontSize->18,
+ ExpressionUUID -> "2458a7d8-2186-4907-8583-a0fdf0dde730"],
+
+Cell[TextData[{
+ "\nThe last exercise is from ",
+ StyleBox["Visual Linear Algebra",
+  FontSlant->"Italic"],
+ " by Eugene Herman, Mike Pepe, and Eric Schulz",
+ StyleBox[".",
+  FontSize->18],
+ StyleBox["\n\nExercise 5",
+  FontWeight->"Bold"],
+ ". Suppose the proposed path of a natural gas pipeline runs near a fault \
+plane that has caused some small earthquakes. The figure below shows a map of \
+the area (a square, 500 km. on each side) and the proposed path of the \
+pipeline.  The yellow dot marks the center of the blue square with \
+coordinates (0,0,0).  In this coordinate system, the proposed pipeline passes \
+through points with coordinates ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", 
+    RowBox[{"0", ",", 
+     RowBox[{"-", "75"}], ",", "0"}], ")"}], TraditionalForm]],
+  ExpressionUUID->"8e8365eb-9e2a-4253-9cc9-e623d75b0d4b"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", 
+    RowBox[{"250", ",", 
+     RowBox[{"-", "125"}], ",", "0"}], ")"}], TraditionalForm]],
+  ExpressionUUID->"79c90306-80bd-4440-a8f7-55eea5a54102"],
+ ". "
+}], "Text",
+ CellChangeTimes->{{3.721329605991824*^9, 3.721329606127606*^9}},
+ FontSize->18,ExpressionUUID->"b780a017-c792-4725-b152-0a27014989b9"],
+
+Cell[TextData[Cell[BoxData[
+ FormBox[GridBox[{
+    {Cell[GraphicsData["PostScript", "\<\
+%!
+%%Creator: Mathematica
+%%AspectRatio: 1 
+%%ImageSize: 288 288 
+MathPictureStart
+/Mabs {
+Mgmatrix idtransform
+Mtmatrix dtransform
+} bind def
+/Mabsadd { Mabs
+3 -1 roll add
+3 1 roll add
+exch } bind def
+%% Graphics3D
+%%IncludeResource: font Courier
+%%IncludeFont: Courier
+/Courier findfont 10  scalefont  setfont
+% Scaling calculations
+-6.68953e-017 1.09972 -2.80017 6.79836 [
+[.05223 .92516 -16.3929 0 ]
+[.05223 .92516 15.9821 15.4375 ]
+[.1961 1.00412 -5.39193 0 ]
+[.1961 1.00412 5.29557 15.4375 ]
+[.31179 1.06761 -12.1042 0 ]
+[.31179 1.06761 11.9583 15.4375 ]
+[.74507 -0.06214 -16.2684 -15.4375 ]
+[.74507 -0.06214 16.1066 0 ]
+[.40479 .00667 -5.32391 -15.4375 ]
+[.40479 .00667 5.36359 0 ]
+[.09354 .06961 -11.8908 -15.4375 ]
+[.09354 .06961 12.1717 0 ]
+[-0.01232 .18701 -25.6875 -7.46836 ]
+[-0.01232 .18701 0 7.96914 ]
+[-0.01278 .39024 -25.6875 -7.50521 ]
+[-0.01278 .39024 0 7.93229 ]
+[-0.01324 .59381 -25.6875 -7.54212 ]
+[-0.01324 .59381 0 7.89538 ]
+[-0.01371 .79772 -10.6875 -7.5791 ]
+[-0.01371 .79772 0 7.8584 ]
+[ 0 0 0 0 ]
+[ 1 1 0 0 ]
+] MathScale
+% Start of Graphics
+1 setlinecap
+1 setlinejoin
+newpath
+0 g
+.25 Mabswid
+[ ] 0 setdash
+0 .81142 m
+.3435 1 L
+s
+.05241 .84019 m
+.0525 .7977 L
+s
+gsave
+.05223 .92516 -77.3929 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23.4375 translate 1 -1 scale
+63.000 15.813 moveto
+%%IncludeResource: font Math1
+%%IncludeFont: Math1
+/Math1 findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(-) show
+71.313 15.813 moveto
+%%IncludeResource: font Helevitica
+%%IncludeFont: Helevitica
+/Helevitica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(200) show
+1.000 setlinewidth
+grestore
+.19622 .91914 m
+.19628 .87665 L
+s
+gsave
+.1961 1.00412 -66.3919 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23.4375 translate 1 -1 scale
+63.000 15.813 moveto
+%%IncludeResource: font Helevitica
+%%IncludeFont: Helevitica
+/Helevitica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(0) show
+1.000 setlinewidth
+grestore
+.31187 .98263 m
+.31191 .94014 L
+s
+gsave
+.31179 1.06761 -73.1042 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23.4375 translate 1 -1 scale
+63.000 15.813 moveto
+%%IncludeResource: font Helevitica
+%%IncludeFont: Helevitica
+/Helevitica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(200) show
+1.000 setlinewidth
+grestore
+.125 Mabswid
+.09155 .86168 m
+.0916 .83618 L
+s
+.12844 .88193 m
+.12849 .85644 L
+s
+.16328 .90106 m
+.16332 .87556 L
+s
+.22743 .93627 m
+.22746 .91078 L
+s
+.25702 .95252 m
+.25705 .92703 L
+s
+.28513 .96796 m
+.28516 .94246 L
+s
+.01081 .81735 m
+.01087 .79186 L
+s
+.33733 .99661 m
+.33735 .97112 L
+s
+.25 Mabswid
+.85812 0 m
+.00145 .17317 L
+s
+.74514 .02284 m
+.74517 .06533 L
+s
+gsave
+.74507 -0.06214 -77.2684 -19.4375 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23.4375 translate 1 -1 scale
+63.000 15.813 moveto
+%%IncludeResource: font Math1
+%%IncludeFont: Math1
+/Math1 findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(-) show
+71.313 15.813 moveto
+%%IncludeResource: font Helevitica
+%%IncludeFont: Helevitica
+/Helevitica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(200) show
+1.000 setlinewidth
+grestore
+.40474 .09165 m
+.40472 .13414 L
+s
+gsave
+.40479 .00667 -66.3239 -19.4375 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23.4375 translate 1 -1 scale
+63.000 15.813 moveto
+%%IncludeResource: font Helevitica
+%%IncludeFont: Helevitica
+/Helevitica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(0) show
+1.000 setlinewidth
+grestore
+.09338 .15459 m
+.0933 .19707 L
+s
+gsave
+.09354 .06961 -72.8908 -19.4375 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23.4375 translate 1 -1 scale
+63.000 15.813 moveto
+%%IncludeResource: font Helevitica
+%%IncludeFont: Helevitica
+/Helevitica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(200) show
+1.000 setlinewidth
+grestore
+.125 Mabswid
+.6571 .04063 m
+.65711 .06613 L
+s
+.57106 .05803 m
+.57107 .08352 L
+s
+.48697 .07503 m
+.48696 .10052 L
+s
+.32433 .1079 m
+.3243 .1334 L
+s
+.24567 .1238 m
+.24563 .1493 L
+s
+.1687 .13936 m
+.16866 .16485 L
+s
+.83526 .00462 m
+.83529 .03011 L
+s
+.01964 .16949 m
+.01958 .19498 L
+s
+.25 Mabswid
+.00145 .17317 m
+0 .81142 L
+s
+.00142 .18426 m
+.00829 .18288 L
+s
+gsave
+-0.01232 .18701 -86.6875 -11.4684 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23.4375 translate 1 -1 scale
+63.000 15.813 moveto
+%%IncludeResource: font Math1
+%%IncludeFont: Math1
+/Math1 findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(-) show
+71.313 15.813 moveto
+%%IncludeResource: font Helevitica
+%%IncludeFont: Helevitica
+/Helevitica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(60) show
+1.000 setlinewidth
+grestore
+.00096 .38789 m
+.00783 .38671 L
+s
+gsave
+-0.01278 .39024 -86.6875 -11.5052 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23.4375 translate 1 -1 scale
+63.000 15.813 moveto
+%%IncludeResource: font Math1
+%%IncludeFont: Math1
+/Math1 findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(-) show
+71.313 15.813 moveto
+%%IncludeResource: font Helevitica
+%%IncludeFont: Helevitica
+/Helevitica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(40) show
+1.000 setlinewidth
+grestore
+.0005 .59186 m
+.00737 .59089 L
+s
+gsave
+-0.01324 .59381 -86.6875 -11.5421 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23.4375 translate 1 -1 scale
+63.000 15.813 moveto
+%%IncludeResource: font Math1
+%%IncludeFont: Math1
+/Math1 findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(-) show
+71.313 15.813 moveto
+%%IncludeResource: font Helevitica
+%%IncludeFont: Helevitica
+/Helevitica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(20) show
+1.000 setlinewidth
+grestore
+3e-005 .79618 m
+.00691 .79541 L
+s
+gsave
+-0.01371 .79772 -71.6875 -11.5791 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23.4375 translate 1 -1 scale
+63.000 15.813 moveto
+%%IncludeResource: font Helevitica
+%%IncludeFont: Helevitica
+/Helevitica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(0) show
+1.000 setlinewidth
+grestore
+.125 Mabswid
+.00131 .23513 m
+.00543 .23434 L
+s
+.00119 .28603 m
+.00531 .28526 L
+s
+.00108 .33695 m
+.0052 .33621 L
+s
+.00085 .43885 m
+.00497 .43818 L
+s
+.00073 .48983 m
+.00485 .48919 L
+s
+.00061 .54084 m
+.00474 .54022 L
+s
+.00038 .64291 m
+.00451 .64236 L
+s
+.00027 .69398 m
+.00439 .69346 L
+s
+.00015 .74507 m
+.00427 .74458 L
+s
+.25 Mabswid
+.85812 0 m
+.85904 .71724 L
+s
+.85904 .71724 m
+0 .81142 L
+s
+0 .81142 m
+.00145 .17317 L
+s
+.00145 .17317 m
+.85812 0 L
+s
+.99903 .4255 m
+.34391 .52025 L
+s
+.34391 .52025 m
+.3435 1 L
+s
+.3435 1 m
+1 .94854 L
+s
+1 .94854 m
+.99903 .4255 L
+s
+.85812 0 m
+.85904 .71724 L
+s
+.85904 .71724 m
+1 .94854 L
+s
+1 .94854 m
+.99903 .4255 L
+s
+.99903 .4255 m
+.85812 0 L
+s
+.00145 .17317 m
+.34391 .52025 L
+s
+.34391 .52025 m
+.3435 1 L
+s
+.3435 1 m
+0 .81142 L
+s
+0 .81142 m
+.00145 .17317 L
+s
+0 0 m
+1 0 L
+1 1 L
+0 1 L
+closepath
+clip
+newpath
+.5 Mabswid
+.35177 .98393 m .9804 .93332 L .84084 .71028 L p .1 .654 .8 r
+F P
+0 g
+s
+.84084 .71028 m .02896 .80023 L .35177 .98393 L p .1 .654 .8 r
+F P
+0 g
+s
+0 0 0 r
+.02 w
+.45312 .75323 m
+.81324 .94678 L
+s
+1 0 0 r
+6 Mabswid
+.52735 .50532 Mdot
+.45382 .42511 Mdot
+.36812 .44119 Mdot
+.48474 .51557 Mdot
+.3523 .41232 Mdot
+.44279 .47287 Mdot
+.48319 .43885 Mdot
+.33747 .40616 Mdot
+.29519 .38948 Mdot
+.44311 .47023 Mdot
+.47219 .50601 Mdot
+.56918 .49853 Mdot
+.57737 .46761 Mdot
+.48044 .48135 Mdot
+.49499 .47871 Mdot
+.46073 .51833 Mdot
+.51147 .49306 Mdot
+.48088 .48727 Mdot
+.48203 .46779 Mdot
+.53497 .48996 Mdot
+.54389 .50138 Mdot
+.48819 .56611 Mdot
+.59048 .5232 Mdot
+.54468 .50891 Mdot
+.56335 .51884 Mdot
+.49821 .5577 Mdot
+.54986 .54941 Mdot
+1 1 0 r
+12 Mabswid
+.54986 .87309 Mdot
+1 0 0 r
+6 Mabswid
+.49741 .58421 Mdot
+.38137 .51789 Mdot
+.56966 .5249 Mdot
+.35128 .51406 Mdot
+.48687 .43941 Mdot
+0 g
+.25 Mabswid
+.85812 0 m
+.85904 .71724 L
+s
+.85904 .71724 m
+0 .81142 L
+s
+0 .81142 m
+.00145 .17317 L
+s
+.00145 .17317 m
+.85812 0 L
+s
+.85812 0 m
+.85904 .71724 L
+s
+.85904 .71724 m
+1 .94854 L
+s
+1 .94854 m
+.99903 .4255 L
+s
+.99903 .4255 m
+.85812 0 L
+s
+.00145 .17317 m
+0 .81142 L
+s
+.00142 .18426 m
+.00829 .18288 L
+s
+gsave
+-0.01232 .18701 -86.6875 -11.4684 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23.4375 translate 1 -1 scale
+63.000 15.813 moveto
+%%IncludeResource: font Math1
+%%IncludeFont: Math1
+/Math1 findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(-) show
+71.313 15.813 moveto
+%%IncludeResource: font Helevitica
+%%IncludeFont: Helevitica
+/Helevitica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(60) show
+1.000 setlinewidth
+grestore
+.00096 .38789 m
+.00783 .38671 L
+s
+gsave
+-0.01278 .39024 -86.6875 -11.5052 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23.4375 translate 1 -1 scale
+63.000 15.813 moveto
+%%IncludeResource: font Math1
+%%IncludeFont: Math1
+/Math1 findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(-) show
+71.313 15.813 moveto
+%%IncludeResource: font Helevitica
+%%IncludeFont: Helevitica
+/Helevitica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(40) show
+1.000 setlinewidth
+grestore
+.0005 .59186 m
+.00737 .59089 L
+s
+gsave
+-0.01324 .59381 -86.6875 -11.5421 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23.4375 translate 1 -1 scale
+63.000 15.813 moveto
+%%IncludeResource: font Math1
+%%IncludeFont: Math1
+/Math1 findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(-) show
+71.313 15.813 moveto
+%%IncludeResource: font Helevitica
+%%IncludeFont: Helevitica
+/Helevitica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(20) show
+1.000 setlinewidth
+grestore
+3e-005 .79618 m
+.00691 .79541 L
+s
+gsave
+-0.01371 .79772 -71.6875 -11.5791 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23.4375 translate 1 -1 scale
+63.000 15.813 moveto
+%%IncludeResource: font Helevitica
+%%IncludeFont: Helevitica
+/Helevitica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(0) show
+1.000 setlinewidth
+grestore
+.125 Mabswid
+.00131 .23513 m
+.00543 .23434 L
+s
+.00119 .28603 m
+.00531 .28526 L
+s
+.00108 .33695 m
+.0052 .33621 L
+s
+.00085 .43885 m
+.00497 .43818 L
+s
+.00073 .48983 m
+.00485 .48919 L
+s
+.00061 .54084 m
+.00474 .54022 L
+s
+.00038 .64291 m
+.00451 .64236 L
+s
+.00027 .69398 m
+.00439 .69346 L
+s
+.00015 .74507 m
+.00427 .74458 L
+s
+% End of Graphics
+MathPictureEnd
+\
+\>"], "Graphics",
+      GeneratedCell->False,
+      CellAutoOverwrite->False,
+      ImageSize->{216, 216},
+      ImageMargins->{{0, 0}, {0, -14}},
+      ImageRegion->{{0, 1}, {0, 1}},
+      Magnification->1,ImageCache->GraphicsData["CompressedBitmap", "\<\
+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
+QYk86zyVLaqS3eWpaGBkz0kwE+XW/A/Tgp3h\
+\>"],ImageRangeCache->{{{0., 215.}, {215., 0.}} -> {-0.222811, 0.388815, 
+      0.00557946, 0.000902547}},ExpressionUUID->
+      "7c1c55b8-db91-404e-a307-31b96fa4509c"]}
+   },
+   GridBoxItemSize->{"Columns" -> {{
+        Scaled[0.99]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+     "RowsIndexed" -> {}}], 
+  TraditionalForm]],ExpressionUUID->"5c5324e0-5fe2-4978-8113-aa33b6401038"]], \
+"Text",
+ CellChangeTimes->{{3.541252831588025*^9, 3.541252831588191*^9}, 
+   3.541252990604362*^9},
+ FontSize->18,ExpressionUUID->"962f2856-c04a-4972-9fda-ba1759c11122"],
+
+Cell[TextData[{
+ "Even a small earthquake could damage the pipeline, if the fault plane \
+ruptures the surface and if it intersects the ground (",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"z", "=", "0"}], TraditionalForm]],
+  ExpressionUUID -> "89067cc9-a24a-4c9f-87ae-9925986faf2d"],
+ ") on a line (called the \"fault trace\") that cuts through the pipeline. To \
+determine the approximate location of the fault plane, geologists have \
+recorded the locations of 32 seismic events (i.e., tiny movements picked up \
+by sensitive instruments) along the subterranean (",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"z", "<", "0"}], TraditionalForm]],
+  ExpressionUUID -> "8b0c9fcc-b7fe-4d58-b01d-a32804b6691b"],
+ ") fault plane. The data below are the coordinates (x,y,z) of these seismic \
+events.  We want to fit a plane z=ux+vy+w to this data, where u,v,w are the \
+coefficients that we are hoping to solve for.  This plane will approximate \
+the fault and we can then find the intersection of this fault plane with the \
+surface z=0 to determine whether the fault plane is likely to intersect the \
+pipeline (a very worrisome scenario)."
+}], "Text",
+ CellChangeTimes->{{3.727459748874628*^9, 3.7274597656105957`*^9}},
+ FontSize->18,
+ ExpressionUUID -> "4a018402-c976-4631-b341-f08842d14708"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"39.757", ",", "172.063", ",", 
+       RowBox[{"-", "57.8"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"15.208", ",", "8.778", ",", 
+       RowBox[{"-", "40.8"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"76.684", ",", "74.344", ",", 
+       RowBox[{"-", "45.5"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"36.412", ",", "16.465", ",", 
+       RowBox[{"-", "43.2"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"10.187", ",", "47.710", ",", 
+       RowBox[{"-", "35.0"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"47.028", ",", "66.459", ",", 
+       RowBox[{"-", "46.6"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"55.266", ",", "69.793", ",", 
+       RowBox[{"-", "47.9"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"65.724", ",", "79.812", ",", 
+       RowBox[{"-", "46.0"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"54.524", ",", "58.679", ",", 
+       RowBox[{"-", "47.9"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"73.135", ",", "96.507", ",", 
+       RowBox[{"-", "56.2"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "20.092"}], ",", "30.219", ",", 
+       RowBox[{"-", "30.8"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"45.631", ",", "163.161", ",", 
+       RowBox[{"-", "57.3"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"75.724", ",", "10.939", ",", 
+       RowBox[{"-", "46.0"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"28.84", ",", "199.888", ",", 
+       RowBox[{"-", "59.6"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"40.205", ",", "24.236", ",", 
+       RowBox[{"-", "44.9"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"43.280", ",", "64.241", ",", 
+       RowBox[{"-", "48.5"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "34.466"}], ",", 
+       RowBox[{"-", "25.164"}], ",", 
+       RowBox[{"-", "35.1"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"60.461", ",", "99.808", ",", 
+       RowBox[{"-", "50.2"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"65.669", ",", "102.041", ",", 
+       RowBox[{"-", "50.3"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"54.530", ",", "46.453", ",", 
+       RowBox[{"-", "46.0"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"73.218", ",", "74.278", ",", 
+       RowBox[{"-", "54.1"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "70.042"}], ",", "93.306", ",", 
+       RowBox[{"-", "36.1"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", 
+       RowBox[{"-", "35.20"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "69.320"}], ",", "19.910", ",", 
+       RowBox[{"-", "42.8"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"77.261", ",", "5.389", ",", 
+       RowBox[{"-", "49.5"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "83.101"}], ",", "109.166", ",", 
+       RowBox[{"-", "36.0"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"30.240", ",", 
+       RowBox[{"-", "19.078"}], ",", 
+       RowBox[{"-", "39.6"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "9.504"}], ",", "33.434", ",", 
+       RowBox[{"-", "34.4"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"105.594", ",", "52.260", ",", 
+       RowBox[{"-", "48.1"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"50.785", ",", "153.154", ",", 
+       RowBox[{"-", "54.1"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"45.545", ",", "80.909", ",", 
+       RowBox[{"-", "43.3"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"5.243", ",", 
+       RowBox[{"-", "7.822"}], ",", 
+       RowBox[{"-", "38.7"}]}], "}"}]}], "}"}]}], ";"}]], "Input",
+ FontSize->18,
+ ExpressionUUID -> "ccc23441-1290-40e9-afeb-72fc7fbed1f3"],
+
+Cell[TextData[{
+ "(a) Use our least-squares method to find the plane that best fits the data. \
+ (Use the Table trick again to generate A and b.) ",
+ StyleBox["Note: ",
+  FontWeight->"Bold"],
+ "because we are now solving for three variables (u,v,w) instead of two, the \
+matrix A should now have 3 columns instead of 2."
+}], "Text",
+ CellChangeTimes->{{3.441551739734363*^9, 3.441551747626718*^9}, {
+  3.727459779787014*^9, 3.727459859058022*^9}},
+ FontSize->18,
+ ExpressionUUID -> "37887eda-eba1-4dd8-804a-932392a2ebd6"],
+
+Cell[TextData[{
+ StyleBox["(b) Use the code below to graph the proposed pipeline and the \
+fault trace.  ",
+  FontSize->18],
+ StyleBox["You will need to enter the correct expression for the fault plane",
+  
+  FontSize->18,
+  FontVariations->{"Underline"->True}],
+ StyleBox[" (the red coefficients). If you have found the coefficents u,v,w \
+correctly, the blue plan in this figure should very nearly pass through all \
+of the red dots.",
+  FontSize->18]
+}], "Text",
+ CellChangeTimes->{{3.7274598699470587`*^9, 3.727459890418419*^9}, {
+  3.727459965202114*^9, 3.727459988425435*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{"x", ",", "y", ",", "z"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fault", " ", "=", " ", 
+   RowBox[{"Plot3D", "[", 
+    StyleBox[" ",
+     FontColor->RGBColor[1, 0, 0]], 
+    RowBox[{
+     StyleBox[
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", ".1"}], "x"}], "-", 
+       RowBox[{".1", "y"}], "-", "10"}],
+      FontColor->RGBColor[1, 0, 0]], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "250"}], ",", "250"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", 
+       RowBox[{"-", "250"}], ",", "250"}], "}"}], ",", 
+     RowBox[{"ColorFunction", "\[Rule]", 
+      RowBox[{"Function", "[", 
+       RowBox[{"z", ",", "Blue"}], "]"}]}], ",", 
+     RowBox[{"Mesh", "\[Rule]", "False"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ground", " ", "=", " ", 
+   RowBox[{"Plot3D", "[", " ", 
+    RowBox[{"0", ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "250"}], ",", "250"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", 
+       RowBox[{"-", "250"}], ",", "250"}], "}"}], ",", 
+     RowBox[{"ColorFunction", "\[Rule]", 
+      RowBox[{"Function", "[", 
+       RowBox[{"z", ",", "Yellow"}], "]"}]}], ",", 
+     RowBox[{"Mesh", "\[Rule]", "False"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pts", " ", "=", " ", 
+   RowBox[{"Show", "[", 
+    RowBox[{"Graphics3D", "[", 
+     RowBox[{"{", 
+      RowBox[{"Red", ",", " ", 
+       RowBox[{"AbsolutePointSize", "[", "6", "]"}], ",", " ", 
+       RowBox[{"Map", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Point", "[", "#", "]"}], "&"}], ",", "data"}], "]"}]}], 
+      "}"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pipe", " ", "=", " ", "\[IndentingNewLine]", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", ".2"}], "x"}], "-", "75"}], ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "250"}], ",", "250"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Thickness", "[", ".02", "]"}], ",", "Red"}], "}"}]}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"fault", ",", "ground", ",", "pts", ",", "pipe"}], "}"}], ",", 
+   RowBox[{"AspectRatio", "\[Rule]", "1"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.418054543359006*^9, 3.418054582981983*^9}, {
+  3.4181278432158737`*^9, 3.4181278485562067`*^9}, {3.4181278939616203`*^9, 
+  3.41812802147651*^9}, {3.72745995053094*^9, 3.7274599508978786`*^9}},
+ FontSize->18,
+ ExpressionUUID -> "c08c0ce9-23a8-43f7-9769-fd9dc4c7a505"],
+
+Cell[TextData[StyleBox["(c) Should there be concern about the pipeline based \
+on this (oversimplifed) analysis? (We are, of course, making some pretty big \
+assumptions, e.g., assuming that the fault plane is essentially linear.)",
+ FontSize->18]], "Text",
+ CellChangeTimes->{3.7274598949142323`*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1561, 1248},
+WindowMargins->{{Automatic, 191}, {Automatic, 20}},
+DockedCells->(FrontEndExecute[{
+   FrontEnd`NotebookApply[
+    FrontEnd`InputNotebook[], #, Placeholder]}]& ),
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (December 10, \
+2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 231, 4, 51, "Subtitle"],
+Cell[801, 28, 537, 9, 67, "Subtitle"],
+Cell[CellGroupData[{
+Cell[1363, 41, 164, 2, 52, "Subsection"],
+Cell[1530, 45, 918, 21, 131, "Text"],
+Cell[2451, 68, 601, 19, 49, "Input"],
+Cell[3055, 89, 383, 11, 35, "Text"],
+Cell[3441, 102, 172, 4, 32, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3650, 111, 169, 2, 52, "Subsection"],
+Cell[3822, 115, 3383, 68, 444, "Text"],
+Cell[7208, 185, 1033, 25, 73, "Input"],
+Cell[8244, 212, 221, 3, 35, "Text"],
+Cell[8468, 217, 275, 8, 32, "Input"],
+Cell[8746, 227, 305, 8, 35, "Text"],
+Cell[9054, 237, 1140, 27, 286, "Text"],
+Cell[10197, 266, 633, 20, 33, "Input"],
+Cell[10833, 288, 421, 7, 35, "Text"],
+Cell[11257, 297, 256, 7, 32, "Input"],
+Cell[11516, 306, 1006, 19, 83, "Text"],
+Cell[12525, 327, 801, 19, 59, "Text"],
+Cell[13329, 348, 760, 23, 33, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14126, 376, 155, 2, 52, "Subsection"],
+Cell[14284, 380, 1284, 26, 179, "Text"],
+Cell[15571, 408, 948, 27, 80, "Input"],
+Cell[16522, 437, 1573, 27, 403, "Text"],
+Cell[18098, 466, 770, 24, 32, "Input"],
+Cell[18871, 492, 614, 12, 59, "Text"],
+Cell[19488, 506, 1198, 31, 156, "Text"],
+Cell[20689, 539, 15122, 679, 250, "Text"],
+Cell[35814, 1220, 1282, 24, 133, "Text"],
+Cell[37099, 1246, 4015, 111, 195, "Input"],
+Cell[41117, 1359, 521, 11, 59, "Text"],
+Cell[41641, 1372, 582, 14, 59, "Text"],
+Cell[42226, 1388, 2801, 79, 172, "Input"],
+Cell[45030, 1469, 301, 4, 59, "Text"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

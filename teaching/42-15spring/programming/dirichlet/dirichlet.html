@@ -1,0 +1,147 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Math 42, spring 2015</title>
+
+<style>
+body
+{
+background-color:#C0C0C0;
+}
+p
+{
+	width: 800px;
+}
+h2 {font-family:sans-serif}
+h3 {font-family:sans-serif}
+a
+{
+text-decoration:none;
+}
+a:link {color:#000099;}      /* unvisited link */
+a:visited {color:#000099;}  /* visited link */
+a:hover {color:#4444cc;}  /* mouse over link */
+a:active {color:#3333FF;} 
+table
+{
+	border-spacing: 5px;
+	border: 1px solid black;
+}
+th,td { 
+	padding: 5px;
+	vertical-align: top;
+}
+</style>
+
+</head><body>
+
+<h2>Dirichlet's Theorem</h2>
+
+<i>All small in put submissions due by 2pm on Friday, April 10.</i>
+<br />
+<b>Revision: </b><i> Large inputs may be subnitted until midnight.</i>
+
+<p>
+A celebrated theorem of Dirichlet states that for any two coprime numbers a and m, there are an infinite number of primes congruent to a modulo m. This is often called the theorem on "primes in arithmetic progressions." This problem will experimentally verify a slight variation on this theme: given not just one congruence condition, but a list of several, can you find <i>some</i> prime satisfying all of them? Your task is to take a list of congruence conditions and find the <i>smallest</i> prime number that satisfies them all.
+</p>
+
+<h3>Input</h3>
+
+<p>
+The first line gives the number of test cases, <b>T</b>. <b>T</b> test cases follow. Each case begins with a single line with an integer <b>C</b>, the number of congruence conditions for that test case. This is followed by <b>C</b> lines of the form <b>a<sub>i</sub> m<sub>i</sub></b> (two integers separated by a space), which describe the congruence conditions.
+</p>
+
+<h3>Output</h3>
+
+<p>
+For each test case, output one line containg "Case #x: y", where x is the case number (starting from 1) and y is the <i>smallest</i> prime number <b>p</b> that is congruent to <b>a<sub>i</sub></b>mod<b>m<sub>i</sub></b> for all <b>i</b>.
+</p>
+
+<h3>Limits</h3>
+
+<b>T</b> = 1000.
+
+<p>
+In a given test case, any two moduli <b>m<sub>i</sub></b> will be relatively prime, and the number <b>a<sub>i</sub></b> will be relatively prime to <b>m<sub>i</sub></b>.
+</p>
+
+<p>
+Small dataset: in each test case, there is guaranteed to be a solution less than 10<sup>8</sup>. The product of all of the moduli <b>m<sub>i</sub></b> will also not exceed 10<sup>8</sup>. The number <b>C</b> of congruence conditions in each test case will be either one or two.
+</p>
+
+<p>
+Large dataset: in each test case, there is guaranteed to be a solution less than 10<sup>18</sup>. The product of all of the moduli <b>m<sub>i</sub></b> will also not exceed 10<sup>18</sup>.
+</p>
+
+<h3>Sample</h3>
+<table>
+<tr>
+	<td>Input</td>
+	<td>Output</td>
+</tr>
+<tr>
+	<td><tt>
+	5<br />
+	1<br />
+	1 4<br />
+	1<br />
+	10 11<br />
+	1<br />
+	9 16<br />
+	2<br />
+	1 4<br />
+	1 5<br />
+	3<br />
+	1 2<br />
+	4 5<br />
+	20 21<br />
+	</tt></td>
+
+	<td><tt>
+Case #1: 5<br />
+Case #2: 43<br />
+Case #3: 41<br />
+Case #4: 41<br />
+Case #5: 419<br />
+	</tt></td>
+</tr>
+</table>
+
+<p>
+How to read the output of this sample: 5 is the smallest prime that is 1 mod 4; 43 is the smallest prime that is 10 mod 11; 41 is the smallest prime that is 9 mod 16; 41 is also the smallest prime that is both 1 mod 4 and 1 mod 5; 419 is the smallest prime that is 1 mod 2, 4 mod 5, and 20 mod 21.
+</p>
+
+<h3>Some hints and remarks</h3>
+
+<p>
+The small input can be solved with a fairly naive algorithm that simply marches through the prime numbers and checks the against the desired congruence conditions. I suggest that you implement a naive solution first, since that will be a benchmark for anything more sophisticated. You could use the Sieve of Eratosthenes to find primes, or you could implement a simple primality test.
+</p>
+
+<p>
+To solve the large input, I suggest that you first study the proof of the Chinese Remainder Theorem and figure out how you can use it to ``join'' the congruence conditions one by one into a single condition. Second, implement the Miller-Rabin primality test to quickly identify primes.
+</p>
+
+<p>
+For the large input, you'll need to use at least 64-bit integers. For example, in C++ this means using the "long long" type; in Java it is just called "long". If you code in Python, this is a non-issue (since integers are all dynamically sized). Whatever language you use, you should look up the maximum size of the integer data type that you're using, and make sure it's big enough.
+</p>
+
+<h3>Input and output files</h3>
+
+Small inputs: 
+	<a href="small0.in">0</a> 
+	<a href="small1.in">1</a>
+	<a href="small2.in">2</a>
+	<a href="small3.in">3</a>
+	<a href="small4.in">4</a>
+ 	<a href="small5.in">5</a>
+ 	<a href="small6.in">6</a>
+ 	<a href="small7.in">7</a>
+	<a href="small8.in">8</a>
+	<a href="small9.in">9</a>
+<br />
+Large input: <a href="large.in">large.in</a> (REVISED)
+
+<p>
+NOTE: the original posted large input had a problem due to a bug in my input generation script. The new one should have fixed the issue. I'm extending the submission deadline for the <i>large input only</i> until midnight on Friday.
+</p>
+
+</html>

@@ -5,11 +5,14 @@ permalink: /teaching/
 author_profile: true
 ---
 
-{% assign curSem = nil %}
-{% for post in site.teaching reversed %}
-  {% if curSem != post.semester %}
+I am currently leave for research, until January 2022. Information about my past teaching is available below. 
+
+{%- assign curSem = nil -%}
+{%- assign courses = site.teaching | sort: 'startdate' | reverse -%}
+{%- for post in courses -%}
+  {%- if curSem != post.semester -%}
   <h2>{{post.semester}}</h2>
-  {% assign curSem = post.semester %}
-  {% endif %}
-  {% include archive-single.html %}
-{% endfor %}
+  {%- assign curSem = post.semester -%}
+  {%- endif -%}
+  {%- include course-blurb.html -%}
+{%- endfor -%}

@@ -1,0 +1,148 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Math 42, spring 2015</title>
+
+<style>
+body
+{
+background-color:#C0C0C0;
+}
+p
+{
+	width: 800px;
+}
+h2 {font-family:sans-serif}
+h3 {font-family:sans-serif}
+a
+{
+text-decoration:none;
+}
+a:link {color:#000099;}      /* unvisited link */
+a:visited {color:#000099;}  /* visited link */
+a:hover {color:#4444cc;}  /* mouse over link */
+a:active {color:#3333FF;} 
+table
+{
+	border-spacing: 5px;
+	border: 1px solid black;
+}
+th,td { 
+	padding: 5px;
+	vertical-align: top;
+}
+</style>
+
+</head><body>
+
+<h2>Remainders</h2>
+
+<i>All submissions due by 2pm on Friday, April 24.</i>
+
+<p>
+We know, due to the Chinese remainder theorem, that any two congruence conditions with coprime moduli can be merged into a single congruence condition. In this problem, you will consider the situation where the moduli are not necessarily coprime, and when there are possibly more than two conditions.
+</p>
+
+<p>
+You will be given a sequence of congruence conditions. You shoud either find the smallest nonnegative number satisfying <i>all</i> of these congruence conditions, or you should state that the congruence conditions are not consistent with each other. Several examples are shown below.
+</p>
+
+<p>
+There will be two primary challenges in solving this problem. First, you should study the proof of the Chinese Remainder Theorem and figure out how to adapt it to the situation when the two moduli may not be coprime (this includes working out how to tell that the conditions are impossible to satisfy simultaneously). Second, for the large input, you will need to learn how to work with very large integers (with hundreds of digits) in the language of your choice. Some comments about this are below.
+</p>
+
+<h3>Input</h3>
+
+<p>
+The first line gives the number of test cases, <b>T</b>. <b>T</b> test cases follow. Each test case begins with a single integer <b>N</b>, the number of congruence conditions. <b>N</b> lines follow, each consisting of two space-separated integers <b>a<sub>i</sub> m<sub>i</sub></b>, which indicate that one congruence condition is that <b>n</b> is congruent to <b>a<sub>i</sub></b> modulo <b>m<sub>i</sub></b>.
+</p>
+
+<h3>Output</h3>
+
+<p>
+For each test case, print a single line consisting of "Case #X" (where X is the number of the test case) followed by either the word "INCONSISTENT" (if the given congruence conditions are impossible to satisfy simultaneously) or a single integer <b>n</b>, which is the smallest nonnegative integer congruent to <b>a<sub>i</sub></b> modulo <b>m<sub>i</sub></b> for all <b>i</b>.
+</p>
+
+<h3>Limits</h3>
+
+<b>T</b> = 100<br />
+0 ≤ <b>a<sub>i</sub></b> < <b>m<sub>i</sub></b>
+
+<p>
+Small dataset: <br />
+<b>C</b> ≤ 4<br />
+<b>m<sub>i</sub></b> ≤ 100<br />
+</p>
+
+<p>
+Large dataset: <br />
+<b>C</b> ≤ 10<br />
+<b>m<sub>i</sub></b> ≤ 10<sup>100</sup>
+</p>
+
+<h3>Sample</h3>
+<table>
+<tr>
+	<td>Input</td>
+	<td>Output</td>
+</tr>
+<tr>
+	<td><tt>
+	5<br />
+	2<br />
+	3 4<br />
+	4 5<br />
+	2<br />
+	15 16<br />
+	7 24<br />
+	2<br />
+	5 8<br />
+	6 26<br />
+	5<br />
+	3 5<br />
+	4 6<br />
+	5 7<br />
+	6 8<br />
+	7 9<br />
+	3<br />
+	151406142 472297165<br />
+	30 36<br />
+	5807509 6369883<br />	
+	</tt></td>
+
+	<td><tt>
+	Case #1: 19<br />
+	Case #2: 31<br />
+	Case #3: INCONSISTENT<br />
+	Case #4: 2518<br />
+	Case #5: 32765349597680082<br />
+	</tt></td>
+</tr>
+</table>
+
+<p>
+Note that Case 3 is inconsistent because a number which is 5 modulo 8 is odd, while a number that is 6 modulo 26 is even.
+</p>
+
+<h3>Working with large integers</h3>
+
+<p>
+If you attempt the large input, you will need to learn how to work with large integers (with several hundred digits) in the programming language of your choice. If you are coding in Java, you should look up the <a href="https://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html">BigInteger</a> class. In C++, I suggest installing <a href="https://gmplib.org/">GMP</a>. If you code in Python, this is a nonissue, as Python integers are automatically arbitrary-precision.
+</p>
+
+<h3>Input and output files</h3>
+
+Small inputs: 
+	<a href="small0.in">0</a> 
+	<a href="small1.in">1</a>
+	<a href="small2.in">2</a>
+	<a href="small3.in">3</a>
+	<a href="small4.in">4</a>
+ 	<a href="small5.in">5</a>
+ 	<a href="small6.in">6</a>
+ 	<a href="small7.in">7</a>
+	<a href="small8.in">8</a>
+	<a href="small9.in">9</a>
+<br />
+Large input: <a href="large.in">large.in</a>
+
+</html>

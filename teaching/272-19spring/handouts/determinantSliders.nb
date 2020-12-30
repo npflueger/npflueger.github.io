@@ -1,0 +1,481 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     19719,        473]
+NotebookOptionsPosition[     18419,        442]
+NotebookOutlinePosition[     18774,        458]
+CellTagsIndexPosition[     18731,        455]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.759589143024219*^9, 3.759589176948504*^9}, {
+  3.7595892301295967`*^9, 3.759589358067932*^9}, {3.75961944179284*^9, 
+  3.75961945393505*^9}},ExpressionUUID->"d2a56a01-711e-4d70-8a31-\
+b6b7df6021fa"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"addMult", "[", 
+    RowBox[{"A_", ",", "i_", ",", "c_", ",", "j_"}], "]"}], " ", ":=", " ", 
+   RowBox[{"(", " ", 
+    RowBox[{
+     RowBox[{"B", " ", "=", " ", "A"}], ";", " ", 
+     RowBox[{
+      RowBox[{"B", "[", 
+       RowBox[{"[", "i", "]"}], "]"}], " ", "+=", " ", 
+      RowBox[{"c", "*", 
+       RowBox[{"B", "[", 
+        RowBox[{"[", "j", "]"}], "]"}]}]}], ";", " ", "B"}], ")"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"addMultSlider", "[", 
+     RowBox[{"A_", ",", "i_", ",", "j_"}], "]"}], " ", ":=", " ", 
+    RowBox[{"Manipulate", "[", 
+     RowBox[{
+      RowBox[{"(", "\[IndentingNewLine]", " ", 
+       RowBox[{
+        RowBox[{"B", " ", "=", " ", 
+         RowBox[{"addMult", "[", 
+          RowBox[{"A", ",", "i", ",", "t", ",", "j"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"P", " ", "=", " ", 
+         RowBox[{"Parallelogram", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", "0"}], "}"}], ",", 
+           RowBox[{"Transpose", "[", "B", "]"}]}], "]"}]}], " ", ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"GraphicsRow", "[", "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"MatrixForm", "[", "A", "]"}], ",", "\[IndentingNewLine]", 
+           
+           RowBox[{"MatrixForm", "[", "B", "]"}], ",", "\[IndentingNewLine]", 
+           " ", 
+           RowBox[{"Graphics", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"EdgeForm", "[", 
+                RowBox[{"Directive", "[", 
+                 RowBox[{"Thick", ",", "Dashed", ",", "Blue"}], "]"}], "]"}], 
+               ",", "Pink", ",", "P"}], "}"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"PlotRange", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "5"}], ",", "5"}], "}"}]}], "}"}]}], ",", " ", 
+             
+             RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+             RowBox[{"PlotRangeClipping", "\[Rule]", "True"}], ",", " ", 
+             RowBox[{"ImageSize", "\[Rule]", "300"}]}], "\[IndentingNewLine]",
+             "]"}]}], "}"}], "]"}]}], ")"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"t", ",", "0", ",", "\"\<Multiple added\>\""}], "}"}], ",", 
+        RowBox[{"-", "5"}], ",", "5", ",", "0.1", ",", 
+        RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}]}], 
+     "\[IndentingNewLine]", "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"multRow", "[", 
+    RowBox[{"A_", ",", "i_", ",", "c_"}], "]"}], " ", ":=", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"B", " ", "=", " ", "A"}], ";", " ", 
+     RowBox[{
+      RowBox[{"B", "[", 
+       RowBox[{"[", "i", "]"}], "]"}], " ", "*=", " ", "c"}], ";", " ", "B"}],
+     ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"multRowSlider", "[", 
+    RowBox[{"A_", ",", "i_"}], "]"}], " ", ":=", " ", 
+   RowBox[{"Manipulate", "[", 
+    RowBox[{
+     RowBox[{"(", "\[IndentingNewLine]", " ", 
+      RowBox[{
+       RowBox[{"B", " ", "=", " ", 
+        RowBox[{"multRow", "[", 
+         RowBox[{"A", ",", "i", ",", "t"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"P", " ", "=", " ", 
+        RowBox[{"Parallelogram", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0"}], "}"}], ",", 
+          RowBox[{"Transpose", "[", "B", "]"}]}], "]"}]}], " ", ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"GraphicsRow", "[", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"MatrixForm", "[", "A", "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"MatrixForm", "[", "B", "]"}], ",", "\[IndentingNewLine]", 
+          " ", 
+          RowBox[{"Graphics", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"EdgeForm", "[", 
+               RowBox[{"Directive", "[", 
+                RowBox[{"Thick", ",", "Dashed", ",", "Blue"}], "]"}], "]"}], 
+              ",", "Pink", ",", "P"}], "}"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"PlotRange", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "5"}], ",", "5"}], "}"}]}], "}"}]}], ",", " ", 
+            RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+            RowBox[{"PlotRangeClipping", "\[Rule]", "True"}], ",", " ", 
+            RowBox[{"ImageSize", "\[Rule]", "300"}]}], "\[IndentingNewLine]", 
+           "]"}]}], "}"}], "]"}]}], ")"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"t", ",", "1", ",", "\"\<Multiplier\>\""}], "}"}], ",", 
+       RowBox[{"-", "5"}], ",", "5", ",", "0.1", ",", 
+       RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGCQBGIQncCW+OUG0xvHuBDjryCa41PTPxDdEPyF+yaQPrvv
+lhiIbrvBJQ6i3XbckgHRulveqYHooiVM2iD6yat35iA65HmFDYju+vzUAUT/
+4L4XDqLNbnDHgegj3FYpIHrSi4V5IPpUdnQ5iA49v7cKRDeVirSC6JaoxjYQ
+Xex5tRdszv+ffSBa7FzRdDB/dv4MEH2D9eRiEG3TWbcSRE9PcZ16H0jPSk8G
+07euJi99DvKPlOdOEL0mddNVEH3kwRYwXb+h6zaItnb5/AhE+4VWvQTR03J4
+3oDoA29i/4HoL1cSwfQcI+MP1sxvHEvlVoFpiZojf0H0n7SofyC6SJFPyAZI
+/5LKkwLRXR+uy4PoSx/fg+ldfhv0QfQ81xRDEH2qKDgYRK+/VwSmAYW3zEM=
+
+  "],
+ CellLabel->"In[82]:=",ExpressionUUID->"507f4ff6-70fa-42d1-919a-af25a2300422"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"addMultSlider", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", 
+       RowBox[{"-", "3"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2"}], "}"}]}], "}"}], ",", "2", ",", "1"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.759792446550109*^9, 3.75979248715016*^9}},
+ CellLabel->"In[92]:=",ExpressionUUID->"83e0f439-6f1e-4639-969e-c7204025abf6"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`t$$], 0, "Multiple added"}, -5, 5, 0.1}}, 
+    Typeset`size$$ = {980., {161., 166.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`t$512911$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`t$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$512911$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`B = $CellContext`addMult[{{2, -3}, {1, 2}}, 
+          2, $CellContext`t$$, 1]; $CellContext`P = Parallelogram[{0, 0}, 
+          Transpose[$CellContext`B]]; GraphicsRow[{
+          MatrixForm[{{2, -3}, {1, 2}}], 
+          MatrixForm[$CellContext`B], 
+          Graphics[{
+            EdgeForm[
+             Directive[Thick, Dashed, Blue]], Pink, $CellContext`P}, 
+           PlotRange -> {{-5, 5}, {-5, 5}}, Frame -> True, PlotRangeClipping -> 
+           True, ImageSize -> 300]}]), 
+      "Specifications" :> {{{$CellContext`t$$, 0, "Multiple added"}, -5, 5, 
+         0.1, Appearance -> "Labeled"}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{1025., {206., 212.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.75979248776236*^9, 3.759792798593845*^9, 
+  3.759792834981222*^9},
+ CellLabel->"Out[92]=",ExpressionUUID->"790e8227-e46d-409c-b022-5c44b592b229"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"addMultSlider", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", 
+       RowBox[{"-", "3"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2"}], "}"}]}], "}"}], ",", "2", ",", "1"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.759791923766424*^9, 3.759791945392399*^9}},
+ CellLabel->"In[60]:=",ExpressionUUID->"e7ac1211-e82b-4d79-83ab-90ad9d9763f5"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`t$$], 0, "Multiple added"}, -5, 5, 0.1}}, 
+    Typeset`size$$ = {980., {161., 166.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`t$278000$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`t$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$278000$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`B = $CellContext`addMult[{{2, -3}, {1, 2}}, 
+          2, $CellContext`t$$, 1]; $CellContext`P = Parallelogram[{0, 0}, 
+          Transpose[$CellContext`B]]; GraphicsRow[{
+          MatrixForm[{{2, -3}, {1, 2}}], 
+          MatrixForm[$CellContext`B], 
+          Graphics[{
+            EdgeForm[
+             Directive[Thick, Dashed, Blue]], Pink, $CellContext`P}, 
+           PlotRange -> {{-5, 5}, {-5, 5}}, Frame -> True, PlotRangeClipping -> 
+           True, ImageSize -> 300]}]), 
+      "Specifications" :> {{{$CellContext`t$$, 0, "Multiple added"}, -5, 5, 
+         0.1, Appearance -> "Labeled"}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{1025., {206., 212.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.7596194273782387`*^9, 3.759619458833743*^9, 3.759619710233253*^9, 
+   3.759619759408725*^9, 3.759619807832724*^9, {3.759619838595025*^9, 
+   3.759619866390687*^9}, 3.759620090551137*^9, 3.759791893895721*^9, {
+   3.759791924661373*^9, 3.7597919493548737`*^9}, {3.759792008307024*^9, 
+   3.759792037921117*^9}, 3.7597921490441513`*^9, 3.759792441746121*^9},
+ CellLabel->"Out[60]=",ExpressionUUID->"23d63b79-0d69-4e3c-ba72-f5ebcb412187"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"addMultSlider", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", 
+       RowBox[{"-", "3"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "3.5"}], "}"}]}], "}"}], ",", "1", ",", "2"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.7596201318928747`*^9, 3.7596201542411833`*^9}, {
+  3.759791970286207*^9, 3.759791974533677*^9}},
+ CellLabel->"In[91]:=",ExpressionUUID->"94658b58-9c06-46b8-b90a-ba1099d67c56"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`t$$], 0, "Multiple added"}, -5, 5, 0.1}}, 
+    Typeset`size$$ = {980., {161., 166.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`t$512007$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`t$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$512007$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`B = $CellContext`addMult[{{2, -3}, {0, 3.5}}, 
+          1, $CellContext`t$$, 2]; $CellContext`P = Parallelogram[{0, 0}, 
+          Transpose[$CellContext`B]]; GraphicsRow[{
+          MatrixForm[{{2, -3}, {0, 3.5}}], 
+          MatrixForm[$CellContext`B], 
+          Graphics[{
+            EdgeForm[
+             Directive[Thick, Dashed, Blue]], Pink, $CellContext`P}, 
+           PlotRange -> {{-5, 5}, {-5, 5}}, Frame -> True, PlotRangeClipping -> 
+           True, ImageSize -> 300]}]), 
+      "Specifications" :> {{{$CellContext`t$$, 0, "Multiple added"}, -5, 5, 
+         0.1, Appearance -> "Labeled"}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{1025., {206., 212.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.759620154993021*^9, 3.7597919755902653`*^9, 
+  3.75979215247781*^9, 3.7597928022457952`*^9, 3.7597928328999023`*^9},
+ CellLabel->"Out[91]=",ExpressionUUID->"9094ac72-01e8-478b-bda1-ab839049250e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"multRowSlider", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1.5"}], "}"}]}], "}"}], ",", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.759619536077263*^9, 3.759619566682246*^9}, {
+  3.759620073566064*^9, 3.759620076221583*^9}, {3.759792809586117*^9, 
+  3.759792809750139*^9}},
+ CellLabel->"In[90]:=",ExpressionUUID->"4cc31909-366f-4048-9eef-23e5d4a5f979"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`t$$], 1, "Multiplier"}, -5, 5, 0.1}}, 
+    Typeset`size$$ = {980., {161., 166.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`t$510772$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`t$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$510772$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`B = $CellContext`multRow[{{2, 1}, {0, 1.5}}, 
+          2, $CellContext`t$$]; $CellContext`P = Parallelogram[{0, 0}, 
+          Transpose[$CellContext`B]]; GraphicsRow[{
+          MatrixForm[{{2, 1}, {0, 1.5}}], 
+          MatrixForm[$CellContext`B], 
+          Graphics[{
+            EdgeForm[
+             Directive[Thick, Dashed, Blue]], Pink, $CellContext`P}, 
+           PlotRange -> {{-5, 5}, {-5, 5}}, Frame -> True, PlotRangeClipping -> 
+           True, ImageSize -> 300]}]), 
+      "Specifications" :> {{{$CellContext`t$$, 1, "Multiplier"}, -5, 5, 0.1, 
+         Appearance -> "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{1025., {206., 212.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.759619543821719*^9, 3.759619567235627*^9}, 
+   3.759619602823989*^9, 3.759619648492262*^9, 3.759619714006218*^9, 
+   3.75961976307128*^9, 3.759619812202326*^9, 3.759619842229126*^9, 
+   3.7596198742255774`*^9, {3.759619920218335*^9, 3.7596199419130383`*^9}, {
+   3.7596200767741737`*^9, 3.759620093037281*^9}, 3.7597921549684057`*^9, {
+   3.759792805333251*^9, 3.759792829987193*^9}},
+ CellLabel->"Out[90]=",ExpressionUUID->"324f5628-9420-4523-9732-9870041975b0"]
+}, Open  ]]
+},
+WindowSize->{1043, 656},
+WindowMargins->{{Automatic, 60}, {-1, Automatic}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 247, 4, 30, "Input",ExpressionUUID->"d2a56a01-711e-4d70-8a31-b6b7df6021fa"],
+Cell[808, 26, 5933, 146, 556, "Input",ExpressionUUID->"507f4ff6-70fa-42d1-919a-af25a2300422"],
+Cell[CellGroupData[{
+Cell[6766, 176, 424, 12, 30, "Input",ExpressionUUID->"83e0f439-6f1e-4639-969e-c7204025abf6"],
+Cell[7193, 190, 2259, 46, 471, "Output",ExpressionUUID->"790e8227-e46d-409c-b022-5c44b592b229"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9489, 241, 430, 12, 30, "Input",ExpressionUUID->"e7ac1211-e82b-4d79-83ab-90ad9d9763f5"],
+Cell[9922, 255, 2552, 50, 437, "Output",ExpressionUUID->"23d63b79-0d69-4e3c-ba72-f5ebcb412187"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12511, 310, 485, 13, 30, "Input",ExpressionUUID->"94658b58-9c06-46b8-b90a-ba1099d67c56"],
+Cell[12999, 325, 2313, 46, 437, "Output",ExpressionUUID->"9094ac72-01e8-478b-bda1-ab839049250e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15349, 376, 489, 12, 30, "Input",ExpressionUUID->"4cc31909-366f-4048-9eef-23e5d4a5f979"],
+Cell[15841, 390, 2562, 49, 437, "Output",ExpressionUUID->"324f5628-9420-4523-9732-9870041975b0"]
+}, Open  ]]
+}
+]
+*)
+

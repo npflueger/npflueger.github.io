@@ -1,0 +1,137 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Math 42, spring 2015</title>
+
+<style>
+body
+{
+background-color:#C0C0C0;
+}
+p
+{
+	width: 800px;
+}
+h2 {font-family:sans-serif}
+h3 {font-family:sans-serif}
+a
+{
+text-decoration:none;
+}
+a:link {color:#000099;}      /* unvisited link */
+a:visited {color:#000099;}  /* visited link */
+a:hover {color:#4444cc;}  /* mouse over link */
+a:active {color:#3333FF;} 
+table
+{
+	border-spacing: 5px;
+	border: 1px solid black;
+}
+th,td { 
+	padding: 5px;
+	vertical-align: top;
+}
+</style>
+
+</head><body>
+
+<h2>The Least Nonresidue</h2>
+
+<i>All submissions due by 2pm on Friday, April 17.</i>
+
+<p>
+We have seen that, if p is an odd prime number, then exactly half of the numbers 1,2,3,...,p-1 are quadratic residues modulo p. Many questions in number theory, including issues related to the running time of primality testing algorithms, relate to how exactly the quadratic residues distribute themselves among these p-1 numbers.
+</p>
+
+<p>
+Of particular interest in many contexts is the value of the <i>least nonresidue</i>, which is the smallest positive number that is not a quadratic residues modulo p. The conventional wisdom is that the first nonresidue tends to be very small (with order of magnitude close to the number of digits of p). This should be plausible: if half of the numbers from 1 to p-1 are nonresidues, then it shouldn't take long to encounter one. However, the question of exactly how long you might have to wait to find a nonresidue remains elusive, and is related to several topics of modern research.
+</p>
+
+<p>
+The goal of this task is to write a program to gather experimental data about this question. Your program will receive an interval (a range of numbers), and find the largest possible value for the least nonresidue for all primes in this interval.
+</p>
+
+<h3>Input</h3>
+
+<p>
+The first line gives the number of test cases, <b>T</b>. <b>T</b> test cases follow. Each case consists of a single line with two integers <b>p_min p_max</b>, which gives the upper and lower bounds for the interval of numbers in question.
+</p>
+
+<h3>Output</h3>
+
+<p>
+For each test case, output one line of the form "Case #<b>X</b>: <b>L P</b>". <b>X</b> is the case number (starting from 1). <b>L</b> is the <i>largest possible value</i> of the <i>least nonresidue</i> modulo a prime chosen between <b>p_min</b> and <b>p_max</b>, inclusive. <b>P</b> is the prime number from the interval that achieves this maximum. If there is a tie, i.e. multiple prime numbers in the interval have least nonresidue L, then P should be the smallest one.
+</p>
+
+<h3>Limits</h3>
+
+<b>T</b> = 100<br />
+3 ≤ <b>p_min</b> ≤ <b>p_max</b><br />
+There is guaranteed to be at least one prime number between <b>p_min</b> and <b>p_max</b>, inclusive.
+
+<p>
+Small dataset: <br />
+<b>p_max</b> ≤ 10<sup>6</sup><br />
+<b>p_max</b> ≤ <b>p_min</b>+100
+</p>
+
+<p>
+Large dataset: <br />
+<b>p_max</b> ≤ 10<sup>18</sup><br />
+<b>p_max</b> ≤ <b>p_min</b>+10<sup>4</sup>
+</p>
+
+<h3>Sample</h3>
+<table>
+<tr>
+	<td>Input</td>
+	<td>Output</td>
+</tr>
+<tr>
+	<td><tt>
+	4<br />
+	3 7<br />
+	97 97<br />
+	3 100<br />
+	10000 20000<br />
+	</tt></td>
+
+	<td><tt>
+	Case #1: 3 7<br />
+	Case #2: 5 97<br />
+	Case #3: 7 71<br />
+	Case #4: 29 18191<br />	
+	</tt></td>
+</tr>
+</table>
+
+<p>
+Note in particular that the ends of the interval are <i>inclusive</i>. For example, in case 2, 97 is the only number in the interval (and it is prime).
+</p>
+
+<h3>Hints and remarks</h3>
+
+<p>
+For the small input, you can write a program which first identifies primes (for example, by checking for divisors up to the square root of each number), and then explicitly lists the quadratic residues of each prime in the specified interval.
+</p>
+
+<p>
+To complete the large input, you'll need two ingredients: an efficient way to detect primes (such as the Miller-Rabin test), and an efficient way to compute the Legendre symbol (I suggest making using of quadratic reciprocity).
+</p>
+
+<h3>Input and output files</h3>
+
+Small inputs: 
+	<a href="small0.in">0</a> 
+	<a href="small1.in">1</a>
+	<a href="small2.in">2</a>
+	<a href="small3.in">3</a>
+	<a href="small4.in">4</a>
+ 	<a href="small5.in">5</a>
+ 	<a href="small6.in">6</a>
+ 	<a href="small7.in">7</a>
+	<a href="small8.in">8</a>
+	<a href="small9.in">9</a>
+<br />
+Large input: <a href="large.in">large.in</a>
+
+</html>

@@ -1,10 +1,9 @@
 ---
 title: "Math 252, spring 2020"
-coursenum: 252
-coursename: "Math 252: Mathematics of Public-Key Cryptography, Fall 2017"
-collection: teaching
+coursenum: "Math 252"
+coursename: "Mathematics of Public-Key Cryptography"
 permalink: teaching/252-20spring
-date: 2020-01-01
+startdate: 2020-01
 semester: "Spring 2020"
 toc: true
 ---

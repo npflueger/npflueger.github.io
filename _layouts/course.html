@@ -2,6 +2,10 @@
 layout: default
 ---
 
+{%- comment -%}
+This layout is based on archive-single.html. There are a few changes to the content at the top and bottom of the page.
+{%- endcomment -%}
+
 {% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
   {% include page__hero.html %}
 {% elsif page.header.video.id and page.header.video.provider %}
@@ -26,8 +30,9 @@ layout: default
     <div class="page__inner-wrap">
       {% unless page.header.overlay_color or page.header.overlay_image %}
         <header>
-          {% if page.title %}<h1 id="page-title" class="page__title" itemprop="headline">{{ page.coursename | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
+          <h1 id="page-title" class="page__title" itemprop="headline">{{ page.coursenum }}: {{ page.coursename }} ({{ page.semester }})</h1>
           {% include page__meta.html %}
+
         </header>
       {% endunless %}
 

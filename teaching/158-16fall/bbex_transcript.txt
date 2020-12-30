@@ -1,0 +1,211 @@
+Transaction 0: valid signature; and a coin can be moved.
+=>Coin moved from 43 to 22.
+Transaction 1: valid signature; but 92 isn't an owner.
+=>No effect.
+Transaction 2: valid signature; and a coin can be moved.
+=>Coin moved from 83 to 64.
+Transaction 3: valid signature; but 11 isn't an owner.
+=>No effect.
+Transaction 4: INVALID signature. 
+=>No effect.
+Transaction 5: valid signature; but 43 isn't an owner.
+=>No effect.
+Transaction 6: valid signature; but 64 isn't an owner.
+=>No effect.
+Transaction 7: valid signature; and a coin can be moved.
+=>Coin moved from 64 to 92.
+Transaction 8: valid signature; but 22 already has a coin.
+=>No effect.
+Transaction 9: valid signature; but 83 isn't an owner.
+=>No effect.
+Transaction 10: INVALID signature. 
+=>No effect.
+Transaction 11: valid signature; but 84 isn't an owner.
+=>No effect.
+Transaction 12: valid signature; but 28 already has a coin.
+=>No effect.
+Transaction 13: INVALID signature. 
+=>No effect.
+Transaction 14: valid signature; but 28 already has a coin.
+=>No effect.
+Transaction 15: valid signature; but 80 isn't an owner.
+=>No effect.
+Transaction 16: valid signature; but 64 isn't an owner.
+=>No effect.
+Transaction 17: INVALID signature. 
+=>No effect.
+Transaction 18: INVALID signature. 
+=>No effect.
+Transaction 19: valid signature; but 64 isn't an owner.
+=>No effect.
+Transaction 20: valid signature; and a coin can be moved.
+=>Coin moved from 72 to 80.
+Transaction 21: valid signature; and a coin can be moved.
+=>Coin moved from 64 to 83.
+Transaction 22: valid signature; but 43 isn't an owner.
+=>No effect.
+Transaction 23: valid signature; and a coin can be moved.
+=>Coin moved from 80 to 64.
+Transaction 24: INVALID signature. 
+=>No effect.
+Transaction 25: valid signature; but 92 already has a coin.
+=>No effect.
+Transaction 26: valid signature; but 66 isn't an owner.
+=>No effect.
+Transaction 27: valid signature; but 64 isn't an owner.
+=>No effect.
+Transaction 28: valid signature; and a coin can be moved.
+=>Coin moved from 83 to 43.
+Transaction 29: INVALID signature. 
+=>No effect.
+Transaction 30: valid signature; but 11 isn't an owner.
+=>No effect.
+Transaction 31: valid signature; and a coin can be moved.
+=>Coin moved from 12 to 11.
+Transaction 32: INVALID signature. 
+=>No effect.
+Transaction 33: valid signature; and a coin can be moved.
+=>Coin moved from 44 to 66.
+Transaction 34: valid signature; but 11 isn't an owner.
+=>No effect.
+Transaction 35: valid signature; but 64 isn't an owner.
+=>No effect.
+Transaction 36: INVALID signature. 
+=>No effect.
+Transaction 37: valid signature; and a coin can be moved.
+=>Coin moved from 9 to 64.
+Transaction 38: valid signature; and a coin can be moved.
+=>Coin moved from 92 to 80.
+Transaction 39: valid signature; but 51 isn't an owner.
+=>No effect.
+Transaction 40: valid signature; but 28 already has a coin.
+=>No effect.
+Transaction 41: valid signature; but 83 isn't an owner.
+=>No effect.
+Transaction 42: valid signature; but 11 already has a coin.
+=>No effect.
+Transaction 43: valid signature; but 83 isn't an owner.
+=>No effect.
+Transaction 44: valid signature; and a coin can be moved.
+=>Coin moved from 11 to 51.
+Transaction 45: valid signature; but 51 already has a coin.
+=>No effect.
+Transaction 46: valid signature; and a coin can be moved.
+=>Coin moved from 80 to 72.
+Transaction 47: valid signature; but 44 isn't an owner.
+=>No effect.
+Transaction 48: valid signature; but 22 already has a coin.
+=>No effect.
+Transaction 49: valid signature; and a coin can be moved.
+=>Coin moved from 46 to 44.
+Transaction 50: valid signature; but 9 isn't an owner.
+=>No effect.
+Transaction 51: INVALID signature. 
+=>No effect.
+Transaction 52: valid signature; but 64 isn't an owner.
+=>No effect.
+Transaction 53: valid signature; and a coin can be moved.
+=>Coin moved from 64 to 80.
+Transaction 54: INVALID signature. 
+=>No effect.
+Transaction 55: INVALID signature. 
+=>No effect.
+Transaction 56: valid signature; but 68 already has a coin.
+=>No effect.
+Transaction 57: INVALID signature. 
+=>No effect.
+Transaction 58: valid signature; but 28 already has a coin.
+=>No effect.
+Transaction 59: INVALID signature. 
+=>No effect.
+Transaction 60: valid signature; but 44 already has a coin.
+=>No effect.
+Transaction 61: valid signature; but 64 isn't an owner.
+=>No effect.
+Transaction 62: valid signature; but 11 isn't an owner.
+=>No effect.
+Transaction 63: valid signature; but 11 isn't an owner.
+=>No effect.
+Transaction 64: valid signature; but 72 already has a coin.
+=>No effect.
+Transaction 65: valid signature; and a coin can be moved.
+=>Coin moved from 43 to 83.
+Transaction 66: valid signature; but 92 isn't an owner.
+=>No effect.
+Transaction 67: valid signature; and a coin can be moved.
+=>Coin moved from 72 to 64.
+Transaction 68: valid signature; but 9 isn't an owner.
+=>No effect.
+Transaction 69: INVALID signature. 
+=>No effect.
+Transaction 70: valid signature; but 72 isn't an owner.
+=>No effect.
+Transaction 71: INVALID signature. 
+=>No effect.
+Transaction 72: valid signature; and a coin can be moved.
+=>Coin moved from 22 to 92.
+Transaction 73: INVALID signature. 
+=>No effect.
+Transaction 74: valid signature; but 28 already has a coin.
+=>No effect.
+Transaction 75: valid signature; but 46 isn't an owner.
+=>No effect.
+Transaction 76: valid signature; but 44 already has a coin.
+=>No effect.
+Transaction 77: INVALID signature. 
+=>No effect.
+Transaction 78: valid signature; but 12 isn't an owner.
+=>No effect.
+Transaction 79: valid signature; and a coin can be moved.
+=>Coin moved from 80 to 12.
+Transaction 80: valid signature; and a coin can be moved.
+=>Coin moved from 64 to 46.
+Transaction 81: INVALID signature. 
+=>No effect.
+Transaction 82: valid signature; but 43 isn't an owner.
+=>No effect.
+Transaction 83: valid signature; but 44 already has a coin.
+=>No effect.
+Transaction 84: valid signature; but 9 isn't an owner.
+=>No effect.
+Transaction 85: INVALID signature. 
+=>No effect.
+Transaction 86: valid signature; and a coin can be moved.
+=>Coin moved from 12 to 84.
+Transaction 87: valid signature; but 46 already has a coin.
+=>No effect.
+Transaction 88: valid signature; but 72 isn't an owner.
+=>No effect.
+Transaction 89: valid signature; but 9 isn't an owner.
+=>No effect.
+Transaction 90: valid signature; but 11 isn't an owner.
+=>No effect.
+Transaction 91: INVALID signature. 
+=>No effect.
+Transaction 92: valid signature; and a coin can be moved.
+=>Coin moved from 64 to 64.
+Transaction 93: valid signature; and a coin can be moved.
+=>Coin moved from 46 to 11.
+Transaction 94: valid signature; but 64 isn't an owner.
+=>No effect.
+Transaction 95: valid signature; but 12 isn't an owner.
+=>No effect.
+Transaction 96: valid signature; and a coin can be moved.
+=>Coin moved from 83 to 22.
+Transaction 97: valid signature; but 84 already has a coin.
+=>No effect.
+Transaction 98: INVALID signature. 
+=>No effect.
+Transaction 99: valid signature; but 43 isn't an owner.
+=>No effect.
+-----END OF TRANSACTIONS----
+Coin 0 started with 83 and ended with 22.
+Coin 1 started with 43 and ended with 92.
+Coin 2 started with 46 and ended with 44.
+Coin 3 started with 28 and ended with 28.
+Coin 4 started with 44 and ended with 66.
+Coin 5 started with 68 and ended with 68.
+Coin 6 started with 12 and ended with 51.
+Coin 7 started with 9 and ended with 11.
+Coin 8 started with 64 and ended with 64.
+Coin 9 started with 72 and ended with 84.

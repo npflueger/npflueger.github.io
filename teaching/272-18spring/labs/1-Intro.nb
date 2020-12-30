@@ -1,0 +1,610 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     21536,        602]
+NotebookOptionsPosition[     19614,        545]
+NotebookOutlinePosition[     20051,        562]
+CellTagsIndexPosition[     20008,        559]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[{
+ StyleBox["Math 272: Introduction to Mathematica and Linear Algebra\n",
+  FontSize->24,
+  FontColor->RGBColor[1, 0.5, 0]],
+ "Names: \n\nOur goal today is to learn a few basics of ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " and linear algebra.  Work through the examples and exercises, and let me \
+know when you have questions.  When you have finished, save your file with \
+the last names of everyone in your group, followed by Lab ",
+ StyleBox["1",
+  FontFamily->"Helvetica"],
+ ". \nFor example: LevinKareninaOblonsky",
+ StyleBox["1",
+  FontFamily->"Helvetica"],
+ ".nb \n\nThen one member of your group should email the file to me \
+(npflueger@amherst.edu). Please CC all other group members.\n\nIf you finish \
+this lab before the end of class, let me know so I can briefly check it over \
+and then you will be free to go. If you do not complete this during class \
+time, you may submit it any time until Wednesday night."
+}], "Subtitle",
+ CellChangeTimes->{
+  3.5351316359480762`*^9, {3.567871762681409*^9, 3.567871817785407*^9}, {
+   3.599389490032194*^9, 3.599389492658452*^9}, {3.5993898332948647`*^9, 
+   3.5993898452409554`*^9}, {3.662748805311419*^9, 3.6627488383495283`*^9}, {
+   3.662765868093595*^9, 3.6627658684776917`*^9}, {3.662766516715357*^9, 
+   3.6627665928657417`*^9}, {3.66276668479981*^9, 3.662766691613892*^9}, {
+   3.662767062406953*^9, 3.662767062409205*^9}, {3.694275719398757*^9, 
+   3.6942757692465363`*^9}, {3.6942758035736017`*^9, 3.694275930227042*^9}, {
+   3.694276039447207*^9, 3.694276040119793*^9}, {3.7140706831882277`*^9, 
+   3.7140706842406816`*^9}, {3.714071002950492*^9, 3.714071014989044*^9}, {
+   3.714072298477949*^9, 3.714072299757155*^9}, {3.714072372112131*^9, 
+   3.714072407256859*^9}, {3.726239710639593*^9, 3.7262397112577868`*^9}, {
+   3.726240731174382*^9, 3.726240738484639*^9}},
+ FontSize->18,
+ ExpressionUUID -> "4bcedf95-38a6-4344-b820-4eb4243e52cb"],
+
+Cell[TextData[{
+ "\n",
+ StyleBox["To evaluate commands in Mathematica, put the cursor at the end of \
+the command and press shift-enter.",
+  FontColor->GrayLevel[0]]
+}], "Subtitle",
+ CellChangeTimes->{{3.441995436387745*^9, 3.441995462681155*^9}, 
+   3.6942757786967*^9},
+ FontSize->18,ExpressionUUID->"1acd131d-54d8-4843-8dc6-04eadf3acdf2"],
+
+Cell["\<\
+Feel free to explore Mathematica during the lab--check out the menu options \
+and try variations of the examples so that you get a good feel for what \
+Mathematica can do.\
+\>", "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ FontSize->18,ExpressionUUID->"17890edc-e58f-46e4-a581-02f25e2e16da"],
+
+Cell["\<\
+Look closely at the following plot command: note the syntax, with the command \
+capitalized and using square brackets.  This is typical Mathematica syntax.\
+\>", "Text",
+ FontSize->18,ExpressionUUID->"918de0d6-9386-4013-8181-bbe402996713"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"3", " ", "x"}], "+", "1"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "2"}], ",", "3"}], "}"}]}], "]"}]], "Input",
+ FontSize->18,
+ ExpressionUUID -> "ea85fe84-597d-4ff5-a56d-7d3008fcf3fc"],
+
+Cell["\<\
+For multiple graphs on the same plot, make a list of expressions in curly \
+braces:\
+\>", "Text",
+ FontSize->18,ExpressionUUID->"70f55a02-c90a-408e-babd-ca5361f75545"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"3", " ", "x"}], "+", "1"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "2"}], "x"}], "+", "4"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "2"}], ",", "3"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.4102697380935993`*^9, 3.410269749388054*^9}, 
+   3.714071060930826*^9},
+ FontSize->18,ExpressionUUID->"9e5ca80d-8d19-4326-b635-a3e5237919be"],
+
+Cell[TextData[{
+ "It will be more convenient to use implicit equations, so here is a way to \
+plot them. Note that the plots from the example above and the example below \
+are the same except for the scaling of the x-axis.  Also, be aware that the \
+axes do not always go through the origin in ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " plots."
+}], "Text",
+ CellChangeTimes->{{3.410269644621778*^9, 3.4102696784193583`*^9}, {
+   3.5351316691557083`*^9, 3.535131669649767*^9}, 3.599389525817421*^9, {
+   3.694191327899784*^9, 3.6941913812669973`*^9}, {3.694191435099209*^9, 
+   3.6941914360101547`*^9}},
+ FontSize->18,ExpressionUUID->"211a96ad-3339-4215-b038-3ee442e69f7a"],
+
+Cell[BoxData[
+ RowBox[{"ContourPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"3", "x"}], "-", "y"}], "\[Equal]", 
+      RowBox[{"-", "1"}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"2", "x"}], "+", "y"}], "\[Equal]", "4"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "2"}], ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "1"}], ",", "6"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.410269563486149*^9, 3.410269565659917*^9}, {
+  3.4102696052929173`*^9, 3.4102696236856937`*^9}},
+ FontSize->18,ExpressionUUID->"58d86c69-05c4-4b1d-bd8c-7a1d6b9c9bd9"],
+
+Cell[BoxData[
+ RowBox[{"ContourPlot", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "^", "2"}], "+", 
+     RowBox[{"y", "^", "2"}]}], "\[Equal]", "1"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.410269693191003*^9, 3.4102697002921*^9}},
+ FontSize->18,ExpressionUUID->"56ba2ea7-93a2-4cbf-8f7c-f48a77305450"],
+
+Cell[BoxData[
+ RowBox[{"ContourPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "+", 
+         SuperscriptBox["y", "2"]}], ")"}], "2"], "\[Equal]", 
+      RowBox[{
+       SuperscriptBox["x", "2"], "-", 
+       SuperscriptBox["y", "2"]}]}], ",", 
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["x", "2"], "+", 
+         SuperscriptBox["y", "2"]}], ")"}], "2"], "\[Equal]", 
+      RowBox[{"2", " ", "x", " ", "y"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.662748934399263*^9, 3.66274895023354*^9}},
+ FontSize->18,ExpressionUUID->"a271be7a-c349-4db2-a5bb-aa81b812ab80"],
+
+Cell["\<\
+To make a 3 dimensional plot, we need to use the command ContourPlot3D:\
+\>", "Text",
+ CellChangeTimes->{{3.410269644621778*^9, 3.4102696784193583`*^9}, {
+   3.5351316691557083`*^9, 3.535131669649767*^9}, 3.599389525817421*^9, {
+   3.662764091434229*^9, 3.6627641153070097`*^9}},
+ FontSize->18,ExpressionUUID->"a5174326-6d62-4d14-9b51-07194f2229d6"],
+
+Cell[BoxData[
+ RowBox[{"ContourPlot3D", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["x", "2"], "+", 
+       SuperscriptBox["y", "2"]}], "\[Equal]", "4"}], ",", 
+     RowBox[{
+      RowBox[{"x", "+", "y", "-", 
+       RowBox[{"2", "z"}]}], "\[Equal]", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", 
+     RowBox[{"-", "3"}], ",", "3"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.662748934399263*^9, 3.66274895023354*^9}, {
+  3.6627641261586514`*^9, 3.6627642001319857`*^9}, {3.6627644225873423`*^9, 
+  3.662764448029909*^9}},
+ FontSize->18,ExpressionUUID->"f6f34043-ba40-46f3-bab6-60e9d1e24446"],
+
+Cell[TextData[{
+ "Please note that we have used double equal signs to denote an equation.  \
+Single equal signs are used in ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " to assign a value or expression to a variable name (for example, the \
+command x=4 sets x to have the value 4 whenever you use it again, while x==4 \
+is an equation that doesn't change the value of x). "
+}], "Text",
+ CellChangeTimes->{{3.662749091332922*^9, 3.662749092683313*^9}, {
+  3.6941914929509897`*^9, 3.694191495444901*^9}, {3.6941915434284763`*^9, 
+  3.694191575174889*^9}},
+ FontSize->18,ExpressionUUID->"085810e0-2f88-4c2a-ad51-e465998ca42f"],
+
+Cell[TextData[{
+ StyleBox["\nA ",
+  FontWeight->"Bold"],
+ StyleBox["linear equation in 2 variables",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ StyleBox[" has form ",
+  FontWeight->"Bold"],
+ StyleBox["ax+by=c",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ StyleBox[", while a ",
+  FontWeight->"Bold"],
+ StyleBox["linear equation in 3 variables",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ StyleBox[" looks like ",
+  FontWeight->"Bold"],
+ StyleBox["ax+by+cz=d",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ StyleBox[".\n\nExercise 1. ",
+  FontWeight->"Bold"],
+ " Make up two equations for lines that intersect but are not parallel and \
+plot them so that the point of intersection appears in the plot.  To create a \
+new cell for commands, put your cursor just below this text and click so that \
+a long horizontal line appears; then start typing."
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.567871942932633*^9, 3.567871991366486*^9}, 
+   3.599389555810197*^9, {3.6627490313433943`*^9, 3.6627490332858963`*^9}},
+ FontSize->18,ExpressionUUID->"7edddd0e-32f3-43f4-8b22-724ef297f770"],
+
+Cell[TextData[{
+ StyleBox["Exercise 2.",
+  FontWeight->"Bold"],
+ "  Make up two equations for lines that are parallel and plot them.  "
+}], "Text",
+ FontSize->18,ExpressionUUID->"0e2850bd-82b6-4a41-b1a8-221b89d78a3e"],
+
+Cell[TextData[{
+ StyleBox["Exercise 3.",
+  FontWeight->"Bold"],
+ "  Make up two different equations for the same line and plot them. "
+}], "Text",
+ FontSize->18,ExpressionUUID->"fd758bc2-1f8e-47d7-af15-d2e8e418cc3c"],
+
+Cell[TextData[{
+ "Now we're ready to think about solving systems of equations (solutions that \
+satisfy multiple equations simultaneously).  In ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ ", we can do this through the Solve command (to solve nonlinear equations \
+you often have to use the FindRoot command, but this is *linear* algebra, so \
+we won't have to worry about it!):"
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.5678720128525953`*^9, 3.5678720414266148`*^9}, {
+  3.567872076212977*^9, 3.567872082024783*^9}, {3.662749067399987*^9, 
+  3.662749069860304*^9}},
+ FontSize->18,ExpressionUUID->"796b5bfd-b02a-4d62-9f03-d236adea6018"],
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"3", " ", "x"}], "+", "1"}], "\[Equal]", "0"}], ",", "x"}], 
+  "]"}]], "Input",
+ FontSize->18,ExpressionUUID->"4f0f41b5-23ee-4021-ad17-ef5e954848ed"],
+
+Cell["\<\
+Once again, note the use of double equal signs to denote an equation!
+
+To solve multiple equations (a \"linear system of equations\"), make lists in \
+curly braces of the equations and the variables you want to solve for:\
+\>", "Text",
+ CellChangeTimes->{{3.662749091332922*^9, 3.662749092683313*^9}, {
+  3.6941914929509897`*^9, 3.694191495444901*^9}, {3.694191589282764*^9, 
+  3.694191597292926*^9}},
+ FontSize->18,ExpressionUUID->"3eea5b2e-ceed-4a70-90c0-9949067d5f0a"],
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"3", "x"}], "-", "y"}], "\[Equal]", 
+      RowBox[{"-", "1"}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"2", "x"}], "+", "y"}], "\[Equal]", "4"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y"}], "}"}]}], "]"}]], "Input",
+ FontSize->18,ExpressionUUID->"56d1d5bc-464d-4a0d-84c8-c0d060739761"],
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"3", "x"}], "-", "y", "+", "z"}], "\[Equal]", 
+      RowBox[{"-", "1"}]}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"2", "x"}], "+", "y", "-", 
+       RowBox[{"3", "z"}]}], "\[Equal]", "4"}], ",", 
+     RowBox[{
+      RowBox[{"x", "+", "z"}], "\[Equal]", "0"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y", ",", "z"}], "}"}]}], "]"}]], "Input",
+ FontSize->18,ExpressionUUID->"42e7c740-a079-4fca-a212-44013165144b"],
+
+Cell[TextData[{
+ StyleBox["Exercise 4. ",
+  FontWeight->"Bold"],
+ " Use Solve to find the point of intersection for your two intersecting \
+linear equations (from Exercise 1)."
+}], "Text",
+ FontSize->18,ExpressionUUID->"b46c1600-dad4-425b-9444-c9831be5fc72"],
+
+Cell[TextData[{
+ StyleBox["Exercise 5.",
+  FontWeight->"Bold"],
+ "  See what Solve says for your two parallel linear equations (from Exercise \
+2)."
+}], "Text",
+ FontSize->18,ExpressionUUID->"d28adf62-0ca4-4c2e-84e0-28ef73f962b6"],
+
+Cell[TextData[{
+ StyleBox["Exercise 6. ",
+  FontWeight->"Bold"],
+ " Use Solve on your two linear equations for the same line (from Exercise 3)."
+}], "Text",
+ FontSize->18,ExpressionUUID->"61bfc55a-1181-4128-9942-9603ea45fbe7"],
+
+Cell[TextData[{
+ StyleBox["Exercise 7.",
+  FontWeight->"Bold"],
+ " The following linear systems involve equations of planes. Plot each of the \
+following systems (remember to use ContourPlot3D instead of ContourPlot) and \
+use this to guess how many solutions the system has (i.e., none, one, or \
+infinitely many). Then confirm your answer using the Solve command.\n\n(a) \
+x+y==1 and x-y==1 and z==1"
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.567872138174605*^9, 3.567872144434373*^9}, {
+  3.662764255914012*^9, 3.662764289746965*^9}, {3.662764335235292*^9, 
+  3.662764384077305*^9}, {3.66276455596657*^9, 3.662764600875852*^9}, {
+  3.6627646633290787`*^9, 3.6627646652583733`*^9}, {3.662764844864485*^9, 
+  3.662764865302516*^9}, {3.6627649733007507`*^9, 3.6627649805044613`*^9}, {
+  3.662765388879745*^9, 3.662765404135653*^9}, {3.714071142078245*^9, 
+  3.7140711426287413`*^9}},
+ FontSize->18,
+ ExpressionUUID -> "3872625f-3a26-4f23-8032-c2c1b493c647"],
+
+Cell["(b) x-y+z==2 and x-y==1 and z==1", "Text",
+ CellChangeTimes->{{3.66276462243892*^9, 3.662764656528719*^9}, {
+  3.662764990302994*^9, 3.662764994023013*^9}},
+ FontSize->18,ExpressionUUID->"81217ae3-34f7-49be-9bcd-b9d3120a0c94"],
+
+Cell["(c) x-2y+z==1  and 2x-4y+2z==10 and  x+y+z==1 ", "Text",
+ CellChangeTimes->{{3.662764758512477*^9, 3.662764806588065*^9}, {
+  3.694191735905826*^9, 3.694191736142105*^9}},
+ FontSize->18,ExpressionUUID->"8c36c3af-9fc0-42c9-a217-274bf05979b5"],
+
+Cell["(d) 2x-y+z==2  and 4x-2y+2z==4 and -6x+3y-3z==-6", "Text",
+ CellChangeTimes->{{3.662764676794743*^9, 3.66276472558256*^9}, {
+  3.662765012144977*^9, 3.662765023264574*^9}},
+ FontSize->18,ExpressionUUID->"cf97c958-81ac-431d-a0ce-942099e18e04"],
+
+Cell["(e) x+y==1  and x-y==1 and x==-1", "Text",
+ CellChangeTimes->{{3.662764676794743*^9, 3.66276472558256*^9}, {
+  3.662765012144977*^9, 3.662765023264574*^9}, {3.694191823906229*^9, 
+  3.6941918316010427`*^9}, {3.6941930588658113`*^9, 3.694193080149638*^9}},
+ FontSize->18,ExpressionUUID->"7ac71d33-bcfc-413c-9f43-a161c42cadc8"],
+
+Cell[TextData[{
+ StyleBox["You can type in ",
+  FontSize->18],
+ StyleBox["matrices",
+  FontSize->18,
+  FontWeight->"Bold"],
+ StyleBox[" in ",
+  FontSize->18],
+ StyleBox["Mathematica ",
+  FontSize->18,
+  FontSlant->"Italic"],
+ StyleBox["using curly braces, as in the following syntax.",
+  FontSize->18]
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.7262398205785093`*^9, 3.726239821529889*^9}, {
+  3.726239906714244*^9, 3.726239976010498*^9}}],
+
+Cell[BoxData[
+ RowBox[{"A", " ", "=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"3", ",", "0", ",", 
+      RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"8", ",", "0", ",", "0", ",", 
+      RowBox[{"-", "2"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "2", ",", 
+      RowBox[{"-", "1"}], ",", 
+      RowBox[{"-", "1"}]}], "}"}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.726239978648643*^9, 3.726240057402707*^9}}],
+
+Cell[TextData[{
+ StyleBox["To display the matrix in the usual way, use the ",
+  FontSize->18],
+ StyleBox["MatrixForm",
+  FontSize->18,
+  FontWeight->"Bold"],
+ StyleBox[" command, as follows.",
+  FontSize->18]
+}], "Text",
+ CellChangeTimes->{{3.726240070411566*^9, 3.726240137875063*^9}}],
+
+Cell[BoxData[
+ RowBox[{"A", " ", "//", " ", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.7262401419936047`*^9, 3.7262401444149933`*^9}}],
+
+Cell[TextData[StyleBox["To reduce a matrix to reduced row echelon form \
+(RREF), use the RowReduce command. The following line row-reduces the matrix \
+A defined above, then converts it to MatrixForm to display it.",
+ FontSize->18]], "Text",
+ CellChangeTimes->{{3.726240167979443*^9, 3.726240241162957*^9}, {
+  3.726240287556282*^9, 3.726240311819488*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"RowReduce", "[", "A", "]"}], " ", "//", " ", 
+  "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.726240244505616*^9, 3.726240282967229*^9}}],
+
+Cell[TextData[{
+ StyleBox["Exercise 8. ",
+  FontSize->18,
+  FontWeight->"Bold"],
+ StyleBox["Enter the augmented matrix corresponding to the linear system in \
+Exercise 7(c) into ",
+  FontSize->18],
+ StyleBox["Mathematica",
+  FontSize->18,
+  FontSlant->"Italic"],
+ StyleBox[" (note: ",
+  FontSize->18],
+ StyleBox["Mathematica",
+  FontSize->18,
+  FontSlant->"Italic"],
+ StyleBox[" will not display the vertical line we usually draw in class \
+before the last column), and reduce it to RREF. Use this to check your answer \
+from 7(c).",
+  FontSize->18]
+}], "Text",
+ CellChangeTimes->{{3.726240328668036*^9, 3.7262403339233103`*^9}, {
+  3.7262404380043573`*^9, 3.726240589476233*^9}}],
+
+Cell[TextData[{
+ StyleBox["Exercise 9.",
+  FontWeight->"Bold"],
+ "  Classify each of the following linear systems as ",
+ StyleBox["consistent",
+  FontWeight->"Bold"],
+ " (has at least one solution) or ",
+ StyleBox["inconsistent",
+  FontWeight->"Bold"],
+ " (has no solution).  If the system is consistent, determine whether there \
+is a unique solution or infinitely many solutions (involving a free \
+variable). You may do this however you wish: using Solve, using RowReduce, or \
+by graphing.\n\n(a) 2x-y+z==2  and 2x-y+z==6"
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellChangeTimes->{{3.567872138174605*^9, 3.567872144434373*^9}, 
+   3.6627645500792427`*^9, {3.72623989729044*^9, 3.726239897498193*^9}, {
+   3.726240596628339*^9, 3.7262406448683023`*^9}},
+ FontSize->18,
+ ExpressionUUID -> "90f4d4e3-93a6-4b04-9a23-b721dfa0e3b0"],
+
+Cell["(b) 2x-y+z\[Equal]2 and x-3y+z\[Equal]1 and 2x+y-z\[Equal]6", "Text",
+ FontSize->18,ExpressionUUID->"9d6a094f-06e5-47b0-9f2e-f539cba27311"],
+
+Cell["(c) 2x+3y\[Equal]4 and x-y\[Equal]1 and x+y\[Equal]3", "Text",
+ FontSize->18,ExpressionUUID->"15a53155-e901-4095-81f0-c9b8a953c865"],
+
+Cell["(d) 2x+3y-z\[Equal]4 and x-y\[Equal]1", "Text",
+ FontSize->18,ExpressionUUID->"1c3008dd-d17f-41fa-bb66-e9886a66f4b3"]
+}, Open  ]]
+},
+WindowSize->{1071, 764},
+WindowMargins->{{732, Automatic}, {Automatic, 6}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (December 10, \
+2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 1934, 35, 281, "Subtitle"],
+Cell[2504, 59, 341, 8, 67, "Subtitle"],
+Cell[2848, 69, 297, 6, 67, "Text"],
+Cell[3148, 77, 249, 4, 59, "Text"],
+Cell[3400, 83, 283, 9, 33, "Input"],
+Cell[3686, 94, 177, 4, 35, "Text"],
+Cell[3866, 100, 497, 15, 33, "Input"],
+Cell[4366, 117, 684, 13, 83, "Text"],
+Cell[5053, 132, 683, 20, 33, "Input"],
+Cell[5739, 154, 499, 14, 33, "Input"],
+Cell[6241, 170, 923, 28, 49, "Input"],
+Cell[7167, 200, 359, 6, 35, "Text"],
+Cell[7529, 208, 848, 24, 41, "Input"],
+Cell[8380, 234, 632, 12, 83, "Text"],
+Cell[9015, 248, 1115, 31, 163, "Text"],
+Cell[10133, 281, 217, 5, 35, "Text"],
+Cell[10353, 288, 216, 5, 35, "Text"],
+Cell[10572, 295, 669, 13, 91, "Text"],
+Cell[11244, 310, 236, 7, 33, "Input"],
+Cell[11483, 319, 481, 9, 107, "Text"],
+Cell[11967, 330, 437, 14, 33, "Input"],
+Cell[12407, 346, 560, 17, 33, "Input"],
+Cell[12970, 365, 258, 6, 35, "Text"],
+Cell[13231, 373, 230, 6, 35, "Text"],
+Cell[13464, 381, 226, 5, 35, "Text"],
+Cell[13693, 388, 981, 18, 139, "Text"],
+Cell[14677, 408, 232, 3, 35, "Text"],
+Cell[14912, 413, 247, 3, 35, "Text"],
+Cell[15162, 418, 248, 3, 35, "Text"],
+Cell[15413, 423, 331, 4, 35, "Text"],
+Cell[15747, 429, 462, 16, 43, "Text"],
+Cell[16212, 447, 483, 14, 28, "Input"],
+Cell[16698, 463, 286, 9, 35, "Text"],
+Cell[16987, 474, 139, 2, 28, "Input"],
+Cell[17129, 478, 356, 5, 59, "Text"],
+Cell[17488, 485, 174, 4, 28, "Input"],
+Cell[17665, 491, 680, 21, 83, "Text"],
+Cell[18348, 514, 835, 19, 139, "Text"],
+Cell[19186, 535, 145, 1, 35, "Text"],
+Cell[19334, 538, 138, 1, 35, "Text"],
+Cell[19475, 541, 123, 1, 35, "Text"]
+}, Open  ]]
+}
+]
+*)
+

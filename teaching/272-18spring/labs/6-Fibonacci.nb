@@ -1,0 +1,468 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     14040,        459]
+NotebookOptionsPosition[     13289,        431]
+NotebookOutlinePosition[     13646,        447]
+CellTagsIndexPosition[     13603,        444]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+The Fibonacci sequence and matrix diagonalization
+Math 272 \
+\>", "Subtitle",
+ CellChangeTimes->{
+  3.535133293912842*^9, {3.5720254202473087`*^9, 3.572025441831663*^9}, {
+   3.733483598118202*^9, 3.733483598532898*^9}}],
+
+Cell["\<\
+Email completed labs to npflueger@amherst.edu by the evening of Monday 4/30.\
+\>", "Subtitle",
+ CellChangeTimes->{{3.417778046928959*^9, 3.417778047167523*^9}, {
+  3.6066631240433483`*^9, 3.606663124437421*^9}, {3.733483601580833*^9, 
+  3.733483613956635*^9}}],
+
+Cell[TextData[{
+ "The sequence of numbers defined by\n\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["a", "0"], "=", "0"}], "\[IndentingNewLine]"}], 
+   TraditionalForm]]],
+ "\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["a", "1"], "=", "1"}], "\[IndentingNewLine]"}], 
+   TraditionalForm]]],
+ "\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["a", "n"], "=", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["a", 
+        RowBox[{"n", "-", "1"}]], "+", 
+       RowBox[{
+        SubscriptBox["a", 
+         RowBox[{"n", "-", "2"}]], "   ", "for", "  ", "n"}]}], "=", "2"}]}], 
+    ",", "3", ",", "4", ",", "..."}], TraditionalForm]]],
+ "\n\nis called the Fibonacci sequence. This sequence was described by the \
+Italian mathematician Leonardo Fibonacci in the 13th century to model the \
+growth of rabbit populations and is named after him, although the sequence \
+actually appeared centuries earlier in Indian mathematics. This sequence \
+appears in nature in various ways, for instance, in the arrangement of leaves \
+on a stem, shape of an uncurling fern, the pattern on a pine cone (see the \
+poster in Mudd 014). \n\n",
+ StyleBox["Exercise 1.",
+  FontWeight->"Bold"],
+ " Find the first 10 numbers in the Fibonacci sequence (",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["a", "0"], TraditionalForm]]],
+ " through ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["a", "9"], TraditionalForm]]],
+ ")."
+}], "Text",
+ CellChangeTimes->{{3.417778232872942*^9, 3.417778274034095*^9}, {
+  3.542706256252612*^9, 3.54270627485577*^9}, {3.572025509527904*^9, 
+  3.572025727926717*^9}, {3.5720257634133577`*^9, 3.5720257898853407`*^9}, {
+  3.572025826196691*^9, 3.572025844319563*^9}, {3.5720258762566137`*^9, 
+  3.572025901353586*^9}, {3.5720259321410637`*^9, 3.5720259331388474`*^9}, {
+  3.572025985425003*^9, 3.5720260041471357`*^9}, {3.572099376516232*^9, 
+  3.572099554886031*^9}, {3.572099882403736*^9, 3.57209988240381*^9}, {
+  3.5750439881381683`*^9, 3.5750439917691507`*^9}, {3.733483625708921*^9, 
+  3.733483626452919*^9}},
+ FontSize->16],
+
+Cell[BoxData[" "], "Input",
+ CellChangeTimes->{3.5750445892918043`*^9}],
+
+Cell[TextData[{
+ "\nFinding the first few Fibonacci numbers is pretty easy, but the numbers \
+grow exponentially as ",
+ StyleBox["n",
+  FontSlant->"Italic"],
+ " increases. What if we want to find ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["a", "100"], TraditionalForm]]],
+ "? That\[CloseCurlyQuote]s not so easy -- it\[CloseCurlyQuote]s a very large \
+number. Let\[CloseCurlyQuote]s apply diagonalization to analyze the Fibonacci \
+sequence (treated as a dynamical system), and thereby find a straightforward \
+way to calculate numbers far out in the sequence like ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["a", "100"], TraditionalForm]]],
+ ".\n\n",
+ StyleBox["Exercise 2.",
+  FontWeight->"Bold"],
+ " Rewrite the recursive definition for ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["a", "n"], TraditionalForm]]],
+ " in matrix-vector form ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["u", 
+    RowBox[{"n", "+", "1"}]], TraditionalForm]]],
+ "=A",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["u", "n"], TraditionalForm]]],
+ " where ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["u", "0"], "=", 
+    RowBox[{
+     RowBox[{"(", GridBox[{
+        {
+         SubscriptBox["a", "1"]},
+        {
+         SubscriptBox["a", "0"]}
+       }], ")"}], "=", 
+     RowBox[{"(", GridBox[{
+        {"1"},
+        {"0"}
+       }], ")"}]}]}], TraditionalForm]]],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["u", "n"], "=", 
+    RowBox[{"(", GridBox[{
+       {
+        SubscriptBox["a", 
+         RowBox[{"n", "+", "1"}]]},
+       {
+        SubscriptBox["a", "n"]}
+      }], ")"}]}], TraditionalForm]]],
+ ". That is, if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", GridBox[{
+      {
+       SubscriptBox["a", 
+        RowBox[{"n", "+", "1"}]]},
+      {
+       SubscriptBox["a", "n"]}
+     }], ")"}], TraditionalForm]]],
+ "=A",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", GridBox[{
+      {
+       SubscriptBox["a", "n"]},
+      {
+       SubscriptBox["a", 
+        RowBox[{"n", "-", "1"}]]}
+     }], ")"}], TraditionalForm]]],
+ ", what is the 2x2 matrix A? Hint: substitute the original definition in for \
+",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["a", 
+    RowBox[{"n", "+", "1"}]], TraditionalForm]]],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.572026012365942*^9, 3.5720261350922413`*^9}, {
+  3.5720925296928453`*^9, 3.572092646347755*^9}, {3.572099570097084*^9, 
+  3.5720996733155622`*^9}, {3.572099825476605*^9, 3.572099835704268*^9}, {
+  3.57209988589176*^9, 3.57209988589182*^9}, {3.5758060214755573`*^9, 
+  3.575806107198224*^9}},
+ FontSize->16],
+
+Cell[BoxData[" "], "Input",
+ CellChangeTimes->{3.575044550594409*^9}],
+
+Cell[TextData[{
+ "\n",
+ StyleBox["Exercise 3.",
+  FontWeight->"Bold"],
+ " Multiplying repeatedly by the same matrix is the same as multiplying by a \
+power of that matrix, so ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["u", "n"], TraditionalForm]]],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    StyleBox["A",
+     FontSlant->"Plain"], "n"], TraditionalForm]]],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["u", "0"], TraditionalForm]]],
+ " where ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["u", "n"], TraditionalForm]]],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", GridBox[{
+      {
+       SubscriptBox["a", 
+        RowBox[{"n", "+", "1"}]]},
+      {
+       SubscriptBox["a", "n"]}
+     }], ")"}], TraditionalForm]]],
+ ". Calculate the vectors ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["u", "1"], " "}], TraditionalForm]]],
+ "through",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    RowBox[{
+     SubscriptBox["u", "4"], " ", "using", " ", "the", " ", "formula", 
+     " "}]}], TraditionalForm]]],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["u", "n"], TraditionalForm]]],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    StyleBox["A",
+     FontSlant->"Plain"], "n"], TraditionalForm]]],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["u", "0"], "."}], TraditionalForm]]],
+ " Remember to use ",
+ StyleBox["MatrixPower[A,n]",
+  FontWeight->"Bold"],
+ " in ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " to find ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    StyleBox["A",
+     FontSlant->"Plain"], "n"], TraditionalForm]]],
+ StyleBox[". ",
+  FontSlant->"Italic"],
+ "Vectors can be input into ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " using curly braces, like u0={1,0}."
+}], "Text",
+ CellChangeTimes->{{3.572026012365942*^9, 3.5720261350922413`*^9}, {
+   3.5720925296928453`*^9, 3.572092646347755*^9}, {3.572099570097084*^9, 
+   3.572099812873123*^9}, {3.57209985324616*^9, 3.572099869540756*^9}, {
+   3.572099910302232*^9, 3.572099926087324*^9}, {3.572100350324379*^9, 
+   3.572100452142262*^9}, {3.572101239569971*^9, 3.572101281609767*^9}, 
+   3.575806128743167*^9, {3.60733880154839*^9, 3.607338878573812*^9}, {
+   3.733488422553217*^9, 3.7334884390796423`*^9}},
+ FontSize->16],
+
+Cell[BoxData[" "], "Input",
+ CellChangeTimes->{3.5750445935617456`*^9}],
+
+Cell[TextData[{
+ "\nCalculating large powers of A is no better than using the original \
+formula, so we want to do something slicker. A nice application of matrix \
+diagonalization is to find a formula for large powers of a matrix that is \
+easy to understand and compute.\n\n",
+ StyleBox["Exercise 4.",
+  FontWeight->"Bold"],
+ " Find the eigenvalues and eigenvectors of A (you can use ",
+ StyleBox["Eigensystem[A]//MatrixForm",
+  FontWeight->"Bold"],
+ "), and use them to determine matrices P and D such that A=PD",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    StyleBox["P",
+     FontSlant->"Plain"], 
+    RowBox[{"-", "1"}]], TraditionalForm]]],
+ StyleBox[". ",
+  FontSlant->"Italic"],
+ "(The larger eigenvalue is the golden ratio.) ",
+ StyleBox["Note",
+  FontWeight->"Bold"],
+ ": you will have to call the diagonal matrix something other than D in ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ ", for instance, B. ",
+ StyleBox["Note: ",
+  FontWeight->"Bold"],
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " has useful syntax that you can use to find D and P directly from the \
+output of Eigensystem, rather than typing them in directly. You can either \
+experiment or google around to figure out how to do it, or feel free to call \
+me over to show you."
+}], "Text",
+ CellChangeTimes->{{3.572026012365942*^9, 3.5720261350922413`*^9}, {
+   3.5720925296928453`*^9, 3.572092646347755*^9}, {3.572099570097084*^9, 
+   3.572099812873123*^9}, {3.57209985324616*^9, 3.572099869540756*^9}, {
+   3.572099910302232*^9, 3.572099926087324*^9}, {3.572100350324379*^9, 
+   3.572100543811399*^9}, {3.5721009609773684`*^9, 3.5721010591821203`*^9}, {
+   3.572101374503717*^9, 3.5721013754751043`*^9}, {3.572101481623025*^9, 
+   3.5721015258698263`*^9}, {3.57580598857908*^9, 3.5758060092388477`*^9}, 
+   3.607338736519248*^9, {3.733483689980706*^9, 3.733483756700411*^9}},
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["Exercise 5.",
+  FontWeight->"Bold"],
+ " We can now generate a formula for powers of A via ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    StyleBox["A",
+     FontSlant->"Plain"], "n"], TraditionalForm]]],
+ "=P",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    StyleBox["D",
+     FontSlant->"Plain"], "n"], TraditionalForm]]],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    StyleBox["P",
+     FontSlant->"Plain"], 
+    RowBox[{"-", "1"}]], TraditionalForm]]],
+ ". Enter this formula into ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " to obtain an expression for powers of A. You can use Inverse[P] to \
+calculate the matrix inverse of P if you wish."
+}], "Text",
+ CellChangeTimes->{{3.572101062022584*^9, 3.572101075870145*^9}, {
+  3.5721013706553917`*^9, 3.572101437225909*^9}, {3.572101539932585*^9, 
+  3.572101635988831*^9}, {3.572101685074535*^9, 3.5721017021227427`*^9}},
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["Exercise 6.",
+  FontWeight->"Bold"],
+ " What is a simpler form for ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["D", "n"], TraditionalForm]]],
+ " ? That is, taking powers of a diagonal matrix can be simplified to taking \
+powers of ..."
+}], "Text",
+ CellChangeTimes->{{3.572101062022584*^9, 3.572101075870145*^9}, {
+  3.5721013706553917`*^9, 3.572101437225909*^9}, {3.572101539932585*^9, 
+  3.572101635988831*^9}, {3.572101685074535*^9, 3.572101787818801*^9}, {
+  3.575806173863928*^9, 3.57580621354838*^9}, {3.575806247322502*^9, 
+  3.575806247595776*^9}},
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["Exercise 7.",
+  FontWeight->"Bold"],
+ " Multiply your formula for ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    StyleBox["A",
+     FontSlant->"Plain"], "n"], TraditionalForm]]],
+ " times the initial vector u0={1,0} to obtain ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["u", "n"], TraditionalForm]]],
+ ". The 2nd entry will equal ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["a", "n"], TraditionalForm]]],
+ ". State the formula this gives you for ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["a", "n"], TraditionalForm]]],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.572101062022584*^9, 3.572101075870145*^9}, {
+   3.5721013706553917`*^9, 3.572101437225909*^9}, {3.572101539932585*^9, 
+   3.572101635988831*^9}, {3.572101685074535*^9, 3.572101787818801*^9}, 
+   3.575806164103406*^9, {3.607338752173102*^9, 3.607338772402226*^9}, {
+   3.607338890386568*^9, 3.6073389148726377`*^9}},
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["Exercise 8.",
+  FontWeight->"Bold"],
+ " Substitute ",
+ StyleBox["n",
+  FontSlant->"Italic"],
+ "=100 into your formula for ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["a", "n"], " ", "to", " ", "calculate", " ", 
+    SubscriptBox["a", "100"]}], TraditionalForm]]],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.572101062022584*^9, 3.572101075870145*^9}, {
+   3.5721013706553917`*^9, 3.572101437225909*^9}, {3.572101539932585*^9, 
+   3.572101635988831*^9}, {3.572101685074535*^9, 3.572101787818801*^9}, {
+   3.572101822380076*^9, 3.572101869220519*^9}, {3.572101916637644*^9, 
+   3.572101919873493*^9}, 3.5758061654269943`*^9},
+ FontSize->16]
+}, Open  ]]
+},
+WindowSize->{1423, 989},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (December 10, \
+2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 230, 6, 81, "Subtitle"],
+Cell[812, 30, 270, 5, 51, "Subtitle"],
+Cell[1085, 37, 2115, 57, 289, "Text"],
+Cell[3203, 96, 71, 1, 28, "Input"],
+Cell[3277, 99, 2565, 93, 187, "Text"],
+Cell[5845, 194, 69, 1, 28, "Input"],
+Cell[5917, 197, 2246, 83, 99, "Text"],
+Cell[8166, 282, 71, 1, 28, "Input"],
+Cell[8240, 285, 1889, 43, 189, "Text"],
+Cell[10132, 330, 932, 30, 57, "Text"],
+Cell[11067, 362, 601, 15, 33, "Text"],
+Cell[11671, 379, 925, 28, 33, "Text"],
+Cell[12599, 409, 674, 19, 33, "Text"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
