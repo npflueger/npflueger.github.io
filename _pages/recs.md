@@ -1,7 +1,7 @@
 ---
 title: "Recommendation letters"
 layout: single
-permalink: /recs
+permalink: /recs/
 ---
 
 I write many recommendation letters per year, and it is a very important part of my job. To help the process run as smoothly as possible, please review this information before requesting a reference.
