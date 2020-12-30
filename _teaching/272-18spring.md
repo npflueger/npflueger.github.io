@@ -29,7 +29,7 @@ There are many sources of help in this class; you should make use of all of them
 *   F 4/27: [Markov chains demo notebook](handouts/markov.nb)
 {%- comment -%} Removed to save space
 *   M 4/30: [PCA demo notebook](handouts/pca.nb) (not required material)
-{%- endcomment -%}
+{% endcomment %}
 
 ### Homework
 
