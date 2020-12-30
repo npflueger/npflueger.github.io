@@ -3,7 +3,7 @@ title: "Math 220, Spring 2020"
 coursenum: "Math 220"
 section: 2
 coursename: "Mathematical Reasoning and Proof"
-permalink: teaching/220-20spring
+permalink: teaching/220-20spring/
 startdate: 2020-01
 semester: "Spring 2020"
 ---
