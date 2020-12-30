@@ -9,5 +9,3 @@ The most reliable way to reach me is by email. For course-related issues, I will
 **email:** My first initial and last name at amherst dot edu.
 
 **Office:** Seeley Mudd 401
-
-
