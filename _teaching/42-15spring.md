@@ -2,7 +2,7 @@
 title: "Math 42, Spring 2015"
 coursenum: "Math 42"
 coursename: "Introduction to Number Theory"
-permalink: teaching/42-15spring
+permalink: teaching/42-15spring/
 startdate: 2015-01
 semester: "Spring 2015"
 school: "Brown"

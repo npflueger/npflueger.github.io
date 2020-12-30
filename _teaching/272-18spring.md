@@ -2,7 +2,7 @@
 title: "Math 272, Spring 2018"
 coursenum: "Math 272"
 coursename: "Linear Algebra with Applications"
-permalink: teaching/272-18spring
+permalink: teaching/272-18spring/
 startdate: 2018-01
 semester: "Spring 2018"
 ---

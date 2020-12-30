@@ -3,7 +3,7 @@ title: "Math 121, Spring 2018"
 coursenum: "Math 121"
 section: 1
 coursename: "Intermediate Calculus"
-permalink: teaching/121-18spring
+permalink: teaching/121-18spring/
 startdate: 2018-01
 semester: "Spring 2018"
 ---

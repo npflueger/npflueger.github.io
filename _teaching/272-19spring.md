@@ -2,7 +2,7 @@
 title: "Math 272, Spring 2019"
 coursenum: "Math 272"
 coursename: "Linear Algebra with Applications"
-permalink: teaching/272-19spring
+permalink: teaching/272-19spring/
 startdate: 2019-01
 semester: "Spring 2019"
 ---
@@ -97,4 +97,4 @@ Problem sets will be posted here. All problem sets are due at 10pm, via Gradesco
     *   [Exam](https://lms.ats.amherst.edu/pluginfile.php/620443/mod_resource/content/1/finalExamCompact.pdf) / [Solutions](https://lms.ats.amherst.edu/pluginfile.php/620444/mod_resource/content/1/finalExamSoln.pdf)
     
     
-    
+   
