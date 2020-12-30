@@ -1,6 +1,6 @@
 ---
 semester: "Spring 2020"
-coursenum: 220
+coursenum: "Math 220"
 ---
 *   Allison Randy-Cofie's Q Fellow help hours:
     *   Access from this [Zoom link](https://amherstcollege.zoom.us/j/2533150845)

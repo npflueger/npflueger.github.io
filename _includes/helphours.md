@@ -1,5 +1,10 @@
-{%- assign hours_list = site.helphours  where_exp:"hours", "hours.semester == page.semester"  where_exp:"hours", "hours.coursenum == nil or hours.coursenum == page.coursenum" -%}
-{%- for hours in hours_list -%}
+
+{%- assign semhours = site.helphours | where_exp:"hours", "hours.semester == page.semester"  -%}
+{%- assign genhours = semhours | where:"coursenum", "all" -%}
+{%- assign spechours = semhours | where_exp:"hours", "hours.coursenum == page.coursenum" -%}
+{%- assign allhours = genhours | concat:spechours -%}
+
+{%- for hours in allhours -%}
 {{ hours.content }}
 {%- else -%}
 * To be determined.

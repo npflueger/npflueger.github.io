@@ -1,5 +1,6 @@
 ---
 semester: "Spring 2020"
+coursenum: "all"
 ---
 * My office hours <s>in SMUD 401</s> on Slack and Zoom:  
     * Visit [Slack](https://amherstcollege.slack.com) to ask questions, either as private messages to me or on the group channel.
