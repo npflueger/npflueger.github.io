@@ -4,6 +4,8 @@ main:
     url: /research/
   - title: "Teaching"
     url: /teaching/
+  - title: "CV"
+    url: /files/cv.pdf
   # - title: "Quick-Start Guide"
   #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   # - title: "About"
