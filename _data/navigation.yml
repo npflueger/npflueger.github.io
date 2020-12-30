@@ -1,13 +1,15 @@
 # main links
 main:
+  - title: "Contact"
+    url: /contact
   - title: "Research"
     url: /research/
   - title: "Teaching"
     url: /teaching/
   - title: "CV"
     url: /files/cv.pdf
-  - title: "Contact"
-    url: /contact
+  - title: "Rec Letters"
+    url: /recs
   # - title: "Quick-Start Guide"
   #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   # - title: "About"
