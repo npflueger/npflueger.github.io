@@ -22,11 +22,11 @@ title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Nathan Pflueger"
 description              : "Nathan Pflueger's academic website"
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://npflueger.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
+logo                     : "/files/disp.png" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : "Nathan Pflueger"
 # breadcrumbs            : false # true, false (default)
 # words_per_minute         : 200
@@ -266,6 +266,7 @@ collections:
     output: false
 
 footer:
+  logo: "files/chain.png"
   links:
     - label: "Amherst College"
       url: https://www.amherst.edu

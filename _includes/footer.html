@@ -1,3 +1,7 @@
+{% if site.footer.logo %}
+<img src="{{ site.footer.logo | relative_url }}" width="200" alt="">
+{% endif %}
+
 <div class="page__footer-follow">
   <ul class="social-icons">
     {% if site.footer.links %}
