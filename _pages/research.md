@@ -11,7 +11,7 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 *   _Relative Richardson Varieties_ (with M. Chan). Preprint. [arXiv](https://arxiv.org/abs/1909.12414)
 *   _Combinatorial relations on skew Schur and skew stable Grothendieck polynomials_ (with M. Chan). To appear in Algebraic Combinatorics. [arXiv](https://arxiv.org/abs/1909.12833)
 *   _The Gieseker-Petri theorem and imposed ramification_ (with M. Chan and B. Osserman). Bulletin of the London Mathematical Society 51:6 (2019) 945-960. [arXiv](https://arxiv.org/abs/1804.00178)
-*   _Euler characteristics of Brill-Noether varieties_ (with M. Chan). To appear in Transactions of the AMS. [arXiv](https://arxiv.org/abs/1708.09378)
+*   _Euler characteristics of Brill-Noether varieties_ (with M. Chan). Transactions of the AMS 374:3 (2021) 1513-1533. [arXiv](https://arxiv.org/abs/1708.09378)
 *   _Weierstrass semigroups on Castelnuovo curves_. To appear in Journal of Algebra. [arXiv](http://arxiv.org/abs/1608.08178)
 *   _On non-primitive Weierstrass points_. Algebra and Number Theory 12 (2018), no. 8, 1923-1947. [arXiv](http://arxiv.org/abs/1608.05666)
 *   _Brill-Noether varieties of k-gonal curves_. Advances in Mathematics 312 (2017) 46-63. [arXiv](http://arxiv.org/abs/1603.08856). A video of me speaking about this result is [here](http://www.birs.ca/events/2016/5-day-workshops/16w5153/videos/watch/201605031629-Pflueger.html).
