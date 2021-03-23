@@ -8,6 +8,7 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 
 ## Papers
 
+*   _Versality of Brill-Noether flags and degeneracy loci of twice-marked curves_. Preprint. [arXiv](https://arxiv.org/abs/2103.10969)
 *   _Relative Richardson Varieties_ (with M. Chan). Preprint. [arXiv](https://arxiv.org/abs/1909.12414)
 *   _Combinatorial relations on skew Schur and skew stable Grothendieck polynomials_ (with M. Chan). To appear in Algebraic Combinatorics. [arXiv](https://arxiv.org/abs/1909.12833)
 *   _The Gieseker-Petri theorem and imposed ramification_ (with M. Chan and B. Osserman). Bulletin of the London Mathematical Society 51:6 (2019) 945-960. [arXiv](https://arxiv.org/abs/1804.00178)
