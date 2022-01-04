@@ -17,7 +17,7 @@ minimal_mistakes_skin    : "dark" # "default", "air", "aqua", "contrast", "dark"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Nathan Pflueger"
+title                    : "Nathan Pflueger's academic website"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Nathan Pflueger"
@@ -257,6 +257,14 @@ defaults:
       layout: course
       author_profile: true
       toc: true
+  # _psets
+  - scope:
+      path: ""
+      type: psets
+    values:
+      layout: pset
+      author_profile: false
+      toc: false
 
 # Collections
 collections:
@@ -264,6 +272,8 @@ collections:
     output: true
   helphours:
     output: false
+  psets:
+    output: true
 
 footer:
   logo: "files/chain.png"
