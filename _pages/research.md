@@ -10,7 +10,7 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 
 *   _Linear series with ρ<0 via thrifty lego-building_. Preprint (2022).
 <br /> [arXiv](https://arxiv.org/abs/2201.08869)
-*   _Weierstrass semigroups from cyclic covers of hyperelliptic curves_. Preprint (2021)
+*   _Weierstrass semigroups from cyclic covers of hyperelliptic curves_ (with E. Cotterill and N. Zhang). Preprint (2021)
 <br /> [arXiv](https://arxiv.org/abs/2201.00033)
 *   _Versality of Brill-Noether flags and degeneracy loci of twice-marked curves_. Preprint (2021).
 <br /> [arXiv](https://arxiv.org/abs/2103.10969)
