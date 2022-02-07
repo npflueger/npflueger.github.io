@@ -3,7 +3,7 @@ title: "Math 271, Spring 2022"
 coursenum: "Math 271"
 section: 2
 coursename: "Linear Algebra"
-permalink: /271-22spring/
+permalink: /teaching/271-22spring/
 redirect_from:
     - /271/
 startdate: 2022-01
