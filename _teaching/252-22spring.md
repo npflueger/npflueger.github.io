@@ -2,7 +2,9 @@
 title: "Math 252, spring 2022"
 coursenum: "Math 252"
 coursename: "Mathematics of Public-Key Cryptography"
-permalink: /252/
+permalink: /teaching/252-22spring/
+redirect_from:
+    - /252/
 startdate: 2022-01
 semester: "Spring 2022"
 toc: true
@@ -22,7 +24,7 @@ The course is designed for students with no prior experience in abstract algebra
 
 ### Handouts
 
-*   Check back here for the syllabus and other information as the semester approaches.
+*   [Syllabus](handouts/syllabus.pdf)
 <!--handouts-->
 
 ### Textbook and other links
