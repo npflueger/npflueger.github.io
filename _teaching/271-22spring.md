@@ -13,8 +13,9 @@ This course concerns the core theory of linear algebra, with specific attention 
 Topics include the concepts of vector space, subspace, linear independence, basis, and dimension; systems of linear equations and their solution by Gaussian elimination; matrix operations; linear transformations and their representations by matrices; eigenvalues and eigenvectors; and inner product spaces. 
 
 ### Time and location
-* Monday, Wednesday, and Friday: 1:30-2:20pm in room **TBA**.
-* Tuesday: 2:00-2:50pm in room **TBA**.
+* Monday, Wednesday, and Friday: 1:30-2:20pm in **SMUD 204**.
+* Tuesday: 2:00-2:50pm in **SMUD 205**.
+* See Moodle page for the Zoom link during the first week.
 
 ### Help hours
 
@@ -34,7 +35,7 @@ Topics include the concepts of vector space, subspace, linear independence, basi
 
 ### Homework
 
-Problem sets will be posted here. All problem sets are due at **TBA**, via Gradescope.
+Problem sets will be posted here. All problem sets are due at 10pm, via Gradescope.
 
 <!--psets-->
 

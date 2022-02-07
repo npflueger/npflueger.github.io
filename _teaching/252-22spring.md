@@ -12,6 +12,10 @@ This course concerns the mathematical problems underlying public-key ciphers and
 
 The course is designed for students with no prior experience in abstract algebra or programming. It serves as an introduction to those topics, meant to prepare students for more advanced courses. Students with prior experience are welcome, however.
 
+### Time and location
+* Monday, Tuesday, Wednesday, and Friday: 3:00-3:50pm in **SMUD 205**.
+* See Moodle page for the Zoom link during the first week.
+
 ### Help hours
 
 {% include helphours.md %}
@@ -29,7 +33,7 @@ The course is designed for students with no prior experience in abstract algebra
 
 ### Homework
 
-Problem sets will be posted here. All problem sets are due at **TBA**.
+Problem sets will be posted here. All problem sets are due at 10pm, on Gradescope.
 
 <!--psets-->
 
