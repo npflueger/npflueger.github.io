@@ -4,7 +4,6 @@ layout: home
 author_profile: true
 permalink: /
 redirect_from:
-  - /index.html
   - /about/
   - /about.html
 curSem: "Spring 2022"
