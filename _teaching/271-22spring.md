@@ -26,7 +26,7 @@ Topics include the concepts of vector space, subspace, linear independence, basi
 
 ### Handouts and other items
 
-*   Check back here for the syllabus and other information as the semester approaches.
+*   [Syllabus](handouts/syllabus.pdf)
 
 ### LaTeX resources
 
