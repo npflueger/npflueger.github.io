@@ -38,6 +38,7 @@ The course is designed for students with no prior experience in abstract algebra
 
 Problem sets will be posted here. All problem sets are due at 10pm, on Gradescope.
 
+* [PSet 1](psets/pset1.pdf). Due Wednesday 2/16 at 10pm on Gradescope. **Note: the Gradescope page, and some files needed to do the coding problems, have not been set up yet. They will be available soon.**
 <!--psets-->
 
 ### Exams
