@@ -37,8 +37,7 @@ Topics include the concepts of vector space, subspace, linear independence, basi
 
 ### Homework
 
-Problem sets will be posted here. All problem sets are due at 10pm, via Gradescope.
-
+* [PSet 1](Problem Set 1), due Wednesday 2/16 at 10pm on Gradescope.
 <!--psets-->
 
 ### Exams
