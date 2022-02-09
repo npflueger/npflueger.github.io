@@ -25,6 +25,7 @@ The course is designed for students with no prior experience in abstract algebra
 ### Handouts
 
 *   [Syllabus](handouts/syllabus.pdf)
+*   Boardwork from the remote classes is shared at this [Dropbox link](https://www.dropbox.com/sh/p2yvkx1dcvqcox9/AABVgRPbvZrYANjIJufgNz3wa?dl=0).
 <!--handouts-->
 
 ### Textbook and other links
@@ -32,7 +33,7 @@ The course is designed for students with no prior experience in abstract algebra
 *   The course text is [An Introduction to Mathematical Cryptography](https://link.springer.com/book/10.1007/978-1-4939-1711-2), 2nd edition. Use this link to download the book in pdf for free or order a $25 paperback copy. If you are off the campus network, try [this link](https://link.springer.com.ezproxy.amherst.edu/book/10.1007/978-1-4939-1711-2), or look up "springerlink" (one word) in the Amherst College library catalog.
 *   [Starter code and testing notebooks](https://www.dropbox.com/sh/a11zuil8bm8lylb/AABoeXEln6uR4vmnG-O9outza?dl=0) 
 *   [CS Circles python tutorial](https://cscircles.cemc.uwaterloo.ca/) (most relevant sections for our purposes: 0 through 10 and 13, except 2X, 7A, and 8)
-*   Boardwork from the remote classes is shared at this [Dropbox link](https://www.dropbox.com/sh/p2yvkx1dcvqcox9/AABVgRPbvZrYANjIJufgNz3wa?dl=0).
+
 
 ### Homework
 
