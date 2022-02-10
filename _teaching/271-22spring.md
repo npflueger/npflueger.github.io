@@ -38,6 +38,7 @@ Topics include the concepts of vector space, subspace, linear independence, basi
 
 ### Homework
 
+* [Gradescope submission information](handouts/gsinfo.pdf) for all written assignments.
 * [Problem Set 1](psets/pset1.pdf), due Wednesday 2/16 at 10pm on Gradescope.
 <!--psets-->
 
