@@ -9,4 +9,6 @@ coursenum: "Math 271"
     * Wednesday 6:00-7:30pm (Andressa) and 7:30-9:00pm (Noah)
     * Thursday 7:30-9:00pm (Noah Solomon)
 
-* You may also schedule individual meetings with our Math Q Fellow, Calvin Woods, at [this link](https://us.bookingbug.com/home/128948-Moss-Quantitative-CenterAmherst-College#).
+* Calvin Woods, our Q Center Fellow, is available 
+    * Monday through Thursday, from 1 to 4pm, in **SMUD 007** for drop-in hours, and
+    * by individual appointment at [this link](https://us.bookingbug.com/home/128948-Moss-Quantitative-CenterAmherst-College#).
