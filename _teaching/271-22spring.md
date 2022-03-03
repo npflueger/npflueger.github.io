@@ -50,3 +50,6 @@ Topics include the concepts of vector space, subspace, linear independence, basi
     * [Practice Exam 1](exams/midterm1-practice1.pdf) (solutions to be posted soon)
     * [Practice Exam 2](exams/midterm1-practice2.pdf) (solutions to be posted soon)
     * Additional [practice problems](exams/practiceProblems.pdf) / [solutions](exams/practiceProblemsSolns.pdf)
+* Midterm 2 will be held Wednesday, April 13, in class.
+* Midterm 3 will be held Friday, May 13, in class.
+* There will be no final exam.
