@@ -44,8 +44,19 @@ Problem sets will be posted here. All problem sets are due at 10pm, on Gradescop
 * [PSet 2](psets/pset2.pdf). Due Wednesday 2/23 (both written and code).
 * [PSet 3](psets/pset3.pdf). Due ~~Wednesday 3/2~~ Friday 3/4 (both written and code).
 * [PSet 4](psets/pset4.pdf). Due Wednesday 3/9 (both written and code)
+* (No problem set the week 3/21-25, due to Midterm 1)
 <!--psets-->
 
 ### Exams
 
-Exam information will be posted here.
+* Midterm 1 will be on Friday 3/25 in class.
+    * Remember to make a one-page note-sheet (front and back)! Tables 2.2 and 2.3 from the textbook (summary of Diffie-Hellman and Elgamal) will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
+    * Coverage: anything discussed in class up to Friday 3/11. This includes the following textbook sections: 1.2, 1.3, 1.4, 1.5, 2.1, 2.2, 2.3, 2.4, 2.6, 2.7.
+    * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be.
+        * [2020 midterm 1](exams/midterm1-2020.pdf)
+        * [2019 midterm 1](exams/midterm1-2019.pdf)
+        * [2016 midterm 1](exams/midterm1-2016.pdf)
+        * [2015 midterm 1](exams/midterm1-2015.pdf)
+        * Solutions to these practice exams will be posted after the break.
+* Midterm 2 will be Wednesday 5/4 in class.
+* The final exam will be Monday 5/23, 2-5pm in SMUD 014.
