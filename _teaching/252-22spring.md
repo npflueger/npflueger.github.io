@@ -44,8 +44,9 @@ Problem sets will be posted here. All problem sets are due at 10pm, on Gradescop
 * [Gradescope submission information](handouts/gsinfo.pdf) for all written assignments.
 * [PSet 1](psets/pset1.pdf). Due Wednesday 2/16 (written part), and Friday 2/18 (code) at 10pm on Gradescope. 
 * [PSet 2](psets/pset2.pdf). Due Wednesday 2/23 (both written and code).
-* [PSet 3](psets/pset3.pdf). Due ~~Wednesday 3/2~~ Friday 3/4 (both written and code).
-* [PSet 4](psets/pset4.pdf). Due Wednesday 3/9 (both written and code)
+* [PSet 3](psets/pset3.pdf). Due ~~Wednesday 3/2~~ Friday 3/4.
+* [PSet 4](psets/pset4.pdf). Due Wednesday 3/9. 
+* [PSet 5](psets/pset5.pdf). Due **Friday** 4/1.
 * (No problem set the week 3/21-25, due to Midterm 1)
 <!--psets-->
 
