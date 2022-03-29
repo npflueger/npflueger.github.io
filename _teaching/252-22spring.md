@@ -27,7 +27,7 @@ You can find materials from previous offerings of this course here: [2020](../25
 ### Handouts
 
 *   [Syllabus](handouts/syllabus.pdf)
-*   Boardwork from the remote classes is shared at this [Dropbox link](https://www.dropbox.com/sh/p2yvkx1dcvqcox9/AABVgRPbvZrYANjIJufgNz3wa?dl=0).
+*   Boardwork from the my tablet can be found at this [Dropbox link](https://www.dropbox.com/sh/p2yvkx1dcvqcox9/AABVgRPbvZrYANjIJufgNz3wa?dl=0).
 <!--handouts-->
 
 ### Textbook and other links

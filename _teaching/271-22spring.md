@@ -27,7 +27,7 @@ Topics include the concepts of vector space, subspace, linear independence, basi
 ### Handouts and other items
 
 *   [Syllabus](handouts/syllabus.pdf)
-*   Boardwork from the remote classes is shared at this [Dropbox link](https://www.dropbox.com/sh/jdroz3shx0drhyc/AABEzfYS6E_MwbbvHf2C9_iqa?dl=0).
+*   Boardwork from my tablet is shared at this [Dropbox link](https://www.dropbox.com/sh/jdroz3shx0drhyc/AABEzfYS6E_MwbbvHf2C9_iqa?dl=0).
 
 ### LaTeX resources
 
