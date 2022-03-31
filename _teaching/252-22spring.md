@@ -48,7 +48,7 @@ Problem sets will be posted here. All problem sets are due at 10pm, on Gradescop
 * [PSet 4](psets/pset4.pdf). Due Wednesday 3/9. 
 * (No problem set the week 3/21-25, due to Midterm 1)
 * [PSet 5](psets/pset5.pdf). Due **Friday** 4/1.
-* [PSet 6](psets/pset6/pdf). DUe Wednesday 4/6.
+* [PSet 6](psets/pset6/pdf). Due Wednesday 4/6.
 <!--psets-->
 
 ### Exams
