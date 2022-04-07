@@ -57,5 +57,10 @@ Topics include the concepts of vector space, subspace, linear independence, basi
     * Additional [practice problems](exams/practiceProblems.pdf) / [solutions](exams/practiceProblemsSolns.pdf)
     * [Exam](https://moodle.amherst.edu/pluginfile.php/909985/mod_resource/content/1/midterm1compact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/909982/mod_resource/content/1/midterm1-soln.pdf)
 * Midterm 2 will be held Wednesday, April 13, in class.
+    * **Make a note sheet!** You are allowed one sheet of paper, front and back, with whatever you want on it (printed or handwritten).
+    * [Practice Exam 1](exams/midterm2practice1.pdf) (Solutions to be posted next week)
+    * [Practice Exam 2](exams/midterm2practice2.pdf) (Solutions to be posted next week)
+    * Additional [practice problems](exams/midterm2practiceProblems.pdf) / [solutions](exams/midterm2practiceProblemsSoln.pdf)
+
 * Midterm 3 will be held Friday, May 13, in class.
 * There will be no final exam.
