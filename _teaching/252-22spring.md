@@ -52,6 +52,7 @@ Problem sets will be posted here. All problem sets are due at 10pm, on Gradescop
 * [PSet 6](psets/pset6.pdf). Due Wednesday 4/6.
 * [PSet 7](psets/pset7.pdf). Due Wednesday 4/13.
 * [PSet 8](psets/pset8.pdf). Due Wednesday 4/20.
+* [PSet 9](psets/pset9.pdf). Due Wednesday 4/27.
 <!--psets-->
 
 ### Exams
