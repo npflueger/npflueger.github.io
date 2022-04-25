@@ -29,6 +29,7 @@ You can find materials from previous offerings of this course here: [2020](../25
 *   [Syllabus](handouts/syllabus.pdf)
 *   Boardwork from the my tablet can be found at this [Dropbox link](https://www.dropbox.com/sh/p2yvkx1dcvqcox9/AABVgRPbvZrYANjIJufgNz3wa?dl=0).
 *   Desmos demo on [elliptic curve addition](https://www.desmos.com/calculator/7vbyq3frjp)
+*   Desmos demo on [associativity of EC addition](https://www.desmos.com/calculator/4q0rq6oxxt)
 <!--handouts-->
 
 ### Textbook and other links
