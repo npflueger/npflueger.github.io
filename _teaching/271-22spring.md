@@ -50,6 +50,7 @@ Topics include the concepts of vector space, subspace, linear independence, basi
 * [Problem Set 6](psets/pset6.pdf), due Wednesday 4/6 at 10pm on Gradescope.
 * [Problem Set 7](psets/pset7.pdf), due Wednesday 4/20 at 10pm on Gradescope.
 * [Problem Set 8](psets/pset8.pdf), due Wednesday 4/27 at 10pm on Gradescope.
+* [Problem Set 9](psets/pset9.pdf), due Wednesday 5/4 at 10pm on Gradescope.
 <!--psets-->
 
 ### Exams
