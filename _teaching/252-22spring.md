@@ -73,13 +73,13 @@ Problem sets will be posted here. All problem sets are due at 10pm, on Gradescop
     * Remember to make a one-page note-sheet (front and back)! Summary tables for all cryptosystems we've studied will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: anything discussed in class between Monday 3/14 and Wednesday 4/27. This includes the following textbook sections: 2.8-9, 3.1-4, 4.1-3, 6.1-4.
     * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be. **The 2015 and 2016 exams were earlier in the semester than our midterm 2, so they do not include content on elliptic curves.** Solutions will be posted early next week.
-        * [2015 midterm 2](exams/midterm2practice/midterm2-2015.pdf)
-        * [2016 midterm 2](exams/midterm2practice/midterm2-2016.pdf)
-        * [2019 midterm 2](exams/midterm2practice/midterm2-2019.pdf)
+        * [2015 midterm 2](exams/midterm2practice/midterm2-2015.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/920929/mod_resource/content/1/midterm2-2015soln.pdf)
+        * [2016 midterm 2](exams/midterm2practice/midterm2-2016.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/920930/mod_resource/content/1/midterm2-2016soln.pdf)
+        * [2019 midterm 2](exams/midterm2practice/midterm2-2019.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/920931/mod_resource/content/1/midterm2-2019soln.pdf)
     * Some old final exams. You may wish to consult these for problems about elliptic curves.
-        * [2015 final exam](exams/midterm2practice/final-2015.pdf) (problems 1, 4, 6, 9, 11 concern elliptic curves)
-        * [2016 final exam](exams/midterm2practice/final-2016.pdf) (problems 3, 6, 10 concern elliptic curves)
-        * [2019 final exam](exams/midterm2practice/final-2019.pdf) (problem 2 concerns elliptic curves)
+        * [2015 final exam](exams/midterm2practice/final-2015.pdf) (problems 1, 4, 6, 9, 11 concern elliptic curves) / [Solutions](https://moodle.amherst.edu/pluginfile.php/920932/mod_resource/content/1/final-2015soln.pdf)
+        * [2016 final exam](exams/midterm2practice/final-2016.pdf) (problems 3, 6, 10 concern elliptic curves) / [Solutions](https://moodle.amherst.edu/pluginfile.php/920933/mod_resource/content/1/final-2016soln.pdf)
+        * [2019 final exam](exams/midterm2practice/final-2019.pdf) (problem 2 concerns elliptic curves) / [Solutions](https://moodle.amherst.edu/pluginfile.php/920934/mod_resource/content/1/final-2019soln.pdf)
 
 
 * The final exam will be Monday 5/23, 2-5pm in SMUD 014.
