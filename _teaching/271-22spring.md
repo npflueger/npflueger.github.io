@@ -51,6 +51,7 @@ Topics include the concepts of vector space, subspace, linear independence, basi
 * [Problem Set 7](psets/pset7.pdf), due Wednesday 4/20 at 10pm on Gradescope.
 * [Problem Set 8](psets/pset8.pdf), due Wednesday 4/27 at 10pm on Gradescope.
 * [Problem Set 9](psets/pset9.pdf), due Wednesday 5/4 at 10pm on Gradescope.
+* [Problem Set 10](psets/pset10.pdf), **not due to be handed in**; solutions to be posted midweek.
 <!--psets-->
 
 ### Exams
@@ -69,4 +70,11 @@ Topics include the concepts of vector space, subspace, linear independence, basi
     * [Exam](https://moodle.amherst.edu/pluginfile.php/919509/mod_resource/content/1/midterm2compact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/919508/mod_resource/content/1/midterm2soln.pdf)
 
 * Midterm 3 will be held Friday, May 13, in class.
+    * **Make a note sheet!** You are allowed one sheet of paper, front and back, with whatever you want on it (printed or handwritten).
+    * The exam covers material after midterm 2, and up to Section 4.3 of the textbook, but not after.
+    * [Practice Exam](exams/midterm3practice.pdf) (solutions to be posted midweek)
+    * See also "Problem Set 10," which is not to be handed in but provides practice on recent material. Solutions will be posted by midweek.
+    * For additional practice, try the linear algebra problems on [old comprehensive exams](https://www.amherst.edu/academiclife/departments/mathematics-statistics/math-major/compexam/previous-comprehensive-exams). Solutions to many of these exams, and a detailed linear algebra study guide, can be found via the links at that page. Focus on problems about change of basis, determinants, and eigenvectors/diagonalization, since those are the topics covered after midterm 2.
+
+
 * There will be no final exam.
