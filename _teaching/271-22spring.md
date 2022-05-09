@@ -31,6 +31,7 @@ Topics include the concepts of vector space, subspace, linear independence, basi
 *   [TA Feedback form](https://forms.gle/zm1uiL5P9EH9WnHn9) -- please fill this out to help us see how help hours are going!
 *   Desmos demo of [2x2 determinants](https://www.desmos.com/calculator/rn4wj8uo5n)
 *   Desmos demo of [eigenvectors](https://www.desmos.com/calculator/ylayakz8rk)
+*   Desmos demo of [principal axes](https://www.desmos.com/calculator/imwzyf05ue)
 
 ### LaTeX resources
 
