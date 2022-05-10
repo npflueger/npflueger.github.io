@@ -70,6 +70,7 @@ Problem sets will be posted here. All problem sets are due at 10pm, on Gradescop
         * [2015 midterm 1](exams/midterm1-2015.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/911252/mod_resource/content/1/midterm1soln.pdf)
 
 * Midterm 2 will be Wednesday 5/4 in class.
+    * [Exam](https://moodle.amherst.edu/pluginfile.php/922648/mod_resource/content/1/midterm2compact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/922649/mod_resource/content/1/midterm2soln.pdf)
     * Remember to make a one-page note-sheet (front and back)! Summary tables for all cryptosystems we've studied will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: anything discussed in class between Monday 3/14 and Wednesday 4/27. This includes the following textbook sections: 2.8-9, 3.1-4, 4.1-3, 6.1-4.
     * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be. **The 2015 and 2016 exams were earlier in the semester than our midterm 2, so they do not include content on elliptic curves.** Solutions will be posted early next week.
