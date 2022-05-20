@@ -76,6 +76,7 @@ Topics include the concepts of vector space, subspace, linear independence, basi
     * [Practice Exam](exams/midterm3practice.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/923170/mod_resource/content/1/midterm3practicesoln.pdf)
     * See also "Problem Set 10," which is not to be handed in but provides practice on recent material. Solutions will be posted by midweek.
     * For additional practice, try the linear algebra problems on [old comprehensive exams](https://www.amherst.edu/academiclife/departments/mathematics-statistics/math-major/compexam/previous-comprehensive-exams). Solutions to many of these exams, and a detailed linear algebra study guide, can be found via the links at that page. Focus on problems about change of basis, determinants, and eigenvectors/diagonalization, since those are the topics covered after midterm 2.
+    * [Exam] (https://moodle.amherst.edu/pluginfile.php/925176/mod_resource/content/1/midterm3compact.pdf) / [Solutions] (https://moodle.amherst.edu/pluginfile.php/925177/mod_resource/content/1/midterm3soln.pdf)
 
 
 * There will be no final exam.
