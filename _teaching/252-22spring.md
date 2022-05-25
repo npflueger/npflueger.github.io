@@ -87,3 +87,4 @@ Problem sets will be posted here. All problem sets are due at 10pm, on Gradescop
     * Remember to make a one-page note-sheet (front and back)! Summary tables for all cryptosystems we've studied will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: cumulative, up to class on Tuesday 5/10. In particular, the last two class meetings, about lattice reduction to attack NTRU, will not appear on the exam. The material after Midterm 2 will have slightly higher weight, since it has not yet been covered on an exam.
     * Some old final exams are linked above, under Midterm 2 materials.
+    * [Exam](https://moodle.amherst.edu/pluginfile.php/925595/mod_resource/content/1/finalcompact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/925596/mod_resource/content/1/finalExamSoln.pdf)
