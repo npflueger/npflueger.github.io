@@ -8,6 +8,8 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 
 ## Papers
 
+*   _An extended Demazure product on integer permutations via min-plus matrix multiplication_. Preprint (2022).
+<br /> [arXiv](https://arxiv.org/abs/2206.14227)
 *   _(Hurwitz-)Brill-Noether general marked graphs via the Demazure product_. Preprint (2022).
 <br /> [arXiv](https://arxiv.org/abs/2201.12316)
 *   _Linear series with ρ<0 via thrifty lego-building_. Preprint (2022).
