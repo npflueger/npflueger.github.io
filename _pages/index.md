@@ -13,7 +13,9 @@ I am a mathematician at Amherst College, specializing in algebraic geometry and 
 
 I grew up in Seattle, and still miss the mountains all around, but I am a happy East coast transplant. I enjoy the snowy winters and all the scenery around the Pioneer valley. I cycle daily along the Norwottuck Rail Trail from my home in Northampton to the Amherst campus, and can often be found exploring the surrounding area by bicycle when time allows it.
  
+I am on paternity leave for the Fall 2022 semester.
 
+<!--
 ## {{page.curSem}} Courses:
 {%- assign courses = site.teaching -%}
 {%- for post in courses -%}
@@ -21,3 +23,4 @@ I grew up in Seattle, and still miss the mountains all around, but I am a happy 
   {%- include course-blurb.html -%}
   {%- endif -%}
 {%- endfor -%}
+-->
