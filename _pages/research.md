@@ -8,6 +8,8 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 
 ## Papers
 
+*   _Twice-Marked Banana Graphs & Brill-Noether Generality_ (with N. Solomon). Preprint (2022).
+<br /> [arXiv](https://arxiv.org/abs/2211.17258)
 *   _An extended Demazure product on integer permutations via min-plus matrix multiplication_. Preprint (2022).
 <br /> [arXiv](https://arxiv.org/abs/2206.14227)
 *   _(Hurwitz-)Brill-Noether general marked graphs via the Demazure product_. Preprint (2022).
