@@ -4,7 +4,7 @@ permalink: /research/
 layout: single
 ---
 
-My research is in algebraic geometry and combinatorics, especially algebraic curves and Young tableaux. I am particularly interested in Brill-Noether theory, which studies the variety of ways that a chosen curve is realized in projective space. I also study analogous questions in the setting of tropical geometry, and the relation between these persepctives via non-Archimedean analytic geometry. My publications are listed below.
+My research is in algebraic geometry and combinatorics, especially algebraic curves and Young tableaux. I am particularly interested in Brill-Noether theory, which studies the variety of ways that a chosen curve is realized in projective space. I also study analogous questions in the setting of tropical geometry, and the relation between these perspectives via non-Archimedean analytic geometry. My publications are listed below.
 
 ## Papers
 
@@ -49,7 +49,7 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 
 *   _Tropical Curves_. [pdf](/files/TropicalCurves.pdf)
     *   This is my minor thesis from graduate school. It is an introduction to tropical curves, with an emphasis on how they are analogous to algebraic curves, both formally and informally. 
-    *   The minor thesis is part of the Harvard graduate program in which students must rapidly learn (in three weeks) a subject outside of their research and write an expository paper about it. This was a very useful exercise for me, and in fact tropical curves later became an important part of my research!
+    *   The minor thesis is part of the Harvard graduate program in which students must rapidly learn (in three weeks) a subject outside their research and write an expository paper about it. This was a very useful exercise for me, and in fact tropical curves later became an important part of my research!
     *   Because this paper was created on a short deadline, it is not particularly polished, and (for example) has hand-drawn diagrams. Nonetheless, I am happy to make it available online for anyone who might benefit from it.
 
 ## Source code
