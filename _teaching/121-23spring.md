@@ -4,6 +4,8 @@ coursenum: "Math 121"
 section: 2
 coursename: "Intermediate Calculus"
 permalink: teaching/121-23spring/
+redirect_from:
+    - /121/
 startdate: 2023-01
 semester: "Spring 2023"
 ---
