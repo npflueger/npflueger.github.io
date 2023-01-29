@@ -6,7 +6,7 @@ layout: single
 
 My research is in algebraic geometry and combinatorics, especially algebraic curves and Young tableaux. I am particularly interested in Brill-Noether theory, which studies the variety of ways that a chosen curve is realized in projective space. I also study analogous questions in the setting of tropical geometry, and the relation between these perspectives via non-Archimedean analytic geometry. My publications are listed below.
 
-## Papers
+## Preprints and submitted papers
 
 *   _Twice-Marked Banana Graphs & Brill-Noether Generality_ (with N. Solomon). Preprint (2022).
 <br /> [arXiv](https://arxiv.org/abs/2211.17258)
@@ -14,12 +14,15 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 <br /> [arXiv](https://arxiv.org/abs/2206.14227)
 *   _(Hurwitz-)Brill-Noether general marked graphs via the Demazure product_. Preprint (2022).
 <br /> [arXiv](https://arxiv.org/abs/2201.12316)
-*   _Linear series with ρ<0 via thrifty lego-building_. Journal für die reine und angewandte Mathematik (Crelle) (to appear).
-<br /> [arXiv](https://arxiv.org/abs/2201.08869)
 *   _Weierstrass semigroups from cyclic covers of hyperelliptic curves_ (with E. Cotterill and N. Zhang). Preprint (2021).
 <br /> [arXiv](https://arxiv.org/abs/2201.00033)
 *   _Versality of Brill-Noether flags and degeneracy loci of twice-marked curves_. Preprint (2021).
 <br /> [arXiv](https://arxiv.org/abs/2103.10969)
+
+## Publications and papers to appear
+
+*   _Linear series with ρ<0 via thrifty lego-building_. Journal für die reine und angewandte Mathematik (Crelle) (to appear).
+<br /> [arXiv](https://arxiv.org/abs/2201.08869)
 *   _Relative Richardson Varieties_ (with M. Chan). Mathematical Proceedings of the Cambridge Philosophical Society (to appear).
 <br /> [arXiv](https://arxiv.org/abs/1909.12414)
 *   _Combinatorial relations on skew Schur and skew stable Grothendieck polynomials_ (with M. Chan). Algebraic Combinatorics Volume 4 (2021) no. 1 p. 175-188. 
@@ -40,8 +43,8 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 <br /> [arXiv](http://arxiv.org/abs/1506.00516) [DOI](https://doi.org/10.1090/tran/7044) [pdf](/files/papers/generaBNCurves.pdf)
 *   _Bitangents of tropical plane quartic curves_ (with M. Baker, Y. Len, R. Morrison, and Q. Ren). Mathematische Zeitschrift 282:3 (2016) 1017-1031.
 <br /> [arXiv](http://arxiv.org/abs/1404.7568) [DOI](https://doi.org/10.1007/s00209-015-1576-7) [pdf](/files/papers/bitangentsTropicalQuartic.pdf)
-*   _On linear series with negative Brill-Noether number._ Unpublished manuscript.
-<br /> [arXiv](http://arxiv.org/abs/1311.5845)
+<!--*   _On linear series with negative Brill-Noether number._ Unpublished manuscript.
+<br /> [arXiv](http://arxiv.org/abs/1311.5845)-->
 *   _Graph reductions, binary rank, and pivots in gene assembly._ Discrete Applied Mathematics 159:17 (2011) 2117-2134.
 <br /> [arXiv](http://arxiv.org/abs/1103.4334) [DOI](https://doi.org/10.1016/j.dam.2011.07.007) [pdf](/files/papers/graphReductions.pdf)
 
