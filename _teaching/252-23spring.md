@@ -14,10 +14,10 @@ This course concerns the mathematical problems underlying public-key ciphers and
 
 The course is designed for students with no prior experience in abstract algebra or programming. It serves as an introduction to those topics, meant to prepare students for more advanced courses. Students with prior experience are welcome, however.
 
-You can find materials from previous offerings of this course here: [2022](../252-22spring), [2020](../252-20spring), [2019](../252-19spring), [2016](../158-16fall), [2015](../158-15fall). The 2015 and 2016 courses, taught at Brown, were sligtly different in style and emphasis.
+You can find materials from previous offerings of this course here: [2022](../252-22spring), [2020](../252-20spring), [2019](../252-19spring), [2016](../158-16fall), [2015](../158-15fall). The 2015 and 2016 courses, taught at Brown, were slightly different in style and emphasis.
 
 ### Time and location
-* Monday, Wednesday, and Friday, 10:00-10:50am in **Room TBA**.
+* Monday, Wednesday, and Friday, 10:00-10:50am in SMUD 014.
 
 ### Help hours
 
@@ -25,7 +25,7 @@ You can find materials from previous offerings of this course here: [2022](../25
 
 ### Handouts
 
-*   The syllabus and other handouts will be posted here soon.
+*   [Syllabus](handouts/syllabus.pdf)
 <!--handouts-->
 
 ### Textbook and other links
