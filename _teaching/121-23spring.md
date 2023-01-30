@@ -24,6 +24,7 @@ I previously taught this course in [Spring 2018](../121-18spring). At the link, 
 ### Handouts and other items
 
 *   [Syllabus](handouts/syllabus.pdf)
+*   M 1/30: [exponentials review handout](../121-18spring/handouts/2018-01-23.pdf) / [solutions](../121-18spring/handouts/2018-01-23-soln.pdf)
 <!--handouts-->
 
 <!-- The 2018 handouts are below, for reference.
