@@ -37,8 +37,8 @@ You can find materials from previous offerings of this course here: [2022](../25
 
 ### Homework
 
-Problem sets will be posted here. All problem sets are due at 10pm, on Gradescope.
-
+* Problem sets will be posted here. All problem sets are due at 10pm, on Gradescope.
+* [Gradescope instructions](handouts/gsinfo.pdf)
 <!--psets-->
 
 ### Exams
