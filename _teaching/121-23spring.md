@@ -57,8 +57,8 @@ I previously taught this course in [Spring 2018](../121-18spring). At the link, 
 Problem sets will be posted here. All problem sets are due at 10pm, on Gradescope.
 
 * [Gradescope instructions](handouts/gsinfo.pdf)
-* [Problem Set 1](psets/pset1.pdf) (due W 2/1 by midnight)
-* [Problem Set 2](psets/pset2.pdf) (due F 2/3 by midnight)
+* [Problem Set 1](psets/pset1.pdf) (due W 2/1 by midnight) / [answer key](https://dbenedetto.people.amherst.edu/math121/HW1FinalAnswers.pdf) (final answers only)
+* [Problem Set 2](psets/pset2.pdf) (due F 2/3 by midnight) / [answer key](https://dbenedetto.people.amherst.edu/math121/HW2FinalAnswers.pdf)
 
 <!--psets-->
 
