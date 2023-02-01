@@ -39,6 +39,7 @@ You can find materials from previous offerings of this course here: [2022](../25
 
 * Problem sets will be posted here. All problem sets are due at 10pm, on Gradescope.
 * [Gradescope instructions](handouts/gsinfo.pdf)
+* [Problem Set 1](psets/pset1.pdf) (written part due W 2/8; coding part due F 2/10)
 <!--psets-->
 
 ### Exams
