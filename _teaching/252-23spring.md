@@ -31,8 +31,9 @@ You can find materials from previous offerings of this course here: [2022](../25
 ### Textbook and other links
 
 *   The course text is [An Introduction to Mathematical Cryptography](https://link.springer.com/book/10.1007/978-1-4939-1711-2), 2nd edition. Use this link to download the book in pdf for free or order a $40 paperback copy. If you are off the campus network, try [this link](https://link.springer.com.ezproxy.amherst.edu/book/10.1007/978-1-4939-1711-2), or look up "springerlink" (one word) in the Amherst College library catalog.
-<!--*   [Starter code and testing notebooks](https://www.dropbox.com/sh/a11zuil8bm8lylb/AABoeXEln6uR4vmnG-O9outza?dl=0) -->
 *   [CS Circles python tutorial](https://cscircles.cemc.uwaterloo.ca/) (most relevant sections for our purposes: 0 through 10 and 13, except 2X, 7A, and 8)
+*   [Starter code and testing notebooks](https://www.dropbox.com/sh/640n4qcsk468x1w/AABiecoKI6-X2i99pX0CqpG4a?dl=0)
+*   [Jupyter/Gradescope tutorial video](https://www.dropbox.com/s/5ww4hq5ohfqdixr/252programmingTutorial.mp4?dl=0)
 
 
 ### Homework
@@ -40,6 +41,7 @@ You can find materials from previous offerings of this course here: [2022](../25
 * Problem sets will be posted here. All problem sets are due at 10pm, on Gradescope.
 * [Gradescope instructions](handouts/gsinfo.pdf)
 * [Problem Set 1](psets/pset1.pdf) (written part due W 2/8; coding part due F 2/10)
+* [Problem Set 2](psets/pset2.pdf) (due W 2/15; both parts)
 <!--psets-->
 
 ### Exams
