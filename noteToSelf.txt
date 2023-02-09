@@ -1,0 +1,4 @@
+To run locally:
+bundle exec jekyll serve
+
+or run the script localweb (in ~/dbac/tools)

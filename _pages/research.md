@@ -6,7 +6,7 @@ layout: single
 
 My research is in algebraic geometry and combinatorics, especially algebraic curves and Young tableaux. I am particularly interested in Brill-Noether theory, which studies the variety of ways that a chosen curve is realized in projective space. I also study analogous questions in the setting of tropical geometry, and the relation between these perspectives via non-Archimedean analytic geometry. My publications are listed below.
 
-## Preprints and submitted papers
+## Preprints and papers under review
 
 *   _Twice-Marked Banana Graphs & Brill-Noether Generality_ (with N. Solomon). Preprint (2022).
 <br /> [arXiv](https://arxiv.org/abs/2211.17258)
@@ -19,12 +19,15 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 *   _Versality of Brill-Noether flags and degeneracy loci of twice-marked curves_. Preprint (2021).
 <br /> [arXiv](https://arxiv.org/abs/2103.10969)
 
-## Publications and papers to appear
+## Papers in press
 
 *   _Linear series with ρ<0 via thrifty lego-building_. Journal für die reine und angewandte Mathematik (Crelle) (to appear).
 <br /> [arXiv](https://arxiv.org/abs/2201.08869)
 *   _Relative Richardson Varieties_ (with M. Chan). Mathematical Proceedings of the Cambridge Philosophical Society (to appear).
 <br /> [arXiv](https://arxiv.org/abs/1909.12414)
+
+## Publications
+
 *   _Combinatorial relations on skew Schur and skew stable Grothendieck polynomials_ (with M. Chan). Algebraic Combinatorics Volume 4 (2021) no. 1 p. 175-188. 
 <br /> [arXiv](https://arxiv.org/abs/1909.12833) [DOI](https://doi.org/10.5802/alco.144) [pdf](/files/papers/combinatorialRelationsGrothendieck.pdf)
 *   _The Gieseker-Petri theorem and imposed ramification_ (with M. Chan and B. Osserman). Bulletin of the London Mathematical Society 51:6 (2019) 945-960. 
