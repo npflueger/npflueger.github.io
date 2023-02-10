@@ -24,6 +24,8 @@ I previously taught this course in [Spring 2018](../121-18spring). At the link, 
 ### Handouts and other items
 
 *   [Syllabus](handouts/syllabus.pdf)
+*   [Boardwork](https://www.dropbox.com/sh/bmeytsrkjks2w6x/AADiYDH5Vrgoiq2W4YNLECf7a?dl=0) from my tablet (updated periodically)
+*   [Zoom link](https://amherstcollege.zoom.us/j/97816492611?pwd=VnFGcktXWTFXc2lTa2tXQVlkMU5Vdz09) for any online office hours, classes, etc.
 *   M 1/30: [exponentials review handout](../121-18spring/handouts/2018-01-23.pdf) / [solutions](../121-18spring/handouts/2018-01-23-soln.pdf)
 <!--handouts-->
 

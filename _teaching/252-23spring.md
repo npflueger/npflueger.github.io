@@ -34,6 +34,8 @@ You can find materials from previous offerings of this course here: [2022](../25
 *   [CS Circles python tutorial](https://cscircles.cemc.uwaterloo.ca/) (most relevant sections for our purposes: 0 through 10 and 13, except 2X, 7A, and 8)
 *   [Starter code and testing notebooks](https://www.dropbox.com/sh/640n4qcsk468x1w/AABiecoKI6-X2i99pX0CqpG4a?dl=0)
 *   [Jupyter/Gradescope tutorial video](https://www.dropbox.com/s/5ww4hq5ohfqdixr/252programmingTutorial.mp4?dl=0)
+*   [Boardwork](https://www.dropbox.com/sh/9ynk20ozwjrxyp5/AADEFui6_gAt7mpxEep2dNWxa?dl=0) from my tablet (updated periodically)
+*   [Zoom link](https://amherstcollege.zoom.us/j/97816492611?pwd=VnFGcktXWTFXc2lTa2tXQVlkMU5Vdz09) for any online office hours, classes, etc.
 
 
 ### Homework
