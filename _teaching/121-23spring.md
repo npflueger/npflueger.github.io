@@ -89,12 +89,18 @@ Problem sets will be posted here. All problem sets are due at 10pm, on Gradescop
 
 There will be three midterms and a three hour final exam. Further information and sample exams will be posted here.
 
-* Midterm 1: in class on Friday 2/24.
+* Midterm 1 will be in class on Friday 2/24.
     * You are allowed a **one page notesheet, front and back,** so that you don't need to memorize formulas. Put some time into it -- deciding what to put on the note sheet is a very useful study process!
     * Coverage: anything covered in class up to and including Friday 2/17 (Sections: 6.5, 6.6, 6.8, 7.1, 7.2, 7.3)
     * [Review packet](exams/reviewPacketBenedetto.pdf) / [Solutions](https://dbenedetto.people.amherst.edu/math121/exam1reviewpacketfall2022answers.pdf) (thanks to D. Benedetto!)
     * Practice exams: [Fall 2021](https://dbenedetto.people.amherst.edu/math121fall22/exam1fall21compact.pdf), [Spring 2018](https://dbenedetto.people.amherst.edu/math121fall22/exam1spring18compact.pdf) (skip 1(c), 2(a)), [Spring 2017](https://dbenedetto.people.amherst.edu/math121fall22/exam1spring17compact.pdf)
         * Solutions for these will be linked soon.
+
+* Midterm 2 will be in class on Friday 3/31.
+
+* Midterm 3 will be in class on Friday 4/28.
+
+* The final exam will be on **date TBA** (set by registrar).
 
 <!-- 2018 material here for reference.
 * [Midterm 1](https://lms.ats.amherst.edu/pluginfile.php/544203/mod_resource/content/1/midterm1-compact.pdf) ([Solutions](https://lms.ats.amherst.edu/pluginfile.php/544205/mod_resource/content/1/midterm1-soln.pdf)) Friday, February 16.

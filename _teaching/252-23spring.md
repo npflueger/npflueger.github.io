@@ -49,7 +49,7 @@ You can find materials from previous offerings of this course here: [2022](../25
 
 ### Exams
 
-* Midterm 1 will be on **date TBA**.
+* Midterm 1 will be on Friday 3/10, in class.
     * Remember to make a one-page note-sheet (front and back)! Tables 2.2 and 2.3 from the textbook (summary of Diffie-Hellman and Elgamal) will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: **TBA**, but **probably** will cover the following textbook sections: 1.2, 1.3, 1.4, 1.5, 2.1, 2.2, 2.3, 2.4, 2.6, 2.7.
     * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be. Solutions will be posted in the week before the midterm.
@@ -58,7 +58,7 @@ You can find materials from previous offerings of this course here: [2022](../25
         * [2016 midterm 1](../252-22spring/exams/midterm1-2016.pdf) 
         * [2015 midterm 1](../252-22spring/exams/midterm1-2015.pdf) 
 
-* Midterm 2 will be on **date TBA**.
+* Midterm 2 will be on Friday 4/28, in class.
     * Remember to make a one-page note-sheet (front and back)! Summary tables for all cryptosystems we've studied will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: **TBA**, but will **probably** include the following textbook sections: 2.8-9, 3.1-4, 4.1-3, 6.1-4.
     * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be. **The 2015 and 2016 exams were earlier in the semester than our midterm 2, so they do not include content on elliptic curves.** Solutions will be posted in the week before the midterm.
@@ -71,7 +71,7 @@ You can find materials from previous offerings of this course here: [2022](../25
         * [2019 final exam](../252-22spring/exams/midterm2practice/final-2019.pdf) (problem 2 concerns elliptic curves)
 
 
-* The final exam will be on **date TBA**.
+* The final exam will be on **date TBA** (set by registrar).
     * Remember to make a one-page note-sheet (front and back)! Summary tables for all cryptosystems we've studied will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: cumulative, including all course material. The material after Midterm 2 will have slightly higher weight, since it has not yet been covered on an exam.
     * Some old final exams are linked above, under Midterm 2 materials.
