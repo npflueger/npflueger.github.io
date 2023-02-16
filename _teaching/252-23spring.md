@@ -44,6 +44,7 @@ You can find materials from previous offerings of this course here: [2022](../25
 * [Gradescope instructions](handouts/gsinfo.pdf)
 * [Problem Set 1](psets/pset1.pdf) (written part due W 2/8; coding part due F 2/10)
 * [Problem Set 2](psets/pset2.pdf) (due W 2/15; both parts)
+* [Problem Set 3](psets/pset3.pdf) (due W 2/22)
 <!--psets-->
 
 ### Exams
