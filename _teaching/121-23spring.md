@@ -93,7 +93,7 @@ There will be three midterms and a three hour final exam. Further information an
     * You are allowed a **one page notesheet, front and back,** so that you don't need to memorize formulas. Put some time into it -- deciding what to put on the note sheet is a very useful study process!
     * Coverage: anything covered in class up to and including Friday 2/17 (Sections: 6.5, 6.6, 6.8, 7.1, 7.2, 7.3)
     * [Review packet](exams/reviewPacketBenedetto.pdf) / [Solutions](https://dbenedetto.people.amherst.edu/math121/exam1reviewpacketfall2022answers.pdf) (thanks to D. Benedetto!)
-    * Practice exams: [Fall 2021](https://dbenedetto.people.amherst.edu/math121fall22/exam1fall21compact.pdf), [Spring 2018](https://dbenedetto.people.amherst.edu/math121fall22/exam1spring18compact.pdf) (skip 1(c), 2(a)), [Spring 2017](https://dbenedetto.people.amherst.edu/math121fall22/exam1spring17compact.pdf)
+    * Practice exams: [Fall 2022](https://dbenedetto.people.amherst.edu/math121fall22/exam1fall22compact.pdf), [Fall 2021](https://dbenedetto.people.amherst.edu/math121fall22/exam1fall21compact.pdf), [Spring 2018](https://dbenedetto.people.amherst.edu/math121fall22/exam1spring18compact.pdf) (skip 1(c), 2(a)), [Spring 2017](https://dbenedetto.people.amherst.edu/math121fall22/exam1spring17compact.pdf)
         * Solutions for these will be linked soon.
 
 * Midterm 2 will be in class on Friday 3/31.
