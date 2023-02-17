@@ -94,7 +94,8 @@ There will be three midterms and a three hour final exam. Further information an
     * Coverage: anything covered in class up to and including Friday 2/17 (Sections: 6.5, 6.6, 6.8, 7.1, 7.2, 7.3)
     * [Review packet](exams/reviewPacketBenedetto.pdf) / [Solutions](https://dbenedetto.people.amherst.edu/math121/exam1reviewpacketfall2022answers.pdf) (thanks to D. Benedetto!)
     * Practice exams: [Fall 2022](https://dbenedetto.people.amherst.edu/math121fall22/exam1fall22compact.pdf), [Fall 2021](https://dbenedetto.people.amherst.edu/math121fall22/exam1fall21compact.pdf), [Spring 2018](https://dbenedetto.people.amherst.edu/math121fall22/exam1spring18compact.pdf) (skip 1(c), 2(a)), [Spring 2017](https://dbenedetto.people.amherst.edu/math121fall22/exam1spring17compact.pdf)
-        * Solutions for these will be linked soon.
+        * [Solutions video](https://www.dropbox.com/s/mn64o1xdb5mfm3x/121midterm1solutions.mp4?dl=0) for the Fall 2022 exam, with some comments.
+        * Written solutions for practice exams: [Fall 2022](exams/fall22midterm1soln.pdf), [Fall 2021](https://dbenedetto.people.amherst.edu/math121fall22/exam1fall21answers.pdf), [Spring 2018](https://dbenedetto.people.amherst.edu/math121fall22/exam1spring18answers.pdf), [Spring 2017](https://dbenedetto.people.amherst.edu/math121fall22/exam1spring17answers.pdf)
 
 * Midterm 2 will be in class on Friday 3/31.
 
