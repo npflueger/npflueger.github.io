@@ -35,6 +35,7 @@ You can find materials from previous offerings of this course here: [2022](../25
 *   [Starter code and testing notebooks](https://www.dropbox.com/sh/640n4qcsk468x1w/AABiecoKI6-X2i99pX0CqpG4a?dl=0)
 *   [Jupyter/Gradescope tutorial video](https://www.dropbox.com/s/5ww4hq5ohfqdixr/252programmingTutorial.mp4?dl=0)
 *   [Boardwork](https://www.dropbox.com/sh/9ynk20ozwjrxyp5/AADEFui6_gAt7mpxEep2dNWxa?dl=0) from my tablet (updated periodically)
+*   [In-class notebooks](https://www.dropbox.com/sh/iqln2gj4n1m6l58/AABdzH-2VPDjaD6tTqdD5Zb5a?dl=0) (code written on screen will be kept here)
 *   [Zoom link](https://amherstcollege.zoom.us/j/97816492611?pwd=VnFGcktXWTFXc2lTa2tXQVlkMU5Vdz09) for any online office hours, classes, etc.
 
 
