@@ -83,7 +83,7 @@ Problem sets will be posted here. All problem sets are due at 10pm, on Gradescop
 * [Problem Set 6](psets/pset6.pdf) (due F 2/17 by midnight) / [answer key](https://dbenedetto.people.amherst.edu/math121/HW6FinalAnswers.pdf)
 * [Problem Set 7](psets/pset7.pdf) (due W 2/22 by midnight) / [answer key](https://dbenedetto.people.amherst.edu/math121/HW7FinalAnswers.pdf)
 * *Midterm 1 material ends here.*
-* [Problem Set 8](psets/pset8.pdf) (due W 3/1 by midnight) / [answer key](psets/HW8FinalAnswers.pdf)
+* [Problem Set 8](psets/pset8.pdf) (due ~~W 3/1~~ F 3/3 by midnight) / [answer key](psets/HW8FinalAnswers.pdf)
 <!--psets-->
 
 ### Exams
@@ -91,6 +91,7 @@ Problem sets will be posted here. All problem sets are due at 10pm, on Gradescop
 There will be three midterms and a three hour final exam. Further information and sample exams will be posted here.
 
 * Midterm 1 will be in class on Friday 2/24.
+    * [Exam](https://moodle.amherst.edu/pluginfile.php/1007413/mod_resource/content/1/midterm1compact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1007414/mod_resource/content/1/midterm1soln.pdf)
     * You are allowed a **one page notesheet, front and back,** so that you don't need to memorize formulas. Put some time into it -- deciding what to put on the note sheet is a very useful study process!
     * Coverage: anything covered in class up to and including Friday 2/17 (Sections: 6.5, 6.6, 6.8, 7.1, 7.2, 7.3)
     * [Review packet](exams/reviewPacketBenedetto.pdf) / [Solutions](https://dbenedetto.people.amherst.edu/math121/exam1reviewpacketfall2022answers.pdf) (thanks to D. Benedetto!)
