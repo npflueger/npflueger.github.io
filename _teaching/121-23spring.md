@@ -84,7 +84,7 @@ Problem sets will be posted here. All problem sets are due at 10pm, on Gradescop
 * [Problem Set 7](psets/pset7.pdf) (due W 2/22 by midnight) / [answer key](https://dbenedetto.people.amherst.edu/math121/HW7FinalAnswers.pdf)
 * *Midterm 1 material ends here.*
 * [Problem Set 8](psets/pset8.pdf) (due ~~W 3/1~~ F 3/3 by midnight) / [answer key](psets/HW8FinalAnswers.pdf)
-* [Problem Set 9](pset/pset9.pdf) (due W 3/8 by midnight) / [answer key](https://dbenedetto.people.amherst.edu/math121/HW9FinalAnswers.pdf)
+* [Problem Set 9](psets/pset9.pdf) (due W 3/8 by midnight) / [answer key](https://dbenedetto.people.amherst.edu/math121/HW9FinalAnswers.pdf)
 <!--psets-->
 
 ### Exams
