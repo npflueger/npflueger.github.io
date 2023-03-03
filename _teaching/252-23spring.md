@@ -54,7 +54,7 @@ You can find materials from previous offerings of this course here: [2022](../25
 
 * Midterm 1 will be on Friday 3/10, in class.
     * Remember to make a one-page note-sheet (front and back)! Tables 2.2 and 2.3 from the textbook (summary of Diffie-Hellman and Elgamal) will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
-    * Coverage: **TBA**, but **probably** will cover the following textbook sections: 1.2, 1.3, 1.4, 1.5, 2.1, 2.2, 2.3, 2.4, 2.6, 2.7.
+    * Coverage: Anything discussed by Friday 3/3, and included on PSets 1 through 5. This includes the following textbook sections: 1.2, 1.3, 1.4, 1.5, 2.1, 2.2, 2.3, 2.4, 2.7 (but **not** 2.5 or 2.6).
     * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be. Solutions will be posted in the week before the midterm.
         * [2020 midterm 1](../252-22spring/exams/midterm1-2020.pdf) 
         * [2019 midterm 1](../252-22spring/exams/midterm1-2019.pdf) 
