@@ -105,7 +105,7 @@ There will be three midterms and a three hour final exam. Further information an
 
 * Midterm 3 will be in class on Friday 4/28.
 
-* The final exam will be on **date TBA** (set by registrar).
+* The final exam will be on Tuesday 5/16, 2pm-5pm, in SCCE E210.
 
 <!-- 2018 material here for reference.
 * [Midterm 1](https://lms.ats.amherst.edu/pluginfile.php/544203/mod_resource/content/1/midterm1-compact.pdf) ([Solutions](https://lms.ats.amherst.edu/pluginfile.php/544205/mod_resource/content/1/midterm1-soln.pdf)) Friday, February 16.
