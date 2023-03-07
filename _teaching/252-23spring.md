@@ -56,10 +56,10 @@ You can find materials from previous offerings of this course here: [2022](../25
     * Remember to make a one-page note-sheet (front and back)! Tables 2.2 and 2.3 from the textbook (summary of Diffie-Hellman and Elgamal) will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: Anything discussed by Friday 3/3, and included on PSets 1 through 5. This includes the following textbook sections: 1.2, 1.3, 1.4, 1.5, 2.1, 2.2, 2.3, 2.4, 2.7 (but **not** 2.5 or 2.6).
     * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be. Solutions will be posted in the week before the midterm.
-        * [2020 midterm 1](../252-22spring/exams/midterm1-2020.pdf) 
-        * [2019 midterm 1](../252-22spring/exams/midterm1-2019.pdf) 
-        * [2016 midterm 1](../252-22spring/exams/midterm1-2016.pdf) 
-        * [2015 midterm 1](../252-22spring/exams/midterm1-2015.pdf) 
+        * [2020 midterm 1](../252-22spring/exams/midterm1-2020.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1009145/mod_resource/content/1/midterm1-2020-soln.pdf)
+        * [2019 midterm 1](../252-22spring/exams/midterm1-2019.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1009146/mod_resource/content/1/midterm1-2019-soln.pdf)
+        * [2016 midterm 1](../252-22spring/exams/midterm1-2016.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1009147/mod_resource/content/1/midterm1-2016-soln.pdf)
+        * [2015 midterm 1](../252-22spring/exams/midterm1-2015.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1009148/mod_resource/content/1/midterm1-2015-soln.pdf)
 
 * Midterm 2 will be on Friday 4/28, in class.
     * Remember to make a one-page note-sheet (front and back)! Summary tables for all cryptosystems we've studied will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
