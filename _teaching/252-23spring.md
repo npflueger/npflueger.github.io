@@ -53,6 +53,7 @@ You can find materials from previous offerings of this course here: [2022](../25
 ### Exams
 
 * Midterm 1 will be on Friday 3/10, in class.
+    * [Exam](https://moodle.amherst.edu/pluginfile.php/1010111/mod_resource/content/1/midterm1compact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1010112/mod_resource/content/1/midterm1-soln.pdf)
     * Remember to make a one-page note-sheet (front and back)! Tables 2.2 and 2.3 from the textbook (summary of Diffie-Hellman and Elgamal) will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: Anything discussed by Friday 3/3, and included on PSets 1 through 5. This includes the following textbook sections: 1.2, 1.3, 1.4, 1.5, 2.1, 2.2, 2.3, 2.4, 2.7 (but **not** 2.5 or 2.6).
     * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be. Solutions will be posted in the week before the midterm.
