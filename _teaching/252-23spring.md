@@ -48,6 +48,8 @@ You can find materials from previous offerings of this course here: [2022](../25
 * [Problem Set 3](psets/pset3.pdf) (due W 2/22)
 * [Problem Set 4](psets/pset4.pdf) (due W 3/1)
 * [Problem Set 5](psets/pset5.pdf) (due W 3/8) Note: there are no programming problems this week.
+* [Problem Set 6](psets/pset6.pdf) (due <b>F 3/24</b>)
+* **Note:** Problem Set 7 will be due on Wednesday 3/29.
 <!--psets-->
 
 ### Exams
