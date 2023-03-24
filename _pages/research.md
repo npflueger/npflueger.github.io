@@ -21,9 +21,9 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 
 ## Papers in press
 
-*   _Linear series with ρ<0 via thrifty lego-building_. Journal für die reine und angewandte Mathematik (Crelle) (to appear).
-<br /> [arXiv](https://arxiv.org/abs/2201.08869)
-*   _Relative Richardson Varieties_ (with M. Chan). Mathematical Proceedings of the Cambridge Philosophical Society (to appear).
+*   _Linear series with ρ<0 via thrifty lego-building_. Journal für die reine und angewandte Mathematik (Crelle). To appear; published online.
+<br /> [arXiv](https://arxiv.org/abs/2201.08869) [DOI](https://doi.org/10.1515/crelle-2023-0001)
+*   _Relative Richardson Varieties_ (with M. Chan). Mathematical Proceedings of the Cambridge Philosophical Society. To appear; published online.
 <br /> [arXiv](https://arxiv.org/abs/1909.12414) [DOI](https://www.doi.org/10.1017/S0305004123000087)
 
 ## Publications
