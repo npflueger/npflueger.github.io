@@ -105,6 +105,11 @@ There will be three midterms and a three hour final exam. Further information an
         * Written solutions for practice exams: [Fall 2022](exams/fall22midterm1soln.pdf), [Fall 2021](https://dbenedetto.people.amherst.edu/math121fall22/exam1fall21answers.pdf), [Spring 2018](https://dbenedetto.people.amherst.edu/math121fall22/exam1spring18answers.pdf), [Spring 2017](https://dbenedetto.people.amherst.edu/math121fall22/exam1spring17answers.pdf)
 
 * Midterm 2 will be in class on Friday 3/31.
+    * You are allowed a **one page notesheet, front and back,** so that you don't need to memorize formulas. Put some time into it -- deciding what to put on the note sheet is a very useful study process!
+    * Coverage: anything covered from Monday 2/20 to Friday 3/24 (Sections: 7.4, 7.8, and 11.1-7).
+    * [Review packet](https://dbenedetto.people.amherst.edu/math121/exam2reviewpacketfall22.pdf) / [Solutions](https://dbenedetto.people.amherst.edu/math121/exam2reviewpacketfall22answers.pdf)
+    * Practice exams: [Spring 2020](https://dbenedetto.people.amherst.edu/math121/exam2spring20compact.pdf) (skip 1(e)), [Fall 2020](https://dbenedetto.people.amherst.edu/math121/exam2fall20compact.pdf), [Fall 2022](https://dbenedetto.people.amherst.edu/math121/exam2fall22compact.pdf) (this one was take-home, and longer than usual)
+        * Solutions to practice exams: [Spring 2020](https://dbenedetto.people.amherst.edu/math121/exam2spring20answers.pdf), [Fall 2020](https://dbenedetto.people.amherst.edu/math121/exam2fall20answers.pdf), [Fall 2022](https://dbenedetto.people.amherst.edu/math121/exam2fall22answers.pdf)
 
 * Midterm 3 will be in class on Friday 4/28.
 
