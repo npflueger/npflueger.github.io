@@ -106,6 +106,7 @@ There will be three midterms and a three hour final exam. Further information an
         * Written solutions for practice exams: [Fall 2022](exams/fall22midterm1soln.pdf), [Fall 2021](https://dbenedetto.people.amherst.edu/math121fall22/exam1fall21answers.pdf), [Spring 2018](https://dbenedetto.people.amherst.edu/math121fall22/exam1spring18answers.pdf), [Spring 2017](https://dbenedetto.people.amherst.edu/math121fall22/exam1spring17answers.pdf)
 
 * Midterm 2 will be in class on Friday 3/31.
+    * [Exam](https://moodle.amherst.edu/pluginfile.php/1012521/mod_resource/content/1/midterm2compact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1012522/mod_resource/content/1/midterm2soln.pdf)
     * You are allowed a **one page notesheet, front and back,** so that you don't need to memorize formulas. Put some time into it -- deciding what to put on the note sheet is a very useful study process!
     * Coverage: anything covered from Monday 2/20 to Friday 3/24 (Sections: 7.4, 7.8, and 11.1-7).
     * [Review packet](https://dbenedetto.people.amherst.edu/math121/exam2reviewpacketfall22.pdf) / [Solutions](https://dbenedetto.people.amherst.edu/math121/exam2reviewpacketfall22answers.pdf)
