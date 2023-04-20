@@ -74,13 +74,12 @@ You can find materials from previous offerings of this course here: [2022](../25
         * [2015 midterm 2](../252-22spring/exams/midterm2practice/midterm2-2015.pdf)
         * [2016 midterm 2](../252-22spring/exams/midterm2practice/midterm2-2016.pdf)
         * [2019 midterm 2](../252-22spring/exams/midterm2practice/midterm2-2019.pdf)
-    * Some old final exams. You may wish to consult these for problems about elliptic curves.
-        * [2015 final exam](../252-22spring/exams/midterm2practice/final-2015.pdf) (problems 1, 4, 6, 9, 11 concern elliptic curves)
-        * [2016 final exam](../252-22spring/exams/midterm2practice/final-2016.pdf) (problems 3, 6, 10 concern elliptic curves)
-        * [2019 final exam](../252-22spring/exams/midterm2practice/final-2019.pdf) (problem 2 concerns elliptic curves)
 
 
 * The final exam will be on Thursday 5/18, 2-5pm, in SMUD 206.
     * Remember to make a one-page note-sheet (front and back)! Summary tables for all cryptosystems we've studied will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: cumulative, including all course material. The material after Midterm 2 will have slightly higher weight, since it has not yet been covered on an exam.
-    * Some old final exams are linked above, under Midterm 2 materials.
+    * Some old final exams.
+        * [2015 final exam](../252-22spring/exams/midterm2practice/final-2015.pdf)
+        * [2016 final exam](../252-22spring/exams/midterm2practice/final-2016.pdf)
+        * [2019 final exam](../252-22spring/exams/midterm2practice/final-2019.pdf)
