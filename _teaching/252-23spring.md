@@ -52,6 +52,7 @@ You can find materials from previous offerings of this course here: [2022](../25
 * [Problem Set 7](psets/pset7.pdf) (due ~~W 4/5~~ F 4/7)
 * [Problem Set 8](psets/pset8.pdf) (due W 4/12)
 * [Problem Set 9](psets/pset9.pdf) (due W 4/19)
+* [Problem Set 10](psets/pset10.pdf) (due W 4/26)
 <!--psets-->
 
 ### Exams
@@ -68,8 +69,8 @@ You can find materials from previous offerings of this course here: [2022](../25
 
 * Midterm 2 will be on Friday 4/28, in class.
     * Remember to make a one-page note-sheet (front and back)! Summary tables for all cryptosystems we've studied will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
-    * Coverage: **TBA**, but will **probably** include the following textbook sections: 2.8-9, 3.1-4, 4.1-3, 6.1-4.
-    * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be. **The 2015 and 2016 exams were earlier in the semester than our midterm 2, so they do not include content on elliptic curves.** Solutions will be posted in the week before the midterm.
+    * Coverage: Anything discussed by Wednesday 4/19, and included on PSets 6 through 10. This includes textbook sections 2.8-9, 3.1-4, 4.1-3, 6.1-4.
+    * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be. Solutions will be posted in the week before the midterm.
         * [2015 midterm 2](../252-22spring/exams/midterm2practice/midterm2-2015.pdf)
         * [2016 midterm 2](../252-22spring/exams/midterm2practice/midterm2-2016.pdf)
         * [2019 midterm 2](../252-22spring/exams/midterm2practice/midterm2-2019.pdf)
