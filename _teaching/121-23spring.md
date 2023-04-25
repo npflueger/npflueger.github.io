@@ -122,7 +122,7 @@ There will be three midterms and a three hour final exam. Further information an
     * Coverage: anything covered from Monday 3/27 to Friday 4/21 (Sections: 11.8-11), i.e. power series, Taylor series, and applications.
     * [Review packet](https://dbenedetto.people.amherst.edu/math121/exam3reviewpacketfall22.pdf) / [Solutions](https://dbenedetto.people.amherst.edu/math121/exam3reviewpacketfall22answers.pdf)
     * Practice exams: [Spring 2021](https://dbenedetto.people.amherst.edu/math121/exam3spring21compact.pdf) (skip #9), [Fall 2021](https://dbenedetto.people.amherst.edu/math121/exam3fall21compact.pdf), [Spring 2022](https://dbenedetto.people.amherst.edu/math121/exam3spring22compact.pdf) (skip #7)
-        * Solutions will be linked next week.
+        * Solutions: [Spring 2021](https://dbenedetto.people.amherst.edu/math121/exam3spring21answers.pdf), [Fall 2021](https://dbenedetto.people.amherst.edu/math121/exam3fall21answers.pdf), [Spring 2022](https://dbenedetto.people.amherst.edu/math121/exam3spring22answers.pdf)
 
 
 * The final exam will be on Tuesday 5/16, 2pm-5pm, in SCCE E210.
