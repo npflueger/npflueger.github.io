@@ -71,9 +71,9 @@ You can find materials from previous offerings of this course here: [2022](../25
     * Remember to make a one-page note-sheet (front and back)! Summary tables for all cryptosystems we've studied will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: Anything discussed by Wednesday 4/19, and included on PSets 6 through 10. This includes textbook sections 2.8-9, 3.1-4, 4.1-3, 6.1-4.
     * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be. Solutions will be posted in the week before the midterm.
-        * [2015 midterm 2](exams/midterm2practice/midterm2-2015.pdf)
-        * [2016 midterm 2](exams/midterm2practice/midterm2-2016.pdf)
-        * [2019 midterm 2](exams/midterm2practice/midterm2-2019.pdf)
+        * [2015 midterm 2](exams/midterm2practice/midterm2-2015.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1019715/mod_resource/content/1/midterm2-2015soln.pdf)
+        * [2016 midterm 2](exams/midterm2practice/midterm2-2016.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1019716/mod_resource/content/1/midterm2-2016soln.pdf)
+        * [2019 midterm 2](exams/midterm2practice/midterm2-2019.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1019717/mod_resource/content/1/midterm2-2019soln.pdf)
 
 
 * The final exam will be on Thursday 5/18, 2-5pm, in SMUD 206.
