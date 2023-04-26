@@ -121,7 +121,7 @@ There will be three midterms and a three hour final exam. Further information an
     * You are allowed a **one page notesheet, front and back,** so that you don't need to memorize formulas. Put some time into it -- deciding what to put on the note sheet is a very useful study process!
     * Coverage: anything covered from Monday 3/27 to Friday 4/21 (Sections: 11.8-11), i.e. power series, Taylor series, and applications.
     * [Review packet](https://dbenedetto.people.amherst.edu/math121/exam3reviewpacketfall22.pdf) / [Solutions](https://dbenedetto.people.amherst.edu/math121/exam3reviewpacketfall22answers.pdf)
-    * Practice exams: [Spring 2021](https://dbenedetto.people.amherst.edu/math121/exam3spring21compact.pdf) (skip #9), [Fall 2021](https://dbenedetto.people.amherst.edu/math121/exam3fall21compact.pdf), [Spring 2022](https://dbenedetto.people.amherst.edu/math121/exam3spring22compact.pdf) (skip #7)
+    * Practice exams: [Spring 2021](https://dbenedetto.people.amherst.edu/math121/exam3spring21compact.pdf) (skip #9) (was take-home; longer), [Fall 2021](https://dbenedetto.people.amherst.edu/math121/exam3fall21compact.pdf), [Spring 2022](https://dbenedetto.people.amherst.edu/math121/exam3spring22compact.pdf) (skip #7)
         * Solutions: [Spring 2021](https://dbenedetto.people.amherst.edu/math121/exam3spring21answers.pdf), [Fall 2021](https://dbenedetto.people.amherst.edu/math121/exam3fall21answers.pdf), [Spring 2022](https://dbenedetto.people.amherst.edu/math121/exam3spring22answers.pdf)
 
 
