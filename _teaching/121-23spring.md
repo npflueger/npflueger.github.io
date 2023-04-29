@@ -119,6 +119,7 @@ There will be three midterms and a three hour final exam. Further information an
         * Solutions to practice exams: [Spring 2020](https://dbenedetto.people.amherst.edu/math121/exam2spring20answers.pdf), [Fall 2020](https://dbenedetto.people.amherst.edu/math121/exam2fall20answers.pdf), [Fall 2022](https://dbenedetto.people.amherst.edu/math121/exam2fall22answers.pdf)
 
 * Midterm 3 will be in class on Friday 4/28.
+    * [Exam](https://moodle.amherst.edu/pluginfile.php/1020243/mod_resource/content/1/midterm3compact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1020244/mod_resource/content/1/midterm3soln.pdf)
     * You are allowed a **one page notesheet, front and back,** so that you don't need to memorize formulas. Put some time into it -- deciding what to put on the note sheet is a very useful study process!
     * Coverage: anything covered from Monday 3/27 to Friday 4/21 (Sections: 11.8-11), i.e. power series, Taylor series, and applications.
     * [Review packet](https://dbenedetto.people.amherst.edu/math121/exam3reviewpacketfall22.pdf) / [Solutions](https://dbenedetto.people.amherst.edu/math121/exam3reviewpacketfall22answers.pdf)
