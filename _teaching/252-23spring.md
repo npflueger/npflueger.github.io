@@ -69,6 +69,7 @@ You can find materials from previous offerings of this course here: [2022](../25
         * [2015 midterm 1](../252-22spring/exams/midterm1-2015.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1009148/mod_resource/content/1/midterm1-2015-soln.pdf)
 
 * Midterm 2 will be on Friday 4/28, in class.
+    * [Exam](https://moodle.amherst.edu/pluginfile.php/1020372/mod_resource/content/1/midterm2compact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1020373/mod_resource/content/1/midterm2soln.pdf)
     * Remember to make a one-page note-sheet (front and back)! Summary tables for all cryptosystems we've studied will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: Anything discussed by Wednesday 4/19, and included on PSets 6 through 10. This includes textbook sections 2.8-9, 3.1-4, 4.1-3, 6.1-4.
     * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be. Solutions will be posted in the week before the midterm.
