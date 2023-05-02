@@ -94,7 +94,7 @@ Problem sets will be posted here. All problem sets are due at 10pm, on Gradescop
 * [Problem Set 15](psets/pset15.pdf) (due F 4/14 at midnight) / [answer key](https://dbenedetto.people.amherst.edu/math121fall22/HW16FinalAnswers.pdf)
 * [Problem Set 16](psets/pset16.pdf) (due ~~W 4/19~~ F 4/21 at midnight) / [answer key](https://dbenedetto.people.amherst.edu/math121fall22/HW17FinalAnswers.pdf) (ignore #12 on this key)
 * [Problem Set 17](psets/pset17.pdf) (due W 4/26 at midnight) / [answer key](https://dbenedetto.people.amherst.edu/math121/HW18FinalAnswers.pdf)
-* [Problem Set 18](psets/pset18.pdf) (due **F 5/5** at midnight) / answer key to be posted soon.
+* [Problem Set 18](psets/pset18.pdf) (due **F 5/5** at midnight) / [answer key](psets/pset18key.pdf)
 <!--psets-->
 
 ### Exams
