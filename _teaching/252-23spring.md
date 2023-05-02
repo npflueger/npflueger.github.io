@@ -55,6 +55,7 @@ You can find materials from previous offerings of this course here: [2022](../25
 * [Problem Set 9](psets/pset9.pdf) (due W 4/19)
 * [Problem Set 10](psets/pset10.pdf) (due W 4/26)
 * [Problem Set 11](psets/pset11.pdf) (due **F 5/5**)
+* [Problem Set 12](psets/pset12.pdf) (due **Tu 5/9**)
 <!--psets-->
 
 ### Exams
