@@ -26,6 +26,7 @@ You can find materials from previous offerings of this course here: [2022](../25
 ### Handouts
 
 *   [Syllabus](handouts/syllabus.pdf)
+*   [Desmos associativity demo](https://www.desmos.com/calculator/iuhg1yj5bz)
 <!--handouts-->
 
 ### Textbook and other links
