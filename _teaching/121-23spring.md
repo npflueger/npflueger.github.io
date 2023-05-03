@@ -29,6 +29,7 @@ I previously taught this course in [Spring 2018](../121-18spring). At the link, 
 *   M 1/30: [exponentials review handout](../121-18spring/handouts/2018-01-23.pdf) / [solutions](../121-18spring/handouts/2018-01-23-soln.pdf)
 *   W 2/8: [L'Hôpital's rule notes](../math1a/lecture23.pdf) from an older course
 *   M 2/13: [integration by parts notes](../math1a/lecture32.pdf) from an older course (see Section 5 for a bit on tabular integration)
+*   W 5/3: [Polar curves demo](https://www.desmos.com/calculator/nyxiztnbf5) in Desmos.
 <!--handouts-->
 
 <!-- The 2018 handouts are below, for reference.
