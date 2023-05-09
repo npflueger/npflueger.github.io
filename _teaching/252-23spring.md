@@ -84,6 +84,6 @@ You can find materials from previous offerings of this course here: [2022](../25
     * Remember to make a one-page note-sheet (front and back)! Summary tables for all cryptosystems we've studied will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: cumulative, including all course material. The material after Midterm 2 will have slightly higher weight, since it has not yet been covered on an exam.
     * Some old final exams.
-        * [2015 final exam](../252-22spring/exams/midterm2practice/final-2015.pdf)
-        * [2016 final exam](../252-22spring/exams/midterm2practice/final-2016.pdf)
-        * [2019 final exam](../252-22spring/exams/midterm2practice/final-2019.pdf)
+        * [2015 final exam](exams/final-2015.pdf) / [Solutions](exams/final-2015soln.pdf)
+        * [2016 final exam](exams/final-2016.pdf) / [Solutions](exams/final-2016soln.pdf)
+        * [2019 final exam](exams/final-2019.pdf) / [Solutions](exams/final-2019soln.pdf)
