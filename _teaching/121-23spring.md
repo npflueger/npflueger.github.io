@@ -130,6 +130,12 @@ There will be three midterms and a three hour final exam. Further information an
 
 
 * The final exam will be on Tuesday 5/16, 2pm-5pm, in SCCE E210.
+    * You are allowed a **one page notesheet, front and back,** so that you don't need to memorize formulas. Put some time into it -- deciding what to put on the note sheet is a very useful study process!
+    * Coverage: Cumulative, i.e. all material from Midterms 1 through 3, plus parametric and polar coordinates.
+    * [Review packet](https://dbenedetto.people.amherst.edu/math121/finalexamreviewpacketFALL22.pdf) on material after Midterm 3 / [Solutions](https://dbenedetto.people.amherst.edu/math121/finalexamreviewpacketanswers.pdf)
+    * Practice exams: [Spring 2022](https://dbenedetto.people.amherst.edu/math121/MA121Spring22FinalCompact.pdf), [Spring 2021](https://dbenedetto.people.amherst.edu/math121/MA121Spring21FinalCompact.pdf), [Fall 2019](https://dbenedetto.people.amherst.edu/math121/MA121Fall19FinalCompact.pdf) (skip #10), [Spring 2018](https://dbenedetto.people.amherst.edu/math121fall18/MA121Spring18FinalCompact.pdf)
+        * Solutions: [Spring 2022](https://dbenedetto.people.amherst.edu/math121/MA121Spring22Finalanswers.pdf), [Spring 2021](https://dbenedetto.people.amherst.edu/math121/MA121Spring21Finalanswers.pdf), [Fall 2019](https://dbenedetto.people.amherst.edu/math121/MA121Fall19Finalanswers.pdf)
+    * You can also find additional old finals (with solutions) at my [2018 course page](https://npflueger.github.io/teaching/121-18spring/), but be aware that topic coverage was slightly different then. Feel free to ask if you are unsure whether a specific topic was covered this semester.
 
 <!-- 2018 material here for reference.
 * [Midterm 1](https://lms.ats.amherst.edu/pluginfile.php/544203/mod_resource/content/1/midterm1-compact.pdf) ([Solutions](https://lms.ats.amherst.edu/pluginfile.php/544205/mod_resource/content/1/midterm1-soln.pdf)) Friday, February 16.
