@@ -130,6 +130,7 @@ There will be three midterms and a three hour final exam. Further information an
 
 
 * The final exam will be on Tuesday 5/16, 2pm-5pm, in SCCE E210.
+    * [Exam](https://moodle.amherst.edu/pluginfile.php/1022045/mod_resource/content/1/finalCompact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1022046/mod_resource/content/1/finalExamSoln.pdf)
     * You are allowed a **one page notesheet, front and back,** so that you don't need to memorize formulas. Put some time into it -- deciding what to put on the note sheet is a very useful study process!
     * Coverage: Cumulative, i.e. all material from Midterms 1 through 3, plus parametric and polar coordinates.
     * [Review packet](https://dbenedetto.people.amherst.edu/math121/finalexamreviewpacketFALL22.pdf) on material after Midterm 3 / [Solutions](https://dbenedetto.people.amherst.edu/math121/finalexamreviewpacketanswers.pdf)
