@@ -81,6 +81,7 @@ You can find materials from previous offerings of this course here: [2022](../25
 
 
 * The final exam will be on Thursday 5/18, 2-5pm, in SMUD 206.
+    * [Exam](https://moodle.amherst.edu/pluginfile.php/1022123/mod_resource/content/1/finalCompact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1022124/mod_resource/content/1/finalexam-soln.pdf)
     * Remember to make a one-page note-sheet (front and back)! Summary tables for all cryptosystems we've studied will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: cumulative, including all course material. The material after Midterm 2 will have slightly higher weight, since it has not yet been covered on an exam.
     * Some old final exams.
