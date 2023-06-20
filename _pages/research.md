@@ -14,20 +14,22 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 <br /> [arXiv](https://arxiv.org/abs/2206.14227)
 *   _(Hurwitz-)Brill-Noether general marked graphs via the Demazure product_. Preprint (2022).
 <br /> [arXiv](https://arxiv.org/abs/2201.12316)
-*   _Weierstrass semigroups from cyclic covers of hyperelliptic curves_ (with E. Cotterill and N. Zhang). Preprint (2021).
-<br /> [arXiv](https://arxiv.org/abs/2201.00033)
 *   _Versality of Brill-Noether flags and degeneracy loci of twice-marked curves_. Preprint (2021).
 <br /> [arXiv](https://arxiv.org/abs/2103.10969)
 
 ## Papers in press
 
-*   _Linear series with ρ<0 via thrifty lego-building_. Journal für die reine und angewandte Mathematik (Crelle). To appear; published online.
-<br /> [arXiv](https://arxiv.org/abs/2201.08869) [DOI](https://doi.org/10.1515/crelle-2023-0001)
-*   _Relative Richardson Varieties_ (with M. Chan). Mathematical Proceedings of the Cambridge Philosophical Society. To appear; published online.
-<br /> [arXiv](https://arxiv.org/abs/1909.12414) [DOI](https://www.doi.org/10.1017/S0305004123000087)
+*   _Weierstrass semigroups from cyclic covers of hyperelliptic curves_ (with E. Cotterill and N. Zhang). Bulletin of the Brazilian Mathematical Society. To appear.
+<br /> [arXiv](https://arxiv.org/abs/2201.00033)
+
+
 
 ## Publications
 
+*   _Linear series with ρ<0 via thrifty lego-building_. Journal für die reine und angewandte Mathematik (Crelle), no. 797 (2023), pp. 193-228.
+<br /> [arXiv](https://arxiv.org/abs/2201.08869) [DOI](https://doi.org/10.1515/crelle-2023-0001)
+*   _Relative Richardson Varieties_ (with M. Chan). Mathematical Proceedings of the Cambridge Philosophical Society, 175:1 (2023), 161–186.
+<br /> [arXiv](https://arxiv.org/abs/1909.12414) [DOI](https://www.doi.org/10.1017/S0305004123000087)
 *   _Combinatorial relations on skew Schur and skew stable Grothendieck polynomials_ (with M. Chan). Algebraic Combinatorics Volume 4 (2021) no. 1 p. 175-188. 
 <br /> [arXiv](https://arxiv.org/abs/1909.12833) [DOI](https://doi.org/10.5802/alco.144) [pdf](/files/papers/combinatorialRelationsGrothendieck.pdf)
 *   _Euler characteristics of Brill-Noether varieties_ (with M. Chan). Transactions of the AMS 374:3 (2021) 1513-1533. 
