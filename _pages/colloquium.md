@@ -48,9 +48,11 @@ $(document).ready(function() {
 }
 </style>
 
-The Amherst College Math Colloquium is a series of talks aimed at undergraduates.
+The Amherst College Math Colloquium is a series of talks for undergraduates.
 
-IOU: some information about whom the talks are aimed at, what background is assumed, etc.
+All are welcome! The talks are intended to be mostly accessible to students who have taken calculus, although they may also provide a preview of deeper waters. 
+
+The 2023-2024 colloquium is organized by [Ivan Contreras](https://icontreraspalacios.people.amherst.edu/) and [Nathan Pflueger](https://npflueger.github.io).
 
 
 {% assign cur_date = 'now' | date: "%Y-%m-%d" %}
