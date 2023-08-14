@@ -1,0 +1,92 @@
+[
+  {
+    "date": "2023-10-16",
+    "speaker": "Art Benjamin (Harvey Mudd College)",
+    "speakerurl": "https://math.hmc.edu/benjamin/"
+  },
+  {
+    "date": "Date TBA",
+    "speaker": "Rob Benedetto (Amherst)"
+  },
+
+
+
+  {
+    "date": 2023-03-28",
+    "timeplace": "4:30pm-5:30pm, Seeley Mudd 206",
+    "speaker": "Ron Buckmire (Occidental)",
+    "speakerurl": "https://www.oxy.edu/academics/faculty/ron-buckmire",
+    "title": "Different Differences: A Primer on NSFD Methods For Solving Differential Equations",
+    "abstract": "From Calculus we know that a derivative of a function can be approximated using a difference quotient. There are different forms of the difference quotient, such as the forward difference (most common), backward difference and centered difference (more accurate). In this talk I will discuss several different differences, specifically nonstandard finite differences (NFSD) that can be used to approximate the derivatives that appear in differential equations as a solution technique. Many NSFD schemes have been discovered and promoted by Ronald E. Mickens, an African-American Emeritus Professor of Physics at Clark Atlanta University, who has written more than 300 research articles and a dozen books. I will present a number of examples of how NSFD schemes can be used to solve a variety of problems drawn from first-semester Calculus to elementary ordinary differential equations to advanced partial differential equations.
+
+All students (faculty and staff) are welcome to attend.  Only knowledge of elementary derivatives/anti-derivatives and Taylor approximations will be assumed."
+  },
+  {
+    "date": "2022-11-02",
+    "speaker": "Alejandro Morales",
+    "speakerurl": "https://sites.google.com/view/ahmorales/",
+    "timeplace": "4:30-5:30, SMUD 206",
+    "title" : "Recent advances in the study of flow polytopes of graphs",
+    "abstract": "A flow polytope of a graph is the set of flows on the edges of the graph with prescribed net flows on vertices. Flow polytopes of graphs are a rich family of polytopes of interest in probability, optimization, representation theory, and algebraic combinatorics.
+Special cases of these polytopes have remarkable formulas for their volume related to the famous Selberg integral. I will give an overview of recent work on these polytopes including formulas that relate their volume to the number of lattice points, and the geometry of their
+triangulations."
+  },
+  {
+    "date": "2022-10-26",
+    "speaker": "Johan VanHorebeek (CIMAT)",
+    "speakerurl": "https://www.cimat.mx/~horebeek/",
+    "timeplace": "4:30 PM, SMUD 206",
+    "title": "A guided walk through object oriented statistical machine learning",
+    "abstract": "Usually, we treat data as vectors stored in an excel sheet or data matrix. In this talk we navigate attendees through a spectrum of challenging problems in data science and machine learning that show the need for more sophisticated approaches. We briefly discuss some (recent) mathematical and statistical aspects and the central role of distance and similarity functions."
+  },
+  {
+  "date": "2021-03-18",
+  "timeplace": "5:30pm-6:30pm, via Zoom",
+  "speaker": "Dan Velleman (Professor Emeritus, Amherst College)",
+  "speakerurl": "https://www.amherst.edu/people/facstaff/djvelleman",
+  "title": "The Mystery of Colliding Blocks",
+  "abstract": "I will solve a simple physics problem with a very surprising answer."
+  },
+{
+  "date": "2021-04-01",
+  "timeplace": "5:30pm-6:30pm, via Zoom",
+  "speaker": "Bowen Wang (2018 Amherst graduate)",
+  "title": "Towards a coarse theory of quantum spin systems",
+  "abstract": "In this talk, we will explore two very different worlds: the world of quantum spin systems and the world of coarse geometry. Quantum spin systems are powerful mathematical models of interacting quantum many-body systems. They are widely studied in condensed matter physics, mathematical physics as well as quantum information theory. On the other hand, since its introduction by John Roe, coarse geometry has remained a beautiful and effective description of large-scale behavior of spaces. After introducing both worlds separately, I will explain an on-going effort to connect the two through an idea called homology. I will only assume backgrounds in calculus and linear algebra."
+},  
+{
+  "date": "2020-09-29",
+  "timeplace": "5:30pm-6:30pm, via Zoom",
+  "speaker": "Patricia Cahn (Smith College)",
+  "title": "Wallpaper Patterns and Life on the Klein Bottle",
+  "abstract": "Wallpaper patterns are patterns in the plane which repeat forever in two directions (say, horizontally and vertically, the way wallpaper does!). We'll study their classification using ideas from geometry, and a related field, topology, which one can think of as 'flexible geometry'. We'll encounter many fun mathematical objects along the way, including donuts, Mobius bands, and Klein bottles!"
+},
+{
+  "date": "2020-09-15",
+  "timeplace": "6:00pm-7:00pm, via Zoom",
+  "speaker": "Ivan Contreras (Amherst)",
+  "title": "Stranger Things (in Math)",
+  "abstract": "As most of you know, 'Stranger Things' is a popular series on Netflix, in which the main characters explore the unknown 'Upside Down' world, where things don't work as they usually do. Following the analogy, we will explore a non-commutative version of algebra and geometry, in which the order in which you write your variables matter. For example, usual addition and multiplication are commutative operations, but subtraction, division, and composition of functions are non-commutative. We will introduce some 'non-commutative creatures' and we will delve into two interesting results: the Baker-Campbell-Hausdorff formula and the Gelfand-Naimark theorem, in an alternate non-commutative world."
+},
+{
+  "date": "2019-10-24",
+  "timeplace": "4:30pm, Seeley Mudd 206",
+  "speaker": "David Freund (Harvard University)",
+  "title": "Knot for Everyday Purposes",
+  "abstract": "Knots are a part of our everyday lives, from twisted strands of DNA, to shoelaces, braided hair, and the inevitable tangle of headphones. Mathematics offers an insight into the structure and complexity of everyday knots and provides tools to tell them apart. Starting with pieces of string, we will explore the study of knots and how it ties together various fields of mathematics. No background knowledge is assumed."
+},
+{
+  "date": "2019-09-26",
+  "timeplace": "4:30pm, Seeley Mudd 206",
+  "speaker": "Ivan Contreras (Amherst)",
+  "title": "Mathematical Physics and the Shape of Graphs",
+  "abstract": "Quantum Mechanics has revolutionized the way we understand our world. Since the beginning of the 20th century, beautiful mathematics has been devised and implemented in order to achieve such success. This talk intends to give a gentle overview of a discrete model of quantum mechanics: the Schrödinger equation on graphs. We will use the combinatorial graph Laplacian to learn about certain properties of finite graphs. No prior knowledge of physics or graph theory will be assumed."
+},
+{
+  "date": "2019-10-10",
+  "timeplace": "4:30pm, Seeley Mudd 206",
+  "speaker": "Rob Benedetto (Amherst)",
+  "title": "A Beginner's Introduction to the Mandelbrot Set",
+  "abstract": "The Mandelbrot Set is a beautiful and intricate geometric object, a small portion of which appears as the background image of the Department's webpage. It arises naturally in the field of Complex Dynamics, the study of the behavior of a function when you compose it with itself over and over again, when the variable is a complex number. In this talk, I'll describe the basics of complex dynamics, as well as some of the fractal sets that arise along the way. That will lead to considering the Mandelbrot set, and exhibiting some of its special structures. The only background required is Math 121. No prior knowledge of dynamics, fractals, or complex numbers is needed."
+},
+]

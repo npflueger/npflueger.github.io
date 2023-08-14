@@ -1,0 +1,17 @@
+**{{ talk.date | date: "%A, %B %-d, %Y" }}**<br />
+{% if talk.timeplace %} {{ talk.timeplace }} {% endif %}
+
+<div class="seminar-talk">
+  {% if talk.title %} <i>{{ talk.title }}</i> {% endif %}
+  {% if talk.abstract %}
+  <button class="toggle-abstract">Show Abstract</button>
+  <div class="talk-abstract" style="display: none;">
+    {{ talk.abstract }}
+  </div>
+  {% endif %}
+</div>
+
+{% if talk.speakerurl %} [{{talk.speaker}}]({{talk.speakerurl}})
+{% else %} {{ talk.speaker }}
+{% endif %}
+-----
