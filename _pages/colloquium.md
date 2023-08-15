@@ -57,12 +57,14 @@ The 2023-2024 colloquium is organized by [Ivan Contreras](https://icontreraspala
 
 {% assign cur_date = 'now' | date: "%Y-%m-%d" %}
 ## Upcoming talks
-{% for talk in site.data.colloquium | sort: 'date' %}
+{% assign talks = site.data.colloquium | sort: 'date' %}
+{% for talk in talks %}
   {% if talk.date >= cur_date %} {% include talk-entry.html talk=talk %} {% endif %}
 {% endfor %}
 
 ## Past talks
-{% for talk in site.data.colloquium | sort: 'date' | reverse %}
+{% assign talks = site.data.colloquium | sort: 'date' | reverse %}
+{% for talk in talks %}
   {% if talk.date < cur_date %} {% include talk-entry.html talk=talk %} {% endif %}
 {% endfor %}
 

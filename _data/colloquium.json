@@ -23,7 +23,7 @@ All students (faculty and staff) are welcome to attend.  Only knowledge of eleme
   },
   {
     "date": "2022-11-02",
-    "speaker": "Alejandro Morales",
+    "speaker": "Alejandro Morales (U. Mass)",
     "speakerurl": "https://sites.google.com/view/ahmorales/",
     "timeplace": "4:30-5:30, SMUD 206",
     "title" : "Recent advances in the study of flow polytopes of graphs",
@@ -88,5 +88,39 @@ triangulations."
   "speaker": "Rob Benedetto (Amherst)",
   "title": "A Beginner's Introduction to the Mandelbrot Set",
   "abstract": "The Mandelbrot Set is a beautiful and intricate geometric object, a small portion of which appears as the background image of the Department's webpage. It arises naturally in the field of Complex Dynamics, the study of the behavior of a function when you compose it with itself over and over again, when the variable is a complex number. In this talk, I'll describe the basics of complex dynamics, as well as some of the fractal sets that arise along the way. That will lead to considering the Mandelbrot set, and exhibiting some of its special structures. The only background required is Math 121. No prior knowledge of dynamics, fractals, or complex numbers is needed."
+},
+{
+  "date": "2019-11-06",
+  "timeplace": "4:30pm, Seeley Mudd 206",
+  "speaker": "Annie Raymond (UMass Amherst)",
+  "title": "Turán's Problem and an Introduction to Sums of Squares",
+  "abstract": "What is the maximum number of edges in a graph on n vertices without triangles? Mantel's answer in 1907—that at most half of the edges can be present—started a new field: extremal combinatorics. More generally, what is the maximum number of edges in a n‐vertex graph that does not contain any subgraph isomorphic to H? What about if you consider hypergraphs instead of graphs? I will introduce the technique of sums of squares and discuss how it can be used to attack such problems."
+},
+{
+  "date": "2020-02-20",
+  "timeplace": "4:30pm, Seeley Mudd 206",
+  "speaker": "Amanda Folsom (Amherst)",
+  "title": "Symmetry, Almost",
+  "abstract": "Some definitions of the word symmetry include 'correct or pleasing proportion of the parts of a thing,' 'balanced proportions,' and 'the property of remaining invariant under certain changes, as of orientation in space.' One might think of snowflakes, butterflies, and our own faces as naturally symmetric objects– or at least close to it. Mathematically one can also conjure up many symmetric objects: even and odd functions, fractals, certain matrices, and modular forms, a type of symmetric complex function. All of these things exhibit a kind of beauty in their symmetries, so would they lose some of their innate beauty if their symmetries were altered? Alternatively, could some measure of beauty be gained with slight symmetric imperfections? We will explore these questions guided by the topic of modular forms and their variants. What can be gained by perturbing modular symmetries in particular? We will discuss this theme from past to present: the origins of these questions have their roots in the first half of the 20th century, dating back to Ramanujan and Gauss, while some fascinating and surprising answers come from just the last 15 years."
+},
+{
+  "date": "2020-02-06",
+  "timeplace": "4:30pm, Seeley Mudd 207",
+  "speaker": "James M. Murphy (Tufts University)",
+  "title": "Unsupervised Clustering, Harmonic Analysis, and Applications",
+  "abstract": "Machine learning is revolutionizing the sciences. But, most existing methods require large amounts of human-generated training data to succeed. In this talk, we will introduce the unsupervised clustering problem, which requires an algorithm to make predictions without training data. We will discuss some classical methods for clustering before introducing a couple new approaches. Throughout, connections with graph theory, Fourier analysis, and probability theory will be developed. We will also demonstrate applications to image processing and remote sensing."
+},
+{
+  "date": "2019-11-21",
+  "timeplace": "4:30pm, Seeley Mudd 206",
+  "speaker": "Kasso Okoudjou (U. Maryland)",
+  "title": "A fun optimization problem",
+},
+{
+  "date": "2019-11-14",
+  "timeplace": "4:30pm-5:30pm, SMUD 204",
+  "speaker": "Katie Kinnaird (Smith College)",
+  "title": "Comparing Songs without Listening: From Mathematics, Statistics, and Computer Science to Music and Back Again",
+  "abstract": "Music is deeply entrenched in our daily lives, from our playlists to the background songs in our favorite television shows. The multidisciplinary field of Music Information Retrieval (MIR) is motivated by the comparisons that we, as humans, make about music and the various contexts of these comparisons. By defining tasks such as building better song recommendation systems or finding structural information in a given recording, MIR seeks to algorithmically make these musical comparisons in the same manner that a human being would, but on a much larger scale. In this talk, we will introduce the field of MIR, including popular tasks and cutting edge techniques. Then we will present aligned hierarchies, a structure-based representation that can be used for comparing songs, and new extensions of aligned hierarchies that leverage ideas from topological data analysis."
 },
 ]
