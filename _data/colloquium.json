@@ -8,9 +8,12 @@
     "date": "Date TBA",
     "speaker": "Rob Benedetto (Amherst)"
   },
-
-
-
+  {
+    "date": "2023-11-01",
+    "timeplace": "4:00-5:00",
+    "speaker": "Leo Goldmakher (Williams)",
+    "speakerurl": "https://web.williams.edu/Mathematics/lg5/",
+  },
   {
     "date": 2023-03-28",
     "timeplace": "4:30pm-5:30pm, Seeley Mudd 206",
