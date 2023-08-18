@@ -50,7 +50,7 @@ $(document).ready(function() {
 
 The Amherst College Math Colloquium is a series of talks for undergraduates.
 
-All are welcome! The talks are intended to be mostly accessible to students who have taken calculus, although they may also provide a preview of deeper waters. 
+All are welcome! The talks are intended to be mostly accessible to students who have taken calculus, although they may also provide a preview of deeper waters. The colloquium talks are usually one hour long (50 + 10 minutes for questions). We usually have a 30 minute pre-talk small gathering (with snacks and refreshments) beforehand.
 
 The 2023-2024 colloquium is organized by [Ivan Contreras](https://icontreraspalacios.people.amherst.edu/) and [Nathan Pflueger](https://npflueger.github.io).
 
