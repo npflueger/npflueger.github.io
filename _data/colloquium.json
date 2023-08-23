@@ -5,8 +5,16 @@
     "speakerurl": "https://math.hmc.edu/benjamin/"
   },
   {
-    "date": "Date TBA",
-    "speaker": "Rob Benedetto (Amherst)"
+    "date": "2023-09-20",
+    "timeplace": "4:00-5:00",
+    "speaker": "Rob Benedetto (Amherst)",
+    "speakerurl": "https://rlbenedetto.people.amherst.edu/",
+    "title": "The $abc$ Conjecture: An Introduction",
+    "abstract": "The $abc$-conjecture is a straightforward statement about the prime factors of integers $a$, $b$, and $c$ satisfying the equation $a+b=c$. In spite of the simple name, simple equation, and simple statement, however, the conjecture turns out to be a quite subtle statement in number theory.
+
+In this talk, we will motivate and state the $abc$-conjecture. To help us get there, we'll spend most of our time looking at the related case of putting polynomials, rather than integers, in the roles of $a$, $b$, and $c$.
+
+No background beyond Math 111 is needed for this talk."
   },
   {
     "date": "2023-11-01",
