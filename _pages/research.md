@@ -17,14 +17,10 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 *   _Versality of Brill-Noether flags and degeneracy loci of twice-marked curves_. Preprint (2021).
 <br /> [arXiv](https://arxiv.org/abs/2103.10969)
 
-## Papers in press
-
-*   _Weierstrass semigroups from cyclic covers of hyperelliptic curves_ (with E. Cotterill and N. Zhang). Bulletin of the Brazilian Mathematical Society. To appear.
-<br /> [arXiv](https://arxiv.org/abs/2201.00033)
-
-
-
 ## Publications
+
+*   _Weierstrass semigroups from cyclic covers of hyperelliptic curves_ (with E. Cotterill and N. Zhang). Bulletin of the Brazilian Mathematical Society, New Series 54, 37 (2023).
+<br /> [arXiv](https://arxiv.org/abs/2201.00033) [DOI](https://doi.org/10.1007/s00574-023-00355-7)
 
 *   _Linear series with ρ<0 via thrifty lego-building_. Journal für die reine und angewandte Mathematik (Crelle), no. 797 (2023), pp. 193-228.
 <br /> [arXiv](https://arxiv.org/abs/2201.08869) [DOI](https://doi.org/10.1515/crelle-2023-0001)
