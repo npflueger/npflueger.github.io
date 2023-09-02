@@ -35,7 +35,7 @@ No background beyond Math 111 is needed for this talk."
     "abstract": "We often want to observe the shape of our data and will use clustering and data visualization methods to do so.  These methods typically require that our data is described with respect to a relatively small set of variables or that we provide distances among all pairs of points.  For many interesting problems, however, this initial step can be quite challenging.  In such a case, we may instead wish to work from a set of responses to similarity comparisons (e.g., among x, y, and z, which one is the outlier?).  In this talk, I will introduce cohesion, a new measure of relative proximity that is built on this comparison framework.  We’ll see how cohesion offers a perspective on our data that is quite different from distance alone and can help address challenges that arise in high-dimensional settings.  I will also share some initial progress toward the development of cohesion-based methods for clustering and data visualization."
   },
   {
-    "date": 2023-03-28",
+    "date": "2023-03-28",
     "timeplace": "4:30pm-5:30pm, Seeley Mudd 206",
     "speaker": "Ron Buckmire (Occidental)",
     "speakerurl": "https://www.oxy.edu/academics/faculty/ron-buckmire",
