@@ -18,7 +18,14 @@ In this talk, we will motivate and state the $abc$-conjecture. To help us get th
 No background beyond Math 111 is needed for this talk."
   },
   {
-    "data": "2023-11-14",
+    "date": "2023-10-05",
+    "speaker": "Jake Levinson (Université de Montréal)",
+    "speakerurl": "https://dms.umontreal.ca/~levinsonj/",
+    "title": "Curvature and polyhedra",
+    "abstract": "What does it mean for a surface to be curved? One way to answer this question is in terms of triangles drawn on the surface, and there's a neat way to approach it for polyhedra -- surfaces with planar faces, like the cube and the octahedron. We'll explore this idea and also encounter an invariant called the Euler characteristic: a glimpse of the area of mathematics called topology."
+  },
+  {
+    "date": "2023-11-14",
     "speaker": "Geremias Polanco (Smith)",
     "speakerurl": "https://www.smith.edu/academics/faculty/geremias-polanco"
   },
