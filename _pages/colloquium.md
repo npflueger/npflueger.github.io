@@ -23,6 +23,22 @@ $(document).ready(function() {
 });
 </script>
 
+<script>
+$(document).ready(function() {
+  $('.toggle-bio').click(function() {
+    var abstractDiv = $(this).next('.talk-bio');
+    abstractDiv.toggle(); // Toggle visibility
+
+    // Change button text based on visibility
+    if (abstractDiv.is(':visible')) {
+      $(this).text('Hide Bio');
+    } else {
+      $(this).text('Show Bio');
+    }
+  });
+});
+</script>
+
 
 <style>
 .seminar-talk {
@@ -34,7 +50,7 @@ $(document).ready(function() {
   margin-right: 10px;
 }
 
-.toggle-abstract {
+.toggle-abstract, .toggle-bio {
   background-color: #007BFF;
   color: white;
   border: none;

@@ -9,9 +9,17 @@
     {{ talk.abstract }}
   </div>
   {% endif %}
+    <br />
+    {% if talk.speakerurl %} <a href="{{talk.speakerurl}}">{{talk.speaker}}</a>
+    {% else %} {{ talk.speaker }}
+    {% endif %}
+    {% if talk.bio %}
+        <button class="toggle-bio">Show bio</button>
+        <div class="talk-bio" style="display: none;">
+            {{talk.bio}}
+        </div>
+    {% endif %}
+        
 </div>
 
-{% if talk.speakerurl %} [{{talk.speaker}}]({{talk.speakerurl}})
-{% else %} {{ talk.speaker }}
-{% endif %}
 -----
