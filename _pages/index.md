@@ -13,6 +13,8 @@ I am a mathematician at Amherst College, specializing in algebraic geometry and 
 
 I grew up in Seattle, and still miss the mountains all around, but I am a happy East coast transplant. I enjoy the snowy winters and all the scenery around the Pioneer valley. When time and childcare schedules allow it, I cycle along the Norwottuck Rail Trail from my home in Northampton to the Amherst campus, and can be found exploring the surrounding area by bicycle.
 
+My family pronounces our last name "fleeger." This is not the original German pronunciation, and I will happily answer to anything reasonable. 
+
 I currently help organize the department [Math Colloquium](colloquium) and Putnam training sessions, together with [Ivan Contreras](https://sites.google.com/view/ivancontreras/home).
  
 ## {{page.curSem}} Courses:
