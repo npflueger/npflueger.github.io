@@ -20,7 +20,9 @@ No background beyond Math 111 is needed for this talk.",
   },
   {
     "date": "2023-10-05",
+    "timeplace": "4:00-5:00, SMUD 206. Pre-talk refreshments at 3:45 in Room 208.",
     "speaker": "Jake Levinson (Université de Montréal)",
+    "bio": "Jake Levinson is an assistant professor of mathematics at the Université de Montréal. As an undergrad he attended Williams College (go Ephs!). He is interested in algebra, geometry and combinatorics.",
     "speakerurl": "https://dms.umontreal.ca/~levinsonj/",
     "title": "Curvature and polyhedra",
     "abstract": "What does it mean for a surface to be curved? One way to answer this question is in terms of triangles drawn on the surface, and there's a neat way to approach it for polyhedra -- surfaces with planar faces, like the cube and the octahedron. We'll explore this idea and also encounter an invariant called the Euler characteristic: a glimpse of the area of mathematics called topology."
