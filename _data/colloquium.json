@@ -35,7 +35,23 @@ No background beyond Math 111 is needed for this talk.",
     "date": "2023-11-14",
     "timeplace": "4:00-5:00, SMUD 206. Pre-talk refreshments at 3:45 in Room 208.",
     "speaker": "Geremias Polanco (Smith)",
-    "speakerurl": "https://www.smith.edu/academics/faculty/geremias-polanco"
+    "speakerurl": "https://www.smith.edu/academics/faculty/geremias-polanco",
+    "title": "On Numbers… and Patterns… and Games… and Greed",
+    "abstract": "Two sequences are complementary if their union gives the positive integers and their intersection is empty. For instance, the even and odd numbers are two complementary sequences. Similarly, the prime and composite numbers form another pair of complementary sequences.
+Combinatorial Games are two player (usually alternating), deterministic games (no flipping coins, tossing dice, ...) and with perfect information (each player knows all information available about the state of the game. Nothing is hidden). 
+On the other hand continued fractions are a special type of fractions that form under the following rules: \"add a fraction to an existing fraction’s denominator.\" 
+In this talk we will present some old and new results about complementary sequences, see how some of they arise as winning strategies for combinatorial games and how these sequences relate to continued fractions and other mathematical objects like dynamical systems.",
+    "bio": "My name is Geremías Polanco and I am an Assistant Professor of Mathematics at Smith College. I obtained my PhD in Mathematics from the University of Illinois at Urbana-Champaign, and my area of specialization is Number Theory. In this area of mathematics we study the integers which are the numbers $\\cdots -3,-2,-1,0,1,2,3,\\cdots$
+and their generalizations. My research uses tools from combinatorics (counting techniques), tools from algebra and tools from analysis (a sophisticated version of calculus) to solve problems involving the integers, and I actively mentor students in this endeavor.
+
+To be more specific, I investigate number theoretic and combinatorial properties of complementary integer sequences, especially those that are increasing. My research spans analyzing their inherent properties, exploring various generation methods, examining related mathematical constructs, and applying them in areas such as combinatorial games where these sequences emerge as solutions. I also study problems in uniform distribution theory, a central area in mathematics, that provides a framework to understand how sequences spread out over a specific interval or space. Finally I am lately working on some problems that require the use of analysis and algebra to better understand prime numbers and their properties.
+
+Professionally, I have three main passions:
+
+1. I am passionate about engaging in collaborative research with students and other colleagues, particularly delving into intriguing challenges in number theory.
+2. My enthusiasm lies in effective teaching and conveying mathematical concepts to diverse audiences, with a special emphasis on undergraduate students.
+3. My ultimate aim is to contribute to the establishment of a more inclusive mathematics community by breaking down barriers that hinder access and by providing support to all individuals, enabling them to flourish within the field of mathematics.
+I was born in the Dominican Republic where I completed my undergraduate studies. After completing my Phd I moved to the Pioneer Valley where I worked as an Assistant professor at Hampshire College for 6 years, as a Visiting Assistant Professor at Amherst College for 1 year, and I have been at Smith since 2020.  I love baseball (being a good dominican myself) and other outdoor activities.On Saturday nights, I am likely to be playing board games with my family and any friends that may join us."
   },
   {
     "date": "2023-11-01",
