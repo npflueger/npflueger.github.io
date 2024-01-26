@@ -1,0 +1,43 @@
+---
+title: "Math 281, Spring 2024"
+coursenum: "Math 281"
+coursename: "Combinatorics"
+permalink: teaching/281-24spring/
+startdate: 2024-01
+semester: "Spring 2024"
+redirect_from:
+    - /281/
+---
+
+This course emphasizes enumerative combinatorics, a classical subject in mathematics related to the theory of counting. Problems in this area often pertain to finding the number of possible arrangements of a set of objects under some particular constraints. This course incorporates a wide set of problems involving enumerative combinatorics, as well as theory and applications.
+
+### Time and location
+* Monday, Wednesday, and Friday, 10:00-10:50am (SMUD 204)
+
+### Help hours
+
+{% include helphours.md %}
+
+### Handouts and links
+* [Syllabus](handouts/syllabus.pdf)
+* [Boardwork](https://www.dropbox.com/scl/fo/eud006tb290hroi6zkd2p/h?rlkey=0youzuzm6wmkjf8j9scx2pd8i&dl=0) from days when I teach from a tablet
+
+### Problem Sets
+* Check back soon for the first problem set. It will be due on Wednesday, February 7.
+
+### Exams
+There will be two midterms and a three hour final exam. Further information and sample exams will be posted here. **Mark the midterm dates on your calendar now.**
+
+* Midterm 1 will be in class on Friday 9/29.
+    * You are allowed a **one page notesheet, front and back,** so that you don't need to memorize formulas. Put some time into it -- deciding what to put on the note sheet is a very useful study process!
+
+
+* Midterm 2 will be in class on Wednesday 4/10.
+    * You are allowed a **one page notesheet, front and back,** so that you don't need to memorize formulas. Put some time into it -- deciding what to put on the note sheet is a very useful study process!
+    * The exam is not cumulative -- covered material begins with the first topic not covered on Midterm 1.
+
+
+* The final exam date is scheduled by the registar, and will be posted here when it is determined.
+     * You are allowed a **one page notesheet, front and back,** so that you don't need to memorize formulas. Put some time into it -- deciding what to put on the note sheet is a very useful study process!
+    * The exam will be cumulative, though with increased emphasis on the material not yet covered on the midterms. 
+
