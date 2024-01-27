@@ -20,6 +20,7 @@ This course emphasizes enumerative combinatorics, a classical subject in mathema
 
 ### Handouts and links
 * [Syllabus](handouts/syllabus.pdf)
+* [Textbook](https://link.springer.com/book/10.1007/978-0-387-79711-3), freely available in pdf
 * [Boardwork](https://www.dropbox.com/scl/fo/eud006tb290hroi6zkd2p/h?rlkey=0youzuzm6wmkjf8j9scx2pd8i&dl=0) from days when I teach from a tablet
 
 ### Problem Sets
