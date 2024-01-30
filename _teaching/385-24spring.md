@@ -24,6 +24,7 @@ What, exactly, is a proof? This course begins with a precise definition specifyi
 * [Boardwork](https://www.dropbox.com/scl/fo/fh1vlc59sa4kuzoude095/h?rlkey=gzrp2wmhaxyggnkb6wczx2six&dl=0) from days when I teach from a tablet
 
 ### Problem Sets
+* [Gradescope instructions](handouts/gsinfo.pdf) for all problem sets. Our course code is **NP7E7X**.
 * Check back soon for the first problem set. It will be due on Wednesday, February 7.
 
 ### Exams

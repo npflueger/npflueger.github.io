@@ -24,6 +24,7 @@ This course emphasizes enumerative combinatorics, a classical subject in mathema
 * [Boardwork](https://www.dropbox.com/scl/fo/eud006tb290hroi6zkd2p/h?rlkey=0youzuzm6wmkjf8j9scx2pd8i&dl=0) from days when I teach from a tablet
 
 ### Problem Sets
+* [Gradescopre instructions](handouts/gsinfo.pdf) for all problems sets. Our course code is **RKEDB2**.
 * Check back soon for the first problem set. It will be due on Wednesday, February 7.
 
 ### Exams
