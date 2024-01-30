@@ -29,4 +29,4 @@ What, exactly, is a proof? This course begins with a precise definition specifyi
 * Check back soon for the first problem set. It will be due on Wednesday, February 7.
 
 ### Exams
-There will be one midterm exam and a final exam. Further information and sample exams will be posted here.
+There will be one midterm exam and a final exam. Further information will be posted here later.
