@@ -25,6 +25,7 @@ This course emphasizes enumerative combinatorics, a classical subject in mathema
 
 ### Problem Sets
 * [Gradescopre instructions](handouts/gsinfo.pdf) for all problems sets. Our course code is **RKEDB2**.
+* There is a **course survey** on Gradescope. Please fill it out during the first week of class.
 * Check back soon for the first problem set. It will be due on Wednesday, February 7.
 
 ### Exams
