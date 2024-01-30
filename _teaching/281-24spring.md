@@ -31,7 +31,7 @@ This course emphasizes enumerative combinatorics, a classical subject in mathema
 ### Exams
 There will be two midterms and a three hour final exam. Further information and sample exams will be posted here. **Mark the midterm dates on your calendar now.**
 
-* Midterm 1 will be in class on Friday 9/29.
+* Midterm 1 will be in class on Wednesday 2/28.
     * You are allowed a **one page notesheet, front and back,** so that you don't need to memorize formulas. Put some time into it -- deciding what to put on the note sheet is a very useful study process!
 
 
