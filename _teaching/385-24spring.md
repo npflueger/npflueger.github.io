@@ -26,7 +26,7 @@ What, exactly, is a proof? This course begins with a precise definition specifyi
 ### Problem Sets
 * [Gradescope instructions](handouts/gsinfo.pdf) for all problem sets. Our course code is **NP7E7X**.
 * There is a **course survey** on Gradescope. Please fill it out during the first week of class.
-* Check back soon for the first problem set. It will be due on Wednesday, February 7.
+* [Problem Set 1](psets/pset1.pdf) (due Wednesday 2/7 at 10pm)
 
 ### Exams
 There will be one midterm exam and a final exam. Further information will be posted here later.
