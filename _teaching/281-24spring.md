@@ -22,6 +22,8 @@ This course emphasizes enumerative combinatorics, a classical subject in mathema
 * [Syllabus](handouts/syllabus.pdf)
 * [Textbook](https://link.springer.com/book/10.1007/978-0-387-79711-3), freely available in pdf
 * [Boardwork](https://www.dropbox.com/scl/fo/eud006tb290hroi6zkd2p/h?rlkey=0youzuzm6wmkjf8j9scx2pd8i&dl=0) from days when I teach from a tablet
+* Review handouts on [Sigma notation](handouts/sigmaNotation.pdf) and [Induction](handouts/induction1.pdf) (gratefully borrowed from Prof. Folsom)
+* [Two proofs of a first theorem](handouts/induction2.pdf) (gratefully borrowed from Prof. Folsom)
 
 ### Problem Sets
 * [Gradescope instructions](handouts/gsinfo.pdf) for all problems sets. Our course code is **RKEDB2**.
