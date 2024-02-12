@@ -28,7 +28,8 @@ This course emphasizes enumerative combinatorics, a classical subject in mathema
 ### Problem Sets
 * [Gradescope instructions](handouts/gsinfo.pdf) for all problems sets. Our course code is **RKEDB2**.
 * There is a **course survey** on Gradescope. Please fill it out during the first week of class.
-* [Problem Set 1](psets/pset1.pdf) (due Wednesday 2/7 at 10pm)
+* [Problem Set 1](psets/pset1.pdf) (due ~~Wednesday 2/7~~ Friday 2/9 at 10pm)
+* [Problem Set 2](psets/pset2.pdf) (due Friday 2/16 by 10pm)
 
 ### Exams
 There will be two midterms and a three hour final exam. **Mark the midterm dates on your calendar now.**
