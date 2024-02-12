@@ -1,5 +1,14 @@
 [
   {
+    "date": "2024-02-12",
+    "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
+    "title": "Beyond Fermat's last theorem",
+    "abstract": "What do we (number theorists) do with ourselves now that Fermat's last theorem (FLT) has fallen? I'll discuss numerous generalizations of FLT  --  for instance, for fixed integers $a,b,c \\geq 2$ satisfying $1/a + 1/b + 1/c < 1$, Darmon and Granville proved the single generalized Fermat equation $x^a + y^b = z^c$ has only finitely many coprime integer solutions. Conjecturally something stronger is true: for $a,b,c \\geq 3$ there are no non-trivial solutions. More generally, I'll discuss my subfield \"arithmetic geometry\", and in particular the geometric intuitions that underlie the conjecture framework of modern number theory.",
+    "speaker": "David Zureick-Brown (Amherst)",
+    "speakerurl": "https://dmzb.github.io/",
+    "bio": "David Zureick-Brown is a professor of mathematics at Amherst College. He is broadly interested in Number Theory, Arithmetic Geometry, and Algebraic Geometry, especially making connections between different subareas of mathematics."
+  },
+  {
     "date": "2024-04-03",
     "timeplace": "5:00-6:00, SMUD 206. Pre-talk gathering at 4:30 in Williams Lounge (Room 208).",
     "speaker": "Peyam Tabrizian (Brown)",
