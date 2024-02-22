@@ -1,5 +1,25 @@
 [
   {
+    "date": "2024-04-17",
+    "speaker": "Alanna Hoyer-Leitzel (Mt. Holyoke)",
+    "speakerurl": "https://www.mtholyoke.edu/directory/faculty-staff/alanna-hoyer-leitzel",
+    "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
+  },
+  {
+    "date": "2024-03-27",
+    "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
+    "speaker": "Jessica Sidman (Amherst)",
+    "speakerurl": "https://jessicasidman.github.io/",
+  },
+  {
+    "date": "2024-02-22",
+    "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
+    "speaker": "Joe Kraisler (Amherst)",
+    "speakerurl": "https://www.amherst.edu/people/facstaff/jkraisler",
+    "title": " Factoring Integers Using Quantum Computers",
+    "abstract": "Factoring large numbers is notoriously difficult, even with the help of a computer and state of the art algorithms. In fact, if you could factor large integers into their prime components efficiently, you could break the security systems that websites use to protect users' credit card information (and become quite rich). In 1994 Peter Shor developed an algorithm which runs on a \"quantum computer\" in \"polynomial time\". In this talk I will discuss what a quantum computer is, what basic logical operations it can perform, and use Shor's algorithm to factor the number 15. The talk will assume some basic facts from Linear Algebra.",
+  },
+  {
     "date": "2024-02-12",
     "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
     "title": "Beyond Fermat's last theorem",
