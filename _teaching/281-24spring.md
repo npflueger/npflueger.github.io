@@ -33,6 +33,8 @@ This course emphasizes enumerative combinatorics, a classical subject in mathema
 * [Problem Set 3](psets/pset3.pdf) (due Wednesday 2/21 by 10pm)
 * [Problem Set 4](psets/pset4.pdf) (due Wednesday 3/6 by 10pm)
 * [Problem Set 5](psets/pset5.pdf) (due Wednesday 3/13 by 10pm)
+* [Problem Set 6](psets/pset6.pdf) (due **Friday** 3/29 by 10pm)
+* Note: PSet 6 is due on a Friday due to Spring break, but PSet 7 will be posted by Wednesday 3/27 and due Wednesday 4/3.
 
 ### Exams
 There will be two midterms and a three hour final exam. **Mark the midterm dates on your calendar now.**
