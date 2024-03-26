@@ -4,12 +4,18 @@
     "speaker": "Alanna Hoyer-Leitzel (Mt. Holyoke)",
     "speakerurl": "https://www.mtholyoke.edu/directory/faculty-staff/alanna-hoyer-leitzel",
     "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
+    "title": "Comparing models of disturbance in applied dynamical systems",
+    "abstract": "Different choices for modeling disturbance to a dynamical system can lead to different predictions of future outcomes. For example, when modeling population growth, traditional techniques use a continuous disturbance to model removing part of the population. However, if the disturbance is relatively fast compared to the recovery period, we can choose to remove part of the population instantaneously in a type of impulsive differential equation that I like to call a flow-kick system. In this talk I'll introduce flow-kick systems and show that when maintaining a constant disturbance rate, flow-kick systems can have qualitatively different outcomes than their analogous continuous systems if the time between disturbances is large enough. I'll discuss some theory briefly but mainly focus on applications, including fires in savannas and human immune system reaction to reoccurring exposure to a virus.",
+    "bio": "Alanna Hoyer-Leitzel is an Associate Professor Mathematics at Mount Holyoke College. Her research in dynamical systems focuses on bifurcations and disturbance, with applications in physical, ecological, and biological systems. She likes cats, small dogs, and dabbling in fiber arts and gardening."
   },
   {
     "date": "2024-03-27",
     "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
     "speaker": "Jessica Sidman (Amherst)",
     "speakerurl": "https://jessicasidman.github.io/",
+    "title": "Tensegrities: linear algebra as art?",
+    "abstract": "Kenneth Snelson's beautiful tensegrity sculptures feature metal bars that seem to float magically in the air.  In this talk I'll try to convince you that a tensegrity is the physical manifestation of a linear dependence relation on the rows of a matrix.  Then I'll discuss how the mathematics used to describe tensegrities can also be used to study other disparate problems including sensor network localization, the rigidity of bar-and-joint frameworks, and the distributed control of formations of robots.",
+    "bio": "Jessica Sidman loves to work on pure and applied problems at the intersection of computational algebra, algebraic geometry, and combinatorics. Her recent work in rigidity theory combines aspects of these three fields, and all got started when an undergraduate doing a thesis on protein folding asked her a question about projective space. She got her Ph.D. from the University of Michigan and did postdoctoral work at UC Berkeley and UMass Amherst.  She was the Professor of Mathematics on the John Stewart Kennedy Foundation at Mount Holyoke College and is now a Professor of Mathematics at Amherst College."
   },
   {
     "date": "2024-02-22",
@@ -33,6 +39,9 @@
     "timeplace": "5:00-6:00, SMUD 206. Pre-talk gathering at 4:30 in Williams Lounge (Room 208).",
     "speaker": "Peyam Tabrizian (Brown)",
     "speakerurl": "https://sites.brown.edu/drpeyam/",
+    "title": "It's all about Chemistry!",
+    "abstract": "Have you ever wondered what a Partial Differential Equation (PDE) is and how it is used to model real life? In this talk, I will give two different PDE models for a chemical reaction and show that they are two different sides of the same coin. Come and see how a simple integration by parts makes all our worries go away! No math knowledge (beyond calculus) and no chemistry knowledge required.",
+    "bio": "Peyam Tabrizian (he/him) is currently a Lecturer in the Applied Mathematics Department at Brown University. His speciality lies in the field of nonlinear partial differential equations, and his thesis work was on asymptotic methods for chemical reactions and diffusions. He also has a YouTube channel called \"Dr Peyam\" which currently has over 166,667 subscribers and close to 1000 videos."
   },
   {
     "date": "2023-10-16",
