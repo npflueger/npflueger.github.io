@@ -36,7 +36,7 @@ What, exactly, is a proof? This course begins with a precise definition specifyi
 * [Problem Set 7](psets/pset7.pdf) (due **Friday** 3/29 at 10pm)
 * [Problem Set 8](psets/pset8.pdf) (due ~~Wednesday 4/17~~ Friday 4/19 at 10pm)
 * [Problem Set 9](psets/pset9.pdf) (due Wednesday 4/24 at 10pm)
-
+* [Problem Set 10](psets/pset10.pdf) (due Wednesday 5/1 at 10pm)
 
 ### Exams
 There will be one midterm exam and a final exam. Further information will be posted here later.
