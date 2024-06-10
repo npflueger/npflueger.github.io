@@ -14,6 +14,9 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 <br /> [arXiv](https://arxiv.org/abs/2206.14227)
 *   _(Hurwitz-)Brill-Noether general marked graphs via the Demazure product_. Preprint (2022).
 <br /> [arXiv](https://arxiv.org/abs/2201.12316)
+
+
+## Accepted papers
 *   _Versality of Brill-Noether flags and degeneracy loci of twice-marked curves_. Preprint (2021). To appear in Algebric Geometry.
 <br /> [arXiv](https://arxiv.org/abs/2103.10969)
 
