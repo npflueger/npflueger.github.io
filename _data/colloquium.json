@@ -8,7 +8,6 @@
     "abstract": "Abstract TBA.",
     "bio":
   },
-  
   {
     "date": "2024-09-25",
     "speaker": "Gabe Sosa Castillo (Colgate University)",
@@ -17,6 +16,15 @@
     "title": "Title TBA",
     "abstract": "Abstract TBA.",
     "bio": "Gabe Sosa Castillo is an Assistant Professor Mathematics at Colgate University. His research focuses on properties of monomial and binomial ideals, and the algebraic structures associated to them."
+  },
+  {
+    "date": "2024-09-XX",
+    "speaker": "Nathan Pflueger (Amherst College)",
+    "speakerurl": "https://npflueger.github.io/",
+    "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
+    "title": "Title TBA",
+    "abstract": "Abstract TBA.",
+    "bio":
   },
   {
     "date": "2024-04-17",
