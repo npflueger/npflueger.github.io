@@ -17,7 +17,7 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 
 
 ## Accepted papers
-*   _Versality of Brill-Noether flags and degeneracy loci of twice-marked curves_. Preprint (2021). To appear in Algebric Geometry.
+*   _Versality of Brill-Noether flags and degeneracy loci of twice-marked curves_. Preprint (2021). To appear in Algebraic Geometry.
 <br /> [arXiv](https://arxiv.org/abs/2103.10969)
 
 ## Publications
