@@ -1,5 +1,32 @@
 [
   {
+    "date": "2024-11-21",
+    "speaker": "Candice Price (Smith College)",
+    "speakerurl": "https://www.candicerprice.com/",
+    "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
+    "title": "Unravelling Biochemistry Mysteries: Knot Theory Applied to Biochemistry",
+    "abstract": " Mathematical modeling is an effective resource for biologists since it provides ways to simplify, study, and understand the complex systems common in biology and biochemistry. Many mathematical tools can be applied to biological problems, some traditional and some more novel, all innovative. This presentation will review the mathematical tools that I use to model and study biological issues of DNA-protein interactions.",
+    "bio": "Candice Reneé Price, an esteemed African American mathematician, was born and raised in California. She has distinguished herself through contributions to mathematics through education and service. Growing up passionate about mathematics, Price earned her undergraduate degree (2003) in mathematics from California State University, Chico, and a master's degree (2007)  in mathematics from San Francisco State University.  She went on to complete her doctoral studies (2012) in mathematics at the University of Iowa, where her research focused on DNA Topology under the advisement of Dr. Isabel Darcy. Her published work now spans diverse areas of research including applied mathematics, mathematics of social justice, and discrete mathematics.  \n Beyond her research, Candice Price is known for her advocacy for diversity in STEM fields and her mentorship of aspiring mathematicians, particularly from underrepresented backgrounds. She has received numerous awards and honors for her contributions, including the 2022 Mathematics Association of America Inclusivity Award.  \n She remains a role model and inspiration, both as a distinguished mathematics educator and for her commitment to promoting inclusivity and diversity in the mathematics community"
+  },
+  {
+    "date": "2024-09-25",
+    "speaker": "Gabe Sosa Castillo (Colgate University)",
+    "speakerurl": "https://www.lathisms.org/calendar-2020/gabriel-sosa",
+    "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
+    "title": "Title TBA",
+    "abstract": "Abstract TBA.",
+    "bio": "Gabe Sosa Castillo is an Assistant Professor Mathematics at Colgate University. His research focuses on properties of monomial and binomial ideals, and the algebraic structures associated to them."
+  },
+  {
+    "date": "2024-10-02",
+    "speaker": "Nathan Pflueger (Amherst College)",
+    "speakerurl": "https://npflueger.github.io/",
+    "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
+    "title": "Title TBA",
+    "abstract": "Abstract TBA.",
+    "bio":
+  },
+  {
     "date": "2024-04-17",
     "speaker": "Alanna Hoyer-Leitzel (Mt. Holyoke)",
     "speakerurl": "https://www.mtholyoke.edu/directory/faculty-staff/alanna-hoyer-leitzel",

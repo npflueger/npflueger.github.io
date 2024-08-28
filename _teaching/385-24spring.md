@@ -40,4 +40,6 @@ What, exactly, is a proof? This course begins with a precise definition specifyi
 * [Problem Set 11](psets/pset11.pdf) (due **Tuesday** 5/7 at 10pm)
 
 ### Exams
-There will be one midterm exam and a final exam. Further information will be posted here later.
+There will be one take-home midterm exam and a take-home final exam. The format is largely similar to a problem set, except that you should complete it by yourself. Each exam will be distributed by a Dropbox link sent by email.
+* The midterm exam will be distributed on Friday 3/29 and due on Friday 4/4 at 10pm. 
+* The final exam will be distributed on Thursday 5/9 and due on Friday 5/17 at noon. 

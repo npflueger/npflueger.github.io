@@ -15,7 +15,7 @@ I grew up in Seattle, and still miss the mountains all around, but I am a happy 
 
 My family pronounces our last name "fleeger." This is not the original German pronunciation, and I will happily answer to anything reasonable. 
 
-I currently help organize the department [Math Colloquium](colloquium) and Putnam training sessions, together with [Ivan Contreras](https://sites.google.com/view/ivancontreras/home).
+I help organize the department Putnam training sessions, together with [Joe Kraisler](https://sites.google.com/view/jkraisler/).
  
 ## {{page.curSem}} Courses:
 {%- assign courses = site.teaching -%}

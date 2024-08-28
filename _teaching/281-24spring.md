@@ -54,7 +54,6 @@ There will be two midterms and a three hour final exam. **Mark the midterm dates
         * Topics: end of 2.3 (counting sequences chosen from a given word) through beginning of 2.6.6 (Catalan recurrence, but not the generating function)
 
 
-* The final exam date is scheduled by the registar, and will be posted here when it is determined.
+* The final exam date is on Friday 5/17, from 9am to noon.
      * You are allowed a **one page notesheet, front and back,** so that you don't need to memorize formulas. Put some time into it -- deciding what to put on the note sheet is a very useful study process!
     * The exam will be cumulative, though with increased emphasis on the material not yet covered on the midterms. 
-
