@@ -6,7 +6,7 @@ permalink: /
 redirect_from:
   - /about/
   - /about.html
-curSem: "Spring 2024"
+curSem: "Fall 2024"
 ---
 
 I am a mathematician at Amherst College, specializing in algebraic geometry and combinatorics. Much of my work revolves around connections between Young tableaux and algebraic curves. My teaching includes courses at all levels, and I particularly enjoy teaching courses involving programming.
