@@ -13,11 +13,11 @@
     "speaker": "Gabriel 'Gabe' Sosa Castillo (Colgate University)",
     "speakerurl": "https://www.lathisms.org/calendar-2020/gabriel-sosa",
     "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
-    "title": "Characterizing Reconstructible Monomial Orders",
+    "title": "Characterizing Reconstructible Monomial Orders.",
     "abstract": "When were are asked to write the polynomial $p(x)=3x^2 +x^4 +7-x$ in standard
 form we know our answer is $x^4+3x^2-x+7$, because the only way to order powers of $x$ totally while being consistent with multiplication is the natural one: degree wise! Complexity is introduced when we are asked to write $q(x)=2x^3yz^2-6x^4z+x^2y^3z$ in standard form and we have to define what standard form means in this setting.
 
-In this talk we will introduce the concept of \textbf{\textit{Monomial Orders}} through examples, discuss the basics of their matrix representations, present the three classical monomial orders (\textit{lexicographic}, \textit{degree lexicographic} and \textit{reverse lexicographic})and explore a curious property they possess (hint: it is in the title), and present results found in joint work with undergraduates in 2016 and 2023 at Amherst College and Colgate University, respectively,  seeking to characterize other monomial orders possessing this 'reconstructible' property.
+In this talk we will introduce the concept of Monomial Orders through examples, discuss the basics of their matrix representations, present the three classical monomial orders (lexicographic, degree lexicographic and reverse lexicographic) and explore a curious property they possess (hint: it is in the title), and present results found in joint work with undergraduates in 2016 and 2023 at Amherst College and Colgate University, respectively,  seeking to characterize other monomial orders possessing this 'reconstructible' property.
 
 The only background needed for (most of) this talk is basic linear algebra!
 ",
