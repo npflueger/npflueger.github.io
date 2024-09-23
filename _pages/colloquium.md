@@ -70,6 +70,8 @@ All are welcome! The talks are intended to be mostly accessible to students who 
 
 The 2024-2025 colloquium is organized by [Ivan Contreras](https://icontreraspalacios.people.amherst.edu/) and [David Zureick-Brown](https://dmzb.github.io/).
 
+You might also be interested in the [Statistics Colloquium](https://nhorton.people.amherst.edu/colloquia/)
+
 
 {% assign cur_date = 'now' | date: "%Y-%m-%d" %}
 ## Upcoming talks
