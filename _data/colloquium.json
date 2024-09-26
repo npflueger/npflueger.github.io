@@ -35,9 +35,9 @@ The only background needed for (most of) this talk is basic linear algebra!
     "speaker": "Nathan Pflueger (Amherst College)",
     "speakerurl": "https://npflueger.github.io/",
     "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
-    "title": "Title TBA",
-    "abstract": "Abstract TBA.",
-    "bio":
+    "title": "Counting to two",
+    "abstract": "If you draw four random lines in space, how many lines meet all four? This simple problem opens the door to a rich menu of techniques and questions. The answer, with some caveats, is two. This breaks, ever so slightly, the mantra known to students of linear algebra that similar problems usually have zero, one, or infinitely many solutions. I will describe at least three ways to solve the problem, and survey some of the deep topics in algebraic geometry, combinatorics, and even Galois theory adjacent to it.",
+    "bio": "Nathan Pflueger has been in the Amherst math department since 2017. He works in algebraic geometry and combinatorics, and is particularly drawn to geometry problems that can be solved by finding the right game or counting problem.",
   },
   {
     "date": "2024-04-17",
