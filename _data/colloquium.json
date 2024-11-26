@@ -1,7 +1,7 @@
 [
 
     {
-    "date": "2025-02-TBA",
+    "date": "2025-TBA",
     "speaker": "Joe Mileti (Grinnell College)",
     "speakerurl": "https://mileti.math.grinnell.edu/",
     "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
@@ -9,6 +9,15 @@
     "abstract": ,
     "bio": ,
   },
+    {
+    "date": "2025-TBA",
+    "speaker": "Joey Palmer (Amherst College)",
+    "speakerurl": "https://sites.google.com/view/jpalmer/home",
+    "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
+    "title": ,
+    "abstract": ,
+    "bio": ,
+  },  
   {
     "date": "2025-04-07",
     "speaker": "Isabel Vogt (Brown University)",
