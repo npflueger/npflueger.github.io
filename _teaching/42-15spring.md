@@ -32,7 +32,8 @@ Number theory is one of the most beautiful and ancient parts of mathematics, and
 Solutions will be posted after class on the due date of each assignment.
 
 *   [Problem Set 1](pset1.pdf). Reading: Silverman chapter 2. ([Solutions](pset1soln.pdf))
-*   [Problem Set 2](pset2.pdf). Reading: Silverman chapters 3,5. ([Solutions](pset2soln.pdf))<li><a href="pset3.pdf">Problem Set 3</a>. Reading: Silverman chapters 6,7,8. (<a href="pset3soln.pdf">Solutions</a>)
+*   [Problem Set 2](pset2.pdf). Reading: Silverman chapters 3,5. ([Solutions](pset2soln.pdf))
+*   <a href="pset3.pdf">Problem Set 3</a>. Reading: Silverman chapters 6,7,8. (<a href="pset3soln.pdf">Solutions</a>)
 *   <a href="pset4.pdf">Problem Set 4</a>. (No new reading) (<a href="pset4soln.pdf">Solutions</a>)
 *   <a href="pset5.pdf">Problem Set 5</a>. Reading: Silverman chapter 9. (<a href="pset5soln.pdf">Solutions</a>)
 *   <a href="pset6.pdf">Problem Set 6</a>. Reading: Silverman chapters 10,11. (<a href="pset6soln.pdf">Solutions</a>)
