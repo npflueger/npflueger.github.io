@@ -31,18 +31,18 @@ Number theory is one of the most beautiful and ancient parts of mathematics, and
 
 Solutions will be posted after class on the due date of each assignment.
 
-*   [Problem Set 1](pset1.pdf). Reading: Silverman chapter 2. ([Solutions](pset1soln.pdf))
-*   [Problem Set 2](pset2.pdf). Reading: Silverman chapters 3,5. ([Solutions](pset2soln.pdf))
-*   <a href="pset3.pdf">Problem Set 3</a>. Reading: Silverman chapters 6,7,8. (<a href="pset3soln.pdf">Solutions</a>)
-*   <a href="pset4.pdf">Problem Set 4</a>. (No new reading) (<a href="pset4soln.pdf">Solutions</a>)
-*   <a href="pset5.pdf">Problem Set 5</a>. Reading: Silverman chapter 9. (<a href="pset5soln.pdf">Solutions</a>)
-*   <a href="pset6.pdf">Problem Set 6</a>. Reading: Silverman chapters 10,11. (<a href="pset6soln.pdf">Solutions</a>)
-*   <a href="pset7.pdf">Problem Set 7</a>. Reading: Silverman chapters 16,17,18. (<a href="pset7soln.pdf">Solutions</a>)
-*   <a href="pset8.pdf">Problem Set 8</a>. Reading: Silverman chapters 14,15,19. (<a href="pset8soln.pdf">Solutions</a>)
-*   <a href="pset9.pdf">Problem Set 9</a>. Reading: Silverman chapter 20. (<a href="pset9soln.pdf">Solutions</a>)
-*   <a href="pset10.pdf">Problem Set 10</a>. Reading: Silverman chapters 21,22. (<a href="pset10soln.pdf">Solutions</a>)
-*   <a href="pset11.pdf">Problem Set 11</a>. Reading: Silverman chapter 28. (<a href="pset11soln.pdf">Solutions</a>)
-*   <a href="pset12.pdf">Problem Set 12</a>. Reading: Silverman chapters 24,25. (<a href="pset12soln.pdf">Solutions</a>)
+*   [Problem Set 1](pset1.pdf). Reading: Silverman chapter 2. ([Solutions](https://drive.google.com/open?id=105gTlohSmZJQ-osqCuQhzuGLcIzmooAh&usp=drive_fs))
+*   [Problem Set 2](pset2.pdf). Reading: Silverman chapters 3,5. ([Solutions](https://drive.google.com/open?id=1-tmgqBGbHEszLn-NFRt-TkNSHU3XNtEB&usp=drive_fs))
+*   <a href="pset3.pdf">Problem Set 3</a>. Reading: Silverman chapters 6,7,8. (<a href="https://drive.google.com/open?id=105WdNSvKL4DW2-SYrI603kftG3O2PrBH&usp=drive_fs">Solutions</a>)
+*   <a href="pset4.pdf">Problem Set 4</a>. (No new reading) (<a href="https://drive.google.com/open?id=1-tHz6a8kqkb4xSIve3Cey-ES1cpEzfvL&usp=drive_fs">Solutions</a>)
+*   <a href="pset5.pdf">Problem Set 5</a>. Reading: Silverman chapter 9. (<a href="https://drive.google.com/open?id=10612TPucjTbcEsS1nWoKn9RKum-pK_DG&usp=drive_fs">Solutions</a>)
+*   <a href="pset6.pdf">Problem Set 6</a>. Reading: Silverman chapters 10,11. (<a href="https://drive.google.com/open?id=100ptNWeH0N_-mRtSfbsUIOyFbe__-Jtf&usp=drive_fs">Solutions</a>)
+*   <a href="pset7.pdf">Problem Set 7</a>. Reading: Silverman chapters 16,17,18. (<a href="https://drive.google.com/open?id=100hHj8s4KOrIZpcHJTfO3bhLTDyWOUYu&usp=drive_fs">Solutions</a>)
+*   <a href="pset8.pdf">Problem Set 8</a>. Reading: Silverman chapters 14,15,19. (<a href="https://drive.google.com/open?id=1-xCT0O7aF87AwtvY727a_cuhv4uxg6Nd&usp=drive_fs">Solutions</a>)
+*   <a href="pset9.pdf">Problem Set 9</a>. Reading: Silverman chapter 20. (<a href="https://drive.google.com/open?id=107Zj9qIDhTq2VC_9WuLTjzYjki2gBJLt&usp=drive_fs">Solutions</a>)
+*   <a href="pset10.pdf">Problem Set 10</a>. Reading: Silverman chapters 21,22. (<a href="https://drive.google.com/open?id=1-rR2-250JijLn6EW0LUsDS3WShkdAGmd&usp=drive_fs">Solutions</a>)
+*   <a href="pset11.pdf">Problem Set 11</a>. Reading: Silverman chapter 28. (<a href="https://drive.google.com/open?id=10B5CggY14gMtymgN8E7V9hJ3zGTNvCzY&usp=drive_fs">Solutions</a>)
+*   <a href="pset12.pdf">Problem Set 12</a>. Reading: Silverman chapters 24,25. (<a href="https://drive.google.com/open?id=106w0YaJqJUrvMJuyDVA7Q-VkAX7X79aK&usp=drive_fs">Solutions</a>)
 
 ### Exams and solutions
 
