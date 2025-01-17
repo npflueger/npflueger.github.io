@@ -25,4 +25,5 @@ Further information on the course will be posted here soon. You can find materia
 Homework assignments will be posted here, and usually due on Wednesdays at 10pm, to be submitted on Gradescope.
 
 * [Gradescope instructions](handouts/gsinfo.pdf). Our course code is **NY6ZG2**.
+* Please fill out the **Course survery** on Gradescope by Friday 1/31.
 * [Problem Set 1](psets/pset1.pdf) (due Wednesday 2/5)
