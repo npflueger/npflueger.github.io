@@ -19,3 +19,10 @@ Further information on the course will be posted here soon. You can find materia
 ### Help hours
 
 {% include helphours.md %}
+
+
+### Homework
+Homework assignments will be posted here, and usually due on Wednesdays at 10pm, to be submitted on Gradescope.
+
+* Our Gradescope course code is **NY6ZG2**.
+* [Problem Set 1](psets/pset1.pdf) (due Wednesday 2/5)
