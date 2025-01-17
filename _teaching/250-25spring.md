@@ -13,7 +13,7 @@ An introduction to the theory of rational integers; divisibility, the unique fac
 
 More information about this course will be posted here soon.
 
-## Problem Sets
+## Homework
 
 * [Gradescope instructions](handouts/gsinfo.pdf). Our course code is **XGZ78R**.
 * Please fill out the **course survey** on Gradescope by Friday 1/31.
