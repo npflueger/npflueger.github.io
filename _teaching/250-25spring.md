@@ -13,7 +13,11 @@ An introduction to the theory of rational integers; divisibility, the unique fac
 
 More information about this course will be posted here soon.
 
-## Homework
+### Links
+
+*   [Zoom link](https://amherstcollege.zoom.us/j/97816492611?pwd=VnFGcktXWTFXc2lTa2tXQVlkMU5Vdz09) for any online office hours, classes, etc.
+
+### Homework
 
 * [Gradescope instructions](handouts/gsinfo.pdf). Our course code is **XGZ78R**.
 * Please fill out the **course survey** on Gradescope by Friday 1/31.

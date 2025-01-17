@@ -20,6 +20,9 @@ Further information on the course will be posted here soon. You can find materia
 
 {% include helphours.md %}
 
+### Links
+* *   [Zoom link](https://amherstcollege.zoom.us/j/97816492611?pwd=VnFGcktXWTFXc2lTa2tXQVlkMU5Vdz09) for any online office hours, classes, etc.
+
 
 ### Homework
 Homework assignments will be posted here, and usually due on Wednesdays at 10pm, to be submitted on Gradescope.
