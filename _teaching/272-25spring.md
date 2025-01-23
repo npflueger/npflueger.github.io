@@ -21,7 +21,8 @@ Further information on the course will be posted here soon. You can find materia
 {% include helphours.md %}
 
 ### Links
-* *   [Zoom link](https://amherstcollege.zoom.us/j/97816492611?pwd=VnFGcktXWTFXc2lTa2tXQVlkMU5Vdz09) for any online office hours, classes, etc.
+*   [Boardwork](https://drive.google.com/file/d/1rcqwC1Cb_gRd8LqrZKvt0YhEDITi7Zbp/view?usp=sharing) notes from when I teach from a tablet.
+*   [Zoom link](https://amherstcollege.zoom.us/j/97816492611?pwd=VnFGcktXWTFXc2lTa2tXQVlkMU5Vdz09) for any online office hours, classes, etc.
 
 
 ### Homework
@@ -30,3 +31,21 @@ Homework assignments will be posted here, and usually due on Wednesdays at 10pm,
 * [Gradescope instructions](handouts/gsinfo.pdf). Our course code is **NY6ZG2**.
 * Please fill out the **Course survery** on Gradescope by Friday 1/31.
 * [Problem Set 1](psets/pset1.pdf) (due Wednesday 2/5)
+
+
+### Exams
+
+* Midterm 1: Friday 3/7, in class.
+    * Remember to make a one-page note-sheet (front and back)!
+    * The exam will cover all material in class up to Friday 2/28, and problem sets 1 through 5.
+    * Sample exams will be posted here closer to the exam.
+
+* Midterm 2: Friday 4/18, in class.
+    * Remember to make a one-page note-sheet (front and back)!
+    * The exam will cover all material in class from Monday 3/3 to Friday 4/11, and problem sets 6 through 10.
+    * Sample exams will be posted here closer to the exam.
+
+* Final Exam: date to be set by the registrar. It will be during finals week (Friday 5/9 to Thursday 5/15).
+    * Remember to make a one-page note-sheet (front and back)!
+    * The final exam will be cumulative, but will place larger emphasis on topics covered after the second midterm.
+    * Sample exams will be posted here closer to the exam.
