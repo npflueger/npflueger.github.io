@@ -17,6 +17,11 @@ More information about this course will be posted here soon.
 
 {% include helphours.md %}
 
+### Handouts
+
+*   [Syllabus](handouts/syllabus.pdf)
+
+
 ### Links
 
 *   [Boardwork](https://drive.google.com/open?id=1mzENhCobjlAgDKug-u8PligzzJIYJYDH&usp=drive_fs) notes from when I teach from a tablet.
