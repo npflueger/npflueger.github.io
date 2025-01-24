@@ -31,10 +31,12 @@
     "speaker": "Isabel Vogt (Brown University)",
     "speakerurl": "https://www.math.brown.edu/ivogt/",
     "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
-    "title": ,
-    "abstract": ,
-    "bio": ,
+    "title": "Interpolation problems for curves",
+    "abstract": "The interpolation problem is one of the oldest in mathematics.  In its most broad form it asks: when can a curve of a given type be passed through a given number of points?  We will consider curves that are described by polynomial equations.  Because polynomial equations are ubiquitous in mathematics and the sciences more generally, such curves appear in many different contexts.  The interpolation problem, in particular, has real-world applications to cryptography and information transfer.  In this talk, I'll survey work on the interpolation problem from Euclid to the modern day, ending with recent joint work of mine with Eric Larson.",
+    "bio": "Isabel Vogt is an associate professor of mathematics at Brown University. Her research involves the geometry of solutions of polynomial equations and number-theoretic aspects, such as when the coordinates of the solutions are rational numbers. She received her PhD from the Massachusetts Institute of Technology in 2019 for which she was awarded the Dissertation Prize from the Association for Women in Mathematics. In addition to her research, Dr. Vogt is passionate about organizing events that foster community in mathematics.",
   },
+
+
   
   {
     "date": "2024-11-21",
