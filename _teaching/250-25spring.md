@@ -13,6 +13,10 @@ An introduction to the theory of rational integers; divisibility, the unique fac
 
 More information about this course will be posted here soon.
 
+### Help hours
+
+{% include helphours.md %}
+
 ### Links
 
 *   [Boardwork](https://drive.google.com/open?id=1mzENhCobjlAgDKug-u8PligzzJIYJYDH&usp=drive_fs) notes from when I teach from a tablet.
