@@ -15,6 +15,7 @@ More information about this course will be posted here soon.
 
 ### Links
 
+*   [Boardwork](https://drive.google.com/open?id=1mzENhCobjlAgDKug-u8PligzzJIYJYDH&usp=drive_fs) notes from when I teach from a tablet.
 *   [Zoom link](https://amherstcollege.zoom.us/j/97816492611?pwd=VnFGcktXWTFXc2lTa2tXQVlkMU5Vdz09) for any online office hours, classes, etc.
 
 ### Homework
