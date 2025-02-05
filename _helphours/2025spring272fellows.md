@@ -7,4 +7,4 @@ coursenum: "Math 272"
     *   Or [schedule an appointment](https://www.amherst.edu/academiclife/support/moss_quantitative_center).
     
 *   Ali Sbeih, our TA / Math Fellow, is available as follows:
-    *   Help hours TBA.
+    *   Sunday and Tuesday, 7:30-9:00pm in SMUD 207.
