@@ -32,3 +32,4 @@ More information about this course will be posted here soon.
 * [Gradescope instructions](handouts/gsinfo.pdf). Our course code is **XGZ78R**.
 * Please fill out the **course survey** on Gradescope by Friday 1/31.
 * [Problem Set 1](psets/pset1.pdf) (due Wednesday 2/5 at 10pm)
+* [Problem Set 2](psets/pset2.pdf) (due **Friday** 2/14 at 10pm)
