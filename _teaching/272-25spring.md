@@ -27,6 +27,7 @@ Further information on the course will be posted here soon. You can find materia
 
 ### Handouts
 *   [Syllabus](handouts/syllabus.pdf)
+*   [2x2 matrix demo](https://colab.research.google.com/drive/1vUhw4zL71URIDh9fnqHGkKq9Z4txnuEi?usp=drive_link)
 
 ### Homework
 Homework assignments will be posted here, and usually due on Wednesdays at 10pm, to be submitted on Gradescope.
