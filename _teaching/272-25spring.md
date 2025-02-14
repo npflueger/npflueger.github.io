@@ -30,7 +30,7 @@ Further information on the course will be posted here soon. You can find materia
 *   [2x2 matrix demo](https://colab.research.google.com/drive/1vUhw4zL71URIDh9fnqHGkKq9Z4txnuEi?usp=drive_link)
 
 ### Labs
-*   [Lab 1 - Introduction](https://colab.research.google.com/drive/1cju8YtXiPpQIC4feo2NG7AixIlvPO825?usp=sharing)
+*   [Lab 1 - Sympy introduction](https://colab.research.google.com/drive/1cju8YtXiPpQIC4feo2NG7AixIlvPO825?usp=sharing)
 
 ### Homework
 Homework assignments will be posted here, and usually due on Wednesdays at 10pm, to be submitted on Gradescope.
