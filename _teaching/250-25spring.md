@@ -35,3 +35,19 @@ More information about this course will be posted here soon.
 * [Problem Set 2](psets/pset2.pdf) (due **Friday** 2/14 at 10pm)
 * [Problem Set 3](psets/pset3.pdf) (due Wednesday 2/19 at 10pm)
 * [Problem Set 4](psets/pset4.pdf) (due Wednesday 2/26 at 10pm)
+
+### Exams
+
+* Midterm 1: Friday 2/28, in class.
+    * Remember to make a one-page note-sheet (front and back)!
+    * The exam will cover all material in class up to Friday 2/21, and problem sets 1 through 4.
+    * Some practice materials will be posted here soon.
+
+* Midterm 2: Friday 4/11, in class.
+    * Remember to make a one-page note-sheet (front and back)!
+    * The exam will cover all material in class from Monday 2/24 to Friday 4/4, and problem sets 5 through 9.
+
+
+* Final Exam: date to be set by the registrar. It will be during finals week (Friday 5/9 to Thursday 5/15).
+    * Remember to make a one-page note-sheet (front and back)!
+    * The final exam will be cumulative, but will place larger emphasis on topics covered after the second midterm.
