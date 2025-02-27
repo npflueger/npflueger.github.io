@@ -41,7 +41,7 @@ More information about this course will be posted here soon.
 * Midterm 1: Friday 2/28, in class.
     * Remember to make a one-page note-sheet (front and back)!
     * The exam will cover all material in class up to Friday 2/21, and problem sets 1 through 4.
-    * [Practice exam](exams/midterm1practice.pdf) / [compact version](exams/midterm1practice-compact.pdf)
+    * [Practice exam](exams/midterm1practice.pdf) / [compact version](exams/midterm1practice-compact.pdf) / [Solutions](exams/midterm1practice-soln.pdf)
 
 * Midterm 2: Friday 4/11, in class.
     * Remember to make a one-page note-sheet (front and back)!
