@@ -50,7 +50,7 @@ Homework assignments will be posted here, and usually due on Wednesdays at 10pm,
 * Midterm 1: Friday 3/7, in class.
     * Remember to make a one-page note-sheet (front and back)!
     * The exam will cover all material in class up to Friday 2/28, and problem sets 1 through 5.
-    * Sample exams will be posted here closer to the exam.
+    * Sample exams: [Fall 2017](exams/midterm1-2017f-mod.pdf) / [Solutions](exams/midterm1-2017f-mod-soln.pdf), [Spring 2018](exams/midterm1-2018s-mod.pdf) / [Solutions](exams/midterm1-2018s-mod-soln.pdf), [Spring 2019](exams/midterm1-2019s.pdf) / [Solutions](exams/midterm1-2019s-soln.pdf), [Fall 2019](exams/midterm1-2019f.pdf) / [Solutions](exams/midterm1-2019f-soln.pdf), 
 
 * Midterm 2: Friday 4/18, in class.
     * Remember to make a one-page note-sheet (front and back)!
