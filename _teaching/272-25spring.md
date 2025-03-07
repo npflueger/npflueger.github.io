@@ -59,7 +59,7 @@ Homework assignments will be posted here, and usually due on Wednesdays at 10pm,
     * The exam will cover all material in class from Monday 3/3 to Friday 4/11, and problem sets 6 through 10.
     * Sample exams will be posted here closer to the exam.
 
-* Final Exam: date to be set by the registrar. It will be during finals week (Friday 5/9 to Thursday 5/15).
+* Final Exam: Monday 5/12, 9am-noon in Beneski 107.
     * Remember to make a one-page note-sheet (front and back)!
     * The final exam will be cumulative, but will place larger emphasis on topics covered after the second midterm.
     * Sample exams will be posted here closer to the exam.

@@ -11,8 +11,6 @@ semester: "Spring 2025"
 
 An introduction to the theory of rational integers; divisibility, the unique factorization theorem; congruences, quadratic residues. Selections from the following topics: cryptology; Diophantine equations; asymptotic prime number estimates; continued fractions; algebraic integers.
 
-More information about this course will be posted here soon.
-
 ### Help hours
 
 {% include helphours.md %}
@@ -51,6 +49,6 @@ More information about this course will be posted here soon.
     * The exam will cover all material in class from Monday 2/24 to Friday 4/4, and problem sets 5 through 9.
 
 
-* Final Exam: date to be set by the registrar. It will be during finals week (Friday 5/9 to Thursday 5/15).
+* Final Exam: Tuesday 5/13, 9am-noon in SCCE C101.
     * Remember to make a one-page note-sheet (front and back)!
     * The final exam will be cumulative, but will place larger emphasis on topics covered after the second midterm.
