@@ -29,6 +29,7 @@ Further information on the course will be posted here soon. You can find materia
 *   [Syllabus](handouts/syllabus.pdf)
 *   [2x2 matrix demo](https://colab.research.google.com/drive/1vUhw4zL71URIDh9fnqHGkKq9Z4txnuEi?usp=drive_link)
 *   [Proof technique examples](https://npflueger.github.io/teaching/272-19fall/handouts/proofExamples.pdf)
+*   [Least squares notes](https://npflueger.github.io/teaching/272-19fall/handouts/LeastSquares.pdf)
 
 ### Labs
 *   [Lab 1 - Sympy introduction](https://colab.research.google.com/drive/1cju8YtXiPpQIC4feo2NG7AixIlvPO825?usp=sharing)
