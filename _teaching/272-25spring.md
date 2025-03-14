@@ -33,6 +33,7 @@ Further information on the course will be posted here soon. You can find materia
 
 ### Labs
 *   [Lab 1 - Sympy introduction](https://colab.research.google.com/drive/1cju8YtXiPpQIC4feo2NG7AixIlvPO825?usp=sharing)
+*   [Lab 2 - Least squares](https://colab.research.google.com/drive/18Jt9M3q5yCtBjBvDty5IBBt0HLr4PZoZ?usp=drive_link)
 
 ### Homework
 Homework assignments will be posted here, and usually due on Wednesdays at 10pm, to be submitted on Gradescope.
