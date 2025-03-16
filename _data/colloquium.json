@@ -14,7 +14,9 @@
     "speakerurl": "https://www.amherst.edu/people/facstaff/xgong",
     "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
     "title": "Mathematical Analysis of a Microscopic Car-Following Model in Autonomous Driving",
-    "abstract": "Have you ever wondered how mathematicians contribute to autonomous driving? One key area is the mathematical modeling of traffic flow, which can be studied from three perspectives: \n Microscopic models using ordinary differential equations (ODEs) to describe individual vehicle dynamics,
+    "abstract": "Have you ever wondered how mathematicians contribute to autonomous driving? One key area is the mathematical modeling of traffic flow, which can be studied from three perspectives:  
+    
+    Microscopic models using ordinary differential equations (ODEs) to describe individual vehicle dynamics,
 Mesoscopic models using kinetic equations to capture intermediate-scale interactions, and
 Macroscopic models using partial differential equations (PDEs) to represent aggregate traffic flow.
 
