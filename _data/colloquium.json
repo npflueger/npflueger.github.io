@@ -8,23 +8,20 @@
     "abstract": "What makes a particular mathematical object `complicated'?  How can we formally define and reason about such a concept?  The field of mathematical logic has developed a variety of tools to understand and calibrate the complexity of mathematical objects, with some surprising findings.  For example, the natural numbers are fiendishly intricate and wild, while the complex numbers are actually very pleasant and tame.  We will discuss the central role of formal languages and computation in answering these types of questions.",
     "bio": "Joe Mileti is a Professor of Mathematics at Grinnell College.  His research analyzes the complexity of objects and proofs in both algebra and combinatorics, and he recently published his textbook `Modern Mathematical Logic'.  He has also worked with undergraduate students to prove that regular patterns must always exist in large structures, and that rings can have exotic computational properties.",
    },
-    {
-    "date": "2025-04-30",
-    "speaker": "Joey Palmer (Amherst College)",
-    "speakerurl": "https://sites.google.com/view/jpalmer/home",
-    "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
-    "title": ,
-    "abstract": ,
-    "bio": ,
-  },  
   {
     "date": "2025-03-31",
     "speaker": "Xiaoqian Gong (Amherst College)",
     "speakerurl": "https://www.amherst.edu/people/facstaff/xgong",
     "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
-    "title": ,
-    "abstract": ,
-    "bio": ,
+    "title": "Mathematical Analysis of a Microscopic Car-Following Model in Autonomous Driving",
+    "abstract": "Have you ever wondered how mathematicians contribute to autonomous driving? One key area is the mathematical modeling of traffic flow, which can be studied from three perspectives:
+
+Microscopic models using ordinary differential equations (ODEs) to describe individual vehicle dynamics,
+Mesoscopic models using kinetic equations to capture intermediate-scale interactions, and
+Macroscopic models using partial differential equations (PDEs) to represent aggregate traffic flow.
+
+In this talk, we focus on the mathematical analysis of a microscopic car-following model governed by a second-order ODE. We will discuss the well-posedness of the model and explore its long-time behavior. Additionally, we will study two variations of the original model: a delayed version, accounting for reaction time, and a nonlocal version, incorporating interactions beyond nearest neighbors. Numerical simulations will illustrate key theoretical findings." ,
+    "bio": "Xiaoqian Gong is currently an assistant professor of mathematics in the Department of Mathematics and Statistics at Amherst College. Her research focuses on multi-scale modeling, optimal control theory, non-linear and non-local hyperbolic conservation laws, and hybrid systems. Her research has been applied to subjects such as traffic flow, epidemiology, and supply chains. ",
   },  
   {
     "date": "2025-04-07",
@@ -35,7 +32,15 @@
     "abstract": "The interpolation problem is one of the oldest in mathematics.  In its most broad form it asks: when can a curve of a given type be passed through a given number of points?  We will consider curves that are described by polynomial equations.  Because polynomial equations are ubiquitous in mathematics and the sciences more generally, such curves appear in many different contexts.  The interpolation problem, in particular, has real-world applications to cryptography and information transfer.  In this talk, I'll survey work on the interpolation problem from Euclid to the modern day, ending with recent joint work of mine with Eric Larson.",
     "bio": "Isabel Vogt is an associate professor of mathematics at Brown University. Her research involves the geometry of solutions of polynomial equations and number-theoretic aspects, such as when the coordinates of the solutions are rational numbers. She received her PhD from the Massachusetts Institute of Technology in 2019 for which she was awarded the Dissertation Prize from the Association for Women in Mathematics. In addition to her research, Dr. Vogt is passionate about organizing events that foster community in mathematics.",
   },
-
+{
+    "date": "2025-04-30",
+    "speaker": "Joey Palmer (Amherst College)",
+    "speakerurl": "https://sites.google.com/view/jpalmer/home",
+    "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30 in Williams Lounge (Room 208).",
+    "title": ,
+    "abstract": ,
+    "bio": ,
+  },  
 
   
   {
