@@ -47,7 +47,7 @@ Homework assignments will be posted here, and usually due on Wednesdays at 10pm,
 * [Problem Set 5](psets/pset5.pdf) (due Wednesday 3/5)
 * [Problem Set 6](psets/pset6.pdf) (due Wednesday 3/12)
 * [Problem Set 7](psets/pset7.pdf) (due Wednesday 3/26)
-* [Problem Set 8](psets/pset8/pdf) (due Wednesday 4/2)
+* [Problem Set 8](psets/pset8.pdf) (due Wednesday 4/2)
 
 
 ### Exams
