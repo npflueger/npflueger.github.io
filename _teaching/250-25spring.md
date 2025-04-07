@@ -51,6 +51,7 @@ An introduction to the theory of rational integers; divisibility, the unique fac
 * Midterm 2: Friday 4/11, in class.
     * Remember to make a one-page note-sheet (front and back)!
     * The exam will cover all material in class from Monday 2/24 to Friday 4/4, and problem sets 5 through 9.
+    * [Practice problems](exams/midterm2practice.pdf) (solutions will be posted soon)
 
 
 * Final Exam: Tuesday 5/13, 9am-noon in SCCE C101.
