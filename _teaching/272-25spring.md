@@ -62,8 +62,8 @@ Homework assignments will be posted here, and usually due on Wednesdays at 10pm,
 
 * Midterm 2: Friday 4/18, in class.
     * Remember to make a one-page note-sheet (front and back)!
-    * The exam will cover all material in class from Monday 3/3 to Friday 4/11, and problem sets 6 through 10.
-    * Sample exams will be posted here closer to the exam.
+    * The exam will cover all material in class from Monday 3/3 to Friday 4/11, and problem sets 6 through 9.
+    * Sample exams: [Fall 2017](exams/midterm2-17f.pdf) / [Solutions](exams/midterm2-17f-soln.pdf), [Spring 2018](exams/midterm2-18s.pdf) / [Solutions](exams/midterm2-18s-soln.pdf), [Spring 2019](exams/midterm2-19s.pdf) / [Solutions](exams/midterm2-19s-soln.pdf), [Fall 2019](exams/midterm2-19f.pdf) / [Solutions](exams/midterm2-19f-soln.pdf)
 
 * Final Exam: Monday 5/12, 9am-noon in Beneski 107.
     * Remember to make a one-page note-sheet (front and back)!
