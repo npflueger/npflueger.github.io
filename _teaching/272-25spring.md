@@ -21,7 +21,7 @@ Further information on the course will be posted here soon. You can find materia
 {% include helphours.md %}
 
 ### Links
-*   [Boardwork](https://drive.google.com/file/d/1rcqwC1Cb_gRd8LqrZKvt0YhEDITi7Zbp/view?usp=sharing) notes from when I teach from a tablet.
+*   [Boardwork](https://drive.google.com/file/d/1in3vvQIZrL3gfqfveDDXdsektbIb8FNH/view?usp=sharing) notes from when I teach from a tablet.
 *   [Zoom link](https://amherstcollege.zoom.us/j/97816492611?pwd=VnFGcktXWTFXc2lTa2tXQVlkMU5Vdz09) for any online office hours, classes, etc.
 
 
