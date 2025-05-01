@@ -40,6 +40,7 @@ An introduction to the theory of rational integers; divisibility, the unique fac
 * [Problem Set 9](psets/pset9.pdf) (due Wednesday 4/9 at 10pm)
 * [Problem Set 10](psets/pset10.pdf) (due Wednesday 4/23 at 10pm)
 * [Problem Set 11](psets/pset11.pdf) (due Wednesday 4/30 at 10pm)
+* [Problem Set 12](psets/pset12.pdf) (due **Tuesday 5/6 at 11:59pm**)
 
 
 
