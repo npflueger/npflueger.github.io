@@ -62,3 +62,5 @@ An introduction to the theory of rational integers; divisibility, the unique fac
 * Final Exam: Tuesday 5/13, 9am-noon in SCCE C101.
     * Remember to make a one-page note-sheet (front and back)!
     * The final exam will be cumulative, but will place larger emphasis on topics covered after the second midterm.
+    * A [sample exam](../42-15spring/final.pdf) / [Solutions](../42-15spring/finalsoln.pdf) from a similar course (some of these problems already appeared above as practice problems for midterm 2). 
+    * Some [practice problems](exams/finalPractice.pdf) (more may be added to this list in the next couple days)
