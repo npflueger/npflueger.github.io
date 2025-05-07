@@ -71,4 +71,4 @@ Homework assignments will be posted here, and usually due on Wednesdays at 10pm,
 * Final Exam: Monday 5/12, 9am-noon in Beneski 107.
     * Remember to make a one-page note-sheet (front and back)!
     * The final exam will be cumulative, but will place larger emphasis on topics covered after the second midterm.
-    * Sample exams will be posted here closer to the exam.
+    * Sample exams: [Fall 2017](exams/final-17f.pdf) / [Solutions](exams/final-17f-soln.pdf), [Spring 2018](exams/final-18s.pdf) / [Solutions](exams/final-18s-soln.pdf), [Spring 2019](exams/final-19s.pdf) / [Solutions](exams/final-19s-soln.pdf), [Fall 2019](exams/final-19f.pdf) / [Solutions](exams/final-19f-soln.pdf),
