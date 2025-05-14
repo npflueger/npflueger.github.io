@@ -72,3 +72,4 @@ Homework assignments will be posted here, and usually due on Wednesdays at 10pm,
     * Remember to make a one-page note-sheet (front and back)!
     * The final exam will be cumulative, but will place larger emphasis on topics covered after the second midterm.
     * Sample exams: [Fall 2017](exams/final-17f.pdf) / [Solutions](exams/final-17f-soln.pdf), [Spring 2018](exams/final-18s.pdf) / [Solutions](exams/final-18s-soln.pdf), [Spring 2019](exams/final-19s.pdf) / [Solutions](exams/final-19s-soln.pdf), [Fall 2019](exams/final-19f.pdf) / [Solutions](exams/final-19f-soln.pdf),
+    * [Exam](exams/finalExamcompact.pdf) / [Solutions](https://drive.google.com/open?id=14KV9AeJbnQIORRRjhg0eU1LWv_eoD-8P&usp=drive_fs)
