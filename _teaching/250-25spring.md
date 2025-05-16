@@ -64,4 +64,4 @@ An introduction to the theory of rational integers; divisibility, the unique fac
     * The final exam will be cumulative, but will place larger emphasis on topics covered after the second midterm.
     * A [sample exam](../42-15spring/final.pdf) / [Solutions](../42-15spring/finalsoln.pdf) from a similar course (some of these problems already appeared above as practice problems for midterm 2). 
     * Some [practice problems](exams/finalPractice.pdf) 
-    * [Exam](exams/finalcompact.pdf) / [Solutions](https://drive.google.com/open?id=14OKw_HoIkGU-YqH8_l70lFtmx-y52X2j&usp=drive_fs)
+    * [Exam](exams/finalcompact.pdf) / [Solutions](https://drive.google.com/open?id=14QCnaTOFC22UNtT989at8JF9OeUM31b4&usp=drive_fs)
