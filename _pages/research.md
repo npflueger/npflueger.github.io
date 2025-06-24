@@ -8,8 +8,6 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 
 ## Preprints and papers under review
 
-*   _Twice-Marked Banana Graphs & Brill-Noether Generality_ (with N. Solomon). Preprint (2022).
-<br /> [arXiv](https://arxiv.org/abs/2211.17258)
 *   _An extended Demazure product on integer permutations via min-plus matrix multiplication_. Preprint (2022).
 <br /> [arXiv](https://arxiv.org/abs/2206.14227)
 *   _(Hurwitz-)Brill-Noether general marked graphs via the Demazure product_. Preprint (2022).
@@ -17,10 +15,14 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 
 
 ## Accepted papers
-*   _Versality of Brill-Noether flags and degeneracy loci of twice-marked curves_. Preprint (2021). To appear in Algebraic Geometry.
-<br /> [arXiv](https://arxiv.org/abs/2103.10969)
+*   _Twice-Marked Banana Graphs & Brill-Noether Generality_ (with N. Solomon). To appear in Algebraic Combinatorics.
+<br /> [arXiv](https://arxiv.org/abs/2211.17258)
+
 
 ## Publications
+
+*   _Versality of Brill-Noether flags and degeneracy loci of twice-marked curves_. Algebraic Geometry 12:4 (2025) pp. 497-518.
+<br /> [arXiv](https://arxiv.org/abs/2103.10969) [DOI](https://doi.org/10.14231/AG-2025-014)
 
 *   _Weierstrass semigroups from cyclic covers of hyperelliptic curves_ (with E. Cotterill and N. Zhang). Bulletin of the Brazilian Mathematical Society, New Series 54, 37 (2023).
 <br /> [arXiv](https://arxiv.org/abs/2201.00033) [DOI](https://doi.org/10.1007/s00574-023-00355-7)
@@ -29,7 +31,7 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 <br /> [arXiv](https://arxiv.org/abs/2201.08869) [DOI](https://doi.org/10.1515/crelle-2023-0001)
 *   _Relative Richardson Varieties_ (with M. Chan). Mathematical Proceedings of the Cambridge Philosophical Society, 175:1 (2023), 161–186.
 <br /> [arXiv](https://arxiv.org/abs/1909.12414) [DOI](https://www.doi.org/10.1017/S0305004123000087)
-*   _Combinatorial relations on skew Schur and skew stable Grothendieck polynomials_ (with M. Chan). Algebraic Combinatorics Volume 4 (2021) no. 1 p. 175-188. 
+*   _Combinatorial relations on skew Schur and skew stable Grothendieck polynomials_ (with M. Chan). Algebraic Combinatorics Volume 4 (2021) no. 1 pp. 175-188. 
 <br /> [arXiv](https://arxiv.org/abs/1909.12833) [DOI](https://doi.org/10.5802/alco.144) [pdf](/files/papers/combinatorialRelationsGrothendieck.pdf)
 *   _Euler characteristics of Brill-Noether varieties_ (with M. Chan). Transactions of the AMS 374:3 (2021) 1513-1533. 
 <br /> [arXiv](https://arxiv.org/abs/1708.09378) [DOI](https://doi.org/10.1090/tran/8164) [pdf](/files/papers/eulerBN.pdf)
