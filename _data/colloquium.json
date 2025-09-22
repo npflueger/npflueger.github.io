@@ -1,5 +1,13 @@
 [
     {
+    "date": "2025-09-25",
+    "speaker": "Rob Benedetto (Amherst College)",
+    "speakerurl": "https://rlbenedetto.people.amherst.edu/",
+    "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30, also in SMUD 206.",
+    "title": "A Beginner's Introduction to the Mandelbrot Set",
+    "abstract": "The Mandelbrot Set is a beautiful and intricate geometric object, a small portion of which appears prominently on the Math Department's webpage. It arises naturally in the field of Complex Dynamics, the study of the behavior of a function when you compose it with itself over and over again, when the variable is a complex number. In this talk, I'll describe the basics of complex dynamics, as well as some of the fractal sets that arise along the way. That will lead to considering the Mandelbrot set, and exhibiting some of its special structures. The only background required is Math 111 and a little of Math 121. No prior knowledge of dynamics, fractals, or complex numbers is needed."
+   },
+  {
     "date": "2025-02-10",
     "speaker": "Joe Mileti (Grinnell College)",
     "speakerurl": "https://mileti.math.grinnell.edu/",
