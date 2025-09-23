@@ -2,18 +2,18 @@
 {% if talk.timeplace %} {{ talk.timeplace }} {% endif %}
 
 <div class="seminar-talk">
-  {% if talk.title %} <i>{{ talk.title }}</i> {% endif %}
-  {% if talk.abstract %}
+  {% if talk.title and talk.title != ""  and talk.title != "TBA" %} <i>{{ talk.title }}</i> {% endif %}
+  {% if talk.abstract and talk.abstract != ""  %}
   <button class="toggle-abstract">Show Abstract</button>
   <div class="talk-abstract" style="display: none;">
     {{ talk.abstract }}
   </div>
   {% endif %}
     <br />
-    {% if talk.speakerurl %} <a href="{{talk.speakerurl}}">{{talk.speaker}}</a>
+    {% if talk.speakerurl and talk.speakerurl != "" %} <a href="{{talk.speakerurl}}">{{talk.speaker}}</a>
     {% else %} {{ talk.speaker }}
     {% endif %}
-    {% if talk.bio %}
+    {% if talk.bio and talk.bio != "" %}
         <button class="toggle-bio">Show bio</button>
         <div class="talk-bio" style="display: none;">
             {{talk.bio}}
