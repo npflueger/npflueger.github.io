@@ -3,6 +3,7 @@
 
 <div class="seminar-talk">
   {% if talk.title and talk.title != ""  and talk.title != "TBA" %} <i>{{ talk.title }}</i> {% endif %}
+  {% if talk.title == "TBA" %} <i>Title to be announced</i>{% endif %}
   {% if talk.abstract and talk.abstract != ""  %}
   <button class="toggle-abstract">Show Abstract</button>
   <div class="talk-abstract" style="display: none;">
