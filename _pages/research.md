@@ -8,6 +8,8 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 
 ## Preprints and papers under review
 
+* _Transmission permutations and Demazure products in Hurwitz--Brill--Noether theory_. Early draft.
+<br /> [pdf](/files/papers/hbnDemazure.pdf)
 *   _An extended Demazure product on integer permutations via min-plus matrix multiplication_. Preprint (2022).
 <br /> [arXiv](https://arxiv.org/abs/2206.14227)
 *   _(Hurwitz-)Brill-Noether general marked graphs via the Demazure product_. Preprint (2022).
