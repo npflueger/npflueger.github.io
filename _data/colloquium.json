@@ -34,10 +34,10 @@
   {
     "date": "2025-10-23",
     "speaker": "Howard Levinson (Oberlin College)",
-    "speakerurl": "",
+    "speakerurl": "https://cs.oberlin.edu/~hlevinso/",
     "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30, also in SMUD 206.",
-    "title": "TBA",
-    "abstract": ""
+    "title": "An Inverse Problem with Coloring Graphs",
+    "abstract": "Suppose you have a graph with vertices connected by some edges. A proper coloring assigns a color to each vertex so that no two connected vertices share the same color. Often, there are many proper colorings. We can collect all of them into a new graph, called the coloring graph, where each vertex represents a coloring of the original graph. In this talk, I will introduce this coloring graph object and explore the following question: if all we have is the coloring graph, can we figure out what the original graph looked like?"
    },
     {
     "date": "2025-10-02",
