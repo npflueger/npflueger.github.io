@@ -1,0 +1,996 @@
+---
+title: "Chip-Firing Visualizer"
+layout: single
+permalink: /chipfiring/
+no_sidebar: true
+no_masthead: false
+toc: false
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chip-Firing Divisor Visualizer</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.29.2/cytoscape.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 10px 16px;
+      background: #252a34;
+      color: #eaeaea;
+    }
+    h1 { font-size: 1.4em; margin: 0 0 2px 0; color: #eaeaea; }
+    h2 { font-size: 1.1em; margin: 0 0 8px 0; color: #c4c4c4; }
+    #toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+      padding: 6px 8px;
+      background: #1f2329;
+      border: 1px solid #3d4350;
+      border-radius: 4px;
+    }
+    #graph-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+      padding: 4px 8px;
+      background: #1f2329;
+      border: 1px solid #3d4350;
+      border-radius: 4px;
+    }
+    .sep {
+      color: #3d4350;
+      font-size: 18px;
+      line-height: 1;
+      margin: 0 4px;
+    }
+    button {
+      padding: 5px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      border: 1px solid #3d4350;
+      border-radius: 4px;
+      background: #1f2329;
+      color: #eaeaea;
+    }
+    button:hover { background: #3d4350; }
+    button.active {
+      background: #00adb5;
+      color: #fff;
+      font-weight: bold;
+      border-color: #00adb5;
+    }
+    select, input[type="number"], input[type="text"] {
+      padding: 4px 6px;
+      font-size: 13px;
+      border: 1px solid #3d4350;
+      border-radius: 3px;
+      background: #1f2329;
+      color: #eaeaea;
+    }
+    select option { background: #1f2329; color: #eaeaea; }
+    #param-n-container, #param-cycles-container { display: none; }
+    label { font-size: 13px; color: #eaeaea; }
+    #burn-result {
+      min-height: 18px;
+      font-size: 13px;
+      padding: 2px 8px;
+    }
+    #cytoscape-graph {
+      width: 100%;
+      height: 580px;
+      border: 1px solid #3d4350;
+      border-radius: 4px;
+      background: #1f2329;
+    }
+    #load-error {
+      color: #ff6b6b;
+      font-size: 12px;
+    }
+    .hint {
+      font-size: 11px;
+      color: #6c7a8a;
+      margin-left: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Chip-Firing Visualizer</h1>
+<h2>Divisor Visualization</h2>
+
+<!-- Graph loader row -->
+<div id="graph-row">
+  <label>Load graph:</label>
+  <select id="graph-selector">
+    <option value="">— select —</option>
+    <option value="cycle6">6-cycle (A–F)</option>
+    <option value="tetrahedron">Tetrahedron (K₄)</option>
+    <option value="cube">Cube</option>
+    <option value="octahedron">Octahedron (K₂,₂,₂)</option>
+    <option value="dodecahedron">Dodecahedron</option>
+    <option value="icosahedron">Icosahedron</option>
+    <option value="complete">Complete graph Kₙ</option>
+    <option value="chain">Chain of cycles</option>
+  </select>
+  <span id="param-n-container">
+    <label>n =</label>
+    <input type="number" id="param-n" value="5" min="2" max="50" style="width:56px">
+  </span>
+  <span id="param-cycles-container">
+    <label>Cycle lengths:</label>
+    <input type="text" id="param-cycles" value="3,4,3" placeholder="e.g. 3,4,3" style="width:110px">
+  </span>
+  <button id="load-btn">Load</button>
+  <span id="load-error"></span>
+</div>
+
+<!-- Toolbar -->
+<div id="toolbar">
+  <!-- Pan / Select toggle -->
+  <button id="mode-pan-btn">Pan</button>
+  <button id="mode-select-btn" class="active">Select</button>
+  <span class="sep">│</span>
+  <button id="fire-btn">Fire Selected</button>
+  <button id="zero-btn">Zero Divisor</button>
+  <button id="canonical-btn">Canonical Divisor</button>
+  <span class="sep">│</span>
+  <button id="burn-btn">Burn (Dhar's)</button>
+  <button id="clear-burn-btn">Clear Burn</button>
+  <span class="hint">Select one vertex as q, then click Burn or press B</span>
+</div>
+
+<div id="burn-result"></div>
+<div id="cytoscape-graph"></div>
+
+<script>
+(function () {
+'use strict';
+
+// ── Constants ──────────────────────────────────────────────────────────────
+var VERTEX_RADIUS      = 25;
+var ANIMATION_MS       = 500;
+var DOUBLE_TAP_MS      = 300;
+var DHAR_STEP_MS       = 700;
+var BURN_COLOR         = '#cc0000';
+var BURN_Q_COLOR       = '#ff8800';
+var BURN_OVERLAY_OP    = 0.38;
+var BURN_OVERLAY_PAD   = '10px';
+var BURN_EDGE_COLOR    = '#cc0000';
+var BURN_EDGE_WIDTH    = 4;
+
+// ── Graph definitions ──────────────────────────────────────────────────────
+
+function makeCycle6() {
+  var verts = ['A','B','C','D','E','F'];
+  var edges = [['A','B'],['B','C'],['C','D'],['D','E'],['E','F'],['F','A']];
+  return { vertices: verts, edges: edges };
+}
+
+function makeTetrahedron() {
+  var v = ['0','1','2','3'];
+  var e = [];
+  for (var i=0;i<4;i++) for (var j=i+1;j<4;j++) e.push([v[i],v[j]]);
+  return { vertices: v, edges: e };
+}
+
+function makeCube() {
+  // vertices as binary triples (x,y,z)
+  var v = [], vmap = {};
+  for (var x=0;x<2;x++) for (var y=0;y<2;y++) for (var z=0;z<2;z++) {
+    var name = '('+x+','+y+','+z+')';
+    v.push(name);
+    vmap[x+','+y+','+z] = name;
+  }
+  var e = [];
+  for (var x=0;x<2;x++) for (var y=0;y<2;y++) for (var z=0;z<2;z++) {
+    var cur = x+','+y+','+z;
+    [[1-x,y,z],[x,1-y,z],[x,y,1-z]].forEach(function(nb) {
+      var nk = nb[0]+','+nb[1]+','+nb[2];
+      if (cur < nk) e.push([vmap[cur], vmap[nk]]);
+    });
+  }
+  return { vertices: v, edges: e };
+}
+
+function makeOctahedron() {
+  // K_{2,2,2}: three groups of 2, connect all inter-group pairs
+  var v = ['v0','v1','v2','v3','v4','v5'];
+  var groups = [['v0','v1'],['v2','v3'],['v4','v5']];
+  var e = [];
+  for (var i=0;i<3;i++) for (var j=i+1;j<3;j++)
+    for (var a=0;a<2;a++) for (var b=0;b<2;b++)
+      e.push([groups[i][a], groups[j][b]]);
+  return { vertices: v, edges: e };
+}
+
+function makeDodecahedron() {
+  // NetworkX dodecahedral_graph() edge list (standard)
+  var v = [];
+  for (var i=0;i<20;i++) v.push('v'+i);
+  var e = [
+    [0,1],[0,10],[0,19],[1,2],[1,8],[2,3],[2,6],[3,4],[3,19],[4,5],
+    [4,17],[5,6],[5,15],[6,7],[7,8],[7,14],[8,9],[9,10],[9,13],[10,11],
+    [11,12],[11,18],[12,13],[12,16],[13,14],[14,15],[15,16],[16,17],[17,18],[18,19]
+  ].map(function(pair){ return ['v'+pair[0],'v'+pair[1]]; });
+  return { vertices: v, edges: e };
+}
+
+function makeIcosahedron() {
+  // Standard icosahedron: top=0, upper ring=1-5, lower ring=6-10, bottom=11
+  var v = [];
+  for (var i=0;i<12;i++) v.push('v'+i);
+  var e = [
+    // top to upper ring
+    [0,1],[0,2],[0,3],[0,4],[0,5],
+    // upper pentagon
+    [1,2],[2,3],[3,4],[4,5],[5,1],
+    // upper ring to lower ring (two sets of cross-connections)
+    [1,6],[2,7],[3,8],[4,9],[5,10],
+    [1,10],[2,6],[3,7],[4,8],[5,9],
+    // lower pentagon
+    [6,7],[7,8],[8,9],[9,10],[10,6],
+    // lower ring to bottom
+    [6,11],[7,11],[8,11],[9,11],[10,11]
+  ].map(function(pair){ return ['v'+pair[0],'v'+pair[1]]; });
+  return { vertices: v, edges: e };
+}
+
+function makeComplete(n) {
+  if (n < 2 || n > 50) throw new Error('n must be between 2 and 50');
+  var v = [];
+  for (var i=0;i<n;i++) v.push('v'+i);
+  var e = [];
+  for (var i=0;i<n;i++) for (var j=i+1;j<n;j++) e.push([v[i],v[j]]);
+  return { vertices: v, edges: e };
+}
+
+function makeChain(lengths) {
+  if (!lengths.every(function(n){ return Number.isInteger(n) && n >= 2; }))
+    throw new Error('All cycle lengths must be integers ≥ 2');
+  var vertices = [];
+  var edges = [];
+  lengths.forEach(function(n, i) {
+    for (var j=0;j<n;j++) vertices.push('z_'+(i+1)+'_'+j);
+    if (n === 2) {
+      edges.push(['z_'+(i+1)+'_0', 'z_'+(i+1)+'_1', 2]);
+    } else {
+      for (var j=0;j<n;j++)
+        edges.push(['z_'+(i+1)+'_'+j, 'z_'+(i+1)+'_'+((j+1)%n), 1]);
+    }
+    if (i > 0) {
+      edges.push(['z_'+i+'_0', 'z_'+(i+1)+'_'+(n-1), 1]);
+    }
+  });
+  return { vertices: vertices, edges: edges };
+}
+
+// ── Position helpers ───────────────────────────────────────────────────────
+
+function cyclePositions(names, cx, cy, r) {
+  // Clockwise from top
+  var n = names.length;
+  var pos = {};
+  names.forEach(function(name, i) {
+    var angle = 2 * Math.PI * i / n;
+    pos[name] = { x: cx + r * Math.sin(angle), y: cy - r * Math.cos(angle) };
+  });
+  return pos;
+}
+
+// ── Cytoscape element builders ─────────────────────────────────────────────
+
+function buildElements(graphDef, chips, positions) {
+  // chips: {vertexName: count} or null (defaults to 0)
+  // positions: {vertexName: {x,y}} or null (use cose layout)
+  var elements = [];
+
+  graphDef.vertices.forEach(function(name) {
+    var count = chips ? (chips[name] || 0) : 0;
+    var sign = count < 0 ? 'negative' : (count === 0 ? 'zero' : 'positive');
+    var bg = count < 0 ? '#dc3545' : (count === 0 ? '#7a8494' : '#28a745');
+    var fg = '#fff';
+    var el = {
+      data: {
+        id: name,
+        label: '' + count,
+        divisor_sign: sign,
+        chips_count: count
+      },
+      style: { 'background-color': bg, color: fg, 'text-outline-color': bg, label: '' + count,
+               'text-valign': 'center', 'text-halign': 'center', 'z-index': 20,
+               'border-width': '0px' },
+      selectable: true,
+      grabbable: true
+    };
+    if (positions && positions[name]) {
+      el.position = positions[name];
+    }
+    elements.push(el);
+  });
+
+  // edges (supports valence > 1)
+  var edgeCounts = {};
+  graphDef.edges.forEach(function(e) {
+    var src = e[0], tgt = e[1], val = e[2] || 1;
+    var key = [src, tgt].sort().join('--');
+    var start = edgeCounts[key] || 0;
+    for (var i = 0; i < val; i++) {
+      elements.push({
+        data: {
+          id: key + '-' + (start + i),
+          source: src,
+          target: tgt,
+          arrow_shape: 'none'
+        }
+      });
+    }
+    edgeCounts[key] = start + val;
+  });
+
+  return elements;
+}
+
+// ── Stylesheet ─────────────────────────────────────────────────────────────
+
+var STYLESHEET = [
+  { selector: 'node', style: {
+    label: 'data(label)',
+    'background-color': '#7a8494',
+    color: '#fff',
+    'text-outline-width': 1,
+    'text-outline-color': '#7a8494',
+    'text-wrap': 'wrap',
+    'text-valign': 'center',
+    'text-halign': 'center',
+    width: '50px', height: '50px',
+    'font-size': '14px'
+  }},
+  { selector: 'node[divisor_sign = "zero"]', style: {
+    'background-color': '#7a8494',
+    'text-outline-color': '#7a8494',
+    color: '#fff'
+  }},
+  { selector: 'node[divisor_sign = "positive"]', style: {
+    'background-color': '#28a745',
+    'text-outline-color': '#28a745',
+    color: '#fff'
+  }},
+  { selector: 'node[divisor_sign = "negative"]', style: {
+    'background-color': '#dc3545',
+    'text-outline-color': '#dc3545',
+    color: '#fff'
+  }},
+  { selector: 'node[chip_type]', style: {
+    width: 'data(chip_size)', height: 'data(chip_size)',
+    label: '',
+    'text-outline-width': 0,
+    'border-width': 1,
+    'border-color': '#000',
+    'z-index': 10
+  }},
+  { selector: 'node[chip_type = "positive_chip"]', style: { 'background-color': '#28a745' }},
+  { selector: 'node[chip_type = "negative_chip"]', style: { 'background-color': '#dc3545' }},
+  { selector: 'node[chip_type = "traveling_chip"]', style: {
+    'background-color': '#28a745',
+    opacity: 0.85
+  }},
+  { selector: 'node:selected', style: {
+    'overlay-color': '#555',
+    'overlay-opacity': 0.25,
+    'overlay-padding': '7px'
+  }},
+  { selector: 'edge', style: {
+    'line-color': '#4a5568',
+    width: 2,
+    'curve-style': 'bezier',
+    'control-point-step-size': '40px',
+    'target-arrow-shape': 'none',
+    'target-arrow-color': '#4a5568'
+  }}
+];
+
+// ── Chip layout math ───────────────────────────────────────────────────────
+
+function chipLayout(cx, cy, nChips) {
+  var chipR = VERTEX_RADIUS / 5;
+  while (true) {
+    var orbitR = VERTEX_RADIUS + chipR;
+    if (Math.floor(Math.PI / Math.asin(chipR / orbitR)) >= nChips) break;
+    chipR /= 2;
+    if (chipR < 0.05) break;
+  }
+  var orbitR = VERTEX_RADIUS + chipR;
+  var positions = [];
+  for (var i = 0; i < nChips; i++) {
+    var angle = 2 * Math.PI * i / nChips;
+    positions.push({
+      x:  cx + orbitR * Math.sin(angle),
+      y:  cy - orbitR * Math.cos(angle),
+      dx: orbitR * Math.sin(angle),
+      dy: -orbitR * Math.cos(angle)
+    });
+  }
+  return { positions: positions, chipSize: chipR * 2 };
+}
+
+// ── Vertex update ──────────────────────────────────────────────────────────
+
+var burnState = { runId: 0, timeouts: [] };
+
+function cancelBurn() {
+  burnState.runId++;
+  burnState.timeouts.forEach(clearTimeout);
+  burnState.timeouts = [];
+}
+
+function clearBurnVisuals(cy) {
+  cancelBurn();
+  cy.nodes().filter(function(n){ return !n.data('chip_type'); })
+    .removeStyle('overlay-color overlay-opacity overlay-padding');
+  cy.edges().removeStyle('line-color width');
+  var el = document.getElementById('burn-result');
+  if (el) { el.textContent = ''; el.style.color = ''; }
+}
+
+function vertexColors(chips) {
+  if (chips < 0) return { bg: '#dc3545', fg: '#fff' };
+  if (chips > 0) return { bg: '#28a745', fg: '#fff' };
+  return { bg: '#7a8494', fg: '#fff' };
+}
+
+function updateVertex(cy, nodeId, newChips, opts) {
+  if (!opts || !opts.preserveBurn) clearBurnVisuals(cy);
+  var node = cy.getElementById(nodeId);
+  node.data('chips_count', newChips);
+  node.data('label', '' + newChips);
+  node.data('divisor_sign',
+    newChips < 0 ? 'negative' : (newChips === 0 ? 'zero' : 'positive'));
+
+  // Set styles explicitly — data-selector re-evaluation can lag in some browsers.
+  // Preserve any selection border that may already be on this node.
+  var c = vertexColors(newChips);
+  var sel = node.selected();
+  node.style({ 'background-color': c.bg, color: c.fg, 'text-outline-color': c.bg, label: '' + newChips,
+               'text-valign': 'center', 'text-halign': 'center', 'z-index': 20,
+               'border-width': sel ? '4px' : '0px', 'border-color': '#eaeaea', 'border-style': 'solid' });
+
+  cy.nodes().filter(function(n){ return n.data('parent_vertex') === nodeId; }).remove();
+
+  if (newChips !== 0) {
+    var pos = node.position();
+    var n = Math.abs(newChips);
+    var layout = chipLayout(pos.x, pos.y, n);
+    var chipType = newChips > 0 ? 'positive_chip' : 'negative_chip';
+    var chipBg   = newChips > 0 ? '#28a745' : '#dc3545';
+    var dots = cy.add(layout.positions.map(function(p, i) {
+      return {
+        data: {
+          id: 'chip_' + nodeId + '_' + i,
+          chip_type: chipType,
+          chip_size: layout.chipSize,
+          parent_vertex: nodeId,
+          dx: p.dx,
+          dy: p.dy
+        },
+        position: { x: p.x, y: p.y },
+        selectable: false,
+        grabbable: false
+      };
+    }));
+    dots.style({
+      'background-color': chipBg,
+      width: layout.chipSize,
+      height: layout.chipSize,
+      label: '',
+      'text-outline-width': 0,
+      'border-width': 1,
+      'border-color': '#000',
+      'z-index': 10
+    });
+  }
+}
+
+// ── Firing logic ───────────────────────────────────────────────────────────
+
+var travelCounter = 0;
+var isFiring = false;
+
+function fireVertices(cy, nodeIds) {
+  if (isFiring || !nodeIds || nodeIds.length === 0) return;
+  isFiring = true;
+  clearBurnVisuals(cy);
+
+  var inSet = {};
+  nodeIds.forEach(function(id){ inSet[id] = true; });
+
+  var deltas = {}, animations = [];
+
+  nodeIds.forEach(function(vid) {
+    if (deltas[vid] === undefined) deltas[vid] = 0;
+    cy.edges().forEach(function(edge) {
+      var src = edge.data('source'), tgt = edge.data('target');
+      var neighbor = (src === vid) ? tgt : (tgt === vid) ? src : null;
+      if (neighbor === null) return;
+      deltas[vid]--;
+      deltas[neighbor] = (deltas[neighbor] || 0) + 1;
+      animations.push({ from: vid, to: neighbor });
+    });
+  });
+
+  var posSnap = {}, chipsSnap = {};
+  Object.keys(deltas).forEach(function(id) {
+    var node = cy.getElementById(id);
+    var p = node.position();
+    posSnap[id] = { x: p.x, y: p.y };
+    chipsSnap[id] = node.data('chips_count') || 0;
+  });
+
+  nodeIds.forEach(function(vid) {
+    if (deltas[vid] !== undefined)
+      updateVertex(cy, vid, chipsSnap[vid] + deltas[vid], { preserveBurn: true });
+  });
+
+  if (animations.length === 0) {
+    Object.keys(deltas).forEach(function(id) {
+      if (!inSet[id]) updateVertex(cy, id, chipsSnap[id] + deltas[id], { preserveBurn: true });
+    });
+    isFiring = false;
+    return;
+  }
+
+  var done = 0, total = animations.length;
+  function onArrived() {
+    if (++done < total) return;
+    Object.keys(deltas).forEach(function(id) {
+      if (!inSet[id]) updateVertex(cy, id, chipsSnap[id] + deltas[id], { preserveBurn: true });
+    });
+    isFiring = false;
+  }
+
+  animations.forEach(function(anim) {
+    var srcPos = posSnap[anim.from];
+    var tgtPos = posSnap[anim.to] || (function(){
+      var p = cy.getElementById(anim.to).position(); return {x:p.x,y:p.y};
+    }());
+    var tid = 'traveling_' + (travelCounter++);
+    var chipSize = (VERTEX_RADIUS / 5) * 2;
+    cy.add({
+      data: { id: tid, chip_type: 'traveling_chip', chip_size: chipSize },
+      position: { x: srcPos.x, y: srcPos.y },
+      selectable: false, grabbable: false
+    });
+    cy.getElementById(tid).style({
+      'background-color': '#28a745',
+      width: chipSize, height: chipSize,
+      label: '', 'text-outline-width': 0, opacity: 0.85,
+      'border-width': 1, 'border-color': '#000', 'z-index': 10
+    });
+    cy.getElementById(tid).animate({ position: { x: tgtPos.x, y: tgtPos.y } }, {
+      duration: ANIMATION_MS,
+      complete: function() { cy.getElementById(tid).remove(); onArrived(); }
+    });
+  });
+}
+
+// ── Dhar's algorithm ───────────────────────────────────────────────────────
+
+function computeDhar(cy, qId) {
+  var chips = {};
+  cy.nodes().filter(function(n){ return !n.data('chip_type'); })
+    .forEach(function(n){ chips[n.id()] = n.data('chips_count') || 0; });
+
+  var steps = [{ vertex: qId, burn_edges: [] }];
+  var burnt = {}; burnt[qId] = true;
+  var unburnt = {};
+  cy.nodes().filter(function(n){ return !n.data('chip_type') && n.id() !== qId; })
+    .forEach(function(n){ unburnt[n.id()] = true; });
+
+  var changed = true;
+  while (changed) {
+    changed = false;
+    Object.keys(unburnt).sort().forEach(function(vId) {
+      if (!unburnt[vId]) return;
+      var edgesToBurnt = 0, burnEdgeIds = [];
+      cy.edges().forEach(function(edge) {
+        var src = edge.data('source'), tgt = edge.data('target');
+        var neighbor = (src === vId) ? tgt : (tgt === vId) ? src : null;
+        if (neighbor && burnt[neighbor]) { edgesToBurnt++; burnEdgeIds.push(edge.id()); }
+      });
+      if (chips[vId] < edgesToBurnt) {
+        steps.push({ vertex: vId, burn_edges: burnEdgeIds });
+        burnt[vId] = true;
+        delete unburnt[vId];
+        changed = true;
+      }
+    });
+  }
+
+  var unburntNames = Object.keys(unburnt).sort();
+  return {
+    q: qId, steps: steps,
+    result: unburntNames.length === 0 ? 'all_burned' : 'partial',
+    unburnt: unburntNames
+  };
+}
+
+function playDhar(cy, data) {
+  clearBurnVisuals(cy);
+  cy.nodes().unselect();
+  var runId = burnState.runId;
+
+  data.steps.forEach(function(step, i) {
+    var tid = setTimeout(function() {
+      if (runId !== burnState.runId) return;
+      var node = cy.getElementById(step.vertex);
+      node.style({
+        'overlay-color':   i === 0 ? BURN_Q_COLOR : BURN_COLOR,
+        'overlay-opacity': BURN_OVERLAY_OP,
+        'overlay-padding': BURN_OVERLAY_PAD
+      });
+      step.burn_edges.forEach(function(eid) {
+        cy.getElementById(eid).style({ 'line-color': BURN_EDGE_COLOR, width: BURN_EDGE_WIDTH });
+      });
+
+      if (i === data.steps.length - 1) {
+        var rid = setTimeout(function() {
+          if (runId !== burnState.runId) return;
+          var el = document.getElementById('burn-result');
+          if (!el) return;
+          if (data.result === 'all_burned') {
+            var hasDebt = cy.nodes().filter(function(n) {
+              return !n.data('chip_type') && n.id() !== data.q &&
+                     (n.data('chips_count') || 0) < 0;
+            }).length > 0;
+            if (hasDebt) {
+              el.textContent = 'Whole graph burned — but there is debt away from q (not q-reduced).';
+              el.style.color = '#e07000';
+            } else {
+              el.textContent = '✓ Whole graph burned — divisor is q-reduced.';
+              el.style.color = '#28a745';
+            }
+          } else {
+            el.textContent = 'Unburnt: ' + data.unburnt.join(', ') + ' — maximal legal firing set.';
+            el.style.color = '#dc3545';
+            cy.nodes().filter(function(n) {
+              return !n.data('chip_type') && data.unburnt.indexOf(n.id()) !== -1;
+            }).select();
+          }
+        }, DHAR_STEP_MS / 2);
+        burnState.timeouts.push(rid);
+      }
+    }, i * DHAR_STEP_MS);
+    burnState.timeouts.push(tid);
+  });
+}
+
+// ── Context menu ───────────────────────────────────────────────────────────
+
+function buildContextMenu(cy) {
+  var target = null;
+  var el = document.createElement('div');
+  el.style.cssText = [
+    'position:fixed','background:#1f2329','border:1px solid #3d4350',
+    'border-radius:6px','padding:10px 12px','box-shadow:2px 4px 16px rgba(0,0,0,.5)',
+    'z-index:9999','display:none','min-width:170px','font-size:13px','font-family:sans-serif',
+    'color:#eaeaea'
+  ].join(';');
+
+  var titleEl = document.createElement('div');
+  titleEl.style.cssText = 'font-weight:bold;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid #3d4350;color:#eaeaea';
+  el.appendChild(titleEl);
+
+  function btn(label, fn) {
+    var b = document.createElement('button');
+    b.textContent = label;
+    b.style.cssText = 'display:block;width:100%;padding:5px 8px;margin-bottom:5px;cursor:pointer;text-align:left;border:1px solid #3d4350;border-radius:3px;background:#252a34;color:#eaeaea;font-size:13px';
+    b.addEventListener('mouseenter', function(){ b.style.background='#3d4350'; });
+    b.addEventListener('mouseleave', function(){ b.style.background='#252a34'; });
+    b.addEventListener('click', fn);
+    el.appendChild(b);
+  }
+
+  btn('+ Add chip', function() {
+    if (target) {
+      updateVertex(cy, target.id(), (target.data('chips_count')||0) + 1);
+      titleEl.textContent = 'Vertex "' + target.id() + '"';
+      setInput.value = target.data('chips_count') || 0;
+    }
+  });
+  btn('− Remove chip', function() {
+    if (target) {
+      updateVertex(cy, target.id(), (target.data('chips_count')||0) - 1);
+      titleEl.textContent = 'Vertex "' + target.id() + '"';
+      setInput.value = target.data('chips_count') || 0;
+    }
+  });
+
+  var setRow = document.createElement('div');
+  setRow.style.cssText = 'display:flex;align-items:center;gap:6px;margin-top:4px';
+  var lbl = document.createElement('span');
+  lbl.textContent = 'Set:'; lbl.style.color = '#c4c4c4';
+  var setInput = document.createElement('input');
+  setInput.type = 'number';
+  setInput.style.cssText = 'width:58px;padding:4px 5px;border:1px solid #3d4350;border-radius:3px;font-size:13px;background:#252a34;color:#eaeaea';
+  var setBtn = document.createElement('button');
+  setBtn.textContent = 'OK';
+  setBtn.style.cssText = 'padding:4px 10px;cursor:pointer;border:1px solid #3d4350;border-radius:3px;background:#252a34;color:#eaeaea;font-size:13px';
+  function applySet() {
+    var val = parseInt(setInput.value, 10);
+    if (!isNaN(val) && target) { updateVertex(cy, target.id(), val); ctrl.hide(); }
+  }
+  setBtn.addEventListener('click', applySet);
+  setInput.addEventListener('keydown', function(e) {
+    e.stopPropagation();
+    if (e.key === 'Enter')  { applySet(); }
+    if (e.key === 'Escape') { ctrl.hide(); }
+  });
+  setRow.appendChild(lbl); setRow.appendChild(setInput); setRow.appendChild(setBtn);
+  el.appendChild(setRow);
+  document.body.appendChild(el);
+
+  var ctrl = {
+    el: el,
+    show: function(x, y, node) {
+      target = node;
+      titleEl.textContent = 'Vertex "' + node.id() + '"';
+      setInput.value = node.data('chips_count') || 0;
+      el.style.display = 'block';
+      var mw = el.offsetWidth, mh = el.offsetHeight;
+      var vw = window.innerWidth, vh = window.innerHeight;
+      el.style.left = (x+mw>vw ? vw-mw-8 : x) + 'px';
+      el.style.top  = (y+mh>vh ? vh-mh-8 : y) + 'px';
+      setTimeout(function(){ setInput.select(); }, 30);
+    },
+    hide: function() { el.style.display = 'none'; target = null; }
+  };
+  return ctrl;
+}
+
+// ── Graph state & Cytoscape init ───────────────────────────────────────────
+
+var currentGraph = makeCycle6();
+var currentChips = null; // null = all zeros
+
+var initPositions = cyclePositions(['A','B','C','D','E','F'], 400, 290, 210);
+var initElements  = buildElements(currentGraph, null, initPositions);
+
+var cy = cytoscape({
+  container: document.getElementById('cytoscape-graph'),
+  elements: initElements,
+  layout: { name: 'preset', padding: 30 },
+  stylesheet: STYLESHEET,
+  userPanningEnabled: true,
+  boxSelectionEnabled: false,
+  autounselectify: false
+});
+
+// ── Chip drag: keep chip indicators with their parent ──────────────────────
+
+cy.on('drag', 'node', function(evt) {
+  var node = evt.target;
+  if (node.data('chip_type')) return;
+  var pos = node.position(), id = node.id();
+  cy.nodes().filter(function(n){ return n.data('parent_vertex') === id; })
+    .forEach(function(chip) {
+      chip.position({ x: pos.x + chip.data('dx'), y: pos.y + chip.data('dy') });
+    });
+});
+
+// ── Prevent background tap from clearing selection ────────────────────────
+// Snapshot selection at mousedown — before Cytoscape's tap handler deselects.
+// Then re-apply it synchronously inside the tap handler so no render frame
+// can slip through with an empty selection (avoids the blink).
+var _selBeforeTap = [];
+document.getElementById('cytoscape-graph').addEventListener('mousedown', function() {
+  _selBeforeTap = cy.nodes(':selected')
+    .filter(function(n){ return !n.data('chip_type'); })
+    .map(function(n){ return n.id(); });
+});
+cy.on('tap', function(evt) {
+  if (evt.target !== cy) return;
+  _selBeforeTap.forEach(function(id){ cy.getElementById(id).select(); });
+});
+
+// Edges should never be selectable (prevents the blue highlight on click)
+cy.edges().unselectify();
+
+// ── Selection highlight ────────────────────────────────────────────────────
+// Drive the border directly from select/unselect events rather than relying
+// on the :selected pseudo-class (which inline styles can suppress).
+function applySelectionBorder(node, selected) {
+  node.style(selected
+    ? { 'border-width': '4px', 'border-color': '#eaeaea', 'border-style': 'solid' }
+    : { 'border-width': '0px' });
+}
+cy.on('select',   'node', function(evt) {
+  if (!evt.target.data('chip_type')) applySelectionBorder(evt.target, true);
+});
+cy.on('unselect', 'node', function(evt) {
+  if (!evt.target.data('chip_type')) applySelectionBorder(evt.target, false);
+});
+
+// ── Double-tap to fire ─────────────────────────────────────────────────────
+
+var lastTap = { time: 0, nodeId: null };
+cy.on('tap', 'node', function(evt) {
+  var node = evt.target;
+  if (node.data('chip_type')) return;
+  var now = Date.now(), nodeId = node.id();
+  if (now - lastTap.time < DOUBLE_TAP_MS && lastTap.nodeId === nodeId) {
+    lastTap = { time: 0, nodeId: null };
+    fireVertices(cy, [nodeId]);
+  } else {
+    lastTap = { time: now, nodeId: nodeId };
+  }
+});
+
+// ── Right-click context menu ───────────────────────────────────────────────
+
+var ctxMenu = buildContextMenu(cy);
+
+cy.on('cxttap', 'node', function(evt) {
+  if (evt.target.data('chip_type')) return;
+  var orig = evt.originalEvent;
+  ctxMenu.show(orig.clientX, orig.clientY, evt.target);
+});
+
+document.addEventListener('mousedown', function(e) {
+  if (ctxMenu.el.style.display !== 'none' && !ctxMenu.el.contains(e.target))
+    ctxMenu.hide();
+});
+
+document.getElementById('cytoscape-graph')
+  .addEventListener('contextmenu', function(e){ e.preventDefault(); });
+
+// ── Toolbar buttons ────────────────────────────────────────────────────────
+
+function getSelectedVertexIds() {
+  return cy.nodes(':selected')
+    .filter(function(n){ return !n.data('chip_type'); })
+    .map(function(n){ return n.id(); });
+}
+
+document.getElementById('fire-btn').addEventListener('click', function() {
+  fireVertices(cy, getSelectedVertexIds());
+});
+
+document.getElementById('zero-btn').addEventListener('click', function() {
+  cy.nodes().filter(function(n){ return !n.data('chip_type'); })
+    .forEach(function(n){ updateVertex(cy, n.id(), 0); });
+});
+
+document.getElementById('canonical-btn').addEventListener('click', function() {
+  cy.nodes().filter(function(n){ return !n.data('chip_type'); })
+    .forEach(function(n) {
+      var deg = cy.edges().filter(function(e){
+        return e.data('source') === n.id() || e.data('target') === n.id();
+      }).length;
+      updateVertex(cy, n.id(), deg - 2);
+    });
+});
+
+function runBurn() {
+  var ids = getSelectedVertexIds();
+  var el = document.getElementById('burn-result');
+  if (ids.length !== 1) {
+    el.textContent = ids.length === 0
+      ? 'Select exactly one vertex as q, then press B or click Burn.'
+      : 'Select exactly one vertex as q (' + ids.length + ' selected).';
+    el.style.color = '#dc3545';
+    return;
+  }
+  playDhar(cy, computeDhar(cy, ids[0]));
+}
+
+document.getElementById('burn-btn').addEventListener('click', runBurn);
+document.getElementById('clear-burn-btn').addEventListener('click', function() {
+  clearBurnVisuals(cy);
+});
+
+// ── Pan / Select toggle ────────────────────────────────────────────────────
+
+var panBtn    = document.getElementById('mode-pan-btn');
+var selectBtn = document.getElementById('mode-select-btn');
+
+function setMode(selectMode) {
+  cy.userPanningEnabled(!selectMode);
+  cy.boxSelectionEnabled(selectMode);
+  panBtn.classList.toggle('active', !selectMode);
+  selectBtn.classList.toggle('active', selectMode);
+}
+
+panBtn.addEventListener('click',    function(){ setMode(false); });
+selectBtn.addEventListener('click', function(){ setMode(true);  });
+setMode(true);
+
+// ── Keyboard shortcuts ─────────────────────────────────────────────────────
+
+document.addEventListener('keydown', function(e) {
+  var tag = document.activeElement && document.activeElement.tagName;
+  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON') return;
+  if (e.key === 'Enter') fireVertices(cy, getSelectedVertexIds());
+  if (e.key === 'b' || e.key === 'B') runBurn();
+});
+
+// ── Graph selector ─────────────────────────────────────────────────────────
+
+var graphSel  = document.getElementById('graph-selector');
+var paramNBox = document.getElementById('param-n-container');
+var paramCBox = document.getElementById('param-cycles-container');
+
+graphSel.addEventListener('change', function() {
+  var val = graphSel.value;
+  paramNBox.style.display = val === 'complete' ? 'inline' : 'none';
+  paramCBox.style.display = val === 'chain'    ? 'inline' : 'none';
+});
+
+document.getElementById('load-btn').addEventListener('click', function() {
+  var errEl = document.getElementById('load-error');
+  errEl.textContent = '';
+  var val = graphSel.value;
+  if (!val) { errEl.textContent = 'Select a graph type first.'; return; }
+
+  try {
+    var graphDef, positions = null, layout;
+    if (val === 'cycle6') {
+      graphDef  = makeCycle6();
+      positions = cyclePositions(['A','B','C','D','E','F'], 400, 290, 210);
+      layout    = { name: 'preset', padding: 30 };
+    } else if (val === 'tetrahedron') {
+      graphDef = makeTetrahedron();
+    } else if (val === 'cube') {
+      graphDef = makeCube();
+    } else if (val === 'octahedron') {
+      graphDef = makeOctahedron();
+    } else if (val === 'dodecahedron') {
+      graphDef = makeDodecahedron();
+    } else if (val === 'icosahedron') {
+      graphDef = makeIcosahedron();
+    } else if (val === 'complete') {
+      var n = parseInt(document.getElementById('param-n').value, 10);
+      graphDef = makeComplete(n);
+    } else if (val === 'chain') {
+      var raw = document.getElementById('param-cycles').value;
+      var lengths = raw.split(',').map(function(s){ return parseInt(s.trim(), 10); });
+      graphDef = makeChain(lengths);
+    }
+
+    cancelBurn();
+    var elements = buildElements(graphDef, null, positions);
+    cy.elements().remove();
+    cy.add(elements);
+    cy.edges().unselectify();
+
+    if (positions) {
+      cy.layout({ name: 'preset', padding: 30 }).run();
+    } else {
+      cy.layout({
+        name: 'cose',
+        idealEdgeLength: 150,
+        nodeRepulsion: 400000,
+        nodeOverlap: 20,
+        padding: 40,
+        randomize: false,
+        fit: true
+      }).run();
+    }
+    currentGraph = graphDef;
+  } catch(err) {
+    errEl.textContent = err.message || String(err);
+  }
+});
+
+}());
+</script>
+</body>
+</html>
