@@ -6,6 +6,7 @@ no_masthead: true
 toc: false
 ---
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -166,6 +167,9 @@ var BURN_OVERLAY_OP    = 0.38;
 var BURN_OVERLAY_PAD   = '10px';
 var BURN_EDGE_COLOR    = '#cc0000';
 var BURN_EDGE_WIDTH    = 4;
+var SEL_OVERLAY_COLOR  = '#eaeaea';
+var SEL_OVERLAY_OP     = 0.28;
+var SEL_OVERLAY_PAD    = '10px';
 
 // ── Graph definitions ──────────────────────────────────────────────────────
 
@@ -306,8 +310,7 @@ function buildElements(graphDef, chips, positions) {
         chips_count: count
       },
       style: { 'background-color': bg, color: fg, 'text-outline-color': bg, label: '' + count,
-               'text-valign': 'center', 'text-halign': 'center', 'z-index': 20,
-               'border-width': '0px' },
+               'text-valign': 'center', 'text-halign': 'center', 'z-index': 20 },
       selectable: true,
       grabbable: true
     };
@@ -434,8 +437,14 @@ function cancelBurn() {
 
 function clearBurnVisuals(cy) {
   cancelBurn();
-  cy.nodes().filter(function(n){ return !n.data('chip_type'); })
-    .removeStyle('overlay-color overlay-opacity overlay-padding');
+  cy.nodes().filter(function(n){ return !n.data('chip_type'); }).forEach(function(n) {
+    n.removeStyle('overlay-color overlay-opacity overlay-padding');
+    // Re-apply selection overlay if still selected (removeStyle would have cleared it)
+    if (n.selected()) {
+      n.style({ 'overlay-color': SEL_OVERLAY_COLOR, 'overlay-opacity': SEL_OVERLAY_OP,
+                'overlay-padding': SEL_OVERLAY_PAD });
+    }
+  });
   cy.edges().removeStyle('line-color width');
   var el = document.getElementById('burn-result');
   if (el) { el.textContent = ''; el.style.color = ''; }
@@ -460,8 +469,9 @@ function updateVertex(cy, nodeId, newChips, opts) {
   var c = vertexColors(newChips);
   var sel = node.selected();
   node.style({ 'background-color': c.bg, color: c.fg, 'text-outline-color': c.bg, label: '' + newChips,
-               'text-valign': 'center', 'text-halign': 'center', 'z-index': 20,
-               'border-width': sel ? '4px' : '0px', 'border-color': '#eaeaea', 'border-style': 'solid' });
+               'text-valign': 'center', 'text-halign': 'center', 'z-index': 20, 'border-width': '0px',
+               'overlay-color': SEL_OVERLAY_COLOR, 'overlay-opacity': sel ? SEL_OVERLAY_OP : 0,
+               'overlay-padding': SEL_OVERLAY_PAD });
 
   cy.nodes().filter(function(n){ return n.data('parent_vertex') === nodeId; }).remove();
 
@@ -808,8 +818,9 @@ cy.edges().unselectify();
 // on the :selected pseudo-class (which inline styles can suppress).
 function applySelectionBorder(node, selected) {
   node.style(selected
-    ? { 'border-width': '4px', 'border-color': '#eaeaea', 'border-style': 'solid' }
-    : { 'border-width': '0px' });
+    ? { 'overlay-color': SEL_OVERLAY_COLOR, 'overlay-opacity': SEL_OVERLAY_OP,
+        'overlay-padding': SEL_OVERLAY_PAD }
+    : { 'overlay-opacity': 0 });
 }
 cy.on('select',   'node', function(evt) {
   if (!evt.target.data('chip_type')) applySelectionBorder(evt.target, true);
