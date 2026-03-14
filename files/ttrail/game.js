@@ -718,6 +718,31 @@ function buildIceberg(app) {
   window.addEventListener('keydown', onKey);
   window.addEventListener('keyup',   onKey);
 
+  // Touch controls: left half of canvas = steer left, right half = steer right
+  const touchSides = new Map(); // touchId → 'left'|'right'
+  const updateTouchKeys = () => {
+    const vals = [...touchSides.values()];
+    keys['ArrowLeft']  = vals.includes('left');
+    keys['ArrowRight'] = vals.includes('right');
+  };
+  const onTouch = e => {
+    e.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    const midX = rect.left + rect.width / 2;
+    Array.from(e.changedTouches).forEach(t => {
+      if (e.type === 'touchend' || e.type === 'touchcancel') {
+        touchSides.delete(t.identifier);
+      } else {
+        touchSides.set(t.identifier, t.clientX < midX ? 'left' : 'right');
+      }
+    });
+    updateTouchKeys();
+  };
+  canvas.addEventListener('touchstart',  onTouch, {passive: false});
+  canvas.addEventListener('touchmove',   onTouch, {passive: false});
+  canvas.addEventListener('touchend',    onTouch, {passive: false});
+  canvas.addEventListener('touchcancel', onTouch, {passive: false});
+
   canvas.addEventListener('click', () => {
     if (!clickReady) return;
     cancelAnimationFrame(raf);
@@ -759,7 +784,7 @@ function buildIceberg(app) {
           }
         }
       }
-      if (tick % 20 === 0) {
+      if (tick % 60 === 0) {
         timeLeft--;
         if (timeLeft <= 0) { phase='arriving'; gs.sank=false; }
       }
@@ -800,6 +825,7 @@ function buildIceberg(app) {
           ctx.fillRect(0,0,W,H); hitFlash--;
         }
         drawIcebergHUD(ctx, W, H, hull, timeLeft, tick);
+        drawTouchHints(ctx, W, H, keys);
       } else {
         // Sinking animation
         drawSinkingAnimation(ctx, W, H, animTick, SHIP_W, SHIP_H);
@@ -882,6 +908,41 @@ function drawIcebergHUD(ctx, W, H, hull, timeLeft, tick) {
 
   ctx.textAlign='left'; ctx.font='bold 12px sans-serif'; ctx.fillStyle='#be2828';
   ctx.fillText(`Hits: ${gs.icebergHits}`, 10, 55);
+}
+
+// ── Touch hint arrows (shown during iceberg gameplay) ─────────────────────
+function drawTouchHints(ctx, W, H, keys) {
+  const lActive = keys['ArrowLeft'];
+  const rActive = keys['ArrowRight'];
+  const btnW = 110, btnH = 60, btnY = H - 75, r = 12;
+
+  const drawRounded = (x, y, w, h) => {
+    ctx.beginPath();
+    ctx.moveTo(x+r, y); ctx.lineTo(x+w-r, y);
+    ctx.arcTo(x+w,y, x+w,y+r, r); ctx.lineTo(x+w,y+h-r);
+    ctx.arcTo(x+w,y+h, x+w-r,y+h, r); ctx.lineTo(x+r,y+h);
+    ctx.arcTo(x,y+h, x,y+h-r, r); ctx.lineTo(x,y+r);
+    ctx.arcTo(x,y, x+r,y, r); ctx.closePath();
+  };
+
+  // Left button
+  ctx.fillStyle = lActive ? 'rgba(255,255,255,0.22)' : 'rgba(255,255,255,0.07)';
+  drawRounded(14, btnY, btnW, btnH); ctx.fill();
+  ctx.strokeStyle = lActive ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.15)';
+  ctx.lineWidth = 1.5; drawRounded(14, btnY, btnW, btnH); ctx.stroke();
+  ctx.font = `bold ${lActive?32:28}px sans-serif`;
+  ctx.fillStyle = lActive ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.35)';
+  ctx.textAlign = 'center';
+  ctx.fillText('◄', 14 + btnW/2, btnY + btnH/2 + 11);
+
+  // Right button
+  ctx.fillStyle = rActive ? 'rgba(255,255,255,0.22)' : 'rgba(255,255,255,0.07)';
+  drawRounded(W - 14 - btnW, btnY, btnW, btnH); ctx.fill();
+  ctx.strokeStyle = rActive ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.15)';
+  drawRounded(W - 14 - btnW, btnY, btnW, btnH); ctx.stroke();
+  ctx.font = `bold ${rActive?32:28}px sans-serif`;
+  ctx.fillStyle = rActive ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.35)';
+  ctx.fillText('►', W - 14 - btnW/2, btnY + btnH/2 + 11);
 }
 
 // ── Easing helpers ────────────────────────────────────────────────────────
@@ -1293,6 +1354,18 @@ function buildEnding(app) {
   app.appendChild(div);
   div.querySelector('#play-again').addEventListener('click', () => goTo(buildTitle));
 }
+
+// ── Viewport scaling (makes game fit any screen size) ─────────────────────
+function scaleToViewport() {
+  const app = document.getElementById('app');
+  if (!app) return;
+  const scale = Math.min(window.innerWidth / 820, window.innerHeight / 620);
+  const ox = (window.innerWidth  - 820 * scale) / 2;
+  const oy = (window.innerHeight - 620 * scale) / 2;
+  app.style.transform = `translate(${ox}px,${oy}px) scale(${scale})`;
+}
+window.addEventListener('resize', scaleToViewport);
+scaleToViewport();
 
 // ── Start the game ────────────────────────────────────────────────────────
 goTo(buildTitle);
