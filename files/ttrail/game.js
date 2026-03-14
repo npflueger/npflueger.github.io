@@ -732,6 +732,12 @@ function buildIceberg(app) {
     Array.from(e.changedTouches).forEach(t => {
       if (e.type === 'touchend' || e.type === 'touchcancel') {
         touchSides.delete(t.identifier);
+        if (e.type === 'touchend' && clickReady) {
+          cancelAnimationFrame(raf);
+          window.removeEventListener('keydown', onKey);
+          window.removeEventListener('keyup', onKey);
+          goTo(buildEnding);
+        }
       } else {
         touchSides.set(t.identifier, t.clientX < midX ? 'left' : 'right');
       }
