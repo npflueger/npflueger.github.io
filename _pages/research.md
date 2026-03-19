@@ -6,6 +6,18 @@ layout: single
 
 My research is in algebraic geometry and combinatorics, especially algebraic curves and Young tableaux. I am particularly interested in Brill-Noether theory, which studies the variety of ways that a chosen curve is realized in projective space. I also study analogous questions in the setting of tropical geometry, and the relation between these perspectives via non-Archimedean analytic geometry. My publications are listed below.
 
+I am also interested in proof formalization in Lean4. You can find some of my ongoing formalization projects below.
+
+## Lean4 Formalizations
+
+**Note:** each of these formalizations a link to its documentation. This documentation is auto-generated, and includes documentation of all dependenices within Mathlib. When reading the docs, you should look for the relevant section in the sidebar and focus on those files.
+
+* _Chip-firing in Lean_ (with Dhyey Mavani). This project formalizes aspects of chip-firing games on finite multigraphs, including the Riemann-Roch theorem of Baker and Norine.
+<br /> [github](https://github.com/DhyeyMavani2003/chip-firing-with-lean) [docs](https://dhyeymavani.com/chip-firing-with-lean/docs/ChipFiringWithLean/RiemannRochForGraphs.html)
+
+* _Demazure products_. This project formalizes the extended Demazure product on integer permutations (not necessarily of finite length). It includes a formalized bijection between Hecke Factorizations of integer permutations and set-valued tableaux.
+<br /> [github](https://github.com/npflueger/demazure) [docs](https://npflueger.github.io/demazure/docs/Demazure/AspPerm.html)
+
 ## Preprints and papers under review
 
 * _Transmission permutations and Demazure products in Hurwitz--Brill--Noether theory_. Early draft.
@@ -18,12 +30,10 @@ My research is in algebraic geometry and combinatorics, especially algebraic cur
 <br /> [arXiv](https://arxiv.org/abs/2508.00269)
 
 
-## Accepted papers
-*   _Twice-Marked Banana Graphs & Brill-Noether Generality_ (with N. Solomon). To appear in Algebraic Combinatorics.
-<br /> [arXiv](https://arxiv.org/abs/2211.17258)
-
-
 ## Publications
+
+*   _Twice-Marked Banana Graphs & Brill-Noether Generality_ (with N. Solomon). Algebraic Combinatorics, Volume 8 (2025) no. 5, pp. 1415-1457.
+<br /> [arXiv](https://arxiv.org/abs/2211.17258) [DOI](https://doi.org/10.5802/alco.443)
 
 *   _Versality of Brill-Noether flags and degeneracy loci of twice-marked curves_. Algebraic Geometry 12:4 (2025) pp. 497-518.
 <br /> [arXiv](https://arxiv.org/abs/2103.10969) [DOI](https://doi.org/10.14231/AG-2025-014)
