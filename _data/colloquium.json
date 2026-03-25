@@ -1,5 +1,30 @@
 [
   {
+    "date": "2026-03-26",
+    "speaker": "Trevor Hyde (Vassar College)",
+    "speakerurl": "",
+    "timeplace": "4:00-5:00, SMUD 206.",
+    "title": "Solving the cubic with Napoleon Bonaparte",
+    "abstract": "Solving algebraic equations is one of the most fundamental problems in mathematics. As children we learn how to solve linear equations and commit the quadratic formula to memory. Although a formula for solving cubic equations was discovered in the 16th century, few know it today. Why? Because it's a mess. In this talk we'll peer beyond the scary syntax of this under-appreciated formula to learn its elegant structure, its geometric interpretation, and what it has to do with a classic theorem about triangles attributed--perhaps dubiously--to Napoleon Bonaparte.",
+    "bio": "Trevor Hyde is an assistant professor of mathematics at Vassar College. He came from a small town in rural Iowa to Amherst College (class of 2012) where he majored in math and worked as a Q Fellow. Trevor earned his Ph.D. at the University of Michigan and was a postdoc at the University of Chicago before joining the faculty at Vassar in 2023. He lives in Poughkeepsie, New York where he enjoys books, games, food, the outdoors, and, of course, mathematics."
+   },
+  {
+    "date": "2026-02-19",
+    "speaker": "Jenna Zomback (Amherst College)",
+    "speakerurl": "",
+    "timeplace": "4:00-5:00, SMUD 206.",
+    "title": "Perfect Matchings: a Post-Valentine's Day Love Story",
+    "abstract": "In graph theory, a perfect matching in a graph is a subset M of the edges such that each vertex is adjacent to exactly one edge in M. We are often interested in when perfect matchings exist, and how we might go about constructing them (for example, matching medical students to residency programs). In this talk, we ask what happens when the vertex set is the real numbers (or some other uncountable set). When do perfect matchings exist in this setting? And when can we construct them in a \"definable\" way - that is, without relying on the axiom of choice to do the heavy lifting?"
+   },
+  {
+    "date": "2026-03-12",
+    "speaker": "Marino Romero (Minnesota State University, Mankato)",
+    "speakerurl": "",
+    "timeplace": "4:00-5:00, SMUD 206.",
+    "title": "Bijections and Involutions",
+    "abstract": "One way to show that A=B is by saying A counts the number of elements in a set S, B counts the elements of a set T, and then show that S and T have the same number of elements. Two sets have the same number of elements if there is a bijection between them, putting elements from one set in one-to-one correspondence with the other set. However, sometimes it is not clear how to define a bijection. The Garsia-Milne Involution Principle and Remmel's Bijection Machine give a method for generating infinite families of bijections. It was one of the topics that inspired me as an undergraduate student. In this talk, we will explain how these bijections work when looking at partition identities."
+   },
+  {
     "date": "2025-12-04",
     "speaker": "Lidia Mrad (Mount Holyoke College)",
     "speakerurl": "",
