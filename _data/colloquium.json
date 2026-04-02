@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-04-02",
+    "speaker": "Tim Chumley (Mount Holyoke College)",
+    "speakerurl": "",
+    "timeplace": "4:00-5:00, SMUD 206.",
+    "title": "Randomness in dynamical systems",
+    "abstract": "Mathematical billiards are simple models of mechanical systems which can be viewed as an idealized version of the game of pool. Besides being interesting to study in their own right, they have been used to study, among other things, the foundations of chaotic dynamical systems and statistical mechanics. In this talk, we'll discuss how randomness can arise from deterministic billiard systems. We'll also see how tools from probability theory, such as Markov chains, can be used to study their behavior.",
+    "bio": "Tim Chumley is the Associate Professor of Mathematics on the John Stewart Kennedy Foundation at Mount Holyoke College. Before coming to the valley in 2016, he was a postdoc at Iowa State University and before that studied at Washington University in St. Louis and Marquette University. His research interests include stochastic processes, random dynamical systems, and their applications in areas like biology, engineering, and physics. He has two cats, Ted and Julia."
+   },
+  {
     "date": "2026-03-26",
     "speaker": "Trevor Hyde (Vassar College)",
     "speakerurl": "",
