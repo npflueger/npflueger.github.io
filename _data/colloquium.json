@@ -38,32 +38,32 @@
     "speaker": "Lidia Mrad (Mount Holyoke College)",
     "speakerurl": "",
     "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30, also in SMUD 206.",
-    "title": "TBA",
-    "abstract": ""
+    "title": "Quantifying Diffusive Dispersal of Mosquitoes",
+    "abstract": "Diseases transmitted by mosquitoes impose a significant public health burden. Measures to mitigate this burden include controlling mosquito populations, and understanding their local spatial movement is central to such efforts. In this talk, we will present a diffusive agent-based model for mosquito dispersal, focusing on methods that robustly determine the associated diffusion coefficient."
    },
   {
     "date": "2025-11-13",
     "speaker": "Ryan Stees (Univ. of Virginia)",
     "speakerurl": "",
     "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30, also in SMUD 206.",
-    "title": "TBA",
-    "abstract": ""
+    "title": "Geometric Topology in Dimension 4",
+    "abstract": "Manifolds, generalizations of surfaces to all dimensions, are the fundamental objects of study in geometric topology. The study of 4-dimensional manifolds differs in unique ways from the study of both lower- and higher-dimensional spaces. In this talk, we will discuss why dimension 4 is particularly interesting to geometric topologists and how questions about 4-dimensional manifolds lead to the study of knots and links."
    },
   {
     "date": "2025-11-06",
     "speaker": "Andrew Wu (Amherst College)",
     "speakerurl": "",
     "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30, also in SMUD 206.",
-    "title": "TBA",
-    "abstract": ""
+    "title": "AI Meets AR",
+    "abstract": "In this talk, we explore how automated logical reasoning techniques can enhance the safety and reliability of neural network-enabled systems. We discuss two complementary approaches: direct verification of the model and verification of model outputs. Direct verification focuses on formulating input-output specifications and proving that a neural network satisfies them. This approach is particularly relevant for ML systems deployed in mission-critical domains such as robotics and autonomous systems. We will describe Marabou, a formal analyzer of neural networks, and highlight several of its recent applications. In contrast, output verification is suitable for ML systems that generate complex artifacts with formal semantics, such as programs or logical formulas. This requires developing tailored automated reasoning techniques to handle these generated complex artifacts. As an example, we will describe how formal verification was recently applied to evaluate state-of-the-art Text-to-SQL methods, which revealed insights that standard test-based evaluations overlooked."
    },
   {
     "date": "2025-10-30",
     "speaker": "Juliette Bruce (Dartmouth College)",
     "speakerurl": "",
     "timeplace": "4:00-5:00, SMUD 206. Pre-talk gathering at 3:30, also in SMUD 206.",
-    "title": "TBA",
-    "abstract": ""
+    "title": "Syzygies, Geometry, and Computation",
+    "abstract": "We will discuss recent large-scale computer experiments that use powerful numerical methods and high-performance computing to explore the hidden patterns in the equations that define algebraic surfaces. By studying these relationships, called syzygies, we can discover new structures and make new conjectures about how these surfaces behave."
    },
   {
     "date": "2025-10-23",
