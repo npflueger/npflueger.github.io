@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-04-09",
+    "speaker": "Kate Moore (Amherst College)",
+    "speakerurl": "",
+    "timeplace": "4:00-5:00, SMUD 206.",
+    "title": "What is a cluster?  And a new perspective.",
+    "abstract": "Clustering, or identifying groups of similar objects, allows us to understand the world around us.  Turning this intuitive practice into a mathematically sound algorithm requires us to decide/define exactly what we mean by a \"cluster.\" Traditionally, the resulting algorithms are based entirely on the input numeric distances.  However, especially in the modern era of complex and high-dimensional data, obtaining meaningful distances can be quite challenging.  In this talk, I share a new perspective that only requires responses to questions of the form: among A, B and C, which is the outlier?   The new algorithm, k-cohesion clustering, expands the possible settings in which clustering can be directly performed.",
+    "bio": "Kate Moore is a lecturer in the math department.  Several years ago, she stumbled upon the setting of distance comparisons and has been fascinated with the problem of clustering ever since.   A former combinatorialist and a theoretical mathematician by training, she now enjoys working at this intersection of math, statistics and computer science.  The mix of creative idea generation, theorem proving, coding in R, and occasional collaboration with scientists always keeps her learning and exploring.  When not teaching or working on the project above, Kate is most likely trail running, gardening, or spending time with her partner and their adorable dog, Gooseberry."
+   },
+  {
     "date": "2026-04-02",
     "speaker": "Tim Chumley (Mount Holyoke College)",
     "speakerurl": "",
