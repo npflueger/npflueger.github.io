@@ -1,0 +1,85 @@
+@font-face {
+  font-family: "XCharter Web";
+  src: url("/assets/fonts/XCharter-Roman.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "XCharter Web";
+  src: url("/assets/fonts/XCharter-Italic.otf") format("opentype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "XCharter Web";
+  src: url("/assets/fonts/XCharter-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "XCharter Web";
+  src: url("/assets/fonts/XCharter-BoldItalic.otf") format("opentype");
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
+
+$charter-stack: "XCharter Web", Charter, "Bitstream Charter", "URW Charter",
+  "Sitka Text", Cambria, Georgia, serif;
+$source-sans-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+
+body,
+.greedy-nav,
+.masthead,
+.page__footer,
+.sidebar,
+.archive__item-title,
+.btn,
+button,
+input,
+select,
+textarea {
+  font-family: $charter-stack;
+}
+
+.page__content,
+.archive__item-excerpt,
+.page__meta,
+.author__bio,
+.notice {
+  font-family: $charter-stack;
+}
+
+.page__content h1,
+.page__content h2,
+.page__content h3,
+.page__content h4,
+.page__content h5,
+.page__content h6 {
+  font-family: $charter-stack;
+  font-weight: 600;
+}
+
+.page__title,
+.archive__item-title,
+.author__name,
+.author__urls-wrapper,
+.author__urls,
+.greedy-nav a,
+.greedy-nav .site-title,
+.masthead__menu-item,
+.page__footer,
+.btn,
+button,
+input,
+select,
+textarea {
+  font-family: $charter-stack;
+}
