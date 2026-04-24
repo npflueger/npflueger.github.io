@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-04-23",
+    "speaker": "Çağlar Uyanik (University of Wisconsin-Madison)",
+    "speakerurl": "",
+    "timeplace": "4:00-5:00, SMUD 206.",
+    "title": "Interactions between geometry and dynamics",
+    "abstract": "A dynamical system is a mathematical framework for studying \"chaos\". This talk is a gentle introduction to the mathematical area of \"dynamics\" and how it interacts with geometry through explicit examples and constructions. We will find and certify chaotic behavior by just looking at matrices!",
+    "bio": "Caglar Uyanik received his undergraduate degree from the Middle East Technical University, Ankara, Turkey and went onto earn his PhD from University of Illinois at Urbana Champaign. After a postdoctoral position at Yale University, he is currently an assistant professor at the University of Wisconsin-Madison. His research is in geometric group theory, hyperbolic geometry, and dynamics. He is the founder and director of Madison Experimental Mathematics lab, which brings together faculty, grad students, and undergraduates to do semester long research in pure and applied mathematics."
+   },
+  {
     "date": "2026-04-09",
     "speaker": "Kate Moore (Amherst College)",
     "speakerurl": "",
