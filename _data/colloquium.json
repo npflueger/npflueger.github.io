@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-04-30",
+    "speaker": "Jason Liu (University of Illinois Urbana-Champaign)",
+    "speakerurl": "",
+    "timeplace": "4:00-5:00, SMUD 206.",
+    "title": "The Moduli Space of Polygons and Symmetries",
+    "abstract": "All equilateral triangles of side length 1 look the same. Have you thought about how many different regular quadrilaterals of side length 1 you can draw? What about pentagons, hexagons...? More generally, fix n positive numbers r_1,...,r_n, how many different polygons of side lengths r_1,...,r_n can we draw? In this talk, I will use polygons as an example to explain the idea of moduli spaces: using one geometric object to study the classification problems. I will also demonstrate some geometric features of the moduli space of polygons.",
+    "bio": "Jason Liu received his undergraduate degree from the University of Michigan. He is finishing his Ph.D. now at the University of Illinois Urbana-Champaign. He will be an H.C. Wang assistant professor (postdoc) at Cornell University starting Fall 2026."
+   },
+  {
     "date": "2026-04-23",
     "speaker": "Çağlar Uyanik (University of Wisconsin-Madison)",
     "speakerurl": "",
