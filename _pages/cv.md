@@ -56,17 +56,12 @@ A PDF version is also available [here](/files/cv.pdf).
 </li>
 </ol>
 
-### Papers in press
-
-<ol start="3">
-<li><em>Twice-Marked Banana Graphs &amp; Brill-Noether Generality</em> (with N. Solomon). 34 pages. To appear in Algebraic Combinatorics.
-<br /><em>arXiv v1: Nov. 2022 (Revising more before submitting)</em>
-</li>
-</ol>
-
 ### Publications
 
-<ol start="4">
+<ol start="3">
+<li><em>Twice-Marked Banana Graphs &amp; Brill-Noether Generality</em> (with N. Solomon). Algebraic Combinatorics, Volume 8 (2025) no. 5, pp. 1415-1457.
+<br /><em>arXiv v1: Nov. 2022 Published: 2025</em>
+</li>
 <li><em>Versality of Brill-Noether flags and degeneracy loci of twice-marked curves</em>. Algebraic Geometry 12:4 (2025) pp. 497-518.
 </li>
 <li><em>Weierstrass semigroups from cyclic covers of hyperelliptic curves</em> (with E. Cotterill, N. Zhang). Bulletin of the Brazilian Mathematical Society, New Series 54, 37 (2023).
