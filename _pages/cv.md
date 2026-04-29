@@ -1,12 +1,4 @@
----
-title: "CV"
-permalink: /cv/
-layout: single
-author_profile: true
-toc: false
----
-
-A PDF version is also available [here](/files/cv.pdf).
+# Nathan K. Pflueger
 
 ## Contact
 
@@ -49,10 +41,10 @@ A PDF version is also available [here](/files/cv.pdf).
 
 <ol start="1">
 <li><em>An extended Demazure product on integer permutations via min-plus matrix multiplication</em>. 26 pages. Preprint (2022).
-<br /><em>arXiv v1: June 2022 (Revising more before submitting)</em>
+<br /><em>arXiv v1: June 2022</em>
 </li>
 <li><em>(Hurwitz--)Brill--Noether general marked graphs via the Demazure product</em>. 14 pages. Preprint (2022).
-<br /><em>arXiv v1: Jan. 2022 (Declined by one journal; in revision)</em>
+<br /><em>arXiv v1: Jan. 2022</em>
 </li>
 </ol>
 
@@ -60,48 +52,48 @@ A PDF version is also available [here](/files/cv.pdf).
 
 <ol start="3">
 <li><em>Twice-Marked Banana Graphs &amp; Brill-Noether Generality</em> (with N. Solomon). Algebraic Combinatorics, Volume 8 (2025) no. 5, pp. 1415-1457.
-<br /><em>arXiv v1: Nov. 2022 Published: 2025</em>
+<br /><em>arXiv v1: Nov. 2022</em>
 </li>
 <li><em>Versality of Brill-Noether flags and degeneracy loci of twice-marked curves</em>. Algebraic Geometry 12:4 (2025) pp. 497-518.
 </li>
 <li><em>Weierstrass semigroups from cyclic covers of hyperelliptic curves</em> (with E. Cotterill, N. Zhang). Bulletin of the Brazilian Mathematical Society, New Series 54, 37 (2023).
-<br /><em>arXiv v1: Dec. 2021 (Declined by one journal; in revision)</em>
+<br /><em>arXiv v1: Dec. 2021</em>
 </li>
 <li><em>Linear series with ρ&lt;0 via thrifty lego-building</em>. Journal für die reine und angewandte Mathematik (Crelle), no. 797 (2023), pp. 193-228.
-<br /><em>arXiv v1: Jan. 2022 Accepted: Dec. 2022</em>
+<br /><em>arXiv v1: Jan. 2022</em>
 </li>
 <li><em>Relative Richardson Varieties</em> (with M. Chan). Mathematical Proceedings of the Cambridge Philosophical Society, 175:1 (2023), 161-186.
-<br /><em>arXiv v1: Sept. 2019 Accepted: June 2022</em>
+<br /><em>arXiv v1: Sept. 2019</em>
 </li>
 <li><em>Combinatorial relations on skew Schur and skew stable Grothendieck polynomials</em> (with M. Chan). Algebraic Combinatorics 4:1 (2021), 175-188.
-<br /><em>arXiv v1: Sep. 2019 Published: 2021</em>
+<br /><em>arXiv v1: Sep. 2019</em>
 </li>
 <li><em>Euler characteristics of Brill-Noether varieties</em> (with M. Chan). Transactions of the AMS 374:3 (2021) 1513-1533.
-<br /><em>arXiv v1: Aug. 2017 Published: 2021</em>
+<br /><em>arXiv v1: Aug. 2017</em>
 </li>
 <li><em>Weierstrass semigroups on Castelnuovo curves</em>. Journal of Algebra 582 (2021) 117-135.
-<br /><em>arXiv v1: Aug. 2016 Published: 2021</em>
+<br /><em>arXiv v1: Aug. 2016</em>
 </li>
 <li><em>The Gieseker-Petri theorem and imposed ramification</em> (with M. Chan, B. Osserman). Bulletin of the London Mathematical Society 51:6 (2019) 945-960.
-<br /><em>arXiv v1: March 2018 Published: 2019</em>
+<br /><em>arXiv v1: March 2018</em>
 </li>
 <li><em>On non-primitive Weierstrass points</em>. Algebra and Number Theory 12:8 (2018) 1923-1947.
-<br /><em>arXiv v1: Aug. 2016 Published: 2018</em>
+<br /><em>arXiv v1: Aug. 2016</em>
 </li>
 <li><em>Genera of Brill-Noether curves and staircase paths in Young tableaux</em> (with M. Chan, A. López Martín, M. Teixidor i Bigas). Transactions of the American Mathematical Society 370 (2018), 3405-3439.
-<br /><em>arXiv v1: June 2015 Published: 2018</em>
+<br /><em>arXiv v1: June 2015</em>
 </li>
 <li><em>Brill-Noether varieties of k-gonal curves</em>. Advances in Mathematics 312 (2017) 46-63.
-<br /><em>arXiv v1: Jan. 2017 Published: 2017</em>
+<br /><em>arXiv v1: Jan. 2017</em>
 </li>
 <li><em>Special divisors on marked chains of cycles</em>. Journal of Combinatorial Theory, Series A 150 (2017) 182-207.
-<br /><em>arXiv v1: Jan. 2017 Published: 2017</em>
+<br /><em>arXiv v1: Jan. 2017</em>
 </li>
 <li><em>Bitangents of tropical plane quartic curves</em> (with M. Baker, Y. Len, R. Morrison, Q. Ren). Mathematische Zeitschrift 282:3 (2016) 1017-1031.
-<br /><em>arXiv v1: April 2014 Published: 2016</em>
+<br /><em>arXiv v1: April 2014</em>
 </li>
 <li><em>Graph reductions, binary rank, and pivots in gene assembly</em>. Discrete Applied Mathematics 159:17 (2011) 2117-2134.
-<br /><em>arXiv v1: March 2011 Published: 2011</em>
+<br /><em>arXiv v1: March 2011</em>
 </li>
 </ol>
 
