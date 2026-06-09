@@ -13,7 +13,7 @@ I am also interested in proof formalization in Lean4. You can find some of my on
 **Note:** each of these formalizations a link to its documentation. This documentation is auto-generated, and includes documentation of all dependenices within Mathlib. When reading the docs, you should look for the relevant section in the sidebar and focus on those files.
 
 * _Chip-firing in Lean_ (with Dhyey Mavani). This project formalizes aspects of chip-firing games on finite multigraphs, including the Riemann-Roch theorem of Baker and Norine.
-<br /> [github](https://github.com/DhyeyMavani2003/chip-firing-with-lean) [docs](https://dhyeymavani.com/chip-firing-with-lean/docs/ChipFiringWithLean/RiemannRochForGraphs.html)
+<br /> [github](https://github.com/DhyeyMavani2003/chip-firing-with-lean) [docs](https://dhyeymavani.com/chip-firing-with-lean/docs/ChipFiringWithLean/RiemannRoch.html)
 
 * _Demazure products_. This project formalizes the extended Demazure product on integer permutations (not necessarily of finite length). It includes a formalized bijection between Hecke Factorizations of integer permutations and set-valued tableaux.
 <br /> [github](https://github.com/npflueger/demazure) [docs](https://npflueger.github.io/demazure/docs/Demazure/AspPerm.html)
