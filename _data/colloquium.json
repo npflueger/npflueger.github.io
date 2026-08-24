@@ -8,15 +8,7 @@
     "abstract": "TBA",
     "bio": "Nathan Pflueger has been in the Amherst math department since 2017. He works in algebraic geometry and combinatorics, and is particularly drawn to geometry problems that can be solved by finding the right game or counting problem."
    },
-{
-    "date": "2026-10-15",
-    "speaker": "Cesar E. Silva (Williams College)",
-    "speakerurl": "https://sites.williams.edu/csilva/",
-    "timeplace": "4:00-5:00, SMUD 205.",
-    "title": "TBA",
-    "abstract": "TBA",
-    "bio": "TBA"
-   },
+
   {
     "date": "2026-09-21",
     "speaker": "Eric Stachura (Kennesaw State University)",
@@ -26,6 +18,15 @@
     "abstract": "TBA",
     "bio": "TBA"
    },
+{
+    "date": "2026-10-15",
+    "speaker": "Cesar E. Silva (Williams College)",
+    "speakerurl": "https://sites.williams.edu/csilva/",
+    "timeplace": "4:00-5:00, SMUD 205.",
+    "title": "TBA",
+    "abstract": "TBA",
+    "bio": "TBA"
+   },  
   {
     "date": "2026-04-30",
     "speaker": "Jason Liu (University of Illinois Urbana-Champaign)",
