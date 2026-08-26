@@ -3,7 +3,7 @@
     "date": "2026-09-03",
     "speaker": "Nathan Pflueger (Amherst College)",
     "speakerurl": "https://npflueger.com/",
-    "timeplace": "4:00-5:00, SMUD TBA.",
+    "timeplace": "4:00-5:00, SMUD 205.",
     "title": "Chip-Firing Games on Graphs and Proof Formalization",
     "abstract": "Chip-firing games consider a strange economy. Each person in a network, represented by a finite graph, has a certain number of dollars, or chips. This number may be negative if the person is in debt. Money can only move by chip-firing moves, in which a person sends one forint to each of their neighbors. The basic question is: Is it possible to bring everyone out of debt using a sequence of such moves? The answer depends on the initial allocation, and much of the theory concerns special allocations in which winning is easier or harder. Surprisingly, this curious combinatorial game is tightly linked to the geometry of Riemann surfaces, and has played a starring role in several recent theorems in algebraic geometry. I will survey some highlights of this curious story. This topic has also proved fertile ground for proof formalization in the Lean4 programming language; throughout the talk, I will show examples of how the concepts can be formalized in this language, and tell you about a recent project with Dhyey Mavani `25. In this project, we built a formally verified proof in Lean4 of a watershed theorem in this story, called the Riemann--Roch theorem for finite graphs.",
     "bio": "Nathan Pflueger has been in the Amherst math department since 2017. He works in algebraic geometry and combinatorics, and is particularly drawn to geometry problems that can be solved by finding the right game or counting problem."
