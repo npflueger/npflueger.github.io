@@ -3,151 +3,265 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chip-Firing Divisor Visualizer</title>
+  <meta name="description" content="An interactive chip-firing and divisor visualizer for finite multigraphs, including Dhar's burning algorithm.">
+  <meta name="theme-color" content="#0b1220">
+  <title>Chip-Firing Lab</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.29.2/cytoscape.min.js"></script>
   <style>
-    * { box-sizing: border-box; }
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 10px 16px;
-      background: #252a34;
-      color: #eaeaea;
+    :root {
+      --ink: #f8fafc;
+      --muted: #aebbd0;
+      --quiet: #7f8ca1;
+      --surface: #111a2a;
+      --surface-raised: #182337;
+      --surface-soft: #202d43;
+      --line: #3d4d67;
+      --accent: #37c6d0;
+      --accent-dark: #0d737b;
+      --positive: #25c56a;
+      --negative: #f45b72;
+      --warning: #ffb547;
+      --focus: #ffe08a;
     }
-    h1 { font-size: 1.4em; margin: 0 0 2px 0; color: #eaeaea; }
-    h2 { font-size: 1.1em; margin: 0 0 8px 0; color: #c4c4c4; }
+    * { box-sizing: border-box; }
+    html { background: #0b1220; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 18px clamp(14px, 2.5vw, 34px) 24px;
+      background:
+        radial-gradient(circle at 85% -10%, rgba(55,198,208,.16), transparent 32rem),
+        #0b1220;
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    button, select, input, textarea { font: inherit; }
+    button:focus-visible, select:focus-visible, input:focus-visible, summary:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+    .skip-link { position: fixed; left: 12px; top: -80px; z-index: 20000; background: #fff; color: #111; padding: 10px 14px; border-radius: 6px; }
+    .skip-link:focus { top: 12px; }
+    #app-shell { width: min(1600px, 100%); margin: 0 auto; }
+    #app-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; margin-bottom: 14px; }
+    h1 { font-size: clamp(1.65rem, 3vw, 2.5rem); line-height: 1; letter-spacing: -.035em; margin: 0; color: var(--ink); }
+    .subtitle { font-size: clamp(.9rem, 1.3vw, 1.05rem); margin: 7px 0 0; color: var(--muted); }
+    #dashboard { display: flex; flex-wrap: wrap; align-items: center; gap: 9px 18px; min-height: 42px; margin-bottom: 10px; padding: 8px 13px; border: 1px solid var(--line); border-radius: 10px; background: rgba(17,26,42,.92); }
+    .metric { display: inline-flex; align-items: baseline; gap: 6px; color: var(--muted); font-size: 13px; }
+    .metric strong { color: var(--ink); font-size: 17px; font-variant-numeric: tabular-nums; }
+    #invariant-note { margin-left: auto; color: var(--quiet); font-size: 13px; }
+    .legend { display: inline-flex; gap: 12px; align-items: center; color: var(--muted); font-size: 13px; }
+    .legend-item { display: inline-flex; align-items: center; gap: 5px; }
+    .legend-dot { width: 11px; height: 11px; border-radius: 50%; border: 1px solid rgba(255,255,255,.55); }
+    .legend-dot.positive { background: var(--positive); }
+    .legend-dot.zero { background: #718096; }
+    .legend-dot.negative { background: var(--negative); }
     #toolbar {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 6px;
-      margin-bottom: 6px;
-      padding: 6px 8px;
-      background: #1f2329;
-      border: 1px solid #3d4350;
-      border-radius: 4px;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 9px 11px;
+      background: rgba(17,26,42,.94);
+      border: 1px solid var(--line);
+      border-radius: 10px;
     }
     #graph-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 6px;
-      margin-bottom: 4px;
-      padding: 4px 8px;
-      background: #1f2329;
-      border: 1px solid #3d4350;
-      border-radius: 4px;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 9px 11px;
+      background: rgba(17,26,42,.94);
+      border: 1px solid var(--line);
+      border-radius: 10px;
     }
+    .control-label { color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
     .sep {
-      color: #3d4350;
+      color: var(--line);
       font-size: 18px;
       line-height: 1;
       margin: 0 4px;
     }
     button {
-      padding: 5px 12px;
-      font-size: 13px;
+      min-height: 38px;
+      padding: 7px 13px;
+      font-size: 14px;
+      font-weight: 700;
       cursor: pointer;
-      border: 1px solid #3d4350;
-      border-radius: 4px;
-      background: #1f2329;
-      color: #eaeaea;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--surface-raised);
+      color: var(--ink);
+      transition: background .15s ease, border-color .15s ease, transform .15s ease;
     }
-    button:hover { background: #3d4350; }
+    button:hover { background: var(--surface-soft); border-color: #61718b; }
+    button:active { transform: translateY(1px); }
+    button:disabled { cursor: not-allowed; opacity: .42; transform: none; }
     button.active {
-      background: #00adb5;
+      background: var(--accent-dark);
       color: #fff;
-      font-weight: bold;
-      border-color: #00adb5;
+      border-color: var(--accent);
     }
+    button.primary { background: #116d74; border-color: #3bd5df; }
+    button.primary:hover { background: #15828a; }
+    button.danger-soft { color: #ffc5cf; }
     select, input[type="number"], input[type="text"] {
-      padding: 4px 6px;
-      font-size: 13px;
-      border: 1px solid #3d4350;
-      border-radius: 3px;
-      background: #1f2329;
-      color: #eaeaea;
+      min-height: 38px;
+      padding: 6px 9px;
+      font-size: 14px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--surface-raised);
+      color: var(--ink);
     }
-    select option { background: #1f2329; color: #eaeaea; }
+    select option { background: var(--surface); color: var(--ink); }
     #param-n-container, #param-cycles-container { display: none; }
-    label { font-size: 13px; color: #eaeaea; }
+    label { font-size: 14px; color: var(--muted); }
     #burn-result {
-      min-height: 18px;
-      font-size: 13px;
-      padding: 2px 8px;
+      display: none;
+      min-height: 46px;
+      margin-bottom: 10px;
+      padding: 11px 14px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--surface);
+      font-size: 16px;
+      font-weight: 700;
     }
+    #burn-result:not(:empty) { display: block; }
     #cytoscape-graph {
       width: 100%;
-      height: 580px;
-      border: 1px solid #3d4350;
-      border-radius: 4px;
-      background: #1f2329;
+      height: clamp(520px, 65vh, 780px);
+      touch-action: none;
+      overscroll-behavior: contain;
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      background:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px),
+        #0f1827;
+      background-size: 32px 32px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.22);
     }
     #load-error {
-      color: #ff6b6b;
-      font-size: 12px;
+      color: #ff8798;
+      font-size: 14px;
+      font-weight: 700;
     }
     .hint {
-      font-size: 11px;
-      color: #6c7a8a;
+      font-size: 13px;
+      color: var(--quiet);
       margin-left: 4px;
     }
     #instructions {
-      margin-top: 6px;
-      font-size: 12px;
-      color: #c4c4c4;
+      margin-top: 12px;
+      font-size: 14px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
     }
     #instructions summary {
       cursor: pointer;
-      color: #6c7a8a;
-      font-size: 12px;
-      padding: 3px 0;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 800;
+      padding: 11px 14px;
       user-select: none;
     }
-    #instructions summary:hover { color: #eaeaea; }
-    .instr-grid { display: flex; gap: 24px; flex-wrap: wrap; padding: 6px 0; }
+    #instructions summary:hover { color: var(--accent); }
+    .instr-grid { display: flex; gap: 30px; flex-wrap: wrap; padding: 0 14px 14px; }
     .instr-col { flex: 1; min-width: 260px; }
-    .instr-col h4 { margin: 8px 0 4px; color: #eaeaea; font-size: 12px; }
+    .instr-col h4 { margin: 12px 0 6px; color: var(--accent); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
     .instr-col table { border-collapse: collapse; width: 100%; }
-    .instr-col td { padding: 2px 6px 2px 0; vertical-align: top; }
-    .instr-col td.key { white-space: nowrap; color: #eaeaea; font-weight: 500; min-width: 160px; }
-    .instr-col a { color: #4dd3d5; }
-    .credit { margin: 8px 0 0; color: #6c7a8a; }
+    .instr-col td { padding: 5px 10px 5px 0; vertical-align: top; border-bottom: 1px solid rgba(61,77,103,.45); }
+    .instr-col td.key { color: var(--ink); font-weight: 750; min-width: 165px; }
+    .instr-col a { color: #68e4eb; }
+    .credit, .math-note { margin: 10px 0 0; color: var(--quiet); }
+    .math-note { padding: 9px 11px; border-left: 3px solid var(--accent); background: rgba(55,198,208,.07); }
     /* JSON modal */
     #json-modal {
       display: none;
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
+      background: rgba(3,8,16,0.84);
       z-index: 10000;
       align-items: center; justify-content: center;
     }
     #json-modal-box {
-      background: #1f2329;
-      border: 1px solid #3d4350;
-      border-radius: 8px;
-      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 22px;
       width: 520px; max-width: 92vw;
     }
-    #json-modal-box h3 { margin: 0 0 10px; color: #eaeaea; font-size: 1em; }
+    #json-modal-box h3 { margin: 0 0 10px; color: var(--ink); font-size: 1.15rem; }
     #json-textarea {
       width: 100%; height: 220px;
-      background: #252a34; color: #eaeaea;
-      border: 1px solid #3d4350; border-radius: 4px;
+      background: #0b1220; color: var(--ink);
+      border: 1px solid var(--line); border-radius: 7px;
       font-family: monospace; font-size: 12px;
       padding: 8px; resize: vertical;
     }
-    #json-error { color: #ff6b6b; font-size: 12px; min-height: 16px; margin: 4px 0; }
+    #json-error { color: #ff8798; font-size: 13px; min-height: 18px; margin: 5px 0; }
     #json-modal-btns { display: flex; gap: 8px; margin-top: 8px; }
+    body.lecture-mode { padding: 10px 14px 14px; }
+    body.lecture-mode #app-header { margin-bottom: 9px; }
+    body.lecture-mode .subtitle { display: none; }
+    body.lecture-mode h1 { font-size: 2rem; }
+    body.lecture-mode #dashboard { font-size: 17px; }
+    body.lecture-mode .metric { font-size: 16px; }
+    body.lecture-mode .metric strong { font-size: 22px; }
+    body.lecture-mode button, body.lecture-mode select, body.lecture-mode input { min-height: 44px; font-size: 16px; }
+    body.lecture-mode .hint { font-size: 15px; }
+    body.lecture-mode #cytoscape-graph { height: calc(100vh - 270px); min-height: 500px; }
+    body.lecture-mode #instructions { display: none; }
+    @media (max-width: 800px) {
+      body { padding: 12px 10px 18px; }
+      #app-header { align-items: flex-start; }
+      #invariant-note { width: 100%; margin-left: 0; }
+      .sep { display: none; }
+      #toolbar, #graph-row { gap: 7px; }
+      .control-label { flex-basis: 100%; }
+      .hint { flex-basis: 100%; }
+      #cytoscape-graph { height: 62vh; min-height: 440px; }
+      .instr-col td.key { min-width: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      button { transition: none; }
+    }
   </style>
 </head>
 <body>
+<a class="skip-link" href="#cytoscape-graph">Skip to graph</a>
+<div id="app-shell">
+<header id="app-header">
+  <div>
+    <h1>Chip-Firing Simulator</h1>
+  </div>
+  <button id="lecture-btn" type="button" aria-pressed="false">Lecture view</button>
+</header>
 
-<h1>Chip-Firing Visualizer</h1>
-<h2>Divisor Visualization</h2>
+<div id="dashboard" aria-live="polite">
+  <span class="metric">Vertices <strong id="vertex-count">6</strong></span>
+  <span class="metric">Edges <strong id="edge-count">6</strong></span>
+  <span class="metric">Genus <strong id="genus-count">1</strong></span>
+  <span class="metric">deg(D) <strong id="divisor-degree">0</strong></span>
+  <span class="metric">Selected <strong id="selected-count">0</strong></span>
+  <span class="legend" aria-label="Vertex color legend">
+    <span class="legend-item"><span class="legend-dot positive"></span>positive</span>
+    <span class="legend-item"><span class="legend-dot zero"></span>zero</span>
+    <span class="legend-item"><span class="legend-dot negative"></span>debt</span>
+  </span>
+  <span id="invariant-note">Chip-firing preserves deg(D).</span>
+</div>
 
 <!-- Graph loader row -->
 <div id="graph-row">
-  <label>Load graph:</label>
+  <span class="control-label">Graph</span>
+  <label for="graph-selector">Preset</label>
   <select id="graph-selector">
     <option value="">— select —</option>
     <option value="cycle6">6-cycle (A–F)</option>
@@ -167,35 +281,43 @@
     <label>Cycle lengths:</label>
     <input type="text" id="param-cycles" value="3,4,3" placeholder="e.g. 3,4,3" style="width:110px">
   </span>
-  <button id="load-btn">Load</button>
+  <button id="load-btn" type="button">Load</button>
   <span id="load-error"></span>
   <span class="sep">│</span>
-  <button id="json-import-btn">Import JSON</button>
-  <button id="json-export-btn">Export JSON</button>
+  <button id="json-import-btn" type="button">Import JSON</button>
+  <button id="json-export-btn" type="button">Export JSON</button>
 </div>
 
 <!-- Toolbar -->
 <div id="toolbar">
+  <span class="control-label">Mode</span>
   <!-- Mode toggle -->
-  <button id="mode-select-btn" class="active">Fire</button>
-  <button id="mode-pan-btn">Pan</button>
-  <button id="mode-build-btn">Build</button>
-  <button id="fit-btn">Fit View</button>
+  <button id="mode-select-btn" class="active" type="button">Select</button>
+  <button id="mode-pan-btn" type="button">Pan</button>
+  <button id="mode-build-btn" type="button">Build</button>
+  <button id="fit-btn" type="button">Fit view</button>
   <span class="sep">│</span>
-  <button id="undo-btn" disabled>Undo</button>
+  <button id="undo-btn" type="button" disabled>Undo</button>
   <span class="sep">│</span>
-  <button id="fire-btn">Fire Selected</button>
-  <button id="borrow-btn">Borrow Selected</button>
-  <button id="zero-btn">Zero Divisor</button>
-  <button id="canonical-btn">Canonical Divisor</button>
+  <span class="control-label">Selected</span>
+  <button id="add-chip-btn" type="button" aria-label="Add one chip to each selected vertex">+1 chip</button>
+  <button id="remove-chip-btn" type="button" aria-label="Remove one chip from each selected vertex">−1 chip</button>
+  <button id="fire-btn" class="primary" type="button">Fire</button>
+  <button id="borrow-btn" type="button">Borrow</button>
   <span class="sep">│</span>
-  <button id="burn-btn">Burn (Dhar's)</button>
-  <button id="clear-burn-btn">Clear Burn</button>
-  <span class="hint">Select one vertex as q, then click Burn or press B</span>
+  <span class="control-label">Divisor</span>
+  <button id="zero-btn" type="button">Zero</button>
+  <button id="canonical-btn" type="button">Canonical</button>
+  <span class="sep">│</span>
+  <span class="control-label">Dhar</span>
+  <button id="burn-btn" type="button">Burn from selected</button>
+  <button id="clear-burn-btn" type="button">Clear burn</button>
+  <span class="hint">Select one or more starting vertices</span>
 </div>
 
-<div id="burn-result"></div>
-<div id="cytoscape-graph"></div>
+<div id="burn-result" role="status" aria-live="polite"></div>
+<div id="cytoscape-graph" role="application" aria-label="Interactive chip-firing graph"></div>
+<noscript>This simulator requires JavaScript.</noscript>
 
 <!-- Instructions -->
 <div id="instructions">
@@ -205,9 +327,10 @@
       <div class="instr-col">
         <h4>Modes</h4>
         <table><tbody>
-          <tr><td class="key">Fire mode</td><td>Box-drag to select multiple vertices; selection persists until fired</td></tr>
+          <tr><td class="key">Select mode</td><td>Click a vertex, or box-drag to select several; selection persists until you change it</td></tr>
           <tr><td class="key">Pan mode</td><td>Drag canvas to pan; drag vertices to reposition</td></tr>
           <tr><td class="key">Build mode</td><td>Double-click canvas to add vertex; Shift-drag vertex→vertex to add edge; right-click vertex or edge to delete</td></tr>
+          <tr><td class="key">Mouse wheel / pinch</td><td>Zoom in every mode, centered on the pointer or gesture</td></tr>
         </tbody></table>
         <h4>Chip-firing</h4>
         <table><tbody>
@@ -215,7 +338,8 @@
           <tr><td class="key">Shift + double-click vertex</td><td>Borrow at that vertex (pull one chip from each neighbor)</td></tr>
           <tr><td class="key">Select + Enter / Fire Selected</td><td>Fire all selected vertices simultaneously</td></tr>
           <tr><td class="key">Shift + Enter / Borrow Selected</td><td>Borrow at all selected vertices simultaneously</td></tr>
-          <tr><td class="key">Right-click vertex</td><td>Context menu: add / remove / set chips (Pan &amp; Fire modes)</td></tr>
+          <tr><td class="key">+1 / −1 chip</td><td>Change every selected vertex; works well on touch screens</td></tr>
+          <tr><td class="key">Right-click vertex</td><td>Context menu: add / remove / set chips (Pan &amp; Select modes)</td></tr>
           <tr><td class="key">Zero Divisor</td><td>Set all vertices to 0 chips</td></tr>
           <tr><td class="key">Canonical Divisor</td><td>Set each vertex to deg(v) − 2</td></tr>
           <tr><td class="key">Undo</td><td>Undo last chip or graph change (all operations supported)</td></tr>
@@ -224,7 +348,7 @@
       <div class="instr-col">
         <h4>Dhar's burning algorithm</h4>
         <table><tbody>
-          <tr><td class="key">Select one vertex + B / Burn</td><td>Run Dhar's algorithm from that vertex (q); animates burn steps</td></tr>
+          <tr><td class="key">Select vertices + B / Burn</td><td>Start the fire from every selected vertex; a single starting vertex also tests whether the divisor is q-reduced</td></tr>
           <tr><td class="key">Clear Burn</td><td>Remove burn highlighting</td></tr>
         </tbody></table>
         <h4>JSON import / export</h4>
@@ -232,6 +356,7 @@
           <tr><td class="key">Import JSON</td><td>Load a graph from <a href="https://markusfeng.com/projects/graph/" target="_blank" rel="noopener">Graph / Finite State Machine Designer</a> JSON format</td></tr>
           <tr><td class="key">Export JSON</td><td>Export current graph to the same format</td></tr>
         </tbody></table>
+        <p class="math-note"><strong>Divisor convention.</strong> Firing is always allowed here, even when a vertex has fewer chips than its degree; negative values record debt. The total degree of the divisor is invariant.</p>
         <p class="credit">JSON format compatible with <a href="https://markusfeng.com/projects/graph/" target="_blank" rel="noopener">Graph / Finite State Machine Designer (GFSM Designer)</a>.</p>
       </div>
     </div>
@@ -239,9 +364,10 @@
 </div>
 
 <!-- JSON import/export modal -->
-<div id="json-modal">
+<div id="json-modal" role="dialog" aria-modal="true" aria-labelledby="json-modal-title">
   <div id="json-modal-box">
     <h3 id="json-modal-title">JSON</h3>
+    <label for="json-textarea" class="hint">Graph JSON</label>
     <textarea id="json-textarea" spellcheck="false"></textarea>
     <div id="json-error"></div>
     <div id="json-modal-btns">
@@ -251,25 +377,26 @@
     </div>
   </div>
 </div>
+</div>
 
 <script>
 (function () {
 'use strict';
 
 // ── Constants ──────────────────────────────────────────────────────────────
-var VERTEX_RADIUS      = 25;
+var VERTEX_RADIUS      = 32;
 var ANIMATION_MS       = 500;
 var DOUBLE_TAP_MS      = 300;
 var DHAR_STEP_MS       = 700;
-var BURN_COLOR         = '#cc0000';
-var BURN_Q_COLOR       = '#ff8800';
+var BURN_COLOR         = '#f45b72';
+var BURN_Q_COLOR       = '#ffb547';
 var BURN_OVERLAY_OP    = 0.38;
 var BURN_OVERLAY_PAD   = '10px';
-var BURN_EDGE_COLOR    = '#cc0000';
-var BURN_EDGE_WIDTH    = 4;
-var SEL_OVERLAY_COLOR  = '#eaeaea';
-var SEL_OVERLAY_OP     = 0.28;
-var SEL_OVERLAY_PAD    = '10px';
+var BURN_EDGE_COLOR    = '#f45b72';
+var BURN_EDGE_WIDTH    = 6;
+var SEL_OVERLAY_COLOR  = '#ffe08a';
+var SEL_OVERLAY_OP     = 0.42;
+var SEL_OVERLAY_PAD    = '12px';
 
 // ── Graph definitions ──────────────────────────────────────────────────────
 
@@ -358,8 +485,10 @@ function makeComplete(n) {
 }
 
 function makeChain(lengths) {
-  if (!lengths.every(function(n){ return Number.isInteger(n) && n >= 2; }))
-    throw new Error('All cycle lengths must be integers ≥ 2');
+  if (!lengths.length || !lengths.every(function(n){ return Number.isInteger(n) && n >= 2 && n <= 50; }))
+    throw new Error('Use comma-separated cycle lengths between 2 and 50.');
+  if (lengths.length > 20 || lengths.reduce(function(a, b){ return a + b; }, 0) > 150)
+    throw new Error('Please keep the chain to at most 20 cycles and 150 vertices.');
   var vertices = [];
   var edges = [];
   lengths.forEach(function(n, i) {
@@ -400,7 +529,7 @@ function buildElements(graphDef, chips, positions) {
   graphDef.vertices.forEach(function(name) {
     var count = chips ? (chips[name] || 0) : 0;
     var sign = count < 0 ? 'negative' : (count === 0 ? 'zero' : 'positive');
-    var bg = count < 0 ? '#dc3545' : (count === 0 ? '#7a8494' : '#28a745');
+    var bg = count < 0 ? '#f45b72' : (count === 0 ? '#718096' : '#25c56a');
     var fg = '#fff';
     var el = {
       data: {
@@ -447,29 +576,30 @@ function buildElements(graphDef, chips, positions) {
 var STYLESHEET = [
   { selector: 'node', style: {
     label: 'data(label)',
-    'background-color': '#7a8494',
+    'background-color': '#718096',
     color: '#fff',
     'text-outline-width': 1,
-    'text-outline-color': '#7a8494',
+    'text-outline-color': '#718096',
     'text-wrap': 'wrap',
     'text-valign': 'center',
     'text-halign': 'center',
-    width: '50px', height: '50px',
-    'font-size': '14px'
+    width: '64px', height: '64px',
+    'font-size': '20px',
+    'font-weight': 800
   }},
   { selector: 'node[divisor_sign = "zero"]', style: {
-    'background-color': '#7a8494',
-    'text-outline-color': '#7a8494',
+    'background-color': '#718096',
+    'text-outline-color': '#718096',
     color: '#fff'
   }},
   { selector: 'node[divisor_sign = "positive"]', style: {
-    'background-color': '#28a745',
-    'text-outline-color': '#28a745',
+    'background-color': '#25c56a',
+    'text-outline-color': '#25c56a',
     color: '#fff'
   }},
   { selector: 'node[divisor_sign = "negative"]', style: {
-    'background-color': '#dc3545',
-    'text-outline-color': '#dc3545',
+    'background-color': '#f45b72',
+    'text-outline-color': '#f45b72',
     color: '#fff'
   }},
   { selector: 'node[chip_type]', style: {
@@ -480,10 +610,10 @@ var STYLESHEET = [
     'border-color': '#000',
     'z-index': 10
   }},
-  { selector: 'node[chip_type = "positive_chip"]', style: { 'background-color': '#28a745' }},
-  { selector: 'node[chip_type = "negative_chip"]', style: { 'background-color': '#dc3545' }},
+  { selector: 'node[chip_type = "positive_chip"]', style: { 'background-color': '#25c56a' }},
+  { selector: 'node[chip_type = "negative_chip"]', style: { 'background-color': '#f45b72' }},
   { selector: 'node[chip_type = "traveling_chip"]', style: {
-    'background-color': '#28a745',
+    'background-color': '#25c56a',
     opacity: 0.85
   }},
   { selector: 'node:selected', style: {
@@ -492,12 +622,12 @@ var STYLESHEET = [
     'overlay-padding': '7px'
   }},
   { selector: 'edge', style: {
-    'line-color': '#4a5568',
-    width: 2,
+    'line-color': '#a8b6ca',
+    width: 3,
     'curve-style': 'bezier',
     'control-point-step-size': '40px',
     'target-arrow-shape': 'none',
-    'target-arrow-color': '#4a5568'
+    'target-arrow-color': '#a8b6ca'
   }}
 ];
 
@@ -551,9 +681,9 @@ function clearBurnVisuals(cy) {
 }
 
 function vertexColors(chips) {
-  if (chips < 0) return { bg: '#dc3545', fg: '#fff' };
-  if (chips > 0) return { bg: '#28a745', fg: '#fff' };
-  return { bg: '#7a8494', fg: '#fff' };
+  if (chips < 0) return { bg: '#f45b72', fg: '#fff' };
+  if (chips > 0) return { bg: '#25c56a', fg: '#fff' };
+  return { bg: '#718096', fg: '#fff' };
 }
 
 function updateVertex(cy, nodeId, newChips, opts) {
@@ -580,7 +710,7 @@ function updateVertex(cy, nodeId, newChips, opts) {
     var n = Math.abs(newChips);
     var layout = chipLayout(pos.x, pos.y, n);
     var chipType = newChips > 0 ? 'positive_chip' : 'negative_chip';
-    var chipBg   = newChips > 0 ? '#28a745' : '#dc3545';
+    var chipBg   = newChips > 0 ? '#25c56a' : '#f45b72';
     var dots = cy.add(layout.positions.map(function(p, i) {
       return {
         data: {
@@ -607,6 +737,7 @@ function updateVertex(cy, nodeId, newChips, opts) {
       'z-index': 10
     });
   }
+  if (!isFiring) updateDashboard();
 }
 
 // ── Firing logic ───────────────────────────────────────────────────────────
@@ -614,9 +745,22 @@ function updateVertex(cy, nodeId, newChips, opts) {
 var travelCounter = 0;
 var isFiring = false;
 
+function setFiringState(busy) {
+  isFiring = busy;
+  [
+    'mode-select-btn', 'mode-pan-btn', 'mode-build-btn', 'load-btn', 'lecture-btn',
+    'json-import-btn', 'json-export-btn', 'add-chip-btn', 'remove-chip-btn', 'fire-btn',
+    'borrow-btn', 'zero-btn', 'canonical-btn', 'burn-btn'
+  ].forEach(function(id) {
+    var control = document.getElementById(id);
+    if (control) control.disabled = busy;
+  });
+  document.getElementById('undo-btn').disabled = busy || _undoStack.length === 0;
+}
+
 function fireVertices(cy, nodeIds) {
   if (isFiring || !nodeIds || nodeIds.length === 0) return;
-  isFiring = true;
+  setFiringState(true);
   clearBurnVisuals(cy);
 
   var inSet = {};
@@ -653,7 +797,8 @@ function fireVertices(cy, nodeIds) {
     Object.keys(deltas).forEach(function(id) {
       if (!inSet[id]) updateVertex(cy, id, chipsSnap[id] + deltas[id], { preserveBurn: true });
     });
-    isFiring = false;
+    setFiringState(false);
+    updateDashboard();
     return;
   }
 
@@ -663,7 +808,8 @@ function fireVertices(cy, nodeIds) {
     Object.keys(deltas).forEach(function(id) {
       if (!inSet[id]) updateVertex(cy, id, chipsSnap[id] + deltas[id], { preserveBurn: true });
     });
-    isFiring = false;
+    setFiringState(false);
+    updateDashboard();
   }
 
   animations.forEach(function(anim) {
@@ -679,7 +825,7 @@ function fireVertices(cy, nodeIds) {
       selectable: false, grabbable: false
     });
     cy.getElementById(tid).style({
-      'background-color': '#28a745',
+      'background-color': '#25c56a',
       width: chipSize, height: chipSize,
       label: '', 'text-outline-width': 0, opacity: 0.85,
       'border-width': 1, 'border-color': '#000', 'z-index': 10
@@ -693,15 +839,26 @@ function fireVertices(cy, nodeIds) {
 
 // ── Dhar's algorithm ───────────────────────────────────────────────────────
 
-function computeDhar(cy, qId) {
+function computeDhar(cy, initialIds) {
+  if (!Array.isArray(initialIds)) initialIds = [initialIds];
+  var initialSet = {};
+  initialIds.forEach(function(id){ initialSet[id] = true; });
+  var generalized = initialIds.length > 1;
+  var qId = generalized ? null : initialIds[0];
   var chips = {};
   cy.nodes().filter(function(n){ return !n.data('chip_type'); })
     .forEach(function(n){ chips[n.id()] = n.data('chips_count') || 0; });
 
-  var steps = [{ vertex: qId, burn_edges: [] }];
-  var burnt = {}; burnt[qId] = true;
+  var debt = generalized ? [] : Object.keys(chips).filter(function(id) {
+    return id !== qId && chips[id] < 0;
+  }).sort();
+  var steps = initialIds.map(function(id) {
+    return { vertex: id, burn_edges: [], initial: true };
+  });
+  var burnt = {};
+  initialIds.forEach(function(id){ burnt[id] = true; });
   var unburnt = {};
-  cy.nodes().filter(function(n){ return !n.data('chip_type') && n.id() !== qId; })
+  cy.nodes().filter(function(n){ return !n.data('chip_type') && !initialSet[n.id()]; })
     .forEach(function(n){ unburnt[n.id()] = true; });
 
   var changed = true;
@@ -727,8 +884,11 @@ function computeDhar(cy, qId) {
   var unburntNames = Object.keys(unburnt).sort();
   return {
     q: qId, steps: steps,
+    generalized: generalized,
+    initialCount: initialIds.length,
     result: unburntNames.length === 0 ? 'all_burned' : 'partial',
-    unburnt: unburntNames
+    unburnt: unburntNames,
+    debt: debt
   };
 }
 
@@ -742,7 +902,7 @@ function playDhar(cy, data) {
       if (runId !== burnState.runId) return;
       var node = cy.getElementById(step.vertex);
       node.style({
-        'overlay-color':   i === 0 ? BURN_Q_COLOR : BURN_COLOR,
+        'overlay-color':   step.initial ? BURN_Q_COLOR : BURN_COLOR,
         'overlay-opacity': BURN_OVERLAY_OP,
         'overlay-padding': BURN_OVERLAY_PAD
       });
@@ -755,21 +915,24 @@ function playDhar(cy, data) {
           if (runId !== burnState.runId) return;
           var el = document.getElementById('burn-result');
           if (!el) return;
-          if (data.result === 'all_burned') {
-            var hasDebt = cy.nodes().filter(function(n) {
-              return !n.data('chip_type') && n.id() !== data.q &&
-                     (n.data('chips_count') || 0) < 0;
-            }).length > 0;
-            if (hasDebt) {
-              el.textContent = 'Whole graph burned — but there is debt away from q (not q-reduced).';
-              el.style.color = '#e07000';
-            } else {
-              el.textContent = '✓ Whole graph burned — divisor is q-reduced.';
-              el.style.color = '#28a745';
-            }
+          if (data.generalized && data.result === 'all_burned') {
+            el.textContent = 'The whole graph burns.';
+            el.style.color = '#25c56a';
+          } else if (data.generalized) {
+            el.textContent = 'Some vertices remain unburnt.';
+            el.style.color = '#f45b72';
+            cy.nodes().filter(function(n) {
+              return !n.data('chip_type') && data.unburnt.indexOf(n.id()) !== -1;
+            }).select();
+          } else if (data.debt.length) {
+            el.textContent = 'Not q-reduced: debt away from q at ' + data.debt.join(', ') + '.';
+            el.style.color = '#ffb547';
+          } else if (data.result === 'all_burned') {
+            el.textContent = '✓ Whole graph burned — the divisor is q-reduced.';
+            el.style.color = '#25c56a';
           } else {
-            el.textContent = 'Unburnt: ' + data.unburnt.join(', ') + ' — maximal legal firing set.';
-            el.style.color = '#dc3545';
+            el.textContent = 'Not q-reduced. The unburnt set {' + data.unburnt.join(', ') + '} can fire legally.';
+            el.style.color = '#f45b72';
             cy.nodes().filter(function(n) {
               return !n.data('chip_type') && data.unburnt.indexOf(n.id()) !== -1;
             }).select();
@@ -777,7 +940,7 @@ function playDhar(cy, data) {
         }, DHAR_STEP_MS / 2);
         burnState.timeouts.push(rid);
       }
-    }, i * DHAR_STEP_MS);
+    }, step.initial ? 0 : (i - data.initialCount + 1) * DHAR_STEP_MS);
     burnState.timeouts.push(tid);
   });
 }
@@ -809,7 +972,7 @@ function buildContextMenu(cy) {
   }
 
   btn('+ Add chip', function() {
-    if (target) {
+    if (target && !isFiring) {
       pushUndo();
       updateVertex(cy, target.id(), (target.data('chips_count')||0) + 1);
       titleEl.textContent = 'Vertex "' + target.id() + '"';
@@ -817,7 +980,7 @@ function buildContextMenu(cy) {
     }
   });
   btn('− Remove chip', function() {
-    if (target) {
+    if (target && !isFiring) {
       pushUndo();
       updateVertex(cy, target.id(), (target.data('chips_count')||0) - 1);
       titleEl.textContent = 'Vertex "' + target.id() + '"';
@@ -837,7 +1000,7 @@ function buildContextMenu(cy) {
   setBtn.style.cssText = 'padding:4px 10px;cursor:pointer;border:1px solid #3d4350;border-radius:3px;background:#252a34;color:#eaeaea;font-size:13px';
   function applySet() {
     var val = parseInt(setInput.value, 10);
-    if (!isNaN(val) && target) { pushUndo(); updateVertex(cy, target.id(), val); ctrl.hide(); }
+    if (!isNaN(val) && target && !isFiring) { pushUndo(); updateVertex(cy, target.id(), val); ctrl.hide(); }
   }
   setBtn.addEventListener('click', applySet);
   setInput.addEventListener('keydown', function(e) {
@@ -880,10 +1043,76 @@ var cy = cytoscape({
   elements: initElements,
   layout: { name: 'preset', padding: 30 },
   stylesheet: STYLESHEET,
+  wheelSensitivity: 0.4,
+  userZoomingEnabled: true,
   userPanningEnabled: true,
   boxSelectionEnabled: false,
   autounselectify: false
 });
+
+function updateDashboard() {
+  var nodes = cy.nodes().filter(function(n){ return !n.data('chip_type'); });
+  document.getElementById('selected-count').textContent = getSelectedVertexIds().length;
+  // During an animation the visual chips are deliberately in transit. Keep the
+  // invariant readout on the completed divisor until every chip has arrived.
+  if (isFiring) return;
+  var ids = {};
+  nodes.forEach(function(n){ ids[n.id()] = true; });
+  var edges = cy.edges().filter(function(e) {
+    return ids[e.data('source')] && ids[e.data('target')];
+  });
+  var adjacency = {};
+  nodes.forEach(function(n){ adjacency[n.id()] = []; });
+  edges.forEach(function(e) {
+    var a = e.data('source'), b = e.data('target');
+    adjacency[a].push(b);
+    adjacency[b].push(a);
+  });
+  var seen = {}, components = 0;
+  Object.keys(adjacency).forEach(function(start) {
+    if (seen[start]) return;
+    components++;
+    var stack = [start]; seen[start] = true;
+    while (stack.length) {
+      adjacency[stack.pop()].forEach(function(next) {
+        if (!seen[next]) { seen[next] = true; stack.push(next); }
+      });
+    }
+  });
+  var divisorDegree = 0;
+  nodes.forEach(function(n){ divisorDegree += Number(n.data('chips_count')) || 0; });
+  var genus = nodes.length ? edges.length - nodes.length + components : 0;
+  document.getElementById('vertex-count').textContent = nodes.length;
+  document.getElementById('edge-count').textContent = edges.length;
+  document.getElementById('genus-count').textContent = genus;
+  document.getElementById('divisor-degree').textContent = divisorDegree;
+}
+
+function applyLectureMode(enabled) {
+  document.body.classList.toggle('lecture-mode', enabled);
+  document.getElementById('lecture-btn').setAttribute('aria-pressed', String(enabled));
+  document.getElementById('lecture-btn').textContent = enabled ? 'Exit lecture view' : 'Lecture view';
+  VERTEX_RADIUS = enabled ? 40 : 32;
+  clearBurnVisuals(cy);
+  cy.nodes().filter(function(n){ return !n.data('chip_type'); }).forEach(function(n) {
+    n.style({ width: enabled ? 80 : 64, height: enabled ? 80 : 64,
+              'font-size': enabled ? 27 : 20, 'font-weight': 800 });
+    updateVertex(cy, n.id(), n.data('chips_count') || 0, { preserveBurn: true });
+  });
+  window.setTimeout(function(){ cy.resize(); cy.fit(undefined, enabled ? 50 : 30); }, 60);
+}
+
+document.getElementById('lecture-btn').addEventListener('click', function() {
+  var enabled = !document.body.classList.contains('lecture-mode');
+  applyLectureMode(enabled);
+  if (enabled && document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen().catch(function(){});
+  } else if (!enabled && document.fullscreenElement && document.exitFullscreen) {
+    document.exitFullscreen().catch(function(){});
+  }
+});
+
+updateDashboard();
 
 // ── Chip drag: keep chip indicators with their parent ──────────────────────
 
@@ -916,7 +1145,7 @@ cy.on('tap', function(evt) {
   }
   // Double-tap on background in build mode: add vertex
   var now = Date.now();
-  if (currentMode === 'build' && now - _lastBgTap < DOUBLE_TAP_MS) {
+  if (!isFiring && currentMode === 'build' && now - _lastBgTap < DOUBLE_TAP_MS) {
     _lastBgTap = 0;
     pushUndo(); addVertex(evt.position);
   } else {
@@ -937,10 +1166,10 @@ function applySelectionBorder(node, selected) {
     : { 'overlay-opacity': 0 });
 }
 cy.on('select',   'node', function(evt) {
-  if (!evt.target.data('chip_type')) applySelectionBorder(evt.target, true);
+  if (!evt.target.data('chip_type')) { applySelectionBorder(evt.target, true); updateDashboard(); }
 });
 cy.on('unselect', 'node', function(evt) {
-  if (!evt.target.data('chip_type')) applySelectionBorder(evt.target, false);
+  if (!evt.target.data('chip_type')) { applySelectionBorder(evt.target, false); updateDashboard(); }
 });
 
 // ── Double-tap to fire ─────────────────────────────────────────────────────
@@ -954,9 +1183,9 @@ cy.on('tap', 'node', function(evt) {
   if (now - lastTap.time < DOUBLE_TAP_MS && lastTap.nodeId === nodeId) {
     lastTap = { time: 0, nodeId: null };
     if (evt.originalEvent && evt.originalEvent.shiftKey) {
-      pushUndo(); borrowVertices(cy, [nodeId]);
+      runVertexOperation('borrow', [nodeId]);
     } else {
-      pushUndo(); fireVertices(cy, [nodeId]);
+      runVertexOperation('fire', [nodeId]);
     }
   } else {
     lastTap = { time: now, nodeId: nodeId };
@@ -969,6 +1198,7 @@ var ctxMenu = buildContextMenu(cy);
 
 cy.on('cxttap', 'node', function(evt) {
   if (evt.target.data('chip_type')) return;
+  if (isFiring) return;
   if (currentMode === 'build') { pushUndo(); deleteVertex(evt.target.id()); return; }
   var orig = evt.originalEvent;
   ctxMenu.show(orig.clientX, orig.clientY, evt.target);
@@ -990,21 +1220,59 @@ function getSelectedVertexIds() {
     .map(function(n){ return n.id(); });
 }
 
+function showNotice(message, color) {
+  var el = document.getElementById('burn-result');
+  el.textContent = message;
+  el.style.color = color || '#aebbd0';
+}
+
+function runVertexOperation(kind, ids) {
+  if (isFiring) return;
+  if (!ids || !ids.length) {
+    showNotice('Select at least one vertex first.', '#ffb547');
+    return;
+  }
+  pushUndo();
+  if (kind === 'borrow') borrowVertices(cy, ids);
+  else fireVertices(cy, ids);
+}
+
+function adjustSelected(delta) {
+  if (isFiring) return;
+  var ids = getSelectedVertexIds();
+  if (!ids.length) {
+    showNotice('Select at least one vertex first.', '#ffb547');
+    return;
+  }
+  pushUndo();
+  clearBurnVisuals(cy);
+  ids.forEach(function(id) {
+    var node = cy.getElementById(id);
+    updateVertex(cy, id, (node.data('chips_count') || 0) + delta, { preserveBurn: true });
+  });
+  updateDashboard();
+}
+
 document.getElementById('fire-btn').addEventListener('click', function() {
-  pushUndo(); fireVertices(cy, getSelectedVertexIds());
+  runVertexOperation('fire', getSelectedVertexIds());
 });
 
 document.getElementById('borrow-btn').addEventListener('click', function() {
-  pushUndo(); borrowVertices(cy, getSelectedVertexIds());
+  runVertexOperation('borrow', getSelectedVertexIds());
 });
 
+document.getElementById('add-chip-btn').addEventListener('click', function() { adjustSelected(1); });
+document.getElementById('remove-chip-btn').addEventListener('click', function() { adjustSelected(-1); });
+
 document.getElementById('zero-btn').addEventListener('click', function() {
+  if (isFiring) return;
   pushUndo();
   cy.nodes().filter(function(n){ return !n.data('chip_type'); })
     .forEach(function(n){ updateVertex(cy, n.id(), 0); });
 });
 
 document.getElementById('canonical-btn').addEventListener('click', function() {
+  if (isFiring) return;
   pushUndo();
   cy.nodes().filter(function(n){ return !n.data('chip_type'); })
     .forEach(function(n) {
@@ -1016,16 +1284,15 @@ document.getElementById('canonical-btn').addEventListener('click', function() {
 });
 
 function runBurn() {
+  if (isFiring) return;
   var ids = getSelectedVertexIds();
   var el = document.getElementById('burn-result');
-  if (ids.length !== 1) {
-    el.textContent = ids.length === 0
-      ? 'Select exactly one vertex as q, then press B or click Burn.'
-      : 'Select exactly one vertex as q (' + ids.length + ' selected).';
-    el.style.color = '#dc3545';
+  if (ids.length === 0) {
+    el.textContent = 'Select one or more starting vertices, then press B or click Burn.';
+    el.style.color = '#f45b72';
     return;
   }
-  playDhar(cy, computeDhar(cy, ids[0]));
+  playDhar(cy, computeDhar(cy, ids));
 }
 
 document.getElementById('burn-btn').addEventListener('click', runBurn);
@@ -1041,6 +1308,9 @@ var buildBtn  = document.getElementById('mode-build-btn');
 
 function setMode(mode) {
   currentMode = mode;
+  // Wheel, trackpad, and pinch zoom stay active independently of whether a
+  // one-pointer background drag is selecting, panning, or building.
+  cy.userZoomingEnabled(true);
   cy.userPanningEnabled(mode === 'pan' || mode === 'build');
   cy.boxSelectionEnabled(mode === 'select');
   panBtn.classList.toggle('active',    mode === 'pan');
@@ -1059,8 +1329,8 @@ document.addEventListener('keydown', function(e) {
   var tag = document.activeElement && document.activeElement.tagName;
   if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON') return;
   if (e.key === 'Enter') {
-    if (e.shiftKey) { pushUndo(); borrowVertices(cy, getSelectedVertexIds()); }
-    else            { pushUndo(); fireVertices(cy, getSelectedVertexIds()); }
+    if (e.shiftKey) runVertexOperation('borrow', getSelectedVertexIds());
+    else            runVertexOperation('fire', getSelectedVertexIds());
   }
   if (e.key === 'b' || e.key === 'B') runBurn();
 });
@@ -1078,6 +1348,7 @@ graphSel.addEventListener('change', function() {
 });
 
 document.getElementById('load-btn').addEventListener('click', function() {
+  if (isFiring) return;
   var errEl = document.getElementById('load-error');
   errEl.textContent = '';
   var val = graphSel.value;
@@ -1104,11 +1375,14 @@ document.getElementById('load-btn').addEventListener('click', function() {
       graphDef = makeComplete(n);
     } else if (val === 'chain') {
       var raw = document.getElementById('param-cycles').value;
-      var lengths = raw.split(',').map(function(s){ return parseInt(s.trim(), 10); });
+      var parts = raw.split(',').map(function(s){ return s.trim(); });
+      if (!parts.every(function(s){ return /^\d+$/.test(s); }))
+        throw new Error('Use comma-separated whole numbers, for example 3,4,3.');
+      var lengths = parts.map(function(s){ return Number(s); });
       graphDef = makeChain(lengths);
     }
 
-    cancelBurn();
+    clearBurnVisuals(cy);
     clearUndoStack();
     var elements = buildElements(graphDef, null, positions);
     cy.elements().remove();
@@ -1129,6 +1403,7 @@ document.getElementById('load-btn').addEventListener('click', function() {
       }).run();
     }
     currentGraph = graphDef;
+    updateDashboard();
   } catch(err) {
     errEl.textContent = err.message || String(err);
   }
@@ -1157,28 +1432,31 @@ function nextVertexId() {
 }
 
 function addVertex(pos) {
-  var id = nextVertexId(), bg = '#7a8494';
+  var id = nextVertexId(), bg = '#718096';
   cy.add({ data: { id: id, chips_count: 0, label: '0', divisor_sign: 'zero' },
            position: { x: pos.x, y: pos.y }, selectable: true, grabbable: true,
            style: { 'background-color': bg, color: '#fff', 'text-outline-color': bg,
                     label: '0', 'text-valign': 'center', 'text-halign': 'center', 'z-index': 20 } });
+  updateDashboard();
 }
 
 function addEdgeBetween(srcId, tgtId) {
   if (srcId === tgtId) return;
   cy.add({ data: { id: 'e_'+(++_edgeCounter), source: srcId, target: tgtId } });
   cy.edges().unselectify();
+  updateDashboard();
 }
 
 function deleteVertex(nodeId) {
   cy.nodes().filter(function(n){ return n.data('parent_vertex') === nodeId; }).remove();
   cy.getElementById(nodeId).remove(); // also removes connected edges
+  updateDashboard();
 }
 
 // Shift-drag in build mode creates an edge
 var _gc = document.getElementById('cytoscape-graph');
 _gc.addEventListener('mousedown', function(e) {
-  if (currentMode !== 'build' || !e.shiftKey) return;
+  if (isFiring || currentMode !== 'build' || !e.shiftKey) return;
   var pos = domToGraph(e);
   var src = cy.nodes().filter(function(n) {
     if (n.data('chip_type')) return false;
@@ -1217,7 +1495,7 @@ _gc.addEventListener('mouseup', function(e) {
 
 // Right-click edge in build mode: delete
 cy.on('cxttap', 'edge', function(evt) {
-  if (currentMode === 'build') { pushUndo(); evt.target.remove(); }
+  if (!isFiring && currentMode === 'build') { pushUndo(); evt.target.remove(); updateDashboard(); }
 });
 
 // ── JSON import / export ───────────────────────────────────────────────────
@@ -1228,7 +1506,8 @@ function clearUndoStack() {
 }
 
 function reloadGraph(elements, hasPositions) {
-  cancelBurn();
+  if (isFiring) return;
+  clearBurnVisuals(cy);
   clearUndoStack();
   cy.elements().remove();
   cy.add(elements);
@@ -1239,6 +1518,7 @@ function reloadGraph(elements, hasPositions) {
     cy.layout({ name: 'cose', idealEdgeLength: 150, nodeRepulsion: 400000,
                 nodeOverlap: 20, padding: 40, randomize: false, fit: true }).run();
   }
+  updateDashboard();
 }
 
 function importMarkusFengJSON(jsonStr) {
@@ -1248,12 +1528,19 @@ function importMarkusFengJSON(jsonStr) {
     return 'Expected "nodes" and "links" arrays.';
 
   var names = data.nodes.map(function(n, i) {
-    return (n.text && n.text.trim()) ? n.text.trim() : ('v'+i);
+    return (typeof n.text === 'string' && n.text.trim()) ? n.text.trim() : ('v'+i);
   });
-  var hasPos = data.nodes.some(function(n){ return n.x !== undefined; });
+  var uniqueNames = {};
+  for (var i = 0; i < names.length; i++) {
+    if (uniqueNames[names[i]]) return 'Vertex labels must be unique; duplicate: "' + names[i] + '".';
+    uniqueNames[names[i]] = true;
+  }
+  var hasPos = data.nodes.length > 0 && data.nodes.every(function(n){
+    return Number.isFinite(Number(n.x)) && Number.isFinite(Number(n.y));
+  });
   var positions = {};
   if (hasPos) data.nodes.forEach(function(n, i) {
-    if (n.x !== undefined) positions[names[i]] = { x: n.x, y: n.y };
+    positions[names[i]] = { x: Number(n.x), y: Number(n.y) };
   });
 
   var edges = [];
@@ -1401,7 +1688,7 @@ document.addEventListener('keydown', function(e) {
 
 function borrowVertices(cy, nodeIds) {
   if (isFiring || !nodeIds || nodeIds.length === 0) return;
-  isFiring = true;
+  setFiringState(true);
   clearBurnVisuals(cy);
 
   var inSet = {};
@@ -1440,7 +1727,8 @@ function borrowVertices(cy, nodeIds) {
       if (deltas[vid] !== undefined)
         updateVertex(cy, vid, chipsSnap[vid] + deltas[vid], { preserveBurn: true });
     });
-    isFiring = false;
+    setFiringState(false);
+    updateDashboard();
     return;
   }
 
@@ -1452,7 +1740,8 @@ function borrowVertices(cy, nodeIds) {
       if (deltas[vid] !== undefined)
         updateVertex(cy, vid, chipsSnap[vid] + deltas[vid], { preserveBurn: true });
     });
-    isFiring = false;
+    setFiringState(false);
+    updateDashboard();
   }
 
   animations.forEach(function(anim) {
@@ -1468,7 +1757,7 @@ function borrowVertices(cy, nodeIds) {
       selectable: false, grabbable: false
     });
     cy.getElementById(tid).style({
-      'background-color': '#28a745', // green: chips travelling inward
+      'background-color': '#25c56a', // green: chips travelling inward
       width: chipSize, height: chipSize,
       label: '', 'text-outline-width': 0, opacity: 0.85,
       'border-width': 1, 'border-color': '#000', 'z-index': 10
