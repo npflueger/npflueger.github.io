@@ -27,10 +27,7 @@ I grew up in Seattle, and still miss the mountains all around, but I am a happy 
 
 My family pronounces our last name "fleeger." This is not the original German pronunciation, and I will happily answer to anything reasonable. 
 
-For the 2025-26 academic year, I am a visiting scientist in the [Nonlinear Algebra](https://www.mis.mpg.de/nonlinear-algebra) group at the [Max Planck Institute for Mathematics in the Sciences](https://www.mis.mpg.de/) in Leipzig, Germany.
 
-
-<!-- 
 ## {{semester}} Courses:
 {%- assign courses = site.teaching -%}
 {%- for post in courses -%}
@@ -41,4 +38,3 @@ For the 2025-26 academic year, I am a visiting scientist in the [Nonlinear Algeb
 
 ## Office hours
 {% include helphours.md %}
--->
