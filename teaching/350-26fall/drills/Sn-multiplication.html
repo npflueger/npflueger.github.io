@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>S<sub>n</sub> arithmetic drills</title>
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/Sn-multiplication.css">
+  <title>Sₙ arithmetic drills</title>
+  <link rel="stylesheet" href="drills.css">
 </head>
 <body>
   <main>
@@ -16,10 +15,10 @@
     <div class="controls">
       <label for="n">Choose <i>n</i><input id="n" class="input-mini" type="number" min="2" max="12" value="6" inputmode="numeric"></label>
     </div>
-    <button id="randomize" class="btn btn--primary new-problem" type="button">New random multiplication</button>
     <section class="drill" aria-labelledby="multiplication-heading">
       <h2 id="multiplication-heading">Multiplication</h2>
       <p class="subtitle">Write the product in two-line notation.</p>
+      <button id="randomize" class="btn btn--primary new-problem" type="button">New random multiplication</button>
       <div class="problem" aria-label="permutations to multiply">
       <div class="notation"><table id="sigma" class="permutation"></table></div>
       <span class="composition">∘</span>
@@ -30,7 +29,7 @@
         <div class="notation"><table class="permutation" aria-label="answer"><tbody><tr id="answer-top"></tr><tr id="answer-bottom"></tr></tbody></table></div>
         <p class="hint">Press Enter or Submit when ready.</p>
         <button id="submit" class="btn btn--primary" type="button">Submit</button>
-        <div id="check" class="check" aria-live="polite"></div>
+        <div id="check" class="check" role="status" aria-live="polite"></div>
       </div>
     </section>
     <section class="drill cycle-drill" aria-labelledby="cycle-heading">
@@ -43,11 +42,11 @@
       <label class="cycle-label" for="cycle-answer">Your answer</label>
       <div class="cycle-answer-row">
         <span class="equals" aria-hidden="true">=</span>
-        <input id="cycle-answer" class="cycle-answer" type="text" autocomplete="off" spellcheck="false" placeholder="(1,3,2)(4,5)">
+        <input id="cycle-answer" class="cycle-answer" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="cycle-instructions" placeholder="(1,3,2)(4,5)">
       </div>
-      <p class="hint">Use <i>e</i> for the identity permutation. Press Enter or Submit when ready.</p>
+      <p id="cycle-instructions" class="hint">Use <i>e</i> for the identity permutation. Press Enter or Submit when ready.</p>
       <button id="cycle-submit" class="btn btn--primary" type="button">Submit</button>
-      <div id="cycle-check" class="cycle-check" aria-live="polite"></div>
+      <div id="cycle-check" class="cycle-check" role="status" aria-live="polite"></div>
       <div id="cycle-result" class="cycle-result" hidden>
         <p>The permutation you wrote:</p>
         <div class="notation"><table class="permutation" aria-label="permutation from cycle notation"><tbody><tr id="cycle-result-top"></tr><tr id="cycle-result-bottom"></tr></tbody></table></div>
@@ -62,16 +61,21 @@
       const shuffled=size=>{ const a=Array.from({length:size},(_,i)=>i+1); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; };
       const row=values=>`<tr>${values.map(value=>`<td>${value}</td>`).join('')}</tr>`;
       const renderGiven=(id,values)=>document.querySelector(id).innerHTML=row(Array.from({length:n},(_,i)=>i+1))+row(values);
-      function newMultiplication(){
+      function newMultiplication(focusAnswer=false){
         sigma=shuffled(n); tau=shuffled(n);
         renderGiven('#sigma',sigma); renderGiven('#tau',tau);
         document.querySelector('#answer-top').innerHTML=Array.from({length:n},(_,i)=>`<td>${i+1}</td>`).join('');
         document.querySelector('#answer-bottom').innerHTML=Array.from({length:n},(_,i)=>`<td><input class="answer-input" aria-label="answer at ${i+1}" inputmode="numeric" maxlength="2"></td>`).join('');
         const inputs=[...document.querySelectorAll('.answer-input')];
         inputs.forEach((input,i)=>input.addEventListener('input',()=>{
-          if(n<=9 && input.value.length===1 && inputs[i+1]) inputs[i+1].focus();
+          input.classList.remove('incorrect','correct');
+          check.classList.remove('success','error');
+          check.textContent='';
+          const value=Number(input.value);
+          if(n<=9 && /^\d$/.test(input.value) && value>=1 && value<=n && inputs[i+1]) inputs[i+1].focus();
         }));
-        check.textContent=''; document.querySelector('.answer-input').focus();
+        check.classList.remove('success','error'); check.textContent='';
+        if(focusAnswer) document.querySelector('.answer-input').focus();
       }
       function newCyclePermutation(){
         cycleSigma=shuffled(n); renderGiven('#cycle-given-table',cycleSigma);
@@ -83,10 +87,11 @@
       }
       function grade(){
         const expected=Array.from({length:n},(_,i)=>sigma[tau[i]-1]); let allCorrect=true;
-        document.querySelectorAll('.answer-input').forEach((input,i)=>{ const correct=Number.parseInt(input.value,10)===expected[i]; input.classList.toggle('incorrect',!correct); input.classList.toggle('correct',correct); if(!correct) allCorrect=false; });
-        check.innerHTML=allCorrect?'✓ <small>Correct!</small>':'';
+        document.querySelectorAll('.answer-input').forEach((input,i)=>{ const answer=input.value.trim(); const correct=/^\d+$/.test(answer)&&Number(answer)===expected[i]; input.classList.toggle('incorrect',!correct); input.classList.toggle('correct',correct); if(!correct) allCorrect=false; });
+        check.classList.toggle('success',allCorrect); check.classList.toggle('error',!allCorrect);
+        check.innerHTML=allCorrect?'✓ <small>Correct!</small>':'✗ <small>Incorrect; check the circled entries.</small>';
       }
-      const ordinal=value=>['first','second','third','fourth','fifth','sixth','seventh','eighth','ninth','tenth','eleventh','twelfth'][value]||`${value}th`;
+      const ordinal=value=>['first','second','third','fourth','fifth','sixth','seventh','eighth','ninth','tenth','eleventh','twelfth'][value-1]||`${value}th`;
       const cycleError=message=>{ cycleCheck.innerHTML=`<div class="feedback-line error"><span class="feedback-symbol">✗</span> ${message}</div>`; cycleResult.hidden=true; };
       const cycleResultRow=values=>values.map((value,index)=>`<td class="${value!==cycleSigma[index]?'cycle-incorrect':''}">${value}</td>`).join('');
       function gradeCycles(){
@@ -124,8 +129,9 @@
         const disjointLine=overlap?`<div class="feedback-line error"><span class="feedback-symbol">✗</span> Not disjoint: ${overlap.value} occurs in the ${ordinal(overlap.first+1)} and ${ordinal(overlap.second+1)} cycles.</div>`:`<div class="feedback-line success"><span class="feedback-symbol">✓</span> Disjoint cycles!</div>`;
         cycleCheck.innerHTML=permutationLine+disjointLine;
       }
-      submit.addEventListener('click',grade); randomize.addEventListener('click',newMultiplication); cycleRandomize.addEventListener('click',newCyclePermutation); nBox.addEventListener('change',newProblem);
+      submit.addEventListener('click',grade); randomize.addEventListener('click',()=>newMultiplication(true)); cycleRandomize.addEventListener('click',()=>{ newCyclePermutation(); cycleInput.focus(); }); nBox.addEventListener('change',newProblem);
       cycleSubmit.addEventListener('click',gradeCycles);
+      cycleInput.addEventListener('input',()=>{ cycleCheck.textContent=''; cycleResult.hidden=true; });
       document.addEventListener('keydown',event=>{if(event.key!=='Enter') return; if(document.activeElement.classList.contains('answer-input')) grade(); if(document.activeElement===cycleInput) gradeCycles();});
       newProblem();
     })();
