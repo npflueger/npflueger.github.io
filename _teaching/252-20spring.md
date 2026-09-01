@@ -12,13 +12,13 @@ This course concerns the mathematical problems underlying public-key ciphers and
 
 ### Remote learning
 
-Following the transition to remote learning after Spring break, the structure of the course will be changed as follows.
+Following the transition to remote learning after spring break, the structure of the course will be changed as follows.
 
-*   We will have synchronous class meetings via Zoom at 9am on Mondays and Fridays. See the Zoom link on the course moodle page for access.
+*   We will have synchronous class meetings via Zoom at 9am on Mondays and Fridays. See the Zoom link on the course Moodle page for access.
 *   Several pre-recorded videos will be posted on Tuesdays and Wednesdays. You may access these from the Dropbox link sent out by email (also linked from the Moodle page).
-*   Office hours: during my scheduled office hours (below), I will be actively monitoring the class's Slack channel, answering questions, and opening Zoom discussions as needed. Please set a message to the channel or to me privately if you would like to start a Zoom meeting.
+*   Office hours: during my scheduled office hours (below), I will be actively monitoring the class's Slack channel, answering questions, and opening Zoom discussions as needed. Please send a message to the channel or to me privately if you would like to start a Zoom meeting.
 *   The remaining exams will be open-book take-home exams (see below for details).
-*   We will almost certainly cover less material this semester than was originally planned on the syllabus, due to the extraordinary circumstances. My primary concern as the instructor right now is to prioritize the main learning goals of Math 252: developing your reasoning about code, developing your general mathematical problems solving skills, and introducing you to some representative cryptographic algorithms. So I will be trying to think of the best way to give you that preparation within the constraints we are now under.
+*   We will almost certainly cover less material this semester than was originally planned on the syllabus, due to the extraordinary circumstances. My primary concern as the instructor right now is to prioritize the main learning goals of Math 252: developing your reasoning about code, developing your general mathematical problem-solving skills, and introducing you to some representative cryptographic algorithms. So I will be trying to think of the best way to give you that preparation within the constraints we are now under.
 
 ### Help hours
 
@@ -59,7 +59,7 @@ Problem sets will be posted here. All problem sets are due at 10pm, via Gradesco
     
     *   Remember to make a one-page note-sheet (front and back)!
     *   Coverage: up to the section 2.8 (Chinese Remainder Theorem), i.e. anything covered on Problem Sets 1 through 5.
-    *   Some old exams. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be.
+    *   Some old exams. Note that coverage and emphasis differ on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult than ours is likely to be.
         
         *   [2015 Midterm 1](exams/midterm1sample1.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/718560/mod_resource/content/1/midterm1sample1soln.pdf)
         *   [2016 Midterm 1](exams/midterm1sample2.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/718561/mod_resource/content/1/midterm1sample2soln.pdf)
@@ -77,7 +77,7 @@ Problem sets will be posted here. All problem sets are due at 10pm, via Gradesco
     *   The exam will be untimed, open-book and open-notes. You may also use a computer, e.g. to write Python code for computations. You will be expected not to discuss problems with any other students, or to look for solutions online.
     *   You will have 48 hours to complete the exam.
     *   The exam will be similar in length to a 50-minute in-class exam.
-    *   Some old exams. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be.
+    *   Some old exams. Note that coverage and emphasis differ on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult than ours is likely to be.
         
         *   [2015 Midterm 2](exams/midterm2-2015.pdf) (skip problem 5, which uses terminology we haven't discussed) / [Solutions](https://moodle.amherst.edu/pluginfile.php/718564/mod_resource/content/1/midterm2soln-2015.pdf) 
         *   [2016 Midterm 2](exams/midterm2-2016.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/718565/mod_resource/content/1/midterm2soln-2016.pdf) 
@@ -94,7 +94,7 @@ Problem sets will be posted here. All problem sets are due at 10pm, via Gradesco
     *   The exam will be untimed, open-book and open-notes. You may also use a computer, e.g. to write Python code for computations. You will be expected not to discuss problems with any other students, or to look for solutions online.
     *   You will have 72 hours to complete the exam.
     *   The exam will be similar in length to a regular three-hour final exam.
-    *   Some old exams. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be.
+    *   Some old exams. Note that coverage and emphasis differ on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult than ours is likely to be.
         
         *   [2015 Final Exam](exams/final-2015.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/718353/mod_resource/content/2/finalExamSoln-2015.pdf) 
         *   [2016 Final Exam](exams/final-2016.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/718354/mod_resource/content/1/finalExamSoln-2016.pdf) 

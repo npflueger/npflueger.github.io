@@ -38,7 +38,7 @@ This course is focused on integration techniques, series, and parametric/polar e
     
     
     
-*   [Converge Tests Summary](handouts/2018-03-19.pdf)
+*   [Convergence Tests Summary](handouts/2018-03-19.pdf)
 *   [Polar curve examples](https://dbenedetto.people.amherst.edu/math121fall17/polarcurvehandout.pdf)
 
 ### Homework

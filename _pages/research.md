@@ -6,16 +6,16 @@ layout: single
 
 My research is in algebraic geometry and combinatorics, especially algebraic curves and Young tableaux. I am particularly interested in Brill-Noether theory, which studies the variety of ways that a chosen curve is realized in projective space. I also study analogous questions in the setting of tropical geometry, and the relation between these perspectives via non-Archimedean analytic geometry. My publications are listed below.
 
-I am also interested in proof formalization in Lean4. You can find some of my ongoing formalization projects below.
+I am also interested in proof formalization in Lean 4. You can find some of my ongoing formalization projects below.
 
-## Lean4 Formalizations
+## Lean 4 formalizations
 
-**Note:** each of these formalizations a link to its documentation. This documentation is auto-generated, and includes documentation of all dependenices within Mathlib. When reading the docs, you should look for the relevant section in the sidebar and focus on those files.
+**Note:** Each of these formalizations has a link to its documentation. This documentation is auto-generated and includes all dependencies within Mathlib. When reading the documentation, look for the relevant section in the sidebar and focus on those files.
 
 * _Chip-firing in Lean_ (with Dhyey Mavani). This project formalizes aspects of chip-firing games on finite multigraphs, including the Riemann-Roch theorem of Baker and Norine.
 <br /> [github](https://github.com/DhyeyMavani2003/chip-firing-with-lean) [docs](https://dhyeymavani.com/chip-firing-with-lean/docs/ChipFiringWithLean/RiemannRoch.html) [arXiv](https://arxiv.org/abs/2606.16679)
 
-* _Demazure products_. This project formalizes the extended Demazure product on integer permutations (not necessarily of finite length). It includes a formalized bijection between Hecke Factorizations of integer permutations and set-valued tableaux.
+* _Demazure products_. This project formalizes the extended Demazure product on integer permutations (not necessarily of finite length). It includes a formalized bijection between Hecke factorizations of integer permutations and set-valued tableaux.
 <br /> [github](https://github.com/npflueger/demazure) [docs](https://npflueger.github.io/demazure/docs/Demazure/AspPerm.html)
 
 ## Preprints and papers under review
@@ -70,7 +70,7 @@ I am also interested in proof formalization in Lean4. You can find some of my on
 
 ## Exposition
 
-*   _Tropical Curves_. [pdf](/files/TropicalCurves.pdf)
+*   _Tropical Curves_. [PDF](/files/TropicalCurves.pdf)
     *   This is my minor thesis from graduate school. It is an introduction to tropical curves, with an emphasis on how they are analogous to algebraic curves, both formally and informally. 
     *   The minor thesis is part of the Harvard graduate program in which students must rapidly learn (in three weeks) a subject outside their research and write an expository paper about it. This was a very useful exercise for me, and in fact tropical curves later became an important part of my research!
     *   Because this paper was created on a short deadline, it is not particularly polished, and (for example) has hand-drawn diagrams. Nonetheless, I am happy to make it available online for anyone who might benefit from it.

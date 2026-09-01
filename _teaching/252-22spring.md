@@ -12,7 +12,7 @@ This course concerns the mathematical problems underlying public-key ciphers and
 
 The course is designed for students with no prior experience in abstract algebra or programming. It serves as an introduction to those topics, meant to prepare students for more advanced courses. Students with prior experience are welcome, however.
 
-You can find materials from previous offerings of this course here: [2020](../252-20spring), [2019](../252-19spring), [2016](../158-16fall), [2015](../158-15fall). The 2015 and 2016 courses, taught at Brown, were sligtly different in style and emphasis.
+You can find materials from previous offerings of this course here: [2020](../252-20spring), [2019](../252-19spring), [2016](../158-16fall), [2015](../158-15fall). The 2015 and 2016 courses, taught at Brown, were slightly different in style and emphasis.
 
 ### Time and location
 * Monday, Tuesday, Wednesday, and Friday: 3:00-3:50pm in **SMUD 205**.
@@ -25,7 +25,7 @@ You can find materials from previous offerings of this course here: [2020](../25
 ### Handouts
 
 *   [Syllabus](handouts/syllabus.pdf)
-*   Boardwork from the my tablet can be found at this [Dropbox link](https://www.dropbox.com/sh/p2yvkx1dcvqcox9/AABVgRPbvZrYANjIJufgNz3wa?dl=0).
+*   Boardwork from my tablet can be found at this [Dropbox link](https://www.dropbox.com/sh/p2yvkx1dcvqcox9/AABVgRPbvZrYANjIJufgNz3wa?dl=0).
 *   Desmos demo on [elliptic curve addition](https://www.desmos.com/calculator/7vbyq3frjp)
 *   Desmos demo on [associativity of EC addition](https://www.desmos.com/calculator/4q0rq6oxxt)
 <!--handouts-->
@@ -61,7 +61,7 @@ Problem sets will be posted here. All problem sets are due at 10pm, on Gradescop
     * [Exam](https://moodle.amherst.edu/pluginfile.php/912526/mod_resource/content/1/midterm1compact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/912525/mod_resource/content/1/midterm1-soln.pdf)
     * Remember to make a one-page note-sheet (front and back)! Tables 2.2 and 2.3 from the textbook (summary of Diffie-Hellman and Elgamal) will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: anything discussed in class up to Friday 3/11. This includes the following textbook sections: 1.2, 1.3, 1.4, 1.5, 2.1, 2.2, 2.3, 2.4, 2.6, 2.7.
-    * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be.
+    * Some old exams, for review. Note that coverage and emphasis differ on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult than ours is likely to be.
         * [2020 midterm 1](exams/midterm1-2020.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/911249/mod_resource/content/1/midterm1soln.pdf)
         * [2019 midterm 1](exams/midterm1-2019.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/911250/mod_resource/content/1/midterm1soln.pdf)
         * [2016 midterm 1](exams/midterm1-2016.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/911251/mod_resource/content/1/midterm1soln.pdf)
@@ -71,7 +71,7 @@ Problem sets will be posted here. All problem sets are due at 10pm, on Gradescop
     * [Exam](https://moodle.amherst.edu/pluginfile.php/922648/mod_resource/content/1/midterm2compact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/922649/mod_resource/content/1/midterm2soln.pdf)
     * Remember to make a one-page note-sheet (front and back)! Summary tables for all cryptosystems we've studied will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: anything discussed in class between Monday 3/14 and Wednesday 4/27. This includes the following textbook sections: 2.8-9, 3.1-4, 4.1-3, 6.1-4.
-    * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be. **The 2015 and 2016 exams were earlier in the semester than our midterm 2, so they do not include content on elliptic curves.** Solutions will be posted early next week.
+    * Some old exams, for review. Note that coverage and emphasis differ on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult than ours is likely to be. **The 2015 and 2016 exams were earlier in the semester than our midterm 2, so they do not include content on elliptic curves.** Solutions will be posted early next week.
         * [2015 midterm 2](exams/midterm2practice/midterm2-2015.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/920929/mod_resource/content/1/midterm2-2015soln.pdf)
         * [2016 midterm 2](exams/midterm2practice/midterm2-2016.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/920930/mod_resource/content/1/midterm2-2016soln.pdf)
         * [2019 midterm 2](exams/midterm2practice/midterm2-2019.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/920931/mod_resource/content/1/midterm2-2019soln.pdf)

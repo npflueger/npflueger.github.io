@@ -12,7 +12,7 @@ redirect_from:
 What, exactly, is a proof? This course begins with a precise definition specifying what counts as a mathematical proof. This definition makes it possible to carry out a mathematical study of what can be accomplished by means of deductive reasoning and, perhaps more interestingly, what cannot be accomplished. Topics will include the propositional and predicate calculi, completeness, compactness, and decidability. At the end of the course we will study Gödel’s famous Incompleteness Theorem, which shows that there are statements about the positive integers that are true but impossible to prove.
 
 ### Time and location
-* Monday, Wednesday, and Friday, 1:00-1:50am (SMUD 205)
+* Monday, Wednesday, and Friday, 1:00-1:50pm (SMUD 205)
 
 ### Help hours
 

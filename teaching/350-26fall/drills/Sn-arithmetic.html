@@ -10,7 +10,7 @@
   <main>
     <h1><i>S</i><sub>n</sub> arithmetic drills</h1>
     <p>
-      This page provides a way to quickly practice two basic skills in working with the symmetric group. Please notify me if you encounter any errors or bugs. 
+      This page provides a quick way to practice two basic skills when working with the symmetric group. Please notify me if you encounter any errors or bugs.
     </p>
     <div class="controls">
       <label for="n">Choose <i>n</i><input id="n" class="input-mini" type="number" min="2" max="12" value="6" inputmode="numeric"></label>
@@ -125,7 +125,7 @@
         const matches=written.every((value,index)=>value===cycleSigma[index]);
         let overlap=null; const firstSeen=new Map();
         cycles.forEach((cycle,cycleIndex)=>cycle.forEach(value=>{ if(!overlap&&firstSeen.has(value)) overlap={value,first:firstSeen.get(value),second:cycleIndex}; else firstSeen.set(value,cycleIndex); }));
-        const permutationLine=`<div class="feedback-line ${matches?'success':'error'}"><span class="feedback-symbol">${matches?'✓':'✗'}</span> ${matches?'correct permutation!':'incorrect permutation'}</div>`;
+        const permutationLine=`<div class="feedback-line ${matches?'success':'error'}"><span class="feedback-symbol">${matches?'✓':'✗'}</span> ${matches?'Correct permutation!':'Incorrect permutation'}</div>`;
         const disjointLine=overlap?`<div class="feedback-line error"><span class="feedback-symbol">✗</span> Not disjoint: ${overlap.value} occurs in the ${ordinal(overlap.first+1)} and ${ordinal(overlap.second+1)} cycles.</div>`:`<div class="feedback-line success"><span class="feedback-symbol">✓</span> Disjoint cycles!</div>`;
         cycleCheck.innerHTML=permutationLine+disjointLine;
       }

@@ -66,11 +66,11 @@ $(document).ready(function() {
 
 The Amherst College Math Colloquium is a series of talks for undergraduates.
 
-All are welcome! The talks are intended to be mostly accessible to students who have taken calculus, although they may also provide a preview of deeper waters. The colloquium talks are usually one hour long (50 + 10 minutes for questions). We usually have a 30 minute pre-talk small gathering (with snacks and refreshments) beforehand.
+All are welcome! The talks are intended to be mostly accessible to students who have taken calculus, although they may also provide a preview of deeper waters. The colloquium talks are usually one hour long: 50 minutes for the talk and 10 minutes for questions. We usually have a 30-minute informal gathering with snacks and refreshments beforehand.
 
-The 2026-2027 colloquium is organized by [Jenna Zomback](https://sites.google.com/view/zomback) and [David Zureick-Brown](https://dmzb.github.io/).
+The 2026–2027 colloquium is organized by [Jenna Zomback](https://sites.google.com/view/zomback) and [David Zureick-Brown](https://dmzb.github.io/).
 
-You might also be interested in the [Statistics Colloquium](https://nhorton.people.amherst.edu/colloquia/)
+You might also be interested in the [Statistics Colloquium](https://nhorton.people.amherst.edu/colloquia/).
 
 
 {% assign cur_date = 'now' | date: "%Y-%m-%d" %}
@@ -85,4 +85,3 @@ You might also be interested in the [Statistics Colloquium](https://nhorton.peop
 {% for talk in talks %}
   {% if talk.date < cur_date %} {% include talk-entry.html talk=talk %} {% endif %}
 {% endfor %}
-

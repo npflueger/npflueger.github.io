@@ -62,7 +62,7 @@ You can find materials from previous offerings of this course here: [2022](../25
     * [Exam](https://moodle.amherst.edu/pluginfile.php/1010111/mod_resource/content/1/midterm1compact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1010112/mod_resource/content/1/midterm1-soln.pdf)
     * Remember to make a one-page note-sheet (front and back)! Tables 2.2 and 2.3 from the textbook (summary of Diffie-Hellman and Elgamal) will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: Anything discussed by Friday 3/3, and included on PSets 1 through 5. This includes the following textbook sections: 1.2, 1.3, 1.4, 1.5, 2.1, 2.2, 2.3, 2.4, 2.7 (but **not** 2.5 or 2.6).
-    * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be. Solutions will be posted in the week before the midterm.
+    * Some old exams, for review. Note that coverage and emphasis differ on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult than ours is likely to be. Solutions will be posted in the week before the midterm.
         * [2020 midterm 1](../252-22spring/exams/midterm1-2020.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1009145/mod_resource/content/1/midterm1-2020-soln.pdf)
         * [2019 midterm 1](../252-22spring/exams/midterm1-2019.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1009146/mod_resource/content/1/midterm1-2019-soln.pdf)
         * [2016 midterm 1](../252-22spring/exams/midterm1-2016.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1009147/mod_resource/content/1/midterm1-2016-soln.pdf)
@@ -72,7 +72,7 @@ You can find materials from previous offerings of this course here: [2022](../25
     * [Exam](https://moodle.amherst.edu/pluginfile.php/1020372/mod_resource/content/1/midterm2compact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1020373/mod_resource/content/1/midterm2soln.pdf)
     * Remember to make a one-page note-sheet (front and back)! Summary tables for all cryptosystems we've studied will be included in the exam packet, so you do not need to copy any of that information to your note sheet.
     * Coverage: Anything discussed by Wednesday 4/19, and included on PSets 6 through 10. This includes textbook sections 2.8-9, 3.1-4, 4.1-3, 6.1-4.
-    * Some old exams, for review. Note that coverage and emphasis differs on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult that ours is likely to be. Solutions will be posted in the week before the midterm.
+    * Some old exams, for review. Note that coverage and emphasis differ on these exams, and in particular the 2015 and 2016 exams are somewhat more difficult than ours is likely to be. Solutions will be posted in the week before the midterm.
         * [2015 midterm 2](exams/midterm2practice/midterm2-2015.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1019715/mod_resource/content/1/midterm2-2015soln.pdf)
         * [2016 midterm 2](exams/midterm2practice/midterm2-2016.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1019716/mod_resource/content/1/midterm2-2016soln.pdf)
         * [2019 midterm 2](exams/midterm2practice/midterm2-2019.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1019717/mod_resource/content/1/midterm2-2019soln.pdf)

@@ -53,7 +53,7 @@ I previously taught this course in [Spring 2018](../121-18spring). At the link, 
     
     
     
-*   [Converge Tests Summary](handouts/2018-03-19.pdf)
+*   [Convergence Tests Summary](handouts/2018-03-19.pdf)
 *   [Polar curve examples](https://dbenedetto.people.amherst.edu/math121fall17/polarcurvehandout.pdf)
 -->
 
@@ -101,7 +101,7 @@ Problem sets will be posted here. All problem sets are due at 10pm, on Gradescop
 
 ### Exams
 
-There will be three midterms and a three hour final exam. Further information and sample exams will be posted here.
+There will be three midterms and a three-hour final exam. Further information and sample exams will be posted here.
 
 * Midterm 1 will be in class on Friday 2/24.
     * [Exam](https://moodle.amherst.edu/pluginfile.php/1007413/mod_resource/content/1/midterm1compact.pdf) / [Solutions](https://moodle.amherst.edu/pluginfile.php/1007414/mod_resource/content/1/midterm1soln.pdf)

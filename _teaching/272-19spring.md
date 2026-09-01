@@ -28,7 +28,8 @@ This course concerns the core theory of linear algebra, with specific attention 
 *   Fernando Liu Lopez's help hours:
     
     *   Monday-Thursday 2-5 in SMUD 007
-    *   Friday 10-2 in SCCE D107<li>Or <a href="https://goo.gl/Rz1JND">click here</a> to make an individual appointment.</li>
+    *   Friday 10-2 in SCCE D107
+    *   Or [click here](https://goo.gl/Rz1JND) to make an individual appointment.
     
     
     

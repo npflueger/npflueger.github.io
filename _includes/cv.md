@@ -168,7 +168,7 @@
 - Fall 2011: Integration, Series, and Differential Equations
   - Wrote comprehensive lecture notes, still in use by students and professors as a course accompaniment.
 
-### The Math Circle (extra-curricular math program for Boston-area children)
+### The Math Circle (extracurricular math program for Boston-area children)
 - Spring 2016: taught students ages 13 to 15.
 - Academic year 2013-2014: taught students ages 13 to 18.
 - July 2014 and July 2016: co-organized a math circle teacher training institute in South Bend, IN.
@@ -194,7 +194,7 @@
 
 - Amherst College Fellowship Committee (2023-25; chair 2024-25)
 - Co-organizer for the Valley Geometry Seminar (2018-present).
-- Co-organizer for the Bi-annual Tropical and Algebraic Meetings of Brown and Yale (2014-present), including serving at primary organizer of the Spring 2019 meeting at Amherst College.
+- Co-organizer for the Bi-annual Tropical and Algebraic Meetings of Brown and Yale (2014-present), including serving as primary organizer of the Spring 2019 meeting at Amherst College.
 - Served as referee for papers in the following mathematics journals: Advances in Mathematics; Algebra and Number Theory; Algebraic Combinatorics; Communications in Algebra; Documenta Mathematica; European Journal of Mathematics; Forum of Math Pi; International Mathematics Research Notices; Inventiones Mathematicae; Journal of the American Mathematical Society; Journal for Pure and Applied Algebra; Mathematische Zeitschrift; Notices of the American Mathematical Society.
 - Organizer of the Walker Prize Examination at Amherst, 2022-2023.
 - Math Comprehensive exam / honors qualifying exam co-coordinator (2019-2020)
@@ -255,7 +255,7 @@
 - Barry M. Goldwater Scholarship, awarded 2007.
 - Putnam Mathematics Competition: 24th place (2008)
 - International Mathematics Competition for University Students (Blagoevgrad, Bulgaria): 40th place (2008).
-- Google Codejam competition: advanced to semifinal round (top 500 contestants) (2009, 2010, 2012).
+- Google Code Jam competition: advanced to semifinal round (top 500 contestants) (2009, 2010, 2012).
 - Boothe Prize for Undergraduate Writing: Finalist (Autumn 2005, Winter 2006), 2nd place (Autumn 2005). Prize selects the best essay written for the freshman Introduction to the Humanities requirement at Stanford.
 - Hester-Franklin Prize for best original paper written in first-year French (2009).
 

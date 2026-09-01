@@ -24,7 +24,7 @@ There are many sources of help in this class; you should make use of all of them
 *   M 01/29: [REF and RREF summary](handouts/2018-01-29.pdf)
 *   F 02/09: [Proof-writing examples](handouts/2018-02-09.pdf)
 *   F 03/02: [Least-squares notes](handouts/LeastSquares.pdf)
-*   M 03/05: [The Supreme Court discussses "orthogonal"](http://www.washingtonpost.com/wp-dyn/content/article/2010/01/11/AR2010011103690.html)
+*   M 03/05: [The Supreme Court discusses "orthogonal"](http://www.washingtonpost.com/wp-dyn/content/article/2010/01/11/AR2010011103690.html)
 *   M 4/02: [Approximation in inner product spaces and Fourier approximation](handouts/IPS-optimization-fourier.pdf)
 *   F 4/27: [Markov chains demo notebook](handouts/markov.nb)
 {%- comment -%} Removed to save space

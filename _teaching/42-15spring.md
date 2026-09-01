@@ -10,7 +10,7 @@ school: "Brown"
 
 This course introduces the basic ideas of number theory. It is aimed at non-majors and has no prerequisites.
 
-Number theory is one of the most beautiful and ancient parts of mathematics, and is still a vibrant area of modern research. It is concerned with properties of whole numbers, especially how numbers break down into primes and which equations admit whole-number solutions. One of the most striking applications of number theory from the past century is its use in cryptography; a signicant part of the course will develop the material needed to discuss a famous cryptosystem called RSA. The course will end with a selection of topics, possibly including sums of squares, Diophantine equations, continued fractions, and the use of imaginary and complex numbers in number theory.
+Number theory is one of the most beautiful and ancient parts of mathematics and is still a vibrant area of modern research. It is concerned with properties of whole numbers, especially how numbers break down into primes and which equations admit whole-number solutions. One of the most striking applications of number theory from the past century is its use in cryptography; a significant part of the course will develop the material needed to discuss a famous cryptosystem called RSA. The course will end with a selection of topics, possibly including sums of squares, Diophantine equations, continued fractions, and the use of imaginary and complex numbers in number theory.
 
 *   [Syllabus](syllabus.pdf)
 

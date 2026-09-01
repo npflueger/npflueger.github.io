@@ -47,7 +47,7 @@ In each test case, you will receive Alice's public key, as well as two signed me
 </p>
 
 <p>
-The last part of each test case will be an encrypted message (<b>c_1,c_2</b>) intended for Alice and encrypted by ElGamal encryption using her public key. This means that the sender, Bob, has taken his message <b>D</b> (intended for Alice), then chosen an "ephermal key" <b>b</b> at random and computed numbers <b>c_1,c_2</b> such that <b>c_1 ≡ g<sup>b</sup></b> mod <b>p</b> and <b>c_2 ≡ y<sup>b</sup> D</b> mod <b>p</b>.
+The last part of each test case will be an encrypted message (<b>c_1,c_2</b>) intended for Alice and encrypted by ElGamal encryption using her public key. This means that the sender, Bob, has taken his message <b>D</b> (intended for Alice), then chosen an "ephemeral key" <b>b</b> at random and computed numbers <b>c_1,c_2</b> such that <b>c_1 ≡ g<sup>b</sup></b> mod <b>p</b> and <b>c_2 ≡ y<sup>b</sup> D</b> mod <b>p</b>.
 </p>
 
 <p>
@@ -143,7 +143,7 @@ It is possible to solve the small input without using the signed messages at all
 </p>
 
 <p>
-To solve the large input, you will need to use the signed messages from Alice. One good method is to let <b>e</b> be a number such that <b>g<sup>e</sup></b> ≡ <b>r</b> mod <b>p</b>. Using the fact that <b>g</b> is a primitive root, you can write down two congruences modulo <b>p</b>-1, involving both of the exponents <b>a</b> and <b>e</b>. You can manipulate these congruences in order to determine both of the values <b>a</b> and <b>e</b> (follow a similar method to when you solve a pair of linear equations). Then you can descrypt the message using the number <b>a</b>.
+To solve the large input, you will need to use the signed messages from Alice. One good method is to let <b>e</b> be a number such that <b>g<sup>e</sup></b> ≡ <b>r</b> mod <b>p</b>. Using the fact that <b>g</b> is a primitive root, you can write down two congruences modulo <b>p</b>-1, involving both of the exponents <b>a</b> and <b>e</b>. You can manipulate these congruences in order to determine both of the values <b>a</b> and <b>e</b> (follow a similar method to when you solve a pair of linear equations). Then you can decrypt the message using the number <b>a</b>.
 </p>
 
 <h3>Input and output files</h3>
