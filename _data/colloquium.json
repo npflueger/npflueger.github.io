@@ -14,9 +14,9 @@
     "speaker": "Eric Stachura (Kennesaw State University)",
     "speakerurl": "https://facultyweb.kennesaw.edu/estachur/",
     "timeplace": "4:00-5:00, SMUD 205.",
-    "title": "TBA",
-    "abstract": "TBA",
-    "bio": "TBA"
+    "title": "Differential equations, electromagnetic waves, and  fractals",
+    "abstract": "Fractals are intricate geometric shapes often possessing self-similarity: they appear identical at various levels of magnification. These self-similar structures arise from iterative mathematical processes---such as the repeated removal of central portions or recursive boundary modifications---and are ubiquitous in nature, appearing in everything from coastlines and blood vessel networks to porous media and cracks. In this talk, I will discuss fractals in the context of electromagnetic wave propagation. In particular, I will discuss fractal structures that could have different ``dimensions" in each direction and appear in the modeling of composite structures with fractal type microstructures. Time permitting, I will also discuss recent work on waveguides (structures which guide light) with fractal cross-sections. ",
+    "bio": "Eric Stachura is an Associate Professor of Mathematics at Kennesaw State University in Atlanta, Georgia. Before joining KSU, he was a Visiting Assistant Professor at Haverford College. His research interests include the analysis of partial differential equations, especially related to electromagnetism and geometric optics in exotic materials. Outside of mathematics, he enjoys chess, reading, and hiking"
    },
 {
     "date": "2026-10-15",
