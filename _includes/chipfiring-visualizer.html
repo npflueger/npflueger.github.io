@@ -316,7 +316,7 @@
 </div>
 
 <div id="burn-result" role="status" aria-live="polite"></div>
-<div id="cytoscape-graph" role="application" aria-label="Interactive chip-firing graph"></div>
+<div id="cytoscape-graph" role="application" aria-label="Interactive chip-firing graph" tabindex="0"></div>
 <noscript>This simulator requires JavaScript.</noscript>
 
 <!-- Instructions -->
@@ -348,7 +348,7 @@
       <div class="instr-col">
         <h4>Dhar's burning algorithm</h4>
         <table><tbody>
-          <tr><td class="key">Select vertices + B / Burn</td><td>Start the fire from every selected vertex; a single starting vertex also tests whether the divisor is q-reduced</td></tr>
+          <tr><td class="key">Select vertices + B / Burn</td><td>Start the fire from every selected vertex; a single starting vertex also tests whether the divisor is q-reduced. When the burn stops, the unburnt vertices become the selected set</td></tr>
           <tr><td class="key">Clear Burn</td><td>Remove burn highlighting</td></tr>
         </tbody></table>
         <h4>JSON import / export</h4>
@@ -397,6 +397,54 @@ var BURN_EDGE_WIDTH    = 6;
 var SEL_OVERLAY_COLOR  = '#ffe08a';
 var SEL_OVERLAY_OP     = 0.42;
 var SEL_OVERLAY_PAD    = '12px';
+var MAX_RENDERED_CHIPS = 80;
+var MAX_ABS_CHIPS      = 1000000000;
+var MAX_IMPORTED_VERTICES = 1000;
+var MAX_IMPORTED_EDGES = 5000;
+var generatedIdCounter = 0;
+
+function idMap() {
+  return Object.create(null);
+}
+
+function nextGeneratedId(kind, occupied) {
+  var id;
+  do {
+    id = '__chipfiring_' + kind + '_' + (++generatedIdCounter);
+  } while ((occupied && occupied[id]) ||
+           (typeof cy !== 'undefined' && cy && cy.getElementById(id).length));
+  if (occupied) occupied[id] = true;
+  return id;
+}
+
+function isGraphVertex(node) {
+  return !node.data('chip_type') && !node.data('ui_temporary');
+}
+
+function isGraphEdge(edge) {
+  return !edge.data('ui_temporary');
+}
+
+function isEditingTarget(el) {
+  if (!el) return false;
+  var tag = el.tagName;
+  return tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || el.isContentEditable;
+}
+
+function isInteractiveShortcutTarget(el) {
+  if (isEditingTarget(el)) return true;
+  return !!(el && el.closest &&
+            el.closest('button, a, summary, [role="button"], [role="link"]'));
+}
+
+function isAllowedChipCount(value) {
+  return Number.isSafeInteger(value) && Math.abs(value) <= MAX_ABS_CHIPS;
+}
+
+function showChipRangeNotice() {
+  showNotice('Chip counts must be whole numbers between −' + MAX_ABS_CHIPS +
+             ' and ' + MAX_ABS_CHIPS + '.', '#ffb547');
+}
 
 // ── Graph definitions ──────────────────────────────────────────────────────
 
@@ -476,7 +524,8 @@ function makeIcosahedron() {
 }
 
 function makeComplete(n) {
-  if (n < 2 || n > 50) throw new Error('n must be between 2 and 50');
+  if (!Number.isInteger(n) || n < 2 || n > 50)
+    throw new Error('n must be a whole number between 2 and 50.');
   var v = [];
   for (var i=0;i<n;i++) v.push('v'+i);
   var e = [];
@@ -511,7 +560,7 @@ function makeChain(lengths) {
 function cyclePositions(names, cx, cy, r) {
   // Clockwise from top
   var n = names.length;
-  var pos = {};
+  var pos = idMap();
   names.forEach(function(name, i) {
     var angle = 2 * Math.PI * i / n;
     pos[name] = { x: cx + r * Math.sin(angle), y: cy - r * Math.cos(angle) };
@@ -525,8 +574,10 @@ function buildElements(graphDef, chips, positions) {
   // chips: {vertexName: count} or null (defaults to 0)
   // positions: {vertexName: {x,y}} or null (use cose layout)
   var elements = [];
+  var occupied = idMap();
 
   graphDef.vertices.forEach(function(name) {
+    occupied[name] = true;
     var count = chips ? (chips[name] || 0) : 0;
     var sign = count < 0 ? 'negative' : (count === 0 ? 'zero' : 'positive');
     var bg = count < 0 ? '#f45b72' : (count === 0 ? '#718096' : '#25c56a');
@@ -549,23 +600,20 @@ function buildElements(graphDef, chips, positions) {
     elements.push(el);
   });
 
-  // edges (supports valence > 1)
-  var edgeCounts = {};
+  // Edges support valence > 1. Generated IDs are checked against vertex IDs
+  // because Cytoscape keeps nodes and edges in one shared ID namespace.
   graphDef.edges.forEach(function(e) {
     var src = e[0], tgt = e[1], val = e[2] || 1;
-    var key = [src, tgt].sort().join('--');
-    var start = edgeCounts[key] || 0;
     for (var i = 0; i < val; i++) {
       elements.push({
         data: {
-          id: key + '-' + (start + i),
+          id: nextGeneratedId('edge', occupied),
           source: src,
           target: tgt,
           arrow_shape: 'none'
         }
       });
     }
-    edgeCounts[key] = start + val;
   });
 
   return elements;
@@ -667,7 +715,7 @@ function cancelBurn() {
 
 function clearBurnVisuals(cy) {
   cancelBurn();
-  cy.nodes().filter(function(n){ return !n.data('chip_type'); }).forEach(function(n) {
+  cy.nodes().filter(isGraphVertex).forEach(function(n) {
     n.removeStyle('overlay-color overlay-opacity overlay-padding');
     // Re-apply selection overlay if still selected (removeStyle would have cleared it)
     if (n.selected()) {
@@ -675,7 +723,7 @@ function clearBurnVisuals(cy) {
                 'overlay-padding': SEL_OVERLAY_PAD });
     }
   });
-  cy.edges().removeStyle('line-color width');
+  cy.edges().filter(isGraphEdge).removeStyle('line-color width');
   var el = document.getElementById('burn-result');
   if (el) { el.textContent = ''; el.style.color = ''; }
 }
@@ -698,8 +746,11 @@ function updateVertex(cy, nodeId, newChips, opts) {
   // Preserve any selection border that may already be on this node.
   var c = vertexColors(newChips);
   var sel = node.selected();
+  var lecture = document.body.classList.contains('lecture-mode');
   node.style({ 'background-color': c.bg, color: c.fg, 'text-outline-color': c.bg, label: '' + newChips,
                'text-valign': 'center', 'text-halign': 'center', 'z-index': 20, 'border-width': '0px',
+               width: lecture ? 80 : 64, height: lecture ? 80 : 64,
+               'font-size': lecture ? 27 : 20, 'font-weight': 800,
                'overlay-color': SEL_OVERLAY_COLOR, 'overlay-opacity': sel ? SEL_OVERLAY_OP : 0,
                'overlay-padding': SEL_OVERLAY_PAD });
 
@@ -707,14 +758,16 @@ function updateVertex(cy, nodeId, newChips, opts) {
 
   if (newChips !== 0) {
     var pos = node.position();
-    var n = Math.abs(newChips);
+    // Keep the exact count in the label, but cap decorative chip nodes so a
+    // large divisor cannot allocate enough Cytoscape elements to freeze UI.
+    var n = Math.min(Math.abs(newChips), MAX_RENDERED_CHIPS);
     var layout = chipLayout(pos.x, pos.y, n);
     var chipType = newChips > 0 ? 'positive_chip' : 'negative_chip';
     var chipBg   = newChips > 0 ? '#25c56a' : '#f45b72';
     var dots = cy.add(layout.positions.map(function(p, i) {
       return {
         data: {
-          id: 'chip_' + nodeId + '_' + i,
+          id: nextGeneratedId('chip'),
           chip_type: chipType,
           chip_size: layout.chipSize,
           parent_vertex: nodeId,
@@ -742,7 +795,6 @@ function updateVertex(cy, nodeId, newChips, opts) {
 
 // ── Firing logic ───────────────────────────────────────────────────────────
 
-var travelCounter = 0;
 var isFiring = false;
 
 function setFiringState(busy) {
@@ -755,22 +807,23 @@ function setFiringState(busy) {
     var control = document.getElementById(id);
     if (control) control.disabled = busy;
   });
+  cy.nodes().filter(isGraphVertex).forEach(function(n) {
+    if (busy || currentMode !== 'pan') n.ungrabify();
+    else n.grabify();
+  });
   document.getElementById('undo-btn').disabled = busy || _undoStack.length === 0;
 }
 
 function fireVertices(cy, nodeIds) {
   if (isFiring || !nodeIds || nodeIds.length === 0) return;
-  setFiringState(true);
-  clearBurnVisuals(cy);
-
-  var inSet = {};
+  var inSet = idMap();
   nodeIds.forEach(function(id){ inSet[id] = true; });
 
-  var deltas = {}, animations = [];
+  var deltas = idMap(), animations = [];
 
   nodeIds.forEach(function(vid) {
     if (deltas[vid] === undefined) deltas[vid] = 0;
-    cy.edges().forEach(function(edge) {
+    cy.edges().filter(isGraphEdge).forEach(function(edge) {
       var src = edge.data('source'), tgt = edge.data('target');
       var neighbor = (src === vid) ? tgt : (tgt === vid) ? src : null;
       if (neighbor === null) return;
@@ -780,13 +833,25 @@ function fireVertices(cy, nodeIds) {
     });
   });
 
-  var posSnap = {}, chipsSnap = {};
+  var posSnap = idMap(), chipsSnap = idMap();
   Object.keys(deltas).forEach(function(id) {
     var node = cy.getElementById(id);
     var p = node.position();
     posSnap[id] = { x: p.x, y: p.y };
     chipsSnap[id] = node.data('chips_count') || 0;
   });
+
+  var outOfRange = Object.keys(deltas).some(function(id) {
+    return !isAllowedChipCount(chipsSnap[id] + deltas[id]);
+  });
+  if (outOfRange) {
+    clearBurnVisuals(cy);
+    showChipRangeNotice();
+    return;
+  }
+  pushUndo();
+  setFiringState(true);
+  clearBurnVisuals(cy);
 
   nodeIds.forEach(function(vid) {
     if (deltas[vid] !== undefined)
@@ -817,7 +882,7 @@ function fireVertices(cy, nodeIds) {
     var tgtPos = posSnap[anim.to] || (function(){
       var p = cy.getElementById(anim.to).position(); return {x:p.x,y:p.y};
     }());
-    var tid = 'traveling_' + (travelCounter++);
+    var tid = nextGeneratedId('traveling');
     var chipSize = (VERTEX_RADIUS / 5) * 2;
     cy.add({
       data: { id: tid, chip_type: 'traveling_chip', chip_size: chipSize },
@@ -841,12 +906,12 @@ function fireVertices(cy, nodeIds) {
 
 function computeDhar(cy, initialIds) {
   if (!Array.isArray(initialIds)) initialIds = [initialIds];
-  var initialSet = {};
+  var initialSet = idMap();
   initialIds.forEach(function(id){ initialSet[id] = true; });
   var generalized = initialIds.length > 1;
   var qId = generalized ? null : initialIds[0];
-  var chips = {};
-  cy.nodes().filter(function(n){ return !n.data('chip_type'); })
+  var chips = idMap();
+  cy.nodes().filter(isGraphVertex)
     .forEach(function(n){ chips[n.id()] = n.data('chips_count') || 0; });
 
   var debt = generalized ? [] : Object.keys(chips).filter(function(id) {
@@ -855,10 +920,10 @@ function computeDhar(cy, initialIds) {
   var steps = initialIds.map(function(id) {
     return { vertex: id, burn_edges: [], initial: true };
   });
-  var burnt = {};
+  var burnt = idMap();
   initialIds.forEach(function(id){ burnt[id] = true; });
-  var unburnt = {};
-  cy.nodes().filter(function(n){ return !n.data('chip_type') && !initialSet[n.id()]; })
+  var unburnt = idMap();
+  cy.nodes().filter(function(n){ return isGraphVertex(n) && !initialSet[n.id()]; })
     .forEach(function(n){ unburnt[n.id()] = true; });
 
   var changed = true;
@@ -867,7 +932,7 @@ function computeDhar(cy, initialIds) {
     Object.keys(unburnt).sort().forEach(function(vId) {
       if (!unburnt[vId]) return;
       var edgesToBurnt = 0, burnEdgeIds = [];
-      cy.edges().forEach(function(edge) {
+      cy.edges().filter(isGraphEdge).forEach(function(edge) {
         var src = edge.data('source'), tgt = edge.data('target');
         var neighbor = (src === vId) ? tgt : (tgt === vId) ? src : null;
         if (neighbor && burnt[neighbor]) { edgesToBurnt++; burnEdgeIds.push(edge.id()); }
@@ -921,9 +986,6 @@ function playDhar(cy, data) {
           } else if (data.generalized) {
             el.textContent = 'Some vertices remain unburnt.';
             el.style.color = '#f45b72';
-            cy.nodes().filter(function(n) {
-              return !n.data('chip_type') && data.unburnt.indexOf(n.id()) !== -1;
-            }).select();
           } else if (data.debt.length) {
             el.textContent = 'Not q-reduced: debt away from q at ' + data.debt.join(', ') + '.';
             el.style.color = '#ffb547';
@@ -933,9 +995,23 @@ function playDhar(cy, data) {
           } else {
             el.textContent = 'Not q-reduced. The unburnt set {' + data.unburnt.join(', ') + '} can fire legally.';
             el.style.color = '#f45b72';
-            cy.nodes().filter(function(n) {
-              return !n.data('chip_type') && data.unburnt.indexOf(n.id()) !== -1;
-            }).select();
+          }
+          // The burn starts by clearing selection. Finish with exactly the
+          // unburnt set selected so Enter immediately fires that legal set.
+          // The seed highlight is useful while the animation runs, but after
+          // completion it looks like a second selection, so remove it.
+          cy.nodes().unselect();
+          data.steps.forEach(function(step) {
+            if (step.initial) {
+              cy.getElementById(step.vertex)
+                .removeStyle('overlay-color overlay-opacity overlay-padding');
+            }
+          });
+          cy.nodes().filter(function(n) {
+            return isGraphVertex(n) && data.unburnt.indexOf(n.id()) !== -1;
+          }).select();
+          if (document.activeElement === document.getElementById('burn-btn')) {
+            document.getElementById('cytoscape-graph').focus();
           }
         }, DHAR_STEP_MS / 2);
         burnState.timeouts.push(rid);
@@ -973,16 +1049,20 @@ function buildContextMenu(cy) {
 
   btn('+ Add chip', function() {
     if (target && !isFiring) {
+      var next = (target.data('chips_count') || 0) + 1;
+      if (!isAllowedChipCount(next)) { showChipRangeNotice(); return; }
       pushUndo();
-      updateVertex(cy, target.id(), (target.data('chips_count')||0) + 1);
+      updateVertex(cy, target.id(), next);
       titleEl.textContent = 'Vertex "' + target.id() + '"';
       setInput.value = target.data('chips_count') || 0;
     }
   });
   btn('− Remove chip', function() {
     if (target && !isFiring) {
+      var next = (target.data('chips_count') || 0) - 1;
+      if (!isAllowedChipCount(next)) { showChipRangeNotice(); return; }
       pushUndo();
-      updateVertex(cy, target.id(), (target.data('chips_count')||0) - 1);
+      updateVertex(cy, target.id(), next);
       titleEl.textContent = 'Vertex "' + target.id() + '"';
       setInput.value = target.data('chips_count') || 0;
     }
@@ -994,13 +1074,18 @@ function buildContextMenu(cy) {
   lbl.textContent = 'Set:'; lbl.style.color = '#c4c4c4';
   var setInput = document.createElement('input');
   setInput.type = 'number';
+  setInput.min = String(-MAX_ABS_CHIPS);
+  setInput.max = String(MAX_ABS_CHIPS);
+  setInput.step = '1';
   setInput.style.cssText = 'width:58px;padding:4px 5px;border:1px solid #3d4350;border-radius:3px;font-size:13px;background:#252a34;color:#eaeaea';
   var setBtn = document.createElement('button');
   setBtn.textContent = 'OK';
   setBtn.style.cssText = 'padding:4px 10px;cursor:pointer;border:1px solid #3d4350;border-radius:3px;background:#252a34;color:#eaeaea;font-size:13px';
   function applySet() {
-    var val = parseInt(setInput.value, 10);
-    if (!isNaN(val) && target && !isFiring) { pushUndo(); updateVertex(cy, target.id(), val); ctrl.hide(); }
+    var raw = setInput.value.trim();
+    var val = Number(raw);
+    if (!raw || !isAllowedChipCount(val)) { showChipRangeNotice(); return; }
+    if (target && !isFiring) { pushUndo(); updateVertex(cy, target.id(), val); ctrl.hide(); }
   }
   setBtn.addEventListener('click', applySet);
   setInput.addEventListener('keydown', function(e) {
@@ -1042,7 +1127,7 @@ var cy = cytoscape({
   container: document.getElementById('cytoscape-graph'),
   elements: initElements,
   layout: { name: 'preset', padding: 30 },
-  stylesheet: STYLESHEET,
+  style: STYLESHEET,
   wheelSensitivity: 0.4,
   userZoomingEnabled: true,
   userPanningEnabled: true,
@@ -1051,24 +1136,24 @@ var cy = cytoscape({
 });
 
 function updateDashboard() {
-  var nodes = cy.nodes().filter(function(n){ return !n.data('chip_type'); });
+  var nodes = cy.nodes().filter(isGraphVertex);
   document.getElementById('selected-count').textContent = getSelectedVertexIds().length;
   // During an animation the visual chips are deliberately in transit. Keep the
   // invariant readout on the completed divisor until every chip has arrived.
   if (isFiring) return;
-  var ids = {};
+  var ids = idMap();
   nodes.forEach(function(n){ ids[n.id()] = true; });
   var edges = cy.edges().filter(function(e) {
-    return ids[e.data('source')] && ids[e.data('target')];
+    return isGraphEdge(e) && ids[e.data('source')] && ids[e.data('target')];
   });
-  var adjacency = {};
+  var adjacency = idMap();
   nodes.forEach(function(n){ adjacency[n.id()] = []; });
   edges.forEach(function(e) {
     var a = e.data('source'), b = e.data('target');
     adjacency[a].push(b);
     adjacency[b].push(a);
   });
-  var seen = {}, components = 0;
+  var seen = idMap(), components = 0;
   Object.keys(adjacency).forEach(function(start) {
     if (seen[start]) return;
     components++;
@@ -1094,9 +1179,7 @@ function applyLectureMode(enabled) {
   document.getElementById('lecture-btn').textContent = enabled ? 'Exit lecture view' : 'Lecture view';
   VERTEX_RADIUS = enabled ? 40 : 32;
   clearBurnVisuals(cy);
-  cy.nodes().filter(function(n){ return !n.data('chip_type'); }).forEach(function(n) {
-    n.style({ width: enabled ? 80 : 64, height: enabled ? 80 : 64,
-              'font-size': enabled ? 27 : 20, 'font-weight': 800 });
+  cy.nodes().filter(isGraphVertex).forEach(function(n) {
     updateVertex(cy, n.id(), n.data('chips_count') || 0, { preserveBurn: true });
   });
   window.setTimeout(function(){ cy.resize(); cy.fit(undefined, enabled ? 50 : 30); }, 60);
@@ -1116,9 +1199,21 @@ updateDashboard();
 
 // ── Chip drag: keep chip indicators with their parent ──────────────────────
 
+var _nodeDragState = null;
+cy.on('grab', 'node', function(evt) {
+  if (!isGraphVertex(evt.target) || isFiring) return;
+  var p = evt.target.position();
+  _nodeDragState = { id: evt.target.id(), x: p.x, y: p.y,
+                     snapshot: takeSnapshot(), changed: false };
+});
+
 cy.on('drag', 'node', function(evt) {
   var node = evt.target;
-  if (node.data('chip_type')) return;
+  if (!isGraphVertex(node)) return;
+  if (_nodeDragState && _nodeDragState.id === node.id() && !_nodeDragState.changed) {
+    _nodeDragState.changed = true;
+    clearBurnVisuals(cy);
+  }
   var pos = node.position(), id = node.id();
   cy.nodes().filter(function(n){ return n.data('parent_vertex') === id; })
     .forEach(function(chip) {
@@ -1126,16 +1221,29 @@ cy.on('drag', 'node', function(evt) {
     });
 });
 
+cy.on('free', 'node', function(evt) {
+  if (!_nodeDragState || _nodeDragState.id !== evt.target.id()) return;
+  var p = evt.target.position();
+  if (_nodeDragState.changed &&
+      (Math.abs(p.x - _nodeDragState.x) > 0.01 || Math.abs(p.y - _nodeDragState.y) > 0.01)) {
+    pushUndoSnapshot(_nodeDragState.snapshot);
+  }
+  _nodeDragState = null;
+});
+
 // ── Prevent background tap from clearing selection ────────────────────────
-// Snapshot selection at mousedown — before Cytoscape's tap handler deselects.
+// Snapshot selection at pointer-down — before Cytoscape's tap handler
+// deselects. Pointer events cover mouse, touch, and pen input.
 // Then re-apply it synchronously inside the tap handler so no render frame
 // can slip through with an empty selection (avoids the blink).
 var _selBeforeTap = [];
-document.getElementById('cytoscape-graph').addEventListener('mousedown', function() {
+var selectionSurface = document.getElementById('cytoscape-graph');
+var selectionStartEvent = window.PointerEvent ? 'pointerdown' : 'mousedown';
+selectionSurface.addEventListener(selectionStartEvent, function() {
   _selBeforeTap = cy.nodes(':selected')
-    .filter(function(n){ return !n.data('chip_type'); })
+    .filter(isGraphVertex)
     .map(function(n){ return n.id(); });
-});
+}, true);
 var _lastBgTap = 0;
 cy.on('tap', function(evt) {
   if (evt.target !== cy) return;
@@ -1166,10 +1274,10 @@ function applySelectionBorder(node, selected) {
     : { 'overlay-opacity': 0 });
 }
 cy.on('select',   'node', function(evt) {
-  if (!evt.target.data('chip_type')) { applySelectionBorder(evt.target, true); updateDashboard(); }
+  if (isGraphVertex(evt.target)) { applySelectionBorder(evt.target, true); updateDashboard(); }
 });
 cy.on('unselect', 'node', function(evt) {
-  if (!evt.target.data('chip_type')) { applySelectionBorder(evt.target, false); updateDashboard(); }
+  if (isGraphVertex(evt.target)) { applySelectionBorder(evt.target, false); updateDashboard(); }
 });
 
 // ── Double-tap to fire ─────────────────────────────────────────────────────
@@ -1177,7 +1285,7 @@ cy.on('unselect', 'node', function(evt) {
 var lastTap = { time: 0, nodeId: null };
 cy.on('tap', 'node', function(evt) {
   var node = evt.target;
-  if (node.data('chip_type')) return;
+  if (!isGraphVertex(node)) return;
   if (currentMode === 'build') return; // no double-tap-to-fire in build mode
   var now = Date.now(), nodeId = node.id();
   if (now - lastTap.time < DOUBLE_TAP_MS && lastTap.nodeId === nodeId) {
@@ -1197,7 +1305,7 @@ cy.on('tap', 'node', function(evt) {
 var ctxMenu = buildContextMenu(cy);
 
 cy.on('cxttap', 'node', function(evt) {
-  if (evt.target.data('chip_type')) return;
+  if (!isGraphVertex(evt.target)) return;
   if (isFiring) return;
   if (currentMode === 'build') { pushUndo(); deleteVertex(evt.target.id()); return; }
   var orig = evt.originalEvent;
@@ -1216,7 +1324,7 @@ document.getElementById('cytoscape-graph')
 
 function getSelectedVertexIds() {
   return cy.nodes(':selected')
-    .filter(function(n){ return !n.data('chip_type'); })
+    .filter(isGraphVertex)
     .map(function(n){ return n.id(); });
 }
 
@@ -1232,7 +1340,6 @@ function runVertexOperation(kind, ids) {
     showNotice('Select at least one vertex first.', '#ffb547');
     return;
   }
-  pushUndo();
   if (kind === 'borrow') borrowVertices(cy, ids);
   else fireVertices(cy, ids);
 }
@@ -1244,11 +1351,19 @@ function adjustSelected(delta) {
     showNotice('Select at least one vertex first.', '#ffb547');
     return;
   }
+  var updates = ids.map(function(id) {
+    var node = cy.getElementById(id);
+    return { id: id, chips: (node.data('chips_count') || 0) + delta };
+  });
+  if (updates.some(function(update){ return !isAllowedChipCount(update.chips); })) {
+    clearBurnVisuals(cy);
+    showChipRangeNotice();
+    return;
+  }
   pushUndo();
   clearBurnVisuals(cy);
-  ids.forEach(function(id) {
-    var node = cy.getElementById(id);
-    updateVertex(cy, id, (node.data('chips_count') || 0) + delta, { preserveBurn: true });
+  updates.forEach(function(update) {
+    updateVertex(cy, update.id, update.chips, { preserveBurn: true });
   });
   updateDashboard();
 }
@@ -1267,17 +1382,18 @@ document.getElementById('remove-chip-btn').addEventListener('click', function() 
 document.getElementById('zero-btn').addEventListener('click', function() {
   if (isFiring) return;
   pushUndo();
-  cy.nodes().filter(function(n){ return !n.data('chip_type'); })
+  cy.nodes().filter(isGraphVertex)
     .forEach(function(n){ updateVertex(cy, n.id(), 0); });
 });
 
 document.getElementById('canonical-btn').addEventListener('click', function() {
   if (isFiring) return;
   pushUndo();
-  cy.nodes().filter(function(n){ return !n.data('chip_type'); })
+  cy.nodes().filter(isGraphVertex)
     .forEach(function(n) {
       var deg = cy.edges().filter(function(e){
-        return e.data('source') === n.id() || e.data('target') === n.id();
+        return isGraphEdge(e) &&
+               (e.data('source') === n.id() || e.data('target') === n.id());
       }).length;
       updateVertex(cy, n.id(), deg - 2);
     });
@@ -1307,12 +1423,17 @@ var selectBtn = document.getElementById('mode-select-btn');
 var buildBtn  = document.getElementById('mode-build-btn');
 
 function setMode(mode) {
+  if (mode !== 'build') cancelBuildEdge();
   currentMode = mode;
   // Wheel, trackpad, and pinch zoom stay active independently of whether a
   // one-pointer background drag is selecting, panning, or building.
   cy.userZoomingEnabled(true);
   cy.userPanningEnabled(mode === 'pan' || mode === 'build');
   cy.boxSelectionEnabled(mode === 'select');
+  cy.nodes().filter(isGraphVertex).forEach(function(n) {
+    if (!isFiring && mode === 'pan') n.grabify();
+    else n.ungrabify();
+  });
   panBtn.classList.toggle('active',    mode === 'pan');
   selectBtn.classList.toggle('active', mode === 'select');
   buildBtn.classList.toggle('active',  mode === 'build');
@@ -1326,8 +1447,12 @@ setMode('select');
 // ── Keyboard shortcuts ─────────────────────────────────────────────────────
 
 document.addEventListener('keydown', function(e) {
-  var tag = document.activeElement && document.activeElement.tagName;
-  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON') return;
+  if (e.key === 'Escape' && _buildEdge && _buildEdge.active) {
+    cancelBuildEdge();
+    return;
+  }
+  if (isInteractiveShortcutTarget(e.target)) return;
+  if (_buildEdge && _buildEdge.active) return;
   if (e.key === 'Enter') {
     if (e.shiftKey) runVertexOperation('borrow', getSelectedVertexIds());
     else            runVertexOperation('fire', getSelectedVertexIds());
@@ -1355,11 +1480,10 @@ document.getElementById('load-btn').addEventListener('click', function() {
   if (!val) { errEl.textContent = 'Select a graph type first.'; return; }
 
   try {
-    var graphDef, positions = null, layout;
+    var graphDef, positions = null;
     if (val === 'cycle6') {
       graphDef  = makeCycle6();
       positions = cyclePositions(['A','B','C','D','E','F'], 400, 290, 210);
-      layout    = { name: 'preset', padding: 30 };
     } else if (val === 'tetrahedron') {
       graphDef = makeTetrahedron();
     } else if (val === 'cube') {
@@ -1371,7 +1495,7 @@ document.getElementById('load-btn').addEventListener('click', function() {
     } else if (val === 'icosahedron') {
       graphDef = makeIcosahedron();
     } else if (val === 'complete') {
-      var n = parseInt(document.getElementById('param-n').value, 10);
+      var n = Number(document.getElementById('param-n').value);
       graphDef = makeComplete(n);
     } else if (val === 'chain') {
       var raw = document.getElementById('param-cycles').value;
@@ -1382,28 +1506,9 @@ document.getElementById('load-btn').addEventListener('click', function() {
       graphDef = makeChain(lengths);
     }
 
-    clearBurnVisuals(cy);
-    clearUndoStack();
     var elements = buildElements(graphDef, null, positions);
-    cy.elements().remove();
-    cy.add(elements);
-    cy.edges().unselectify();
-
-    if (positions) {
-      cy.layout({ name: 'preset', padding: 30 }).run();
-    } else {
-      cy.layout({
-        name: 'cose',
-        idealEdgeLength: 150,
-        nodeRepulsion: 400000,
-        nodeOverlap: 20,
-        padding: 40,
-        randomize: false,
-        fit: true
-      }).run();
-    }
+    reloadGraph(elements, !!positions);
     currentGraph = graphDef;
-    updateDashboard();
   } catch(err) {
     errEl.textContent = err.message || String(err);
   }
@@ -1412,8 +1517,7 @@ document.getElementById('load-btn').addEventListener('click', function() {
 // ── Build mode ─────────────────────────────────────────────────────────────
 
 var currentMode  = 'select';
-var _edgeCounter = 0;
-var _buildEdge   = { active: false, srcId: null };
+var _buildEdge   = { active: false, srcId: null, tempNodeId: null, tempEdgeId: null };
 
 function domToGraph(e) {
   var rect = document.getElementById('cytoscape-graph').getBoundingClientRect();
@@ -1424,8 +1528,8 @@ function domToGraph(e) {
 
 function nextVertexId() {
   var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  var existing = {};
-  cy.nodes().filter(function(n){ return !n.data('chip_type'); })
+  var existing = idMap();
+  cy.nodes().filter(isGraphVertex)
     .forEach(function(n){ existing[n.id()] = true; });
   for (var i = 0; i < letters.length; i++) { if (!existing[letters[i]]) return letters[i]; }
   var n = 1; while (existing['v'+n]) n++; return 'v'+n;
@@ -1433,24 +1537,50 @@ function nextVertexId() {
 
 function addVertex(pos) {
   var id = nextVertexId(), bg = '#718096';
+  clearBurnVisuals(cy);
   cy.add({ data: { id: id, chips_count: 0, label: '0', divisor_sign: 'zero' },
-           position: { x: pos.x, y: pos.y }, selectable: true, grabbable: true,
+           position: { x: pos.x, y: pos.y }, selectable: true, grabbable: currentMode === 'pan',
            style: { 'background-color': bg, color: '#fff', 'text-outline-color': bg,
                     label: '0', 'text-valign': 'center', 'text-halign': 'center', 'z-index': 20 } });
+  updateVertex(cy, id, 0, { preserveBurn: true });
   updateDashboard();
 }
 
 function addEdgeBetween(srcId, tgtId) {
   if (srcId === tgtId) return;
-  cy.add({ data: { id: 'e_'+(++_edgeCounter), source: srcId, target: tgtId } });
+  clearBurnVisuals(cy);
+  cy.add({ data: { id: nextGeneratedId('edge'), source: srcId, target: tgtId } });
   cy.edges().unselectify();
   updateDashboard();
 }
 
 function deleteVertex(nodeId) {
+  clearBurnVisuals(cy);
   cy.nodes().filter(function(n){ return n.data('parent_vertex') === nodeId; }).remove();
   cy.getElementById(nodeId).remove(); // also removes connected edges
   updateDashboard();
+}
+
+function cancelBuildEdge() {
+  if (!_buildEdge || !_buildEdge.active) return;
+  cy.getElementById(_buildEdge.tempNodeId).remove();
+  cy.getElementById(_buildEdge.tempEdgeId).remove();
+  _buildEdge = { active: false, srcId: null, tempNodeId: null, tempEdgeId: null };
+}
+
+function finishBuildEdge(e) {
+  if (!_buildEdge.active) return;
+  if (isFiring) { cancelBuildEdge(); return; }
+  var insideGraph = e.target && _gc.contains(e.target);
+  var pos = domToGraph(e), srcId = _buildEdge.srcId;
+  cancelBuildEdge();
+  if (!insideGraph) return;
+  var tgt = cy.nodes().filter(function(n) {
+    if (!isGraphVertex(n) || n.id() === srcId) return false;
+    var p = n.position(), dx = p.x-pos.x, dy = p.y-pos.y;
+    return Math.sqrt(dx*dx+dy*dy) <= VERTEX_RADIUS;
+  }).first();
+  if (tgt.length) { pushUndo(); addEdgeBetween(srcId, tgt.id()); }
 }
 
 // Shift-drag in build mode creates an edge
@@ -1459,43 +1589,47 @@ _gc.addEventListener('mousedown', function(e) {
   if (isFiring || currentMode !== 'build' || !e.shiftKey) return;
   var pos = domToGraph(e);
   var src = cy.nodes().filter(function(n) {
-    if (n.data('chip_type')) return false;
+    if (!isGraphVertex(n)) return false;
     var p = n.position(), dx = p.x-pos.x, dy = p.y-pos.y;
-    return Math.sqrt(dx*dx+dy*dy) <= 28;
+    return Math.sqrt(dx*dx+dy*dy) <= VERTEX_RADIUS;
   }).first();
   if (!src.length) return;
   e.preventDefault(); e.stopPropagation();
-  _buildEdge.active = true; _buildEdge.srcId = src.id();
+  cancelBuildEdge();
+  var tempNodeId = nextGeneratedId('build_node');
+  var tempEdgeId = nextGeneratedId('build_edge');
+  _buildEdge = { active: true, srcId: src.id(), tempNodeId: tempNodeId, tempEdgeId: tempEdgeId };
   cy.add([
-    { data: { id: '__btmp_n__' }, position: pos, selectable: false, grabbable: false,
+    { data: { id: tempNodeId, chip_type: 'ui_temporary', ui_temporary: true },
+      position: pos, selectable: false, grabbable: false,
       style: { width: 4, height: 4, 'background-color': '#eaeaea', label: '', 'border-width': 0, 'z-index': 999 } },
-    { data: { id: '__btmp_e__', source: src.id(), target: '__btmp_n__' },
+    { data: { id: tempEdgeId, source: src.id(), target: tempNodeId, ui_temporary: true },
       style: { 'line-color': '#eaeaea', 'line-style': 'dashed', width: 2, 'z-index': 999 } }
   ]);
 }, true);
 
-_gc.addEventListener('mousemove', function(e) {
+window.addEventListener('mousemove', function(e) {
   if (!_buildEdge.active) return;
-  cy.getElementById('__btmp_n__').position(domToGraph(e));
+  cy.getElementById(_buildEdge.tempNodeId).position(domToGraph(e));
 });
 
-_gc.addEventListener('mouseup', function(e) {
-  if (!_buildEdge.active) return;
-  var pos = domToGraph(e), srcId = _buildEdge.srcId;
-  cy.getElementById('__btmp_n__').remove();
-  cy.getElementById('__btmp_e__').remove();
-  _buildEdge.active = false; _buildEdge.srcId = null;
-  var tgt = cy.nodes().filter(function(n) {
-    if (n.data('chip_type') || n.id() === srcId || n.id() === '__btmp_n__') return false;
-    var p = n.position(), dx = p.x-pos.x, dy = p.y-pos.y;
-    return Math.sqrt(dx*dx+dy*dy) <= 28;
-  }).first();
-  if (tgt.length) { pushUndo(); addEdgeBetween(srcId, tgt.id()); }
-});
+window.addEventListener('mouseup', finishBuildEdge, true);
+// Pointer-based automation and some pen/touch stacks do not always emit the
+// compatibility mouseup.  Whichever release event arrives first finishes the
+// drag; the active guard makes the later compatibility event a no-op.
+window.addEventListener('pointerup', finishBuildEdge, true);
+window.addEventListener('pointercancel', cancelBuildEdge, true);
+window.addEventListener('blur', cancelBuildEdge);
+document.addEventListener('mouseleave', cancelBuildEdge);
 
 // Right-click edge in build mode: delete
 cy.on('cxttap', 'edge', function(evt) {
-  if (!isFiring && currentMode === 'build') { pushUndo(); evt.target.remove(); updateDashboard(); }
+  if (!isFiring && currentMode === 'build' && isGraphEdge(evt.target)) {
+    pushUndo();
+    clearBurnVisuals(cy);
+    evt.target.remove();
+    updateDashboard();
+  }
 });
 
 // ── JSON import / export ───────────────────────────────────────────────────
@@ -1507,50 +1641,90 @@ function clearUndoStack() {
 
 function reloadGraph(elements, hasPositions) {
   if (isFiring) return;
+  _nodeDragState = null;
+  cancelBuildEdge();
+  var previous = takeSnapshot();
   clearBurnVisuals(cy);
-  clearUndoStack();
-  cy.elements().remove();
-  cy.add(elements);
-  cy.edges().unselectify();
-  if (hasPositions) {
-    cy.layout({ name: 'preset', padding: 30 }).run();
-  } else {
-    cy.layout({ name: 'cose', idealEdgeLength: 150, nodeRepulsion: 400000,
-                nodeOverlap: 20, padding: 40, randomize: false, fit: true }).run();
+  try {
+    cy.elements().remove();
+    cy.add(elements);
+    cy.edges().unselectify();
+    if (hasPositions) {
+      cy.layout({ name: 'preset', padding: 30 }).run();
+    } else {
+      cy.layout({ name: 'cose', idealEdgeLength: 150, nodeRepulsion: 400000,
+                  nodeOverlap: 20, padding: 40, randomize: false, fit: true }).run();
+    }
+    cy.nodes().filter(isGraphVertex).forEach(function(n) {
+      updateVertex(cy, n.id(), n.data('chips_count') || 0, { preserveBurn: true });
+    });
+    setMode(currentMode);
+  } catch (err) {
+    cy.elements().remove();
+    restoreSnapshot(previous);
+    throw err;
   }
+  clearUndoStack();
   updateDashboard();
 }
 
 function importMarkusFengJSON(jsonStr) {
   var data;
   try { data = JSON.parse(jsonStr); } catch(e) { return 'Invalid JSON: ' + e.message; }
-  if (!Array.isArray(data.nodes) || !Array.isArray(data.links))
+  if (!data || !Array.isArray(data.nodes) || !Array.isArray(data.links))
     return 'Expected "nodes" and "links" arrays.';
+  if (data.nodes.length > MAX_IMPORTED_VERTICES)
+    return 'Please keep imported graphs to at most ' + MAX_IMPORTED_VERTICES + ' vertices.';
+
+  for (var i = 0; i < data.nodes.length; i++) {
+    var rawNode = data.nodes[i];
+    if (!rawNode || typeof rawNode !== 'object' || Array.isArray(rawNode))
+      return 'Node ' + i + ' must be an object.';
+    if (rawNode.text !== undefined && typeof rawNode.text !== 'string')
+      return 'The text of node ' + i + ' must be a string.';
+  }
 
   var names = data.nodes.map(function(n, i) {
     return (typeof n.text === 'string' && n.text.trim()) ? n.text.trim() : ('v'+i);
   });
-  var uniqueNames = {};
+  var uniqueNames = idMap();
   for (var i = 0; i < names.length; i++) {
     if (uniqueNames[names[i]]) return 'Vertex labels must be unique; duplicate: "' + names[i] + '".';
     uniqueNames[names[i]] = true;
   }
-  var hasPos = data.nodes.length > 0 && data.nodes.every(function(n){
-    return Number.isFinite(Number(n.x)) && Number.isFinite(Number(n.y));
+  var hasAnyPosition = data.nodes.some(function(n) {
+    return Object.prototype.hasOwnProperty.call(n, 'x') || Object.prototype.hasOwnProperty.call(n, 'y');
   });
-  var positions = {};
+  var validPositions = data.nodes.every(function(n){
+    return typeof n.x === 'number' && Number.isFinite(n.x) &&
+           typeof n.y === 'number' && Number.isFinite(n.y);
+  });
+  if (hasAnyPosition && !validPositions)
+    return 'Every positioned node must have finite numeric x and y coordinates.';
+  var hasPos = data.nodes.length > 0 && hasAnyPosition && validPositions;
+  var positions = idMap();
   if (hasPos) data.nodes.forEach(function(n, i) {
-    positions[names[i]] = { x: Number(n.x), y: Number(n.y) };
+    positions[names[i]] = { x: n.x, y: n.y };
   });
 
   var edges = [];
-  data.links.forEach(function(link) {
-    if (link.type !== 'Link') return; // ignore StartLink / SelfLink
+  for (var linkIndex = 0; linkIndex < data.links.length; linkIndex++) {
+    var link = data.links[linkIndex];
+    if (!link || typeof link !== 'object' || Array.isArray(link))
+      return 'Link ' + linkIndex + ' must be an object.';
+    if (link.type !== 'Link') continue; // ignore StartLink / SelfLink
     var a = link.nodeA, b = link.nodeB;
-    if (a < 0 || a >= names.length || b < 0 || b >= names.length) return;
-    var mult = (link.text && /^\d+$/.test(link.text.trim())) ? Math.max(1, parseInt(link.text,10)) : 1;
+    if (!Number.isInteger(a) || !Number.isInteger(b) ||
+        a < 0 || a >= names.length || b < 0 || b >= names.length)
+      return 'Link ' + linkIndex + ' has invalid node indices.';
+    if (link.text !== undefined && link.text !== null && typeof link.text !== 'string')
+      return 'The text of link ' + linkIndex + ' must be a string.';
+    var linkText = typeof link.text === 'string' ? link.text.trim() : '';
+    var mult = /^\d+$/.test(linkText) ? Math.max(1, Number(linkText)) : 1;
+    if (!Number.isSafeInteger(mult) || edges.length + mult > MAX_IMPORTED_EDGES)
+      return 'Please keep imported graphs to at most ' + MAX_IMPORTED_EDGES + ' edges.';
     for (var m = 0; m < mult; m++) edges.push([names[a], names[b], 1]);
-  });
+  }
 
   var elements = buildElements({ vertices: names, edges: edges }, null, hasPos ? positions : null);
   reloadGraph(elements, hasPos);
@@ -1558,15 +1732,15 @@ function importMarkusFengJSON(jsonStr) {
 }
 
 function exportMarkusFengJSON() {
-  var verts = cy.nodes().filter(function(n){ return !n.data('chip_type'); });
-  var idxOf = {};
+  var verts = cy.nodes().filter(isGraphVertex);
+  var idxOf = idMap();
   var nodes = verts.map(function(n, i) {
     idxOf[n.id()] = i;
     var p = n.position();
     return { x: Math.round(p.x), y: Math.round(p.y), text: n.id(), isAcceptState: false };
   });
   var links = [];
-  cy.edges().forEach(function(e) {
+  cy.edges().filter(isGraphEdge).forEach(function(e) {
     var a = idxOf[e.data('source')], b = idxOf[e.data('target')];
     if (a === undefined || b === undefined) return;
     links.push({ type: 'Link', nodeA: a, nodeB: b, text: '',
@@ -1597,17 +1771,35 @@ document.getElementById('json-import-btn').addEventListener('click', function() 
 document.getElementById('json-export-btn').addEventListener('click', function() { showJsonModal('export'); });
 
 document.getElementById('json-load-btn').addEventListener('click', function() {
-  var err = importMarkusFengJSON(jsonTextarea.value);
+  var err;
+  try {
+    err = importMarkusFengJSON(jsonTextarea.value);
+  } catch (e) {
+    err = 'Could not load graph: ' + (e.message || String(e));
+  }
   if (err) { jsonError.textContent = err; return; }
   jsonModal.style.display = 'none';
 });
 
 document.getElementById('json-copy-btn').addEventListener('click', function() {
-  jsonTextarea.select();
-  document.execCommand('copy');
   var btn = document.getElementById('json-copy-btn');
-  btn.textContent = 'Copied!';
-  setTimeout(function(){ btn.textContent = 'Copy'; }, 1500);
+  function copied() {
+    jsonError.textContent = '';
+    btn.textContent = 'Copied!';
+    setTimeout(function(){ btn.textContent = 'Copy'; }, 1500);
+  }
+  function legacyCopy() {
+    jsonTextarea.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    if (ok) copied();
+    else jsonError.textContent = 'Copy failed; select the JSON and copy it manually.';
+  }
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(jsonTextarea.value).then(copied, legacyCopy);
+  } else {
+    legacyCopy();
+  }
 });
 
 document.getElementById('json-close-btn').addEventListener('click', function() {
@@ -1630,31 +1822,37 @@ var _undoStack = [];
 
 function takeSnapshot() {
   var snap = { nodes: [], edges: [] };
-  cy.nodes().filter(function(n){ return !n.data('chip_type'); }).forEach(function(n) {
+  cy.nodes().filter(isGraphVertex).forEach(function(n) {
     var p = n.position();
     snap.nodes.push({ id: n.id(), chips_count: n.data('chips_count')||0, x: p.x, y: p.y });
   });
-  cy.edges().forEach(function(e) {
+  cy.edges().filter(isGraphEdge).forEach(function(e) {
     snap.edges.push({ id: e.id(), source: e.data('source'), target: e.data('target') });
   });
   return snap;
 }
 
 function pushUndo() {
-  _undoStack.push(takeSnapshot());
+  pushUndoSnapshot(takeSnapshot());
+}
+
+function pushUndoSnapshot(snap) {
+  _undoStack.push(snap);
   if (_undoStack.length > 50) _undoStack.shift();
   document.getElementById('undo-btn').disabled = false;
 }
 
 function restoreSnapshot(snap) {
-  cancelBurn();
+  _nodeDragState = null;
+  cancelBuildEdge();
+  clearBurnVisuals(cy);
   cy.elements().remove();
   snap.nodes.forEach(function(n) {
     var c = vertexColors(n.chips_count);
     cy.add({
       data: { id: n.id, chips_count: n.chips_count, label: ''+n.chips_count,
               divisor_sign: n.chips_count < 0 ? 'negative' : (n.chips_count===0 ? 'zero' : 'positive') },
-      position: { x: n.x, y: n.y }, selectable: true, grabbable: true,
+      position: { x: n.x, y: n.y }, selectable: true, grabbable: currentMode === 'pan',
       style: { 'background-color': c.bg, color: c.fg, 'text-outline-color': c.bg,
                label: ''+n.chips_count, 'text-valign': 'center', 'text-halign': 'center',
                'z-index': 20, 'overlay-opacity': 0 }
@@ -1667,6 +1865,8 @@ function restoreSnapshot(snap) {
   snap.nodes.forEach(function(n) {
     updateVertex(cy, n.id, n.chips_count, { preserveBurn: true });
   });
+  setMode(currentMode);
+  updateDashboard();
 }
 
 function undo() {
@@ -1678,7 +1878,8 @@ function undo() {
 document.getElementById('undo-btn').addEventListener('click', undo);
 
 document.addEventListener('keydown', function(e) {
-  if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
+  if (!isEditingTarget(e.target) && !e.shiftKey &&
+      (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
     e.preventDefault();
     undo();
   }
@@ -1688,17 +1889,14 @@ document.addEventListener('keydown', function(e) {
 
 function borrowVertices(cy, nodeIds) {
   if (isFiring || !nodeIds || nodeIds.length === 0) return;
-  setFiringState(true);
-  clearBurnVisuals(cy);
-
-  var inSet = {};
+  var inSet = idMap();
   nodeIds.forEach(function(id){ inSet[id] = true; });
 
-  var deltas = {}, animations = [];
+  var deltas = idMap(), animations = [];
 
   nodeIds.forEach(function(vid) {
     if (deltas[vid] === undefined) deltas[vid] = 0;
-    cy.edges().forEach(function(edge) {
+    cy.edges().filter(isGraphEdge).forEach(function(edge) {
       var src = edge.data('source'), tgt = edge.data('target');
       var neighbor = (src === vid) ? tgt : (tgt === vid) ? src : null;
       if (neighbor === null) return;
@@ -1708,13 +1906,25 @@ function borrowVertices(cy, nodeIds) {
     });
   });
 
-  var posSnap = {}, chipsSnap = {};
+  var posSnap = idMap(), chipsSnap = idMap();
   Object.keys(deltas).forEach(function(id) {
     var node = cy.getElementById(id);
     var p = node.position();
     posSnap[id] = { x: p.x, y: p.y };
     chipsSnap[id] = node.data('chips_count') || 0;
   });
+
+  var outOfRange = Object.keys(deltas).some(function(id) {
+    return !isAllowedChipCount(chipsSnap[id] + deltas[id]);
+  });
+  if (outOfRange) {
+    clearBurnVisuals(cy);
+    showChipRangeNotice();
+    return;
+  }
+  pushUndo();
+  setFiringState(true);
+  clearBurnVisuals(cy);
 
   // Neighbors (borrowed-from) update immediately — symmetric with how firing
   // vertices update immediately in fireVertices.
@@ -1749,7 +1959,7 @@ function borrowVertices(cy, nodeIds) {
     var tgtPos = posSnap[anim.to] || (function(){
       var p = cy.getElementById(anim.to).position(); return {x:p.x,y:p.y};
     }());
-    var tid = 'traveling_' + (travelCounter++);
+    var tid = nextGeneratedId('traveling');
     var chipSize = (VERTEX_RADIUS / 5) * 2;
     cy.add({
       data: { id: tid, chip_type: 'traveling_chip', chip_size: chipSize },
