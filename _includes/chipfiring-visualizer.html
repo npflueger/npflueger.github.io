@@ -349,7 +349,7 @@
         <h4>Dhar's burning algorithm</h4>
         <table><tbody>
           <tr><td class="key">Select vertices + B / Burn</td><td>Start the fire from every selected vertex; a single starting vertex also tests whether the divisor is q-reduced. When the burn stops, the unburnt vertices become the selected set</td></tr>
-          <tr><td class="key">Clear Burn</td><td>Remove burn highlighting</td></tr>
+          <tr><td class="key">Clear Burn</td><td>Remove burn animation and highlighting</td></tr>
         </tbody></table>
         <h4>JSON import / export</h4>
         <table><tbody>
@@ -388,11 +388,17 @@ var VERTEX_RADIUS      = 32;
 var ANIMATION_MS       = 500;
 var DOUBLE_TAP_MS      = 300;
 var DHAR_STEP_MS       = 700;
+var DHAR_SHOCKWAVE_MS  = 160;
+var DHAR_FLAME_TRAVEL_MS = 500;
+var DHAR_SMOLDER_TICK_MS = 420;
+var MAX_DHAR_FLAMES    = 180;
+var MAX_DHAR_SMOLDER_EDGES = 320;
+var MAX_DHAR_BURNING_VERTICES = 180;
 var BURN_COLOR         = '#f45b72';
+var BURN_BRIGHT_COLOR  = '#ff8798';
 var BURN_Q_COLOR       = '#ffb547';
-var BURN_OVERLAY_OP    = 0.38;
-var BURN_OVERLAY_PAD   = '10px';
 var BURN_EDGE_COLOR    = '#f45b72';
+var BURN_EDGE_DIM_COLOR = '#c93652';
 var BURN_EDGE_WIDTH    = 6;
 var SEL_OVERLAY_COLOR  = '#ffe08a';
 var SEL_OVERLAY_OP     = 0.42;
@@ -664,6 +670,35 @@ var STYLESHEET = [
     'background-color': '#25c56a',
     opacity: 0.85
   }},
+  { selector: 'node.dhar-burning', style: {
+    'border-color': BURN_COLOR,
+    'border-width': 4,
+    'border-opacity': 0.76,
+    'transition-property': 'border-color, border-width, border-opacity',
+    'transition-duration': DHAR_SMOLDER_TICK_MS + 'ms',
+    'transition-timing-function': 'ease-in-out'
+  }},
+  { selector: 'node.dhar-burning.dhar-bright', style: {
+    'border-color': BURN_BRIGHT_COLOR,
+    'border-width': 7,
+    'border-opacity': 1
+  }},
+  { selector: 'node.dhar-flame', style: {
+    shape: 'triangle',
+    width: 12, height: 16,
+    'background-color': BURN_Q_COLOR,
+    'border-color': BURN_COLOR,
+    'border-width': 3,
+    'border-opacity': 0.95,
+    opacity: 0.92,
+    'z-index': 1000,
+    'transition-property': 'opacity, background-color',
+    'transition-duration': DHAR_SMOLDER_TICK_MS + 'ms'
+  }},
+  { selector: 'node.dhar-flame.dhar-bright', style: {
+    'background-color': '#ffe08a',
+    opacity: 1
+  }},
   { selector: 'node:selected', style: {
     'overlay-color': '#555',
     'overlay-opacity': 0.25,
@@ -676,6 +711,16 @@ var STYLESHEET = [
     'control-point-step-size': '40px',
     'target-arrow-shape': 'none',
     'target-arrow-color': '#a8b6ca'
+  }},
+  { selector: 'edge.dhar-smolder', style: {
+    'line-color': BURN_EDGE_DIM_COLOR,
+    width: BURN_EDGE_WIDTH,
+    'transition-property': 'line-color',
+    'transition-duration': DHAR_SMOLDER_TICK_MS + 'ms',
+    'transition-timing-function': 'ease-in-out'
+  }},
+  { selector: 'edge.dhar-smolder.dhar-bright', style: {
+    'line-color': BURN_EDGE_COLOR
   }}
 ];
 
@@ -705,25 +750,54 @@ function chipLayout(cx, cy, nChips) {
 
 // ── Vertex update ──────────────────────────────────────────────────────────
 
-var burnState = { runId: 0, timeouts: [] };
+var burnState = {
+  runId: 0,
+  timeouts: [],
+  smolderTimer: null,
+  burningNodes: idMap(),
+  smolderEdges: idMap(),
+  edgeFlames: idMap(),
+  flamesTo: idMap(),
+  animatedFlameCount: 0,
+  shockwaveCount: 0,
+  burningNodeCount: 0,
+  smolderEdgeCount: 0,
+  phase: false
+};
 
 function cancelBurn() {
   burnState.runId++;
   burnState.timeouts.forEach(clearTimeout);
   burnState.timeouts = [];
+  if (burnState.smolderTimer !== null) clearInterval(burnState.smolderTimer);
+  burnState.smolderTimer = null;
+  burnState.burningNodes = idMap();
+  burnState.smolderEdges = idMap();
+  burnState.edgeFlames = idMap();
+  burnState.flamesTo = idMap();
+  burnState.animatedFlameCount = 0;
+  burnState.shockwaveCount = 0;
+  burnState.burningNodeCount = 0;
+  burnState.smolderEdgeCount = 0;
+  burnState.phase = false;
 }
 
 function clearBurnVisuals(cy) {
   cancelBurn();
   cy.nodes().filter(isGraphVertex).forEach(function(n) {
-    n.removeStyle('overlay-color overlay-opacity overlay-padding');
+    n.stop(true, false);
+    n.removeClass('dhar-burning dhar-animate dhar-bright');
+    n.removeStyle('overlay-color overlay-opacity overlay-padding border-color border-width border-opacity');
     // Re-apply selection overlay if still selected (removeStyle would have cleared it)
     if (n.selected()) {
       n.style({ 'overlay-color': SEL_OVERLAY_COLOR, 'overlay-opacity': SEL_OVERLAY_OP,
                 'overlay-padding': SEL_OVERLAY_PAD });
     }
   });
-  cy.edges().filter(isGraphEdge).removeStyle('line-color width');
+  cy.nodes().filter(function(n){ return !!n.data('burn_visual'); }).remove();
+  cy.edges().filter(isGraphEdge)
+    .removeClass('dhar-smolder dhar-animate dhar-bright')
+    .removeStyle('line-color width source-arrow-shape source-arrow-color target-arrow-shape target-arrow-color arrow-scale');
   var el = document.getElementById('burn-result');
   if (el) { el.textContent = ''; el.style.color = ''; }
 }
@@ -957,66 +1031,262 @@ function computeDhar(cy, initialIds) {
   };
 }
 
-function playDhar(cy, data) {
-  clearBurnVisuals(cy);
-  cy.nodes().unselect();
-  var runId = burnState.runId;
+function ensureDharSmolderTimer(cy, runId) {
+  if (burnState.smolderTimer !== null) return;
+  var timerId = setInterval(function() {
+    if (runId !== burnState.runId) {
+      clearInterval(timerId);
+      if (burnState.smolderTimer === timerId) burnState.smolderTimer = null;
+      return;
+    }
+    burnState.phase = !burnState.phase;
+    var animated = cy.elements('.dhar-animate');
+    if (burnState.phase) animated.addClass('dhar-bright');
+    else animated.removeClass('dhar-bright');
+  }, DHAR_SMOLDER_TICK_MS);
+  burnState.smolderTimer = timerId;
+}
 
-  data.steps.forEach(function(step, i) {
+function markDharEdgeBurning(cy, edge, runId) {
+  var edgeId = edge.id();
+  if (burnState.smolderEdges[edgeId]) return;
+  burnState.smolderEdges[edgeId] = true;
+  burnState.smolderEdgeCount++;
+  edge.addClass('dhar-smolder');
+  if (burnState.smolderEdgeCount <= MAX_DHAR_SMOLDER_EDGES) {
+    edge.addClass('dhar-animate');
+  }
+  ensureDharSmolderTimer(cy, runId);
+}
+
+function pointToward(from, to, distance) {
+  var dx = to.x - from.x, dy = to.y - from.y;
+  var length = Math.sqrt(dx * dx + dy * dy);
+  if (!length) return { x: from.x, y: from.y };
+  var scale = Math.min(distance, length / 3) / length;
+  return { x: from.x + dx * scale, y: from.y + dy * scale };
+}
+
+function edgePoint(edge, endpoint, fallbackNodeId, otherNodeId) {
+  try {
+    var point = endpoint === 'source' ? edge.sourceEndpoint() : edge.targetEndpoint();
+    if (point && Number.isFinite(point.x) && Number.isFinite(point.y)) return point;
+  } catch (e) {}
+  var fallback = cy.getElementById(fallbackNodeId).position();
+  var other = cy.getElementById(otherNodeId).position();
+  return pointToward(fallback, other, VERTEX_RADIUS);
+}
+
+function removeDharFlamesEntering(cy, vertexId) {
+  var incoming = burnState.flamesTo[vertexId];
+  if (!incoming) return;
+  Object.keys(incoming).forEach(function(edgeId) {
+    var info = burnState.edgeFlames[edgeId];
+    if (!info) return;
+    if (info.markerId) {
+      var marker = cy.getElementById(info.markerId);
+      if (marker.length) marker.stop(true, false).remove();
+      burnState.animatedFlameCount = Math.max(0, burnState.animatedFlameCount - 1);
+    } else if (info.arrowSide) {
+      var edge = cy.getElementById(edgeId);
+      edge.removeStyle(info.arrowSide + '-arrow-shape ' +
+                       info.arrowSide + '-arrow-color arrow-scale');
+    }
+    delete burnState.edgeFlames[edgeId];
+  });
+  delete burnState.flamesTo[vertexId];
+}
+
+function launchDharEdgeFlame(cy, edge, fromId, toId, runId) {
+  var edgeId = edge.id();
+  markDharEdgeBurning(cy, edge, runId);
+  if (burnState.edgeFlames[edgeId]) return;
+
+  var sourceIsFrom = edge.data('source') === fromId;
+  var sourcePoint = edgePoint(edge, sourceIsFrom ? 'source' : 'target', fromId, toId);
+  var targetPoint = edgePoint(edge, sourceIsFrom ? 'target' : 'source', toId, fromId);
+  var midpoint;
+  try { midpoint = edge.midpoint(); } catch (e) { midpoint = null; }
+  if (!midpoint || !Number.isFinite(midpoint.x) || !Number.isFinite(midpoint.y)) {
+    midpoint = { x: (sourcePoint.x + targetPoint.x) / 2,
+                 y: (sourcePoint.y + targetPoint.y) / 2 };
+  }
+  var start = pointToward(sourcePoint, midpoint, 7);
+  var waitPoint = pointToward(targetPoint, midpoint, 9);
+  if (!burnState.flamesTo[toId]) burnState.flamesTo[toId] = idMap();
+  burnState.flamesTo[toId][edgeId] = true;
+
+  if (burnState.animatedFlameCount >= MAX_DHAR_FLAMES) {
+    var arrowSide = sourceIsFrom ? 'target' : 'source';
+    edge.style(arrowSide + '-arrow-shape', 'triangle');
+    edge.style(arrowSide + '-arrow-color', BURN_Q_COLOR);
+    edge.style('arrow-scale', 1.1);
+    burnState.edgeFlames[edgeId] = {
+      markerId: null, from: fromId, to: toId,
+      status: 'waiting', arrowSide: arrowSide
+    };
+    return;
+  }
+
+  var markerId = nextGeneratedId('dhar_flame');
+  var marker = cy.add({
+    data: { id: markerId, chip_type: 'dhar_flame', chip_size: 12,
+            burn_visual: true, parent_edge: edgeId },
+    classes: 'dhar-flame dhar-animate',
+    position: start,
+    selectable: false,
+    grabbable: false
+  });
+  burnState.edgeFlames[edgeId] = {
+    markerId: markerId, from: fromId, to: toId, status: 'traveling'
+  };
+  burnState.animatedFlameCount++;
+  ensureDharSmolderTimer(cy, runId);
+
+  function isCurrentFlame() {
+    var info = burnState.edgeFlames[edgeId];
+    return runId === burnState.runId && info && info.markerId === markerId;
+  }
+  var firstHalf = Math.max(1, Math.floor(DHAR_FLAME_TRAVEL_MS / 2));
+  marker.animate({ position: midpoint }, {
+    duration: firstHalf,
+    complete: function() {
+      if (!isCurrentFlame()) return;
+      marker.animate({ position: waitPoint }, {
+        duration: Math.max(1, DHAR_FLAME_TRAVEL_MS - firstHalf),
+        complete: function() {
+          if (!isCurrentFlame()) return;
+          burnState.edgeFlames[edgeId].status = 'waiting';
+        }
+      });
+    }
+  });
+}
+
+function showDharShockwave(cy, node, initial, runId) {
+  if (burnState.shockwaveCount >= MAX_DHAR_BURNING_VERTICES) return;
+  burnState.shockwaveCount++;
+  var markerId = nextGeneratedId('dhar_shockwave');
+  var diameter = VERTEX_RADIUS * 2;
+  var wave = cy.add({
+    data: { id: markerId, chip_type: 'dhar_shockwave', chip_size: diameter + 4,
+            burn_visual: true },
+    position: node.position(),
+    selectable: false,
+    grabbable: false
+  });
+  wave.style({
+    shape: 'ellipse', width: diameter + 4, height: diameter + 4,
+    'background-opacity': 0,
+    'border-color': initial ? BURN_Q_COLOR : BURN_COLOR,
+    'border-width': 4, 'border-opacity': 0.95,
+    label: '', 'z-index': 900
+  });
+  wave.animate({ style: {
+    width: diameter + 34, height: diameter + 34,
+    'border-width': 1, 'border-opacity': 0
+  }}, {
+    duration: DHAR_SHOCKWAVE_MS,
+    complete: function() {
+      burnState.shockwaveCount = Math.max(0, burnState.shockwaveCount - 1);
+      if (runId === burnState.runId && wave.length) wave.remove();
+    }
+  });
+}
+
+function igniteDharBatch(cy, steps, burnt, runId) {
+  steps.forEach(function(step) { removeDharFlamesEntering(cy, step.vertex); });
+  steps.forEach(function(step) { burnt[step.vertex] = true; });
+  steps.forEach(function(step) {
+    showDharShockwave(cy, cy.getElementById(step.vertex), !!step.initial, runId);
+  });
+
+  var tid = setTimeout(function() {
+    if (runId !== burnState.runId) return;
+    steps.forEach(function(step) {
+      var node = cy.getElementById(step.vertex);
+      if (!burnState.burningNodes[step.vertex]) {
+        burnState.burningNodes[step.vertex] = { initial: !!step.initial };
+        burnState.burningNodeCount++;
+      }
+      node.addClass('dhar-burning');
+      if (burnState.burningNodeCount <= MAX_DHAR_BURNING_VERTICES) {
+        node.addClass('dhar-animate');
+      }
+      ensureDharSmolderTimer(cy, runId);
+    });
+
+    steps.forEach(function(step) {
+      cy.getElementById(step.vertex).connectedEdges().filter(isGraphEdge).forEach(function(edge) {
+        var source = edge.data('source'), target = edge.data('target');
+        var neighbor = source === step.vertex ? target :
+                       (target === step.vertex ? source : null);
+        if (neighbor === null) return;
+        markDharEdgeBurning(cy, edge, runId);
+        if (!burnt[neighbor]) launchDharEdgeFlame(cy, edge, step.vertex, neighbor, runId);
+      });
+    });
+  }, DHAR_SHOCKWAVE_MS);
+  burnState.timeouts.push(tid);
+}
+
+function finishDharPlayback(cy, data, runId) {
+  if (runId !== burnState.runId) return;
+  var el = document.getElementById('burn-result');
+  if (!el) return;
+  if (data.generalized && data.result === 'all_burned') {
+    el.textContent = 'The whole graph burns.';
+    el.style.color = '#25c56a';
+  } else if (data.generalized) {
+    el.textContent = 'Some vertices remain unburnt.';
+    el.style.color = '#f45b72';
+  } else if (data.debt.length) {
+    el.textContent = 'Not q-reduced: debt away from q at ' + data.debt.join(', ') + '.';
+    el.style.color = '#ffb547';
+  } else if (data.result === 'all_burned') {
+    el.textContent = '✓ Whole graph burned — the divisor is q-reduced.';
+    el.style.color = '#25c56a';
+  } else {
+    el.textContent = 'Not q-reduced. The unburnt set {' + data.unburnt.join(', ') + '} can fire legally.';
+    el.style.color = '#f45b72';
+  }
+
+  cy.nodes().unselect();
+  cy.nodes().filter(function(n) {
+    return isGraphVertex(n) && data.unburnt.indexOf(n.id()) !== -1;
+  }).select();
+  if (document.activeElement === document.getElementById('burn-btn')) {
+    document.getElementById('cytoscape-graph').focus();
+  }
+}
+
+function playDhar(cy, data) {
+  // Unselect before clearing styles so the old seed selection cannot leave an
+  // explicit overlay behind while the burn animation is running.
+  cy.nodes().unselect();
+  clearBurnVisuals(cy);
+  var runId = burnState.runId;
+  var burnt = idMap();
+  var batches = [];
+  if (data.initialCount) {
+    batches.push({ steps: data.steps.slice(0, data.initialCount), delay: 0 });
+  }
+  for (var i = data.initialCount; i < data.steps.length; i++) {
+    batches.push({ steps: [data.steps[i]],
+                   delay: (i - data.initialCount + 1) * DHAR_STEP_MS });
+  }
+
+  batches.forEach(function(batch, batchIndex) {
     var tid = setTimeout(function() {
       if (runId !== burnState.runId) return;
-      var node = cy.getElementById(step.vertex);
-      node.style({
-        'overlay-color':   step.initial ? BURN_Q_COLOR : BURN_COLOR,
-        'overlay-opacity': BURN_OVERLAY_OP,
-        'overlay-padding': BURN_OVERLAY_PAD
-      });
-      step.burn_edges.forEach(function(eid) {
-        cy.getElementById(eid).style({ 'line-color': BURN_EDGE_COLOR, width: BURN_EDGE_WIDTH });
-      });
-
-      if (i === data.steps.length - 1) {
+      igniteDharBatch(cy, batch.steps, burnt, runId);
+      if (batchIndex === batches.length - 1) {
         var rid = setTimeout(function() {
-          if (runId !== burnState.runId) return;
-          var el = document.getElementById('burn-result');
-          if (!el) return;
-          if (data.generalized && data.result === 'all_burned') {
-            el.textContent = 'The whole graph burns.';
-            el.style.color = '#25c56a';
-          } else if (data.generalized) {
-            el.textContent = 'Some vertices remain unburnt.';
-            el.style.color = '#f45b72';
-          } else if (data.debt.length) {
-            el.textContent = 'Not q-reduced: debt away from q at ' + data.debt.join(', ') + '.';
-            el.style.color = '#ffb547';
-          } else if (data.result === 'all_burned') {
-            el.textContent = '✓ Whole graph burned — the divisor is q-reduced.';
-            el.style.color = '#25c56a';
-          } else {
-            el.textContent = 'Not q-reduced. The unburnt set {' + data.unburnt.join(', ') + '} can fire legally.';
-            el.style.color = '#f45b72';
-          }
-          // The burn starts by clearing selection. Finish with exactly the
-          // unburnt set selected so Enter immediately fires that legal set.
-          // The seed highlight is useful while the animation runs, but after
-          // completion it looks like a second selection, so remove it.
-          cy.nodes().unselect();
-          data.steps.forEach(function(step) {
-            if (step.initial) {
-              cy.getElementById(step.vertex)
-                .removeStyle('overlay-color overlay-opacity overlay-padding');
-            }
-          });
-          cy.nodes().filter(function(n) {
-            return isGraphVertex(n) && data.unburnt.indexOf(n.id()) !== -1;
-          }).select();
-          if (document.activeElement === document.getElementById('burn-btn')) {
-            document.getElementById('cytoscape-graph').focus();
-          }
-        }, DHAR_STEP_MS / 2);
+          finishDharPlayback(cy, data, runId);
+        }, DHAR_SHOCKWAVE_MS + DHAR_FLAME_TRAVEL_MS + 40);
         burnState.timeouts.push(rid);
       }
-    }, step.initial ? 0 : (i - data.initialCount + 1) * DHAR_STEP_MS);
+    }, batch.delay);
     burnState.timeouts.push(tid);
   });
 }
