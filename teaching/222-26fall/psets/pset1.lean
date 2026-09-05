@@ -10,6 +10,9 @@
   However, *do not use* generative AI to solve these problems. The
   important thing for now is to gain fluency with the basic syntax, 
   which you will gain by typing it yourself.
+
+  **Save your work regularly.** There is a save button in the menu in the upper right.
+  You can then load the code from your computer with the "load" button.
 -/
 
 import Mathlib
