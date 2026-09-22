@@ -19,7 +19,7 @@ lemma ex_4 {a b : ℝ} (h1 : a * b = a) (h2 : a * b = b) :
 lemma ex_5 : ∃ a b : ℕ, 2 ^ a = 5 * b + 1 := by
   sorry
 
-lemma ex_6 (y : ℝ) (hy: ∃ x, x^2 - 4*x + 10 > y) : y < 6 := by
+lemma ex_6 (y : ℝ) (hy: ∃ x, x^2 - 4*x + 10 > y) : y > 6 := by
   sorry
 
 lemma ex_7 (n : ℕ) : n^2 ≠ 3 := by
