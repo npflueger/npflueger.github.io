@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Permuting Platonic solids</title>
+  <link rel="stylesheet" href="drills.css">
+  <style>
+    :root {
+      --warn: #e0a84a;
+    }
+
+    .viewer-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .75rem 1.75rem;
+    }
+
+    .controls.viewer-controls label {
+      flex-direction: row;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .viewer-controls select {
+      padding: .25em .4em;
+      color: var(--ink);
+      background: #252a34;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      font: inherit;
+    }
+
+    .viewer-controls select:focus {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .viewer-controls input[type="checkbox"] {
+      width: 1.05rem;
+      height: 1.05rem;
+      accent-color: var(--accent);
+    }
+
+    .stage {
+      margin: 1.25rem 0 0;
+    }
+
+    #view {
+      display: block;
+      width: 100%;
+      background: var(--panel);
+      border-radius: 4px;
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    #view.dragging {
+      cursor: grabbing;
+    }
+
+    #view:focus {
+      outline: none;
+    }
+
+    #view:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .stage-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-top: .35rem;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .link-btn {
+      padding: 0;
+      color: var(--focus);
+      background: none;
+      border: 0;
+      font-size: .9rem;
+      text-decoration: underline;
+    }
+
+    .status {
+      min-height: 4.5rem;
+      margin-top: 1rem;
+      padding: .8rem 1rem;
+      background: var(--panel);
+      border-left: 4px solid var(--line);
+      border-radius: 4px;
+    }
+
+    .status p {
+      margin: .3rem 0 0;
+    }
+
+    .status .tag {
+      font-weight: bold;
+    }
+
+    .status .perm {
+      margin-left: .5rem;
+      color: var(--muted);
+    }
+
+    .status.rotation {
+      border-left-color: var(--success);
+    }
+
+    .status.rotation .tag {
+      color: var(--success);
+    }
+
+    .status.reversing {
+      border-left-color: var(--warn);
+    }
+
+    .status.reversing .tag {
+      color: var(--warn);
+    }
+
+    .status.broken {
+      border-left-color: var(--error);
+    }
+
+    .status.broken .tag {
+      color: var(--error);
+    }
+
+    .input-label {
+      display: block;
+      margin: 1.25rem 0 .25rem;
+    }
+
+    .twoline-scroll {
+      max-width: 100%;
+      overflow-x: auto;
+      padding: .25rem .1rem .4rem;
+    }
+
+    .notation.compact .permutation td {
+      min-width: 1.9rem;
+      padding: .1rem .06rem;
+    }
+
+    .notation.compact .answer-input {
+      width: 1.9rem !important;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-top: 1.25rem;
+    }
+
+    .btn--secondary {
+      color: var(--ink);
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    .btn--secondary:hover,
+    .btn--secondary:focus {
+      border-color: var(--accent);
+    }
+
+    .input-error {
+      min-height: 1.6rem;
+      margin-top: .75rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Permuting the vertices of a Platonic solid</h1>
+    <p>
+      Choose a solid and a permutation <i>σ</i>, then press <b>Permute!</b> The vertex labeled <i>i</i> moves to the position where vertex <i>σ</i>(<i>i</i>) started; the edges travel along with their endpoints, so you can see whether <i>σ</i> is a symmetry of the solid. Vertices glide along great circles of the circumscribed sphere. When the move is a genuine rotation, it is animated as one.
+    </p>
+    <p>
+      Labels follow the dice convention: except on the tetrahedron, opposite vertices always sum to <i>n</i>&nbsp;+&nbsp;1. Please notify me if you encounter any errors or bugs.
+    </p>
+
+    <div class="controls viewer-controls">
+      <label for="solid">Solid
+        <select id="solid">
+          <option value="tetrahedron" selected>Tetrahedron (4 vertices)</option>
+          <option value="cube">Cube (8 vertices)</option>
+          <option value="octahedron">Octahedron (6 vertices)</option>
+          <option value="dodecahedron">Dodecahedron (20 vertices)</option>
+          <option value="icosahedron">Icosahedron (12 vertices)</option>
+        </select>
+      </label>
+      <label><input id="rigid" type="checkbox" checked> Animate rotations rigidly</label>
+      <label><input id="ghost" type="checkbox" checked> Show original outline</label>
+    </div>
+
+    <div class="stage">
+      <canvas id="view" tabindex="0" role="img" aria-label="Platonic solid with numbered vertices. Drag or use the arrow keys to turn it."></canvas>
+      <div class="stage-bar">
+        <span>Drag to turn the solid (arrow keys also work).</span>
+        <button id="reset-view" class="link-btn" type="button">Reset view</button>
+      </div>
+    </div>
+
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+
+    <section class="drill" aria-labelledby="perm-heading">
+      <h2 id="perm-heading">Choose a permutation</h2>
+      <p>Enter <i>σ</i> in either notation; the other one updates to match. In cycle notation, products are applied right to left, so the cycles need not be disjoint.</p>
+
+      <span class="input-label" id="twoline-label">Two-line notation</span>
+      <div class="twoline-scroll">
+        <div id="twoline-notation" class="notation"><table class="permutation" aria-labelledby="twoline-label"><tbody><tr id="twoline-top"></tr><tr id="twoline-bottom"></tr></tbody></table></div>
+      </div>
+
+      <label class="input-label" for="cycle-input">Cycle notation</label>
+      <div class="cycle-answer-row">
+        <span class="equals" aria-hidden="true"><i>σ</i> =</span>
+        <input id="cycle-input" class="cycle-answer" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="(1,2,3)">
+      </div>
+      <p class="hint">Use <i>e</i> (or leave the box blank) for the identity. Press Enter or Permute! when ready.</p>
+
+      <div class="button-row">
+        <button id="permute" class="btn btn--primary" type="button">Permute!</button>
+        <button id="reset" class="btn btn--secondary" type="button">Identity</button>
+        <button id="random-rotation" class="btn btn--secondary" type="button">Random rotation</button>
+        <button id="random-symmetry" class="btn btn--secondary" type="button">Random symmetry</button>
+        <button id="random-permutation" class="btn btn--secondary" type="button">Random permutation</button>
+      </div>
+      <div id="input-error" class="input-error" role="alert"></div>
+    </section>
+  </main>
+  <script>
+    (() => {
+      // ---------- 3-vectors and 3x3 matrices (matrices are arrays of rows) ----------
+      const add=(a,b)=>[a[0]+b[0],a[1]+b[1],a[2]+b[2]];
+      const sub=(a,b)=>[a[0]-b[0],a[1]-b[1],a[2]-b[2]];
+      const scale=(a,s)=>[a[0]*s,a[1]*s,a[2]*s];
+      const dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
+      const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+      const len=a=>Math.hypot(a[0],a[1],a[2]);
+      const unit=a=>scale(a,1/len(a));
+      const det3=(a,b,c)=>dot(a,cross(b,c));
+      const apply=(M,v)=>[dot(M[0],v),dot(M[1],v),dot(M[2],v)];
+      const mul=(A,B)=>A.map(row=>[0,1,2].map(j=>row[0]*B[0][j]+row[1]*B[1][j]+row[2]*B[2][j]));
+      const rotation=([x,y,z],t)=>{ const c=Math.cos(t), s=Math.sin(t), C=1-c;
+        return [[c+x*x*C,x*y*C-z*s,x*z*C+y*s],[y*x*C+z*s,c+y*y*C,y*z*C-x*s],[z*x*C-y*s,z*y*C+x*s,c+z*z*C]]; };
+      const orthonormalize=M=>{ const x=unit(M[0]), y=unit(sub(M[1],scale(x,dot(x,M[1])))); return [x,y,cross(x,y)]; };
+      // The linear map sending the independent vectors a,b,c to a2,b2,c2.
+      const mapTriple=([a,b,c],[a2,b2,c2])=>{
+        const d=det3(a,b,c), inverse=[cross(b,c),cross(c,a),cross(a,b)].map(r=>scale(r,1/d));
+        return mul([[a2[0],b2[0],c2[0]],[a2[1],b2[1],c2[1]],[a2[2],b2[2],c2[2]]],inverse);
+      };
+      // Axis and angle (0 ≤ angle ≤ π) of a rotation matrix, via its unit quaternion.
+      const axisAngle=m=>{
+        const [[m00,m01,m02],[m10,m11,m12],[m20,m21,m22]]=m, tr=m00+m11+m22; let w,x,y,z,s;
+        if(tr>0){ s=2*Math.sqrt(tr+1); w=s/4; x=(m21-m12)/s; y=(m02-m20)/s; z=(m10-m01)/s; }
+        else if(m00>m11&&m00>m22){ s=2*Math.sqrt(1+m00-m11-m22); w=(m21-m12)/s; x=s/4; y=(m01+m10)/s; z=(m02+m20)/s; }
+        else if(m11>m22){ s=2*Math.sqrt(1+m11-m00-m22); w=(m02-m20)/s; x=(m01+m10)/s; y=s/4; z=(m12+m21)/s; }
+        else { s=2*Math.sqrt(1+m22-m00-m11); w=(m10-m01)/s; x=(m02+m20)/s; y=(m12+m21)/s; z=s/4; }
+        if(w<0){ w=-w; x=-x; y=-y; z=-z; }
+        const r=Math.hypot(x,y,z);
+        return {angle:2*Math.atan2(r,w), axis:r<1e-12?null:[x/r,y/r,z/r]};
+      };
+
+      // ---------- the solids (z points up; labels are listed in order 1, 2, ...) ----------
+      const DEG=Math.PI/180;
+      const polar=(r,a,z)=>[r*Math.cos(a*DEG),r*Math.sin(a*DEG),z];
+      // Vertices 1..n/2 are given; vertex n+1-k is placed opposite vertex k (dice convention).
+      const withAntipodes=half=>{ const n=2*half.length, v=[]; half.forEach((p,k)=>{ v[k]=unit(p); v[n-1-k]=scale(unit(p),-1); }); return v; };
+      const icosaRing=(offset,z)=>Array.from({length:5},(_,k)=>polar(2/Math.sqrt(5),offset+72*k,z/Math.sqrt(5)));
+      const SOLIDS={
+        tetrahedron:{name:'tetrahedron', vertices:()=>[[0,0,1],...[-90,30,150].map(a=>polar(Math.sqrt(8)/3,a,-1/3))]},
+        cube:{name:'cube', vertices:()=>withAntipodes([225,315,45,135].map(a=>polar(Math.SQRT2,a,1)))},
+        octahedron:{name:'octahedron', vertices:()=>withAntipodes([[0,0,1],polar(1,-90,0),polar(1,0,0)])},
+        icosahedron:{name:'icosahedron', vertices:()=>withAntipodes([[0,0,1],...icosaRing(-90,1)])},
+        // Face centers of an icosahedron: a top pentagon (1-5), then the ring just below it (6-10).
+        dodecahedron:{name:'dodecahedron', vertices:()=>{
+          const U=icosaRing(-126,1), L=icosaRing(-90,-1), top=[], ring=[];
+          for(let k=0;k<5;k++){ top.push(add(add([0,0,1],U[k]),U[(k+1)%5])); ring.push(add(add(U[k],U[(k+1)%5]),L[k])); }
+          return withAntipodes([...top,...ring]);
+        }},
+      };
+
+      function buildSolid(key){
+        const P=SOLIDS[key].vertices(), n=P.length, EPS=1e-6;
+        let edgeLength=Infinity;
+        for(let i=0;i<n;i++) for(let j=i+1;j<n;j++) edgeLength=Math.min(edgeLength,len(sub(P[i],P[j])));
+        const adj=P.map(()=>new Array(n).fill(false)), edges=[];
+        for(let i=0;i<n;i++) for(let j=i+1;j<n;j++) if(len(sub(P[i],P[j]))<edgeLength*(1+EPS)){ adj[i][j]=adj[j][i]=true; edges.push([i,j]); }
+        const nbrs=adj.map(row=>row.flatMap((b,j)=>b?[j]:[]));
+        // Faces: supporting planes through a vertex and two of its neighbors.
+        const faces=[], seen=new Set();
+        const cyclic=vs=>{ const out=[Math.min(...vs)]; while(out.length<vs.length) out.push(nbrs[out[out.length-1]].filter(t=>vs.includes(t)&&!out.includes(t)).sort((a,b)=>a-b)[0]); return out; };
+        P.forEach((p,i)=>nbrs[i].forEach(j=>nbrs[i].forEach(k=>{
+          if(k<=j) return;
+          let m=unit(cross(sub(P[j],p),sub(P[k],p))); if(dot(m,p)<0) m=scale(m,-1);
+          const h=dot(m,p); if(P.some(q=>dot(m,q)>h+EPS)) return;
+          const vs=P.flatMap((q,t)=>Math.abs(dot(m,q)-h)<EPS?[t]:[]);
+          if(!seen.has(vs.join(','))){ seen.add(vs.join(',')); faces.push({vertices:cyclic(vs), center:m}); }
+        })));
+        // Symmetry group: every symmetry is determined by where vertex 0 and two of its neighbors go.
+        const b=nbrs[0][0], c=nbrs[0].find(t=>t!==b&&Math.abs(det3(P[0],P[b],P[t]))>1e-3), symmetries=new Map();
+        for(let a2=0;a2<n;a2++) for(const b2 of nbrs[a2]) for(const c2 of nbrs[a2]){
+          if(c2===b2) continue;
+          const M=mapTriple([P[0],P[b],P[c]],[P[a2],P[b2],P[c2]]);
+          const perm=P.map(q=>{ const r=apply(M,q); return P.findIndex(s=>len(sub(r,s))<EPS); });
+          if(perm.includes(-1)||new Set(perm).size<n) continue;
+          symmetries.set(perm.join(','),{perm,M,det:Math.sign(det3(...M))});
+        }
+        // Unit normals of the mirror planes: a reflection M satisfies (I − M)/2 = m mᵀ.
+        const mirrors=[...symmetries.values()].filter(s=>s.det<0&&Math.abs(s.M[0][0]+s.M[1][1]+s.M[2][2]-1)<1e-6).map(s=>{
+          const cols=[0,1,2].map(j=>[0,1,2].map(i=>((i===j?1:0)-s.M[i][j])/2));
+          return unit(cols.reduce((a,b)=>len(b)>len(a)?b:a));
+        });
+        return {key, name:SOLIDS[key].name, n, slots:P, adj, edges, faces, symmetries, mirrors,
+          rotations:[...symmetries.values()].filter(s=>s.det>0).map(s=>s.perm), allSymmetries:[...symmetries.values()].map(s=>s.perm)};
+      }
+
+      // ---------- page state ----------
+      const canvas=document.querySelector('#view'), ctx=canvas.getContext('2d');
+      const solidBox=document.querySelector('#solid'), rigidBox=document.querySelector('#rigid'), ghostBox=document.querySelector('#ghost');
+      const statusBox=document.querySelector('#status'), errorBox=document.querySelector('#input-error');
+      const cycleInput=document.querySelector('#cycle-input'), twolineTop=document.querySelector('#twoline-top'), twolineBottom=document.querySelector('#twoline-bottom');
+      let solid, current, positions, colors, anim=null, axisShow=null, lastEdited='twoline';
+
+      const CAMERA=4.2;
+      // Starting view: upright, tilted toward the viewer, and turned so that no two vertices look crowded.
+      // Views that are left-right mirror images of themselves look flat, so they are penalized.
+      const viewAt=(tilt,spin)=>mul(mul(rotation([1,0,0],tilt*DEG),[[1,0,0],[0,0,1],[0,-1,0]]),rotation([0,0,1],spin*DEG));
+      function bestView(points,mirrors){
+        let best=null, bestGap=-1;
+        for(let tilt=16;tilt<=34;tilt+=2) for(let spin=-60;spin<60;spin+=2){
+          const V=viewAt(tilt,spin), flat=points.map(p=>{ const q=apply(V,p), f=CAMERA/(CAMERA-q[2]); return [q[0]*f,q[1]*f]; });
+          let gap=Infinity;
+          for(let i=0;i<flat.length;i++) for(let j=i+1;j<flat.length;j++) gap=Math.min(gap,Math.hypot(flat[i][0]-flat[j][0],flat[i][1]-flat[j][1]));
+          const offMirror=Math.min(...mirrors.map(m=>Math.acos(Math.min(1,Math.abs(dot(V[0],m))))));
+          gap*=Math.min(1,offMirror/(20*DEG));
+          if(gap>bestGap+1e-9){ bestGap=gap; best=V; }
+        }
+        return best;
+      }
+      const INITIAL_VIEW=()=>solid.view;
+      let view;
+
+      const identity=n=>Array.from({length:n},(_,i)=>i);
+      const samePerm=(p,q)=>p.every((v,i)=>v===q[i]);
+      const cycleString=p=>{
+        const seen=new Set(), out=[];
+        for(let i=0;i<p.length;i++){
+          if(seen.has(i)||p[i]===i) continue;
+          const cycle=[]; for(let j=i;!seen.has(j);j=p[j]){ seen.add(j); cycle.push(j+1); }
+          out.push(`(${cycle.join(',')})`);
+        }
+        return out.join('')||'e';
+      };
+
+      // ---------- colors: evenly spaced hues at constant OKLCH lightness ----------
+      const oklch=(L,C,h)=>{
+        const a=C*Math.cos(h*DEG), b=C*Math.sin(h*DEG);
+        const l=(L+.3963377774*a+.2158037573*b)**3, m=(L-.1055613458*a-.0638541728*b)**3, s=(L-.0894841775*a-1.291485548*b)**3;
+        const lin=[4.0767416621*l-3.3077115913*m+.2309699292*s,-1.2684380046*l+2.6097574011*m-.3413193965*s,-.0041960863*l-.7034186147*m+1.707614701*s];
+        return lin.map(x=>{ x=Math.min(1,Math.max(0,x)); return 255*(x<=.0031308?12.92*x:1.055*x**(1/2.4)-.055); });
+      };
+      const BG=[31,36,44], INK=[234,234,234], ACCENT=[0,173,181];
+      const mix=(c,t,alpha=1)=>`rgba(${c.map((v,i)=>Math.round(BG[i]+(v-BG[i])*t)).join(',')},${alpha})`;
+      const fog=t=>.4+.6*t; // depth 0 (back) .. 1 (front) → visibility
+
+      // ---------- solid setup and two-line inputs ----------
+      function loadSolid(key){
+        solid=buildSolid(key); solid.view=bestView(solid.slots,solid.mirrors); view=INITIAL_VIEW();
+        current=identity(solid.n); positions=solid.slots.map(p=>p.slice()); anim=null; axisShow=null;
+        colors=solid.slots.map((_,i)=>oklch(.62,.13,25+360*i/solid.n));
+        const n=solid.n, compact=n>12;
+        document.querySelector('#twoline-notation').classList.toggle('compact',compact);
+        twolineTop.innerHTML=Array.from({length:n},(_,i)=>`<td style="color:${mix(oklch(.78,.11,25+360*i/n),1)}">${i+1}</td>`).join('');
+        twolineBottom.innerHTML=Array.from({length:n},(_,i)=>`<td><input class="answer-input" aria-label="image of ${i+1}" inputmode="numeric" maxlength="2" autocomplete="off"></td>`).join('');
+        const inputs=twolineInputs();
+        inputs.forEach((input,i)=>{
+          input.addEventListener('input',()=>{
+            lastEdited='twoline'; clearErrors();
+            const v=input.value;
+            if(/^\d+$/.test(v)&&(v.length===2||Number(v)*10>n)&&inputs[i+1]) inputs[i+1].focus();
+            const p=readTwoLine(false); if(p) cycleInput.value=cycleString(p);
+          });
+          input.addEventListener('focus',()=>input.select());
+        });
+        fillInputs(current); cycleInput.value='';
+        describe(current); clearErrors(); resize();
+      }
+      const twolineInputs=()=>[...twolineBottom.querySelectorAll('input')];
+      const fillInputs=p=>{ twolineInputs().forEach((input,i)=>{ input.value=p[i]+1; }); cycleInput.value=cycleString(p); };
+
+      // ---------- reading and validating permutations ----------
+      const showError=message=>{ errorBox.innerHTML=`<div class="feedback-line error"><span class="feedback-symbol">✗</span> ${message}</div>`; return null; };
+      function clearErrors(){ errorBox.innerHTML=''; twolineInputs().forEach(input=>input.classList.remove('incorrect')); }
+      function readTwoLine(report){
+        const n=solid.n, inputs=twolineInputs(), values=inputs.map(input=>input.value.trim());
+        const flag=(indices,message)=>{ if(report){ indices.forEach(i=>inputs[i].classList.add('incorrect')); showError(message); } return null; };
+        const blank=values.flatMap((v,i)=>v===''?[i]:[]);
+        if(blank.length) return flag(blank,'Fill in every entry of the bottom row.');
+        const bad=values.flatMap((v,i)=>/^\d+$/.test(v)&&Number(v)>=1&&Number(v)<=n?[]:[i]);
+        if(bad.length) return flag(bad,`Every entry of the bottom row must be a number from 1 to ${n}.`);
+        const p=values.map(v=>Number(v)-1);
+        for(let i=0;i<n;i++){ const repeats=p.flatMap((v,j)=>v===p[i]?[j]:[]); if(repeats.length>1) return flag(repeats,`The number ${p[i]+1} appears more than once in the bottom row.`); }
+        return p;
+      }
+      function readCycles(report){
+        const n=solid.n, fail=message=>report?showError(message):null;
+        const text=cycleInput.value.replace(/[∘*·]/g,' ').trim();
+        if(text===''||/^(e|id)$/i.test(text)) return identity(n);
+        if(!/^(\s*\([\d\s,]*\)\s*)+$/.test(text)) return fail('Format error: write a sequence of cycles, each enclosed in parentheses, such as (1,2,3)(4,5).');
+        const cycles=[...text.matchAll(/\(([^)]*)\)/g)].map(m=>m[1].split(/[\s,]+/).filter(s=>s!=='').map(Number));
+        let p=identity(n);
+        for(const cycle of cycles.reverse()){
+          const out=cycle.find(v=>v<1||v>n); if(out!==undefined) return fail(`The number ${out} is outside the set {1,…,${n}}.`);
+          const repeat=cycle.find((v,i)=>cycle.indexOf(v)!==i); if(repeat!==undefined) return fail(`The number ${repeat} is repeated within the cycle (${cycle.join(',')}).`);
+          const c=identity(n); cycle.forEach((v,i)=>{ c[v-1]=cycle[(i+1)%cycle.length]-1; });
+          p=p.map(x=>c[x]); // apply the cycles right to left
+        }
+        return p;
+      }
+
+      // ---------- describing what a permutation does ----------
+      function describePoint(u){
+        const {slots,edges,faces}=solid, close=v=>dot(u,v)>1-1e-6;
+        const i=slots.findIndex(close); if(i>=0) return {rank:0, text:`vertex ${i+1}`, short:`vertex ${i+1}`};
+        const e=edges.find(([a,b])=>close(unit(add(slots[a],slots[b])))); if(e) return {rank:1, text:`the midpoint of edge ${e[0]+1}–${e[1]+1}`, short:`edge ${e[0]+1}–${e[1]+1}`};
+        const f=faces.find(f=>close(f.center)); if(f){ const name=f.vertices.map(v=>v+1).join('–'); return {rank:2, text:`the center of face ${name}`, short:`face ${name}`}; }
+        return {rank:3, text:'the center', short:'the center'};
+      }
+      // Name the two ends of an axis, preferring to start from a vertex, then an edge, then a face.
+      function axisEnds(axis){
+        const A=describePoint(axis), B=describePoint(scale(axis,-1));
+        return B.rank<A.rank?{first:B, second:A, flipped:true}:{first:A, second:B, flipped:false};
+      }
+      const degrees=angle=>`${Math.round(angle/DEG)}°`;
+      function describe(p){
+        const head=(cls,tag,text)=>{ statusBox.className=`status ${cls}`; statusBox.innerHTML=`<span class="tag">${tag}</span><span class="perm"><i>σ</i> = ${cycleString(p)}</span><p>${text}</p>`; };
+        const name=solid.name;
+        if(p.every((v,i)=>v===i)) return head('rotation','Identity',`Every vertex is in its original position.`);
+        const sym=solid.symmetries.get(p.join(','));
+        if(!sym){
+          const [a,b]=solid.edges.find(([a,b])=>!solid.adj[p[a]][p[b]]);
+          return head('broken','Not a symmetry',`Vertices ${a+1} and ${b+1} are joined by an edge, but they move to where vertices ${p[a]+1} and ${p[b]+1} started, and those are not joined by an edge. So no rotation or reflection of the ${name} does this. The faint outline shows the original ${name}.`);
+        }
+        if(sym.det>0){
+          const {axis,angle}=axisAngle(sym.M), {first,second,flipped}=axisEnds(axis);
+          const sense=Math.abs(angle-Math.PI)<1e-6?'':` It turns ${flipped?'clockwise':'counterclockwise'} as seen looking down at ${first.short} from outside.`;
+          return head('rotation','Rotation',`Rotation by ${degrees(angle)} about the axis through ${first.text} and ${second.text}.${sense}`);
+        }
+        const reverses=`It reverses orientation, so it is a symmetry of the ${name} that no physical rotation can achieve.`;
+        const {axis,angle}=axisAngle(sym.M.map(row=>scale(row,-1))); // σ acts as −(rotation)
+        if(angle<1e-6) return head('reversing','Central inversion',`Every vertex moves to the opposite vertex (<i>x</i> ↦ −<i>x</i>). ${reverses}`);
+        const {first,second}=axisEnds(axis);
+        if(Math.abs(angle-Math.PI)<1e-6){
+          const fixed=p.flatMap((v,i)=>v===i?[i+1]:[]);
+          const plane=fixed.length?`the plane containing vertices ${fixed.slice(0,-1).join(', ')}${fixed.length>2?',':''} and ${fixed[fixed.length-1]}`
+            :first.rank===2&&second.rank===2?`the plane midway between the opposite faces ${first.short.slice(5)} and ${second.short.slice(5)}`
+            :`the plane through the center perpendicular to the axis through ${first.text} and ${second.text}`;
+          return head('reversing','Reflection',`Reflection in ${plane}. ${reverses}`);
+        }
+        return head('reversing','Rotary reflection',`Rotation by ${degrees(Math.PI-angle)} about the axis through ${first.text} and ${second.text}, combined with reflection in the plane perpendicular to that axis. ${reverses}`);
+      }
+
+      // ---------- animation ----------
+      // Rotation carrying every point of `from` to the matching point of `to`, if there is one.
+      function rigidMotion(from,to){
+        let best=null, bestDet=0;
+        for(let i=0;i<from.length;i++) for(let j=i+1;j<from.length;j++) for(let k=j+1;k<from.length;k++){
+          const d=Math.abs(det3(from[i],from[j],from[k])); if(d>bestDet){ bestDet=d; best=[i,j,k]; }
+        }
+        const M=mapTriple(best.map(i=>from[i]),best.map(i=>to[i]));
+        const MMt=mul(M,[0,1,2].map(i=>M.map(r=>r[i])));
+        const orthogonal=MMt.every((row,i)=>row.every((v,j)=>Math.abs(v-(i===j?1:0))<1e-6));
+        if(!orthogonal||det3(...M)<0||from.some((p,i)=>len(sub(apply(M,p),to[i]))>1e-5)) return null;
+        return M;
+      }
+      // Great-circle path from a to b. Antipodal pairs swing around an axis facing the viewer.
+      function greatCircle(a,b){
+        const c=Math.max(-1,Math.min(1,dot(a,b))), omega=Math.acos(c);
+        if(omega<1e-9) return {angle:0, at:()=>a};
+        let dir;
+        if(Math.PI-omega<1e-6){
+          let axis=sub(view[2],scale(a,dot(view[2],a)));
+          if(len(axis)<.2) axis=sub(view[1],scale(a,dot(view[1],a)));
+          dir=cross(unit(axis),a);
+        } else dir=unit(sub(b,scale(a,c)));
+        return {angle:omega, at:t=>add(scale(a,Math.cos(omega*t)),scale(dir,Math.sin(omega*t)))};
+      }
+      const ease=t=>t<.5?4*t*t*t:1-(-2*t+2)**3/2;
+      function moveTo(p){
+        const from=positions.map(q=>q.slice()), to=p.map(s=>solid.slots[s]);
+        current=p.slice(); axisShow=null;
+        if(from.every((q,i)=>len(sub(q,to[i]))<1e-9)){ anim=null; kick(); return; }
+        const M=rigidBox.checked?rigidMotion(from,to):null;
+        if(M){
+          const {axis,angle}=axisAngle(M);
+          anim={kind:'rigid', from, to, axis, angle, span:angle};
+          axisShow={axis, end:null};
+        } else {
+          const paths=from.map((q,i)=>greatCircle(q,to[i]));
+          anim={kind:'geodesic', from, to, paths, span:Math.max(...paths.map(g=>g.angle))};
+        }
+        anim.start=performance.now(); anim.duration=650+750*anim.span/Math.PI;
+        kick();
+      }
+      function stepAnimation(now){
+        if(!anim) return;
+        const t=Math.min(1,(now-anim.start)/anim.duration), e=ease(t);
+        if(t>=1){ positions=anim.to.map(q=>q.slice()); if(axisShow) axisShow.end=now; anim=null; return; }
+        if(anim.kind==='rigid'){ const R=rotation(anim.axis,anim.angle*e); positions=anim.from.map(q=>apply(R,q)); }
+        else positions=anim.paths.map(g=>g.at(e));
+      }
+
+      // ---------- drawing ----------
+      let W=0, H=0, cx=0, cy=0, radius=1;
+      function resize(){
+        const width=canvas.clientWidth||640, height=Math.round(Math.min(width*.75,window.innerHeight*.72,560));
+        const dpr=window.devicePixelRatio||1;
+        canvas.style.height=`${height}px`; canvas.width=Math.round(width*dpr); canvas.height=Math.round(height*dpr);
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+        W=width; H=height; cx=W/2; cy=H/2; radius=Math.min(W,H)*.33;
+        kick();
+      }
+      function project(p){
+        const q=apply(view,p), f=CAMERA/(CAMERA-q[2]);
+        return {x:cx+q[0]*f*radius, y:cy-q[1]*f*radius, z:q[2], f, depth:(q[2]+1)/2};
+      }
+      function draw(now){
+        ctx.clearRect(0,0,W,H);
+        const n=solid.n, unitSize=Math.min(W,H);
+        const discBase=Math.max(10,Math.min(n>12?19:23,unitSize*(n>12?.033:.047)));
+        const edgeBase=Math.max(2,Math.min(4.5,unitSize*.0085));
+        const font=getComputedStyle(document.body).fontFamily;
+
+        if(ghostBox.checked){
+          const slots=solid.slots.map(project);
+          ctx.save(); ctx.setLineDash([4,5]); ctx.lineWidth=1.2;
+          for(const [a,b] of solid.edges){
+            ctx.strokeStyle=mix(INK,.14+.2*(slots[a].depth+slots[b].depth)/2);
+            ctx.beginPath(); ctx.moveTo(slots[a].x,slots[a].y); ctx.lineTo(slots[b].x,slots[b].y); ctx.stroke();
+          }
+          ctx.setLineDash([]);
+          for(const s of slots){ ctx.strokeStyle=mix(INK,.2+.25*s.depth); ctx.beginPath(); ctx.arc(s.x,s.y,4*s.f,0,2*Math.PI); ctx.stroke(); }
+          ctx.restore();
+        }
+
+        if(axisShow){
+          const alpha=axisShow.end===null?1:Math.max(0,1-(now-axisShow.end-400)/700);
+          if(alpha<=0) axisShow=null;
+          else {
+            const a=project(scale(axisShow.axis,-1.4)), b=project(scale(axisShow.axis,1.4));
+            ctx.save(); ctx.setLineDash([7,6]); ctx.lineWidth=2; ctx.strokeStyle=mix(ACCENT,1,.75*alpha);
+            ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); ctx.restore();
+          }
+        }
+
+        // Painter's algorithm over edges and vertices together.
+        const pts=positions.map(project);
+        pts.forEach(p=>{ p.r=discBase*p.f*(.75+.25*p.depth); });
+        const items=[
+          ...solid.edges.map(([a,b])=>({z:(pts[a].z+pts[b].z)/2, draw:()=>drawEdge(pts[a],pts[b],edgeBase)})),
+          ...pts.map((p,i)=>({z:p.z+1e-3, draw:()=>drawVertex(p,i,font)})),
+        ].sort((u,v)=>u.z-v.z);
+        items.forEach(item=>item.draw());
+      }
+      // A tapered edge from disc boundary to disc boundary, thinner and dimmer farther away.
+      function drawEdge(p,q,base){
+        const dx=q.x-p.x, dy=q.y-p.y, d=Math.hypot(dx,dy), gap=1.5;
+        if(d<=p.r+q.r+2*gap) return;
+        const ux=dx/d, uy=dy/d, nx=-uy, ny=ux;
+        const s={x:p.x+ux*(p.r+gap), y:p.y+uy*(p.r+gap)}, e={x:q.x-ux*(q.r+gap), y:q.y-uy*(q.r+gap)};
+        const ws=base*p.f*(.35+.65*p.depth)/2, we=base*q.f*(.35+.65*q.depth)/2;
+        const grad=ctx.createLinearGradient(s.x,s.y,e.x,e.y);
+        grad.addColorStop(0,mix(INK,fog(p.depth))); grad.addColorStop(1,mix(INK,fog(q.depth)));
+        ctx.fillStyle=grad;
+        ctx.beginPath();
+        ctx.moveTo(s.x+nx*ws,s.y+ny*ws); ctx.lineTo(e.x+nx*we,e.y+ny*we);
+        ctx.arc(e.x,e.y,we,Math.atan2(ny,nx),Math.atan2(-ny,-nx));
+        ctx.lineTo(s.x-nx*ws,s.y-ny*ws);
+        ctx.arc(s.x,s.y,ws,Math.atan2(-ny,-nx),Math.atan2(ny,nx));
+        ctx.closePath(); ctx.fill();
+      }
+      function drawVertex(p,i,font){
+        const t=fog(p.depth);
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,2*Math.PI);
+        ctx.fillStyle=mix(colors[i],t); ctx.fill();
+        ctx.lineWidth=1.5; ctx.strokeStyle=mix([12,14,18],1,.55); ctx.stroke();
+        const label=String(i+1), size=p.r*(label.length>1?.92:1.08);
+        ctx.font=`bold ${size}px ${font}`; ctx.textAlign='center'; ctx.textBaseline='middle';
+        ctx.lineWidth=Math.max(2,size*.16); ctx.lineJoin='round'; ctx.strokeStyle=mix([10,12,16],1,.45);
+        ctx.strokeText(label,p.x,p.y+size*.04);
+        ctx.fillStyle=mix([255,255,255],.55+.45*p.depth); ctx.fillText(label,p.x,p.y+size*.04);
+      }
+
+      // ---------- frame loop, dragging, inertia ----------
+      let frameId=0, lastFrame=null, drag=null, spin=null;
+      function kick(){ if(!frameId) frameId=requestAnimationFrame(frame); }
+      function frame(now){
+        frameId=0;
+        const dt=lastFrame===null?16:Math.min(50,now-lastFrame); lastFrame=now;
+        if(spin){
+          turn(spin.vx*dt,spin.vy*dt);
+          const decay=Math.exp(-dt/380); spin.vx*=decay; spin.vy*=decay;
+          if(Math.hypot(spin.vx,spin.vy)<.004) spin=null;
+        }
+        stepAnimation(now);
+        draw(now);
+        if(anim||spin||axisShow) kick(); else lastFrame=null;
+      }
+      // Dragging by (dx,dy) pixels turns the solid about the screen axis perpendicular to the drag.
+      function turn(dx,dy){
+        const d=Math.hypot(dx,dy); if(d<1e-9) return;
+        view=orthonormalize(mul(rotation([dy/d,dx/d,0],d/radius),view));
+      }
+      canvas.addEventListener('pointerdown',event=>{
+        if(event.button!==0) return;
+        canvas.setPointerCapture(event.pointerId); canvas.classList.add('dragging');
+        drag={id:event.pointerId, x:event.clientX, y:event.clientY, t:performance.now(), vx:0, vy:0}; spin=null;
+      });
+      canvas.addEventListener('pointermove',event=>{
+        if(!drag||event.pointerId!==drag.id) return;
+        const now=performance.now(), dx=event.clientX-drag.x, dy=event.clientY-drag.y, dt=Math.max(1,now-drag.t);
+        turn(dx,dy);
+        drag.vx=.6*dx/dt+.4*drag.vx; drag.vy=.6*dy/dt+.4*drag.vy;
+        Object.assign(drag,{x:event.clientX, y:event.clientY, t:now});
+        kick();
+      });
+      const endDrag=event=>{
+        if(!drag||event.pointerId!==drag.id) return;
+        if(performance.now()-drag.t<80&&Math.hypot(drag.vx,drag.vy)>.02) spin={vx:drag.vx, vy:drag.vy};
+        drag=null; canvas.classList.remove('dragging'); kick();
+      };
+      canvas.addEventListener('pointerup',endDrag);
+      canvas.addEventListener('pointercancel',endDrag);
+      canvas.addEventListener('keydown',event=>{
+        const step=radius*.14, moves={ArrowLeft:[-step,0], ArrowRight:[step,0], ArrowUp:[0,-step], ArrowDown:[0,step]};
+        if(!moves[event.key]) return;
+        event.preventDefault(); spin=null; turn(...moves[event.key]); kick();
+      });
+
+      // ---------- controls ----------
+      function permute(){
+        clearErrors();
+        const p=lastEdited==='cycle'?readCycles(true):readTwoLine(true);
+        if(!p) return;
+        fillInputs(p); if(lastEdited==='cycle'&&cycleInput.value!==cycleString(p)) cycleInput.value=cycleString(p);
+        describe(p); moveTo(p);
+      }
+      const choose=p=>{ lastEdited='twoline'; clearErrors(); fillInputs(p); describe(p); moveTo(p); };
+      const pickOther=list=>{ const others=list.filter(p=>!samePerm(p,current)); return others[Math.floor(Math.random()*others.length)]; };
+      const shuffled=n=>{ const a=identity(n); for(let i=n-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+
+      document.querySelector('#permute').addEventListener('click',permute);
+      document.querySelector('#reset').addEventListener('click',()=>choose(identity(solid.n)));
+      document.querySelector('#random-rotation').addEventListener('click',()=>choose(pickOther(solid.rotations)));
+      document.querySelector('#random-symmetry').addEventListener('click',()=>choose(pickOther(solid.allSymmetries)));
+      document.querySelector('#random-permutation').addEventListener('click',()=>{
+        // Avoid symmetries, except on the tetrahedron, where every permutation is one.
+        let p; do p=shuffled(solid.n); while(samePerm(p,current)||(solid.n>4&&solid.symmetries.has(p.join(',')))); choose(p);
+      });
+      document.querySelector('#reset-view').addEventListener('click',()=>{ view=INITIAL_VIEW(); spin=null; kick(); });
+      cycleInput.addEventListener('input',()=>{
+        lastEdited='cycle'; clearErrors();
+        const p=readCycles(false); if(p) twolineInputs().forEach((input,i)=>{ input.value=p[i]+1; });
+      });
+      solidBox.addEventListener('change',()=>{ spin=null; loadSolid(solidBox.value); });
+      ghostBox.addEventListener('change',kick);
+      document.addEventListener('keydown',event=>{
+        if(event.key==='Enter'&&(event.target===cycleInput||event.target.classList.contains('answer-input'))){ event.preventDefault(); permute(); }
+      });
+      new ResizeObserver(resize).observe(canvas);
+      window.addEventListener('resize',resize);
+
+      loadSolid(solidBox.value);
+    })();
+  </script>
+</body>
+</html>
