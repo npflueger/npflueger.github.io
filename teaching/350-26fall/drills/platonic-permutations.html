@@ -136,15 +136,41 @@
       color: var(--error);
     }
 
-    .input-label {
-      display: block;
-      margin: 1.25rem 0 .25rem;
+    .chooser {
+      margin-top: 1.25rem;
+    }
+
+    .chooser-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .5rem 1.5rem;
     }
 
     .twoline-scroll {
       max-width: 100%;
       overflow-x: auto;
-      padding: .25rem .1rem .4rem;
+      padding: .25rem .1rem;
+    }
+
+    /* The cycle box and its buttons stay on one line; the whole group drops below the two-line notation when space is short. */
+    .cycle-entry {
+      display: flex;
+      flex: 1 1 26rem;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .cycle-entry .cycle-answer {
+      flex: 1 1 10rem;
+      width: auto;
+      min-width: 0;
+    }
+
+    .notes {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: .95rem;
     }
 
     .notation.compact .permutation td {
@@ -159,8 +185,13 @@
     .button-row {
       display: flex;
       flex-wrap: wrap;
-      gap: .6rem;
-      margin-top: 1.25rem;
+      gap: .5rem;
+      margin-top: .6rem;
+    }
+
+    .btn--small {
+      padding: .3em .8em;
+      font-size: .85rem;
     }
 
     .btn--secondary {
@@ -174,9 +205,8 @@
       border-color: var(--accent);
     }
 
-    .input-error {
-      min-height: 1.6rem;
-      margin-top: .75rem;
+    .input-error .feedback-line {
+      margin: .5rem 0 0;
     }
   </style>
 </head>
@@ -204,6 +234,27 @@
       <label><input id="ghost" type="checkbox" checked> Show original outline</label>
     </div>
 
+    <section class="chooser" aria-label="Choose a permutation">
+      <div class="chooser-row">
+        <div class="twoline-scroll">
+          <div id="twoline-notation" class="notation"><table class="permutation" aria-label="σ in two-line notation"><tbody><tr id="twoline-top"></tr><tr id="twoline-bottom"></tr></tbody></table></div>
+        </div>
+        <div class="cycle-entry">
+          <label class="equals" for="cycle-input"><i>σ</i> =</label>
+          <input id="cycle-input" class="cycle-answer" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="(1,2,3)">
+          <button id="permute" class="btn btn--primary" type="button">Permute!</button>
+          <button id="revert" class="btn btn--secondary" type="button" title="Move the solid back to its starting position, keeping σ">Revert</button>
+        </div>
+      </div>
+      <div class="button-row extras">
+        <button id="reset" class="btn btn--secondary btn--small" type="button">Identity</button>
+        <button id="random-rotation" class="btn btn--secondary btn--small" type="button">Random rotation</button>
+        <button id="random-symmetry" class="btn btn--secondary btn--small" type="button">Random symmetry</button>
+        <button id="random-permutation" class="btn btn--secondary btn--small" type="button">Random permutation</button>
+      </div>
+      <div id="input-error" class="input-error" role="alert"></div>
+    </section>
+
     <div class="stage">
       <canvas id="view" tabindex="0" role="img" aria-label="Platonic solid with numbered vertices. Drag or use the arrow keys to turn it."></canvas>
       <div class="stage-bar">
@@ -214,31 +265,9 @@
 
     <div id="status" class="status" role="status" aria-live="polite"></div>
 
-    <section class="drill" aria-labelledby="perm-heading">
-      <h2 id="perm-heading">Choose a permutation</h2>
-      <p>Enter <i>σ</i> in either notation; the other one updates to match. In cycle notation, products are applied right to left, so the cycles need not be disjoint.</p>
-
-      <span class="input-label" id="twoline-label">Two-line notation</span>
-      <div class="twoline-scroll">
-        <div id="twoline-notation" class="notation"><table class="permutation" aria-labelledby="twoline-label"><tbody><tr id="twoline-top"></tr><tr id="twoline-bottom"></tr></tbody></table></div>
-      </div>
-
-      <label class="input-label" for="cycle-input">Cycle notation</label>
-      <div class="cycle-answer-row">
-        <span class="equals" aria-hidden="true"><i>σ</i> =</span>
-        <input id="cycle-input" class="cycle-answer" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="(1,2,3)">
-      </div>
-      <p class="hint">Use <i>e</i> (or leave the box blank) for the identity. Press Enter or Permute! when ready.</p>
-
-      <div class="button-row">
-        <button id="permute" class="btn btn--primary" type="button">Permute!</button>
-        <button id="reset" class="btn btn--secondary" type="button">Identity</button>
-        <button id="random-rotation" class="btn btn--secondary" type="button">Random rotation</button>
-        <button id="random-symmetry" class="btn btn--secondary" type="button">Random symmetry</button>
-        <button id="random-permutation" class="btn btn--secondary" type="button">Random permutation</button>
-      </div>
-      <div id="input-error" class="input-error" role="alert"></div>
-    </section>
+    <p class="hint notes">
+      Enter <i>σ</i> in either notation; the other one updates to match. In cycle notation, products are applied right to left, so the cycles need not be disjoint; use <i>e</i> (or leave the box blank) for the identity. Press Enter or <b>Permute!</b> to move the solid. <b>Revert</b> moves it back to its starting position but keeps <i>σ</i>, so pressing <b>Permute!</b> again replays the motion.
+    </p>
   </main>
   <script>
     (() => {
@@ -331,6 +360,7 @@
       const canvas=document.querySelector('#view'), ctx=canvas.getContext('2d');
       const solidBox=document.querySelector('#solid'), rigidBox=document.querySelector('#rigid'), ghostBox=document.querySelector('#ghost');
       const statusBox=document.querySelector('#status'), errorBox=document.querySelector('#input-error');
+      const chooser=document.querySelector('.chooser'), stageBar=document.querySelector('.stage-bar');
       const cycleInput=document.querySelector('#cycle-input'), twolineTop=document.querySelector('#twoline-top'), twolineBottom=document.querySelector('#twoline-bottom');
       let solid, current, positions, colors, anim=null, axisShow=null, lastEdited='twoline';
 
@@ -526,7 +556,10 @@
       // ---------- drawing ----------
       let W=0, H=0, cx=0, cy=0, radius=1;
       function resize(){
-        const width=canvas.clientWidth||640, height=Math.round(Math.min(width*.75,window.innerHeight*.72,560));
+        // Leave room for the permutation chooser above the view, so both fit on one screen.
+        // (clientHeight ignores the on-screen keyboard, so the view does not jump while typing.)
+        const room=document.documentElement.clientHeight-chooser.offsetHeight-stageBar.offsetHeight-56;
+        const width=canvas.clientWidth||640, height=Math.round(Math.min(width*.75,620,Math.max(260,room)));
         const dpr=window.devicePixelRatio||1;
         canvas.style.height=`${height}px`; canvas.width=Math.round(width*dpr); canvas.height=Math.round(height*dpr);
         ctx.setTransform(dpr,0,0,dpr,0,0);
@@ -656,13 +689,18 @@
         const p=lastEdited==='cycle'?readCycles(true):readTwoLine(true);
         if(!p) return;
         fillInputs(p); if(lastEdited==='cycle'&&cycleInput.value!==cycleString(p)) cycleInput.value=cycleString(p);
-        describe(p); moveTo(p);
+        describe(p); moveTo(p); hideKeyboard();
       }
+      // Keep σ as entered, but send the solid back to where it started.
+      function revert(){ clearErrors(); moveTo(identity(solid.n)); hideKeyboard(); }
+      // On touch screens, dismiss the on-screen keyboard so the animation is visible.
+      function hideKeyboard(){ if(window.matchMedia('(pointer: coarse)').matches&&document.activeElement!==document.body) document.activeElement.blur(); }
       const choose=p=>{ lastEdited='twoline'; clearErrors(); fillInputs(p); describe(p); moveTo(p); };
       const pickOther=list=>{ const others=list.filter(p=>!samePerm(p,current)); return others[Math.floor(Math.random()*others.length)]; };
       const shuffled=n=>{ const a=identity(n); for(let i=n-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
 
       document.querySelector('#permute').addEventListener('click',permute);
+      document.querySelector('#revert').addEventListener('click',revert);
       document.querySelector('#reset').addEventListener('click',()=>choose(identity(solid.n)));
       document.querySelector('#random-rotation').addEventListener('click',()=>choose(pickOther(solid.rotations)));
       document.querySelector('#random-symmetry').addEventListener('click',()=>choose(pickOther(solid.allSymmetries)));
@@ -680,7 +718,7 @@
       document.addEventListener('keydown',event=>{
         if(event.key==='Enter'&&(event.target===cycleInput||event.target.classList.contains('answer-input'))){ event.preventDefault(); permute(); }
       });
-      new ResizeObserver(resize).observe(canvas);
+      const observer=new ResizeObserver(resize); observer.observe(canvas); observer.observe(chooser);
       window.addEventListener('resize',resize);
 
       loadSolid(solidBox.value);
