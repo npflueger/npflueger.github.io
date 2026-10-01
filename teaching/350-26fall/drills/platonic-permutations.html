@@ -243,7 +243,7 @@
           <label class="equals" for="cycle-input"><i>σ</i> =</label>
           <input id="cycle-input" class="cycle-answer" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="(1,2,3)">
           <button id="permute" class="btn btn--primary" type="button">Permute!</button>
-          <button id="revert" class="btn btn--secondary" type="button" title="Move the solid back to its starting position, keeping σ">Revert</button>
+          <button id="revert" class="btn btn--secondary" type="button" title="Move the solid back to its starting position, keeping σ (Shift+Enter)">Revert</button>
         </div>
       </div>
       <div class="button-row extras">
@@ -266,7 +266,7 @@
     <div id="status" class="status" role="status" aria-live="polite"></div>
 
     <p class="hint notes">
-      Enter <i>σ</i> in either notation; the other one updates to match. In cycle notation, products are applied right to left, so the cycles need not be disjoint; use <i>e</i> (or leave the box blank) for the identity. Press Enter or <b>Permute!</b> to move the solid. <b>Revert</b> moves it back to its starting position but keeps <i>σ</i>, so pressing <b>Permute!</b> again replays the motion.
+      Enter <i>σ</i> in either notation; the other one updates to match. In cycle notation, products are applied right to left, so the cycles need not be disjoint; use <i>e</i> (or leave the box blank) for the identity. Press Enter or <b>Permute!</b> to move the solid. <b>Revert</b> (or Shift+Enter) moves it back to its starting position but keeps <i>σ</i>, so pressing Enter again replays the motion.
     </p>
   </main>
   <script>
@@ -716,7 +716,11 @@
       solidBox.addEventListener('change',()=>{ spin=null; loadSolid(solidBox.value); });
       ghostBox.addEventListener('change',kick);
       document.addEventListener('keydown',event=>{
-        if(event.key==='Enter'&&(event.target===cycleInput||event.target.classList.contains('answer-input'))){ event.preventDefault(); permute(); }
+        // Enter permutes and Shift+Enter reverts, from the permutation boxes, the view, or the page itself (not from buttons or menus).
+        const t=event.target;
+        if(event.key!=='Enter'||!(t===cycleInput||t.classList.contains('answer-input')||t===canvas||t===document.body)) return;
+        event.preventDefault();
+        if(event.shiftKey) revert(); else permute();
       });
       const observer=new ResizeObserver(resize); observer.observe(canvas); observer.observe(chooser);
       window.addEventListener('resize',resize);
