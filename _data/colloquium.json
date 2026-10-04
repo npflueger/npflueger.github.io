@@ -53,15 +53,17 @@
     "abstract": "Fractals are intricate geometric shapes often possessing self-similarity: they appear identical at various levels of magnification. These self-similar structures arise from iterative mathematical processes---such as the repeated removal of central portions or recursive boundary modifications---and are ubiquitous in nature, appearing in everything from coastlines and blood vessel networks to porous media and cracks. In this talk, I will discuss fractals in the context of electromagnetic wave propagation. In particular, I will discuss fractal structures that could have different \"dimensions\" in each direction and appear in the modeling of composite structures with fractal type microstructures. Time permitting, I will also discuss recent work on waveguides (structures which guide light) with fractal cross-sections. ",
     "bio": "Eric Stachura is an Associate Professor of Mathematics at Kennesaw State University in Atlanta, Georgia. Before joining KSU, he was a Visiting Assistant Professor at Haverford College. His research interests include the analysis of partial differential equations, especially related to electromagnetism and geometric optics in exotic materials. Outside of mathematics, he enjoys chess, reading, and hiking"
    },
+
 {
     "date": "2026-10-15",
     "speaker": "Cesar E. Silva (Williams College)",
     "speakerurl": "https://sites.williams.edu/csilva/",
     "timeplace": "4:00-5:00, SMUD 205.",
-    "title": "TBA",
-    "abstract": "TBA",
-    "bio": "TBA"
+    "title": "Mixing Notions in Ergodic Theory",
+    "abstract": "We'll start with a discussion of the process of mixing as it relates to kneading dough, and its connection with chaos, or sensitive dependence on initial conditions. This will lead us to the notion of a dynamical systems and measure-preserving transformations, and we will explore in particular the notion of weak mixing, its generalizations, and some open questions.",
+    "bio": "Cesar Silva is the Hagey Family Professor of Mathematics at Williams College. His research interests are in ergodic theory and dynamical systems, and he has done research with undergraduate students in these areas.  In 2015, Silva was elected a Fellow of the American Mathematical Society. He is the author of Invitation to Ergodic Theory and Invitation to Real Analysis, both published by the American Mathematical Society. Outside of mathematics his interests include photography, piano, and running."
    },  
+
   {
     "date": "2026-04-30",
     "speaker": "Jason Liu (University of Illinois Urbana-Champaign)",
