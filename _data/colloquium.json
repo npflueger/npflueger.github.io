@@ -4,9 +4,9 @@
     "speaker": "Corrine Yap (Mount Holyoke College)",
     "speakerurl": "https://corrineyap.com/",
     "timeplace": "4:00-5:00, SMUD 205.",
-    "title": "TBA",
-    "abstract": "TBA",
-    "bio": "TBA"
+    "title": "Evolution of Random Discrete Structures",
+    "abstract": "At an early age, we learn about the notion of phase transitions: at what temperature does solid turn to liquid and liquid turn to gas? The phenomenon of phase transitions occurs not only in nature but also in mathematics. Suppose we create a random network by flipping independent coins to determine if nodes are connected. If each coin is biased, what is the typical structure of the network? What amount of bias will result in the network being connected? Conversely, suppose we want to study a network with a complicated structure. Can we recreate it as the result of some random evolving process? In this talk, we’ll discuss the interplay between randomness and structure, and what one can tell us about the other. We’ll see applications to problems from mathematics, computer science, and physics, ranging from classical phase transitions in particle systems to surprising connections in flat-foldable origami. No background with any of these topics will be assumed!",
+    "bio": "Corrine Yap is an Assistant Professor of Mathematics at Mount Holyoke College. Her research lies in the intersections of combinatorics, probability, algorithms, and statistical physics. She earned her PhD in mathematics at Rutgers University and was a Visiting Assistant Professor and postdoctoral fellow at Georgia Tech. Corrine is also an actor and playwright; in her "spare time" she performs a one-woman show Uniform Convergence---which she began developing as an undergraduate at Sarah Lawrence College---for math departments around the country. "
    },  
    {
     "date": "2026-11-19",
