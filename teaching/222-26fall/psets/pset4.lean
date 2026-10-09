@@ -48,3 +48,19 @@ lemma ex_8 (n : ℕ) : S n = 2 - 1 / 2 ^ n := by
   sorry
 
 /- NOTE: A couple more induction problems will be added after class on Tuesday 10/6 and/or Thursday 10/8. -/
+
+/- The following two problems were added at the end of the week. -/
+lemma ex_9 (n : ℕ) : 3 ∣ (n:ℤ) ∨ 3 ∣ ((n:ℤ)-1) ∨ 3 ∣ ((n:ℤ)-2) := by
+  -- Comment: all that :ℤ above means that Lean treats n as an integer instead of a natural number,
+  -- so that subtraction is well-defined in general. This may mean ironing out some ↑ symbols along the way.
+  sorry
+
+/- The following sequence is used in exercise ex_10 below. -/
+def a (n : ℕ) : ℚ :=
+  match n with
+  | 0 => 1
+  | 1 => 8
+  | n+2 => 6*(a n) + a (n+1)
+
+lemma ex_10 (n : ℕ) : a n = 2*3^n - (-2)^n := by
+  sorry
