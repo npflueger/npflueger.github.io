@@ -83,3 +83,38 @@ select,
 textarea {
   font-family: $charter-stack;
 }
+
+/* Link icons, chosen by URL. Enable on a page with `classes: link-icons` in its front matter.
+   Brand icons are self-hosted SVGs (Simple Icons, CC0; Palomar favicon, MIT), drawn with a mask so they take the link color;
+   generic icons come from Font Awesome, which head.html already loads. */
+.link-icons .page__content a {
+  &[href*="arxiv.org"]::before,
+  &[href*="doi.org"]::before,
+  &[href*="github.com"]::before,
+  &[href*="palomar-registry.org"]::before {
+    content: "";
+    display: inline-block;
+    width: 0.9em;
+    height: 0.9em;
+    margin-right: 0.25em;
+    vertical-align: -0.1em;
+    background-color: currentColor;
+    -webkit-mask: var(--link-icon) no-repeat center / contain;
+    mask: var(--link-icon) no-repeat center / contain;
+  }
+  &[href*="arxiv.org"] { --link-icon: url("/assets/images/icons/arxiv.svg"); }
+  &[href*="doi.org"] { --link-icon: url("/assets/images/icons/doi.svg"); }
+  &[href*="github.com"] { --link-icon: url("/assets/images/icons/github.svg"); }
+  &[href*="palomar-registry.org"] { --link-icon: url("/assets/images/icons/palomar.svg"); }
+
+  &[href$=".pdf"]::before,
+  &[href*="/docs/"]::before,
+  &[href*="expositio.org"]::before {
+    display: inline-block;
+    margin-right: 0.25em;
+    font-family: "Font Awesome 5 Free";
+  }
+  &[href$=".pdf"]::before { content: "\f1c1"; font-weight: 400; } /* file-pdf (regular) */
+  &[href*="/docs/"]::before { content: "\f02d"; font-weight: 900; } /* book */
+  &[href*="expositio.org"]::before { content: "\f518"; font-weight: 900; } /* book-open */
+}
