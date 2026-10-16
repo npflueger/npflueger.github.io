@@ -40,17 +40,26 @@
 ### Preprints and papers under review
 
 <ol start="1">
+<li><em>Formalizing chip-firing and Riemann&ndash;Roch for graphs in Lean 4</em> (with D. Mavani). 10 pages. Preprint (2026).
+<br /><em>arXiv v1: June 2026</em>
+</li>
+<li><em>Transmission permutations and Demazure products in Hurwitz&ndash;Brill&ndash;Noether theory</em>. 19 pages. Preprint (2026).
+<br /><em>arXiv v1: April 2026</em>
+</li>
+<li><em>chipfiring: A Python Package for Efficient Mathematical Analysis of Chip-Firing Games on Multigraphs</em> (with T. Ji, D. Mavani). 25 pages. Preprint (2025).
+<br /><em>arXiv v1: Aug. 2025</em>
+</li>
 <li><em>An extended Demazure product on integer permutations via min-plus matrix multiplication</em>. 26 pages. Preprint (2022).
 <br /><em>arXiv v1: June 2022</em>
 </li>
-<li><em>(Hurwitz--)Brill--Noether general marked graphs via the Demazure product</em>. 14 pages. Preprint (2022).
+<li><em>(Hurwitz&ndash;)Brill&ndash;Noether general marked graphs via the Demazure product</em>. 14 pages. Preprint (2022).
 <br /><em>arXiv v1: Jan. 2022</em>
 </li>
 </ol>
 
 ### Publications
 
-<ol start="3">
+<ol start="6">
 <li><em>Twice-Marked Banana Graphs &amp; Brill-Noether Generality</em> (with N. Solomon). Algebraic Combinatorics, Volume 8 (2025) no. 5, pp. 1415-1457.
 <br /><em>arXiv v1: Nov. 2022</em>
 </li>
@@ -100,6 +109,9 @@
 ## Teaching
 
 ### Amherst College
+- Fall 2026:
+  - Math 222, Interactive theorem proving (new course)
+  - Math 350, Groups, rings, and fields
 - Spring 2025:
   - Math 250, Number theory
   - Math 272, Linear algebra with applications
@@ -275,4 +287,4 @@
 ### University of Washington (funding from National Science Foundation) (Summer 2006)
 - R.E.U. in Inverse Problems for Electrical Networks (Seattle, WA)
 
-_Updated: 2026-04-29_
+_Updated: 2026-10-16_

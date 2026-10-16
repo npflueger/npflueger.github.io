@@ -33,7 +33,7 @@ I am also interested in proof formalization in Lean 4. You can find some of my o
 <br /> [arXiv](https://arxiv.org/abs/2206.14227)
 *   _(Hurwitz-)Brill-Noether general marked graphs via the Demazure product_. Preprint (2022).
 <br /> [arXiv](https://arxiv.org/abs/2201.12316)
-* _chipfiring: A Python Package for Efficient Mathematical Analysis of Chip-Firing Games on Multigraphs_ (with Dhyey Mavani). Preprint (2025).
+* _chipfiring: A Python Package for Efficient Mathematical Analysis of Chip-Firing Games on Multigraphs_ (with Tairan Ji and Dhyey Mavani). Preprint (2025).
 <br /> [arXiv](https://arxiv.org/abs/2508.00269)
 
 
