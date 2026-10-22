@@ -6,7 +6,7 @@
 - Address: 31 Quadrangle Drive
 - City: Amherst, MA 01002
 - Email: [npflueger@amherst.edu](mailto:npflueger@amherst.edu)
-- Website: <http://npflueger.github.io/>
+- Website: <https://npflueger.com>
 
 ## Professional Positions
 
@@ -251,6 +251,7 @@
 - May 2016, "Brill-Noether Special Chains of Loops." Algebraic, Tropical, and Nonarchimedean Analytic Geometry of Moduli Spaces, Oaxaca, Mexico.
 - March 2016, Georgia Tech algebraic geometry seminar.
 - March 2016, Special session in Interactions Between Algebraic and Tropical Geometry, AMS Spring Sectional Meeting, Athens, GA.
+- October 2015, Brown algebraic geometry seminar.
 - June 2015, Special Session in Enumerative and Combinatorial Methods in Moduli Theory, AMS-EMS-SPM International Meeting, Porto, Portugal.
 - October 2014, Special session on combinatorics and algebraic geometry, AMS Fall Sectional Meeting, San Francisco, CA.
 - February 2014, Rice algebraic geometry seminar.
