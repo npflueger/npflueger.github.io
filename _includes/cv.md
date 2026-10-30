@@ -43,9 +43,6 @@
 <li><em>Formalizing chip-firing and Riemann&ndash;Roch for graphs in Lean 4</em> (with D. Mavani). 10 pages. Preprint (2026).
 <br /><em>arXiv v1: June 2026</em>
 </li>
-<li><em>Transmission permutations and Demazure products in Hurwitz&ndash;Brill&ndash;Noether theory</em>. 19 pages. Preprint (2026).
-<br /><em>arXiv v1: April 2026</em>
-</li>
 <li><em>chipfiring: A Python Package for Efficient Mathematical Analysis of Chip-Firing Games on Multigraphs</em> (with T. Ji, D. Mavani). 25 pages. Preprint (2025).
 <br /><em>arXiv v1: Aug. 2025</em>
 </li>
@@ -59,7 +56,10 @@
 
 ### Publications
 
-<ol start="6">
+<ol start="5">
+<li><em>Transmission permutations and Demazure products in Hurwitz&ndash;Brill&ndash;Noether theory</em>. To appear in International Mathematics Research Notices.
+<br /><em>arXiv v1: April 2026</em>
+</li>
 <li><em>Twice-Marked Banana Graphs &amp; Brill-Noether Generality</em> (with N. Solomon). Algebraic Combinatorics, Volume 8 (2025) no. 5, pp. 1415-1457.
 <br /><em>arXiv v1: Nov. 2022</em>
 </li>
@@ -288,4 +288,4 @@
 ### University of Washington (funding from National Science Foundation) (Summer 2006)
 - R.E.U. in Inverse Problems for Electrical Networks (Seattle, WA)
 
-_Updated: 2026-10-16_
+_Updated: 2026-10-30_
