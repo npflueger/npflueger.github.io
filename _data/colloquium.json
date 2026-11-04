@@ -31,9 +31,9 @@
     "speaker": "Crepeau, Natasha (Williams College)",
     "speakerurl": "https://sites.google.com/view/natasha-crepeau-math/home",
     "timeplace": "4:00-5:00, SMUD 205.",
-    "title": "TBA",
-    "abstract": "TBA",
-    "bio": "TBA"
+    "title": "Break divisors, generalizations, and connections to geometry",
+    "abstract": "A divisor on a graph is an assignment of integers to the vertices of a graph. We can move between divisors through chip-firing moves, where vertices lend and borrow chips from their neighbors. These chip-firing moves allow us to define an equivalence relation on the set of all divisors, and equivalence classes of divisors. In this talk, we'll explore sets of representatives of divisors of degree g, where g is the combinatorial genus of the graph, that are constructed from the spanning trees of the graph. To construct these sets, we turn to matroid polytopes associated with the graph, called Lawrence polytopes, and explore its triangulations and connections to cycle-cocycle reversal classes of the graph.",
+    "bio": "Natasha Crepeau is a Visiting Assistant Professor in Mathematics at Williams College, and her research is in the world of combinatorial algebraic geometry. In particular, she is interested in how polytopes, matroids, graphs, and other objects with lots of combinatorics associated with them relate to each other and to questions in algebraic geometry. Outside of mathematics, she enjoys running, cooking, and watching sports like professional running and baseball."
    },
   {
     "date": "2026-09-03",
