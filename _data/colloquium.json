@@ -13,9 +13,10 @@
     "speaker": "Thomas Kindred (Smith College)",
     "speakerurl": "https://thomaskindred.com/",
     "timeplace": "4:00-5:00, SMUD 205.",
-    "title": "TBA",
-    "abstract": "TBA",
-    "bio": "TBA"
+    "title": "The shape of a rational number",
+    "abstract": "Every real number A can be written as a fraction, using only integers! Even better, the only numerator you need is 1.   There's a catch, though: the fraction might go on forever, and indeed it must if A is irrational.  For example, the golden ratio is 1+1/(1+1/(1+1/(1+.... Welcome to the world of continued fractions (CF's)! We will survey some of the long and fascinating history of CF's and then, because I am a knot theorist rather than a number theorist, we will narrow our focus to CF expansions of rational numbers. This will ensure that all CF's are finite, and that there are only a small number of "essential'' CF's to consider for a given rational number.  How does knot theory come in? It turns out that every non-integer rational number p/q corresponds to a specific knot (or link) K, and that every CF for p/q corresponds to a surface whose boundary is K.  I will describe several of the rich and beautiful structures carried by these correspondences.  Some of those structures are new, and they come out of joint work with Moshe Cohen, Adam Lowrance, Pat Shanahan, and Cornelia Van Cott.  Expect physical models and lots of pictures!",
+    "bio": "Thomas Kindred is a Visiting Assistant Professor at Smith College.  His research is mainly in knot theory in dimensions 3 and 4.  He is especially drawn to problems that are accessible to undergraduates, connect distant areas of mathematics, and can be approached visually.  Between college at Williams and grad school at Iowa, he taught high school math for four years, three in rural Mississippi.  His favorite activities include reading and dancing with his children (ages 4 and 7), playing ultimate frisbee, and sharing in the discovery of mathematics.   
+"
    },
  {
     "date": "2026-12-03",
