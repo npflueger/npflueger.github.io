@@ -37,7 +37,7 @@ I am also interested in proof formalization in Lean 4. You can find some of my o
 
 ## Publications
 
-*   _Transmission permutations and Demazure products in Hurwitz--Brill--Noether theory_. To appear in International Mathematics Research Notices.
+*   _Transmission permutations and Demazure products in Hurwitz--Brill--Noether theory_. International Mathematics Research Notices, 2026:22 (2026).
 <br /> [arXiv](https://arxiv.org/abs/2604.03895)&emsp;[DOI](https://doi.org/10.1093/imrn/rnag280)
 
 *   _Twice-Marked Banana Graphs & Brill--Noether Generality_ (with N. Solomon). Algebraic Combinatorics, Volume 8 (2025) no. 5, pp. 1415-1457.
